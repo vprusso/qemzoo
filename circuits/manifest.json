@@ -1,0 +1,38 @@
+[
+  {
+    "id": "bell_state",
+    "name": "Bell State Preparation",
+    "file": "bell_state.qasm",
+    "qubits": 2,
+    "description": "Prepares a Bell state |00⟩ + |11⟩. The ideal outcome is 50% |00⟩ and 50% |11⟩.",
+    "observable": "ZZ",
+    "ideal_value": 1.0
+  },
+  {
+    "id": "ghz_3qubit",
+    "name": "GHZ State (3-qubit)",
+    "file": "ghz_3qubit.qasm",
+    "qubits": 3,
+    "description": "Prepares a 3-qubit GHZ state |000⟩ + |111⟩. The ideal ⟨ZZZ⟩ expectation value is 1.",
+    "observable": "ZZZ",
+    "ideal_value": 1.0
+  },
+  {
+    "id": "mirror_2qubit",
+    "name": "Mirror Circuit (2-qubit)",
+    "file": "mirror_2qubit.qasm",
+    "qubits": 2,
+    "description": "A mirror circuit that should return to |00⟩. The ideal ⟨ZZ⟩ expectation value is 1.",
+    "observable": "ZZ",
+    "ideal_value": 1.0
+  },
+  {
+    "id": "random_1qubit",
+    "name": "Single-Qubit Circuit",
+    "file": "random_1qubit.qasm",
+    "qubits": 1,
+    "description": "A simple H-T-H circuit on one qubit. The ideal ⟨Z⟩ expectation value is −1/√2 ≈ −0.707.",
+    "observable": "Z",
+    "ideal_value": -0.7071067811865476
+  }
+]

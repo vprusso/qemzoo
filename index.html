@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The QEM Zoo</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+      startup: { typeset: false }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+
+<header>
+  <h1><a href="index.html">The QEM Zoo</a></h1>
+  <p class="subtitle">A comprehensive catalog of quantum error mitigation and suppression techniques</p>
+  <p class="description">
+    Inspired by the <a href="https://complexityzoo.net/Complexity_Zoo">Complexity Zoo</a>
+    and the <a href="https://errorcorrectionzoo.org/">Error Correction Zoo</a>,
+    the QEM Zoo aims to be a living reference for all known quantum error mitigation (QEM)
+    and quantum error suppression (QES) methods.
+    The need for such a resource was identified as an open problem in
+    <a href="https://arxiv.org/abs/2210.00921">Cai et al. (2023)</a>.
+  </p>
+</header>
+
+<nav class="site-nav">
+  <a href="index.html" class="active">Catalog</a>
+  <a href="graph.html">Graph View</a>
+  <a href="playground.html">Playground</a>
+</nav>
+
+<div class="filters">
+  <div class="category-filters">
+    <button class="filter-btn active" data-category="all">All</button>
+    <button class="filter-btn" data-category="mitigation">Mitigation</button>
+    <button class="filter-btn" data-category="suppression">Suppression</button>
+  </div>
+  <div class="search-container">
+    <input type="text" id="search" placeholder="Search techniques by name or keyword...">
+  </div>
+</div>
+
+<nav class="alpha-nav" id="alpha-nav"></nav>
+
+<main id="techniques"></main>
+
+<p class="no-results">No techniques match your search.</p>
+
+<section id="references-section" style="display:none">
+  <h2>References</h2>
+  <ol id="references-list"></ol>
+</section>
+
+<footer>
+  <p>
+    The QEM Zoo &mdash; a catalog of quantum error mitigation and suppression techniques.<br>
+    Motivated by Open Problem 1 in
+    <a href="https://arxiv.org/abs/2210.00921">Cai et al., "Quantum Error Mitigation," <i>Rev. Mod. Phys.</i> (2023)</a>.<br>
+    Modeled after the <a href="https://complexityzoo.net/Complexity_Zoo">Complexity Zoo</a>
+    and the <a href="https://errorcorrectionzoo.org/">Error Correction Zoo</a>.
+  </p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

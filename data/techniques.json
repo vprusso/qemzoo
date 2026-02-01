@@ -1,0 +1,233 @@
+[
+  {
+    "id": "cdr",
+    "name": "Clifford Data Regression",
+    "abbreviation": "CDR",
+    "aliases": ["variable-noise CDR", "vnCDR"],
+    "category": "mitigation",
+    "summary": "Trains a regression model using circuits that are close to Clifford (and thus efficiently simulable) to learn the relationship between noisy and ideal expectation values. The learned model is then applied to correct the noisy output of the target non-Clifford circuit. Because near-Clifford circuits can be simulated classically, CDR generates its own training labels without requiring a noise-free quantum device.",
+    "properties": {
+      "Bias": "Depends on similarity between training and target circuits",
+      "Sampling overhead": "Low at inference; training requires running near-Clifford circuits",
+      "Noise model required": "Implicitly learned from data; no explicit noise model needed",
+      "Applicability": "General-purpose; works best when near-Clifford training circuits approximate target noise profile"
+    },
+    "references": ["czarnik2021", "lowe2021"],
+    "related": [
+      {"id": "learning-based", "reason": "CDR is a specific instance of learning-based QEM"},
+      {"id": "zne", "reason": "vnCDR combines CDR with variable noise scaling"}
+    ]
+  },
+  {
+    "id": "dd",
+    "name": "Dynamical Decoupling",
+    "abbreviation": "DD",
+    "aliases": ["spin echo", "CPMG", "Uhrig dynamical decoupling", "XY-4"],
+    "category": "suppression",
+    "summary": "Suppresses unwanted system-environment interactions by applying sequences of fast control pulses during idle periods in a quantum circuit. The pulse sequences are designed so that the net effect of the environment averages to zero over the decoupling cycle. Common sequences include spin echo, CPMG, XY-4, and Uhrig DD, each optimized for different noise spectra.",
+    "properties": {
+      "Bias": "Residual errors from finite pulse width and higher-order terms",
+      "Sampling overhead": "None (same number of shots); adds gate overhead",
+      "Noise model required": "None, though knowledge of noise spectrum helps choose optimal sequence",
+      "Applicability": "Idle qubits during circuit execution; most effective against low-frequency noise"
+    },
+    "references": ["viola1999", "souza2012"],
+    "related": [
+      {"id": "pauli-twirling", "reason": "both are suppression techniques applied at the gate level"}
+    ]
+  },
+  {
+    "id": "learning-based",
+    "name": "Learning-Based Methods",
+    "abbreviation": null,
+    "aliases": ["machine-learning error mitigation", "data-driven mitigation"],
+    "category": "mitigation",
+    "summary": "A family of techniques that use classical machine learning to learn the effect of noise on quantum circuits and correct for it. Approaches include training on circuits with known outputs (e.g., Clifford circuits) to build a noise model, then applying the learned correction to target circuits. Methods range from linear regression to neural networks. CDR is a specific instance of this broader family.",
+    "properties": {
+      "Bias": "Depends on model expressivity and training data quality",
+      "Sampling overhead": "Typically low at inference time; training cost varies",
+      "Noise model required": "Implicitly learned from data; no explicit model needed",
+      "Scalability": "Promising for large systems if training data is representative"
+    },
+    "references": ["czarnik2021", "strikis2021"],
+    "related": [
+      {"id": "cdr", "reason": "CDR is a specific learning-based method"},
+      {"id": "zne", "reason": "learning-based methods can incorporate noise-scaled data"}
+    ]
+  },
+  {
+    "id": "lre",
+    "name": "Layerwise Richardson Extrapolation",
+    "abbreviation": "LRE",
+    "aliases": ["multivariate Richardson extrapolation"],
+    "category": "mitigation",
+    "summary": "Generalizes zero-noise extrapolation by scaling noise independently at each layer of a quantum circuit rather than uniformly across the entire circuit. This multivariate approach constructs a higher-dimensional extrapolation in the space of per-layer noise rates, enabling more accurate extrapolation to the zero-noise limit. The number of circuit variations scales polynomially with circuit depth \\(d\\) for a fixed extrapolation order.",
+    "properties": {
+      "Bias": "Reduced compared to global ZNE at the same extrapolation order",
+      "Sampling overhead": "\\(\\binom{d + k - 1}{k}\\) circuit variations for depth \\(d\\) and order \\(k\\); exponential in order",
+      "Noise model required": "Minimal; requires ability to scale noise at each layer independently",
+      "Applicability": "Layered circuits (e.g., variational ansatze, Trotterized evolution)"
+    },
+    "references": ["russo2024"],
+    "related": [
+      {"id": "zne", "reason": "LRE is a multivariate generalization of ZNE"}
+    ]
+  },
+  {
+    "id": "measurement-error-mitigation",
+    "name": "Measurement Error Mitigation",
+    "abbreviation": "REM",
+    "aliases": ["readout error mitigation", "assignment matrix inversion"],
+    "category": "mitigation",
+    "summary": "Corrects for errors occurring during the final measurement (readout) stage of a quantum computation. The key idea is to characterize the measurement channel by preparing known computational basis states and recording the assignment probabilities, forming a confusion matrix \\(A\\). The inverse \\(A^{-1}\\) is then applied to raw measurement results to recover corrected expectation values.",
+    "properties": {
+      "Bias": "Zero (in principle) if the assignment matrix is exact",
+      "Sampling overhead": "Grows exponentially with measurement fault rate",
+      "Noise model required": "Measurement-only; characterized via \\(2^n\\) calibration circuits (or fewer with tensor product approximation)",
+      "Scalability": "Full matrix inversion is \\(O(2^n)\\); tensor product or correlated subsets used in practice"
+    },
+    "references": ["maciejewski2020", "bravyi2021"],
+    "related": [
+      {"id": "symmetry-verification", "reason": "both can detect/correct measurement-stage errors"}
+    ]
+  },
+  {
+    "id": "n-representability",
+    "name": "N-Representability Constraints",
+    "abbreviation": null,
+    "aliases": ["fermionic constraints", "reduced density matrix constraints"],
+    "category": "mitigation",
+    "summary": "Leverages known constraints from quantum chemistry and many-body physics on reduced density matrices (RDMs). Physical RDMs must satisfy \\(N\\)-representability conditions (e.g., the 2-RDM must be derivable from a valid \\(N\\)-particle state). By projecting noisy estimates of RDMs onto the set of \\(N\\)-representable matrices, unphysical noise artifacts are removed.",
+    "properties": {
+      "Bias": "Reduced; projection removes unphysical contributions",
+      "Sampling overhead": "Minimal (classical post-processing only)",
+      "Noise model required": "None; uses physical constraints",
+      "Applicability": "Primarily fermionic/quantum chemistry problems"
+    },
+    "references": ["rubin2018", "mcclean2017"],
+    "related": [
+      {"id": "symmetry-verification", "reason": "both exploit physical constraints to remove noise"},
+      {"id": "subspace-expansion", "reason": "both are post-processing methods for variational algorithms"}
+    ]
+  },
+  {
+    "id": "pauli-twirling",
+    "name": "Pauli Twirling",
+    "abbreviation": "PT",
+    "aliases": ["randomized compiling", "Pauli-frame randomization"],
+    "category": "suppression",
+    "summary": "Converts coherent (systematic) gate errors into stochastic Pauli noise by randomly conjugating each gate with Pauli operators drawn from the gate's stabilizer group. Over many randomized circuit instances, off-diagonal terms in the error channel average out, leaving a Pauli channel. This tailored noise is easier to analyze and mitigate with downstream techniques such as PEC or ZNE.",
+    "properties": {
+      "Bias": "Converts coherent errors to stochastic; does not remove noise on its own",
+      "Sampling overhead": "Minimal; requires averaging over random Pauli insertions",
+      "Noise model required": "None",
+      "Applicability": "General-purpose; especially useful as a preprocessing step before PEC or ZNE"
+    },
+    "references": ["wallman2016", "ware2021"],
+    "related": [
+      {"id": "pec", "reason": "Pauli twirling simplifies noise for PEC"},
+      {"id": "zne", "reason": "Pauli twirling simplifies noise for ZNE"},
+      {"id": "dd", "reason": "both are suppression techniques applied at the gate level"}
+    ]
+  },
+  {
+    "id": "pec",
+    "name": "Probabilistic Error Cancellation",
+    "abbreviation": "PEC",
+    "aliases": ["quasi-probability decomposition", "probabilistic error correction"],
+    "category": "mitigation",
+    "summary": "Decomposes each ideal (noiseless) gate operation into a linear combination of noisy implementable operations with real (possibly negative) quasi-probability coefficients. By randomly sampling from this decomposition and weighting results by the sign of the coefficient, the noise-free expectation value is recovered exactly in the limit of infinite samples.",
+    "properties": {
+      "Bias": "Zero (unbiased estimator)",
+      "Sampling overhead": "Exponential: scales as \\(e^{2\\gamma}\\) where \\(\\gamma\\) is the total one-norm of the quasi-probability decomposition",
+      "Noise model required": "Full characterization of local gate noise (e.g., via gate set tomography)",
+      "Scalability": "Overhead grows exponentially with circuit depth and noise rate"
+    },
+    "references": ["temme2017", "li2017"],
+    "related": [
+      {"id": "pauli-twirling", "reason": "Pauli twirling simplifies noise model for PEC"},
+      {"id": "zne", "reason": "both are foundational QEM techniques from Temme et al. (2017)"},
+      {"id": "measurement-error-mitigation", "reason": "PEC can be combined with REM for full-circuit mitigation"}
+    ]
+  },
+  {
+    "id": "purification",
+    "name": "Purification-Based Methods",
+    "abbreviation": "VD",
+    "aliases": ["virtual distillation", "error suppression by derangement"],
+    "category": "mitigation",
+    "summary": "Exploits the fact that noise makes a pure quantum state mixed. By preparing \\(M\\) independent copies of the noisy state and measuring collective observables (e.g., via a derangement or cyclic-shift operator), the contribution of the dominant eigenvector of the density matrix is amplified exponentially in \\(M\\), effectively purifying the state.",
+    "properties": {
+      "Bias": "Exponentially suppressed: \\(O((\\lambda_2/\\lambda_1)^M)\\) where \\(\\lambda_1, \\lambda_2\\) are the two largest eigenvalues",
+      "Sampling overhead": "Polynomial in \\(M\\); requires \\(M\\) copies of the circuit",
+      "Noise model required": "None (model-free)",
+      "Hardware requirements": "\\(M\\) copies of the state; entangling measurements across copies or classical shadows"
+    },
+    "references": ["huggins2021", "koczor2021"],
+    "related": [
+      {"id": "subspace-expansion", "reason": "both use multiple quantum states to improve estimates"},
+      {"id": "symmetry-verification", "reason": "purity is itself a constraint that can be verified"}
+    ]
+  },
+  {
+    "id": "subspace-expansion",
+    "name": "Subspace Expansion",
+    "abbreviation": "QSE",
+    "aliases": ["quantum subspace expansion"],
+    "category": "mitigation",
+    "summary": "Constructs an expanded subspace by applying a set of operators (e.g., excitation operators) to a reference state obtained from a quantum device. A generalized eigenvalue problem is then solved classically within this subspace. By including directions that span the noise-induced leakage, the method can project back onto the physical subspace and recover improved estimates.",
+    "properties": {
+      "Bias": "Reduced; depends on quality of subspace basis",
+      "Sampling overhead": "Additional measurements for subspace matrix elements",
+      "Noise model required": "None",
+      "Applicability": "Primarily variational algorithms (VQE)"
+    },
+    "references": ["mcclean2017", "huggins2019"],
+    "related": [
+      {"id": "n-representability", "reason": "both are post-processing methods for variational algorithms"},
+      {"id": "purification", "reason": "both use multiple quantum states to improve estimates"},
+      {"id": "symmetry-verification", "reason": "subspace expansion can incorporate symmetry constraints"}
+    ]
+  },
+  {
+    "id": "symmetry-verification",
+    "name": "Symmetry Verification",
+    "abbreviation": "SV",
+    "aliases": ["symmetry-based post-selection", "symmetry constraints"],
+    "category": "suppression",
+    "summary": "Exploits known symmetries of the target quantum system (e.g., particle number conservation, parity, or spin symmetry) to detect and discard erroneous measurement outcomes. If the ideal output state is known to lie in a particular symmetry sector, any measurement result that violates this symmetry is post-selected away. A post-processing variant projects expectation values onto the symmetric subspace without discarding data.",
+    "properties": {
+      "Bias": "Reduced (post-selection) or adjustable (post-processing)",
+      "Sampling overhead": "Inverse of pass rate (post-selection); inverse squared (post-processing)",
+      "Noise model required": "None; requires knowledge of system symmetries",
+      "Applicability": "Systems with known conserved quantities (chemistry, condensed matter, lattice gauge theories)"
+    },
+    "references": ["mcardle2019", "bonet-monroig2018"],
+    "related": [
+      {"id": "n-representability", "reason": "both exploit physical constraints"},
+      {"id": "subspace-expansion", "reason": "symmetry constraints can define subspaces"},
+      {"id": "measurement-error-mitigation", "reason": "both can detect measurement-stage errors"}
+    ]
+  },
+  {
+    "id": "zne",
+    "name": "Zero-Noise Extrapolation",
+    "abbreviation": "ZNE",
+    "aliases": ["Richardson extrapolation", "noise scaling and extrapolation"],
+    "category": "mitigation",
+    "summary": "Intentionally increases the noise level of a quantum circuit (e.g., by stretching pulses, inserting identity-gate pairs, or rescaling error rates) to collect expectation values at multiple noise levels. These data points are then extrapolated to the hypothetical zero-noise limit using polynomial, exponential, or other fitting models.",
+    "properties": {
+      "Bias": "Approximately \\(O(\\lambda^M)\\) where \\(M\\) is the extrapolation order and \\(\\lambda\\) is the noise rate",
+      "Sampling overhead": "Exponential in number of data points \\(M\\) (for Richardson); moderate for linear extrapolation",
+      "Noise model required": "Minimal; only requires ability to scale noise controllably",
+      "Scalability": "Demonstrated on up to 127 qubits; widely used in practice"
+    },
+    "references": ["temme2017", "li2017", "kim2023"],
+    "related": [
+      {"id": "lre", "reason": "LRE is a multivariate generalization of ZNE"},
+      {"id": "pec", "reason": "both are foundational QEM techniques from Temme et al. (2017)"},
+      {"id": "pauli-twirling", "reason": "Pauli twirling simplifies noise for ZNE"},
+      {"id": "cdr", "reason": "vnCDR combines CDR with noise scaling from ZNE"}
+    ]
+  }
+]
