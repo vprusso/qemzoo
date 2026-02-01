@@ -1,0 +1,52 @@
+{
+  "description": [
+    "Probabilistic Error Cancellation (PEC) is the only known quantum error mitigation technique that yields an unbiased estimator of the ideal expectation value. The price for this exactness is an exponential sampling overhead.",
+    "The key insight is that the ideal (noiseless) operation can be expressed as a linear combination of noisy implementable operations with real-valued (possibly negative) quasi-probability coefficients. By sampling noisy circuits according to the absolute values of these coefficients and weighting results by their signs, the ideal expectation value is recovered in expectation.",
+    "PEC was proposed simultaneously with ZNE by Temme et al. (2017) and independently by Li and Benjamin (2017). It requires a detailed noise model, typically obtained via gate set tomography or cycle benchmarking."
+  ],
+  "how_it_works": [
+    "Characterize the noise channel \\(\\mathcal{E}_i\\) for each gate \\(G_i\\) in the circuit, so that the noisy implementation is \\(\\mathcal{N}_i = \\mathcal{E}_i \\circ \\mathcal{G}_i\\).",
+    "Decompose each ideal gate as \\(\\mathcal{G}_i = \\sum_\\alpha \\eta_{i,\\alpha} \\, \\mathcal{O}_{i,\\alpha}\\) where \\(\\mathcal{O}_{i,\\alpha}\\) are implementable noisy operations and \\(\\eta_{i,\\alpha}\\) are quasi-probability coefficients (can be negative).",
+    "For each circuit sample: randomly choose an operation \\(\\mathcal{O}_{i,\\alpha}\\) for each gate with probability \\(|\\eta_{i,\\alpha}| / C_i\\) where \\(C_i = \\sum_\\alpha |\\eta_{i,\\alpha}|\\).",
+    "Execute the sampled circuit and weight the measurement result by the product of signs \\(\\prod_i \\text{sgn}(\\eta_{i,\\alpha_i})\\) and the total one-norm \\(\\prod_i C_i\\).",
+    "Average over many samples to estimate the ideal expectation value."
+  ],
+  "key_equations": [
+    {
+      "label": "Quasi-probability decomposition",
+      "latex": "\\mathcal{G}_i = \\sum_{\\alpha} \\eta_{i,\\alpha} \\, \\mathcal{O}_{i,\\alpha}, \\quad \\eta_{i,\\alpha} \\in \\mathbb{R}"
+    },
+    {
+      "label": "One-norm (sampling overhead)",
+      "latex": "\\gamma = \\prod_{i=1}^{L} C_i = \\prod_{i=1}^{L} \\sum_\\alpha |\\eta_{i,\\alpha}|"
+    },
+    {
+      "label": "Sampling overhead scaling",
+      "latex": "N_{\\text{samples}} \\propto \\gamma^2 = e^{2 \\sum_i \\ln C_i} \\approx e^{2 L \\bar{\\epsilon}}"
+    }
+  ],
+  "bias_variance": {
+    "bias": 0.05,
+    "variance": 0.9,
+    "overhead": 0.9,
+    "notes": "PEC is unbiased in the infinite-sample limit, but the sampling overhead grows exponentially as e^{2γ} where γ is the total one-norm of the quasi-probability decomposition. This makes PEC impractical for deep circuits or high noise rates."
+  },
+  "advantages": [
+    "Unbiased estimator — converges to the exact ideal value",
+    "Theoretically well-understood with rigorous error bounds",
+    "Works for any noise channel that can be characterized",
+    "Can be combined with Pauli twirling to simplify the required noise model"
+  ],
+  "disadvantages": [
+    "Requires detailed noise characterization (e.g., gate set tomography)",
+    "Sampling overhead is exponential in circuit depth and noise rate",
+    "Impractical for deep circuits or high noise levels",
+    "Noise model drift between calibration and execution can introduce bias"
+  ],
+  "use_cases": [
+    "Short-depth circuits where sampling budget is not limiting",
+    "Theoretical benchmark for comparing other mitigation techniques",
+    "Combined with Pauli twirling for simplified noise model",
+    "Verifying results from biased methods like ZNE"
+  ]
+}

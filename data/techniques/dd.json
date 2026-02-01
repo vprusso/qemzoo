@@ -1,0 +1,51 @@
+{
+  "description": [
+    "Dynamical Decoupling (DD) is a quantum error suppression technique borrowed from NMR spectroscopy. It works by inserting sequences of fast control pulses during idle periods in a quantum circuit, designed so that the net effect of the environment averages to zero over a decoupling cycle.",
+    "The simplest DD sequence is the spin echo: a single \\(\\pi\\)-pulse (e.g., an \\(X\\) gate) applied halfway through an idle period, which refocuses dephasing errors. More sophisticated sequences like CPMG, XY-4, and Uhrig DD are optimized for different noise power spectra.",
+    "Unlike mitigation techniques that correct errors in classical post-processing, DD actively suppresses errors at the physical level. It adds gate overhead but does not increase the number of measurement shots needed."
+  ],
+  "how_it_works": [
+    "Identify idle periods (delays) in the quantum circuit where qubits are waiting for operations on other qubits.",
+    "Choose a DD sequence appropriate for the dominant noise source. Common choices: spin echo (\\(X\\)) for static dephasing, XY-4 (\\(X\\text{-}Y\\text{-}X\\text{-}Y\\)) for general single-qubit noise, CPMG for low-frequency noise.",
+    "Insert the DD pulse sequence into each idle period, spacing pulses according to the chosen protocol (equal spacing for CPMG, optimized spacing for Uhrig DD).",
+    "Execute the modified circuit. The DD pulses cause the noise Hamiltonian to average to zero to leading order over each decoupling cycle."
+  ],
+  "key_equations": [
+    {
+      "label": "Spin echo (first-order decoupling)",
+      "latex": "U_{\\text{echo}} = X \\cdot e^{-iH_{\\text{env}}\\tau/2} \\cdot X \\cdot e^{-iH_{\\text{env}}\\tau/2} \\approx e^{-iH_0 \\tau}"
+    },
+    {
+      "label": "Decoupling condition",
+      "latex": "\\sum_{j=0}^{n} (-1)^j (t_{j+1} - t_j) = 0 \\implies \\text{first-order error cancellation}"
+    },
+    {
+      "label": "Residual error",
+      "latex": "\\|U_{\\text{DD}} - U_{\\text{ideal}}\\| = O(\\tau^{n+1} \\|H_{\\text{env}}\\|^{n+1})"
+    }
+  ],
+  "bias_variance": {
+    "bias": 0.3,
+    "variance": 0.05,
+    "overhead": 0.05,
+    "notes": "DD does not increase measurement shots, so variance is unchanged. Residual bias comes from finite pulse width, higher-order terms, and pulse errors. Very low overhead since it only adds gates during idle times."
+  },
+  "advantages": [
+    "No sampling overhead — same number of shots as the original circuit",
+    "No noise model required (though knowledge of noise spectrum helps choose optimal sequence)",
+    "Actively suppresses errors at the physical level before measurement",
+    "Can be freely combined with any mitigation technique (e.g., DD + ZNE)"
+  ],
+  "disadvantages": [
+    "Only effective during idle periods — does not help with gate errors",
+    "Finite pulse width limits decoupling fidelity",
+    "Adds gate overhead, which can introduce new errors on noisy hardware",
+    "Effectiveness depends on noise spectrum matching the DD sequence bandwidth"
+  ],
+  "use_cases": [
+    "Circuits with significant idle time (e.g., multi-qubit circuits with sequential CNOT layers)",
+    "Superconducting and trapped-ion processors with low-frequency dephasing noise",
+    "Preprocessing step before ZNE or PEC to reduce baseline noise",
+    "Quantum memory preservation during algorithmic wait times"
+  ]
+}

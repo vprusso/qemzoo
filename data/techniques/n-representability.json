@@ -1,0 +1,51 @@
+{
+  "description": [
+    "N-Representability Constraints leverage fundamental physical constraints on reduced density matrices (RDMs) from quantum chemistry to remove unphysical noise artifacts. Any valid quantum state must produce RDMs that satisfy a hierarchy of conditions known as N-representability conditions.",
+    "The most commonly used are the 2-positive conditions (P, Q, G conditions on the 2-RDM), which require certain matrices derived from the 2-RDM to be positive semidefinite. Noisy quantum devices can produce RDMs that violate these conditions, and projecting onto the feasible set effectively removes the unphysical noise component.",
+    "This technique is purely classical post-processing: the quantum device produces a noisy estimate of the RDM, and a semidefinite program (SDP) finds the nearest N-representable RDM. It requires no additional quantum measurements beyond those needed for the RDM."
+  ],
+  "how_it_works": [
+    "Measure the elements of the 2-body reduced density matrix (2-RDM) \\(\\Gamma_{pq,rs} = \\langle a_p^\\dagger a_q^\\dagger a_s a_r \\rangle\\) on the quantum device.",
+    "Check whether the measured 2-RDM satisfies N-representability conditions (P, Q, G conditions). Noisy estimates typically violate these.",
+    "Formulate a semidefinite program: find the nearest 2-RDM (in Frobenius norm) that satisfies all N-representability constraints.",
+    "Compute corrected expectation values (e.g., energy) from the projected 2-RDM: \\(E = \\sum_{pqrs} h_{pqrs} \\Gamma_{pq,rs}\\)."
+  ],
+  "key_equations": [
+    {
+      "label": "2-RDM energy",
+      "latex": "E = \\sum_{pqrs} h_{pqrs} \\, \\Gamma_{pq,rs} + \\sum_{pq} h_{pq} \\, \\gamma_{p,q} + h_0"
+    },
+    {
+      "label": "P-condition",
+      "latex": "\\Gamma \\succeq 0 \\quad (\\text{2-RDM is positive semidefinite})"
+    },
+    {
+      "label": "Projection (SDP)",
+      "latex": "\\min_{\\tilde{\\Gamma}} \\| \\tilde{\\Gamma} - \\Gamma_{\\text{noisy}} \\|_F^2 \\quad \\text{s.t. } \\tilde{\\Gamma} \\in \\mathcal{N}"
+    }
+  ],
+  "bias_variance": {
+    "bias": 0.25,
+    "variance": 0.1,
+    "overhead": 0.05,
+    "notes": "Purely classical post-processing, so no additional quantum overhead. Bias reduction depends on how tight the N-representability constraints are. Variance is essentially unchanged since no additional measurements are needed."
+  },
+  "advantages": [
+    "No additional quantum measurements or circuit modifications required",
+    "No noise model needed — uses fundamental physical constraints",
+    "Purely classical post-processing (SDP solvers are mature)",
+    "Provably removes unphysical contributions from noisy RDMs"
+  ],
+  "disadvantages": [
+    "Only applicable to fermionic / quantum chemistry problems with RDM structure",
+    "SDP complexity grows with system size (though polynomial)",
+    "N-representability conditions are necessary but not sufficient — projection may over-constrain",
+    "Cannot correct errors that produce valid-looking RDMs"
+  ],
+  "use_cases": [
+    "Post-processing VQE results for molecular energy calculations",
+    "Quantum chemistry on near-term devices",
+    "Combined with symmetry verification for additional constraint enforcement",
+    "Reducing noise in reduced density matrix measurements"
+  ]
+}

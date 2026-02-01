@@ -1,0 +1,120 @@
+{
+  "axes": [
+    {"key": "noise_model", "label": "Noise Model Required", "description": "Whether an explicit noise model is needed"},
+    {"key": "overhead", "label": "Sampling Overhead", "description": "Additional measurement cost"},
+    {"key": "bias", "label": "Bias", "description": "Systematic error in the estimator"},
+    {"key": "composable", "label": "Composability", "description": "How easily it combines with other techniques"},
+    {"key": "scalability", "label": "Scalability", "description": "Practical applicability to large systems"},
+    {"key": "generality", "label": "Generality", "description": "Range of problems/circuits it applies to"}
+  ],
+  "ratings": [
+    {
+      "id": "zne",
+      "noise_model": 5,
+      "overhead": 3,
+      "bias": 3,
+      "composable": 5,
+      "scalability": 5,
+      "generality": 5
+    },
+    {
+      "id": "pec",
+      "noise_model": 1,
+      "overhead": 1,
+      "bias": 5,
+      "composable": 4,
+      "scalability": 2,
+      "generality": 4
+    },
+    {
+      "id": "lre",
+      "noise_model": 4,
+      "overhead": 2,
+      "bias": 4,
+      "composable": 4,
+      "scalability": 4,
+      "generality": 3
+    },
+    {
+      "id": "cdr",
+      "noise_model": 4,
+      "overhead": 4,
+      "bias": 3,
+      "composable": 3,
+      "scalability": 3,
+      "generality": 3
+    },
+    {
+      "id": "measurement-error-mitigation",
+      "noise_model": 3,
+      "overhead": 3,
+      "bias": 4,
+      "composable": 5,
+      "scalability": 3,
+      "generality": 5
+    },
+    {
+      "id": "dd",
+      "noise_model": 4,
+      "overhead": 5,
+      "bias": 3,
+      "composable": 5,
+      "scalability": 5,
+      "generality": 3
+    },
+    {
+      "id": "pauli-twirling",
+      "noise_model": 5,
+      "overhead": 5,
+      "bias": 2,
+      "composable": 5,
+      "scalability": 5,
+      "generality": 4
+    },
+    {
+      "id": "symmetry-verification",
+      "noise_model": 4,
+      "overhead": 3,
+      "bias": 3,
+      "composable": 4,
+      "scalability": 4,
+      "generality": 2
+    },
+    {
+      "id": "purification",
+      "noise_model": 5,
+      "overhead": 3,
+      "bias": 4,
+      "composable": 3,
+      "scalability": 2,
+      "generality": 4
+    },
+    {
+      "id": "subspace-expansion",
+      "noise_model": 5,
+      "overhead": 3,
+      "bias": 3,
+      "composable": 3,
+      "scalability": 3,
+      "generality": 2
+    },
+    {
+      "id": "n-representability",
+      "noise_model": 5,
+      "overhead": 5,
+      "bias": 3,
+      "composable": 3,
+      "scalability": 3,
+      "generality": 1
+    },
+    {
+      "id": "learning-based",
+      "noise_model": 4,
+      "overhead": 4,
+      "bias": 3,
+      "composable": 3,
+      "scalability": 4,
+      "generality": 4
+    }
+  ]
+}

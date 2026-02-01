@@ -27,6 +27,16 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   let activeCategory = "all";
 
+  // Show technique counts on filter buttons.
+  const mitCount = techniques.filter(t => t.category === "mitigation").length;
+  const supCount = techniques.filter(t => t.category === "suppression").length;
+  filterBtns.forEach(btn => {
+    const cat = btn.dataset.category;
+    if (cat === "all") btn.textContent = `All (${techniques.length})`;
+    else if (cat === "mitigation") btn.textContent = `Mitigation (${mitCount})`;
+    else if (cat === "suppression") btn.textContent = `Suppression (${supCount})`;
+  });
+
   // Group techniques by first letter.
   const grouped = {};
   for (const t of techniques) {
@@ -79,7 +89,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       card.innerHTML = `
         <h3>
-          <a href="#${t.id}">${t.name}${abbr}</a>
+          <a href="technique.html?id=${t.id}">${t.name}${abbr}</a>
           <span class="badge badge-${t.category}">${categoryLabel}</span>
         </h3>
         ${aliases}

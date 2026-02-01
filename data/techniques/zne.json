@@ -1,0 +1,51 @@
+{
+  "description": [
+    "Zero-Noise Extrapolation (ZNE) is one of the most widely used quantum error mitigation techniques. The core idea is deceptively simple: if we can controllably increase the noise in a quantum circuit, we can measure expectation values at several noise levels and then extrapolate back to the zero-noise limit.",
+    "The technique was independently proposed by Temme et al. and Li & Benjamin in 2017. It has since become a workhorse of near-term quantum computing, featuring prominently in IBM's 127-qubit experiments (Kim et al., 2023).",
+    "The key assumption is that the expectation value \\(\\langle O \\rangle\\) depends smoothly on the noise rate \\(\\lambda\\). By evaluating \\(\\langle O \\rangle\\) at noise levels \\(c_1 \\lambda, c_2 \\lambda, \\ldots, c_M \\lambda\\) (where \\(c_i \\geq 1\\) are scale factors), one fits a model \\(f(\\lambda)\\) and extrapolates to \\(f(0)\\)."
+  ],
+  "how_it_works": [
+    "Choose a set of noise scale factors \\(\\{c_1, c_2, \\ldots, c_M\\}\\) with \\(c_1 = 1\\) (the base noise level).",
+    "For each scale factor \\(c_i\\), amplify the circuit noise to level \\(c_i \\lambda\\). Common methods include unitary folding (inserting \\(G G^\\dagger\\) pairs), pulse stretching, or identity insertions.",
+    "Execute the scaled circuit and measure the expectation value \\(\\langle O \\rangle_{c_i \\lambda}\\).",
+    "Fit the data \\(\\{(c_i \\lambda, \\langle O \\rangle_{c_i \\lambda})\\}\\) to a model (polynomial, exponential, or Richardson) and extrapolate to \\(\\lambda = 0\\)."
+  ],
+  "key_equations": [
+    {
+      "label": "Richardson extrapolation",
+      "latex": "\\langle O \\rangle_0 \\approx \\sum_{i=1}^{M} \\gamma_i \\, \\langle O \\rangle_{c_i \\lambda}, \\quad \\text{where } \\gamma_i = \\prod_{j \\neq i} \\frac{c_j}{c_j - c_i}"
+    },
+    {
+      "label": "Linear extrapolation",
+      "latex": "\\langle O \\rangle_0 \\approx a + b \\cdot 0 = a, \\quad \\text{from linear fit } \\langle O \\rangle_\\lambda = a + b\\lambda"
+    },
+    {
+      "label": "Bias scaling",
+      "latex": "\\text{Bias} = O(\\lambda^M) \\text{ for order-}M \\text{ Richardson extrapolation}"
+    }
+  ],
+  "bias_variance": {
+    "bias": 0.35,
+    "variance": 0.65,
+    "overhead": 0.5,
+    "notes": "Higher extrapolation order reduces bias but increases variance exponentially. Richardson extrapolation eliminates bias up to order M but amplifies statistical noise through large alternating-sign coefficients."
+  },
+  "advantages": [
+    "No detailed noise model required — only the ability to scale noise controllably",
+    "Simple to implement; compatible with any quantum hardware platform",
+    "Can be combined with other techniques (e.g., Pauli twirling + ZNE)",
+    "Demonstrated at scale on 127-qubit devices"
+  ],
+  "disadvantages": [
+    "Bias from mismatch between assumed extrapolation model and true noise dependence",
+    "Variance grows exponentially with extrapolation order (Richardson coefficients alternate in sign)",
+    "Noise amplification methods (e.g., folding) may introduce different noise than simply scaling the base noise",
+    "Does not help if noise dependence is non-smooth or non-monotonic"
+  ],
+  "use_cases": [
+    "Variational algorithms (VQE, QAOA) on near-term processors",
+    "IBM 127-qubit Ising model experiments (Kim et al., 2023)",
+    "Benchmarking quantum advantage claims",
+    "Composition with dynamical decoupling or Pauli twirling as a preprocessing step"
+  ]
+}

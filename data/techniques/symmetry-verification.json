@@ -1,0 +1,51 @@
+{
+  "description": [
+    "Symmetry Verification (SV) exploits known symmetries of the target quantum system to detect and discard erroneous measurement outcomes. If the ideal output state lies in a known symmetry sector (e.g., a specific particle number, spin, or parity), any measurement result violating this symmetry must be due to noise.",
+    "The simplest approach is post-selection: discard all measurement outcomes that violate the symmetry. A more sophisticated approach projects expectation values onto the symmetric subspace without discarding data, which can be more sample-efficient.",
+    "SV is a suppression technique — it reduces the effective noise rate but does not fully eliminate it, as errors that preserve the symmetry go undetected. It is especially powerful in quantum chemistry and condensed matter physics where many symmetries are known."
+  ],
+  "how_it_works": [
+    "Identify symmetries of the target Hamiltonian. For example, particle number conservation means \\([H, N] = 0\\), and the ideal state has a definite particle number \\(N_0\\).",
+    "After executing the quantum circuit, measure both the observable of interest and the symmetry operator(s) \\(S\\).",
+    "Post-selection: keep only outcomes where \\(S = s_0\\) (the expected symmetry eigenvalue). Compute the expectation value from the filtered outcomes.",
+    "Alternatively (post-processing): compute \\(\\langle O \\rangle_{\\text{SV}} = \\langle \\Pi_S O \\Pi_S \\rangle / \\langle \\Pi_S \\rangle\\) where \\(\\Pi_S\\) projects onto the symmetry sector."
+  ],
+  "key_equations": [
+    {
+      "label": "Symmetry-projected estimator",
+      "latex": "\\langle O \\rangle_{\\text{SV}} = \\frac{\\text{Tr}[\\Pi_S O \\rho \\Pi_S]}{\\text{Tr}[\\Pi_S \\rho]}"
+    },
+    {
+      "label": "Post-selection pass rate",
+      "latex": "p_{\\text{pass}} = \\text{Tr}[\\Pi_S \\rho]"
+    },
+    {
+      "label": "Effective noise reduction",
+      "latex": "\\epsilon_{\\text{eff}} \\leq \\epsilon \\cdot \\frac{d_{\\text{sym}}}{d_{\\text{total}}}"
+    }
+  ],
+  "bias_variance": {
+    "bias": 0.2,
+    "variance": 0.3,
+    "overhead": 0.35,
+    "notes": "Post-selection reduces bias by discarding symmetry-violating errors, but increases variance due to reduced sample count (1/p_pass). Errors that preserve symmetry are undetected, contributing residual bias."
+  },
+  "advantages": [
+    "No noise model required — only knowledge of system symmetries",
+    "Straightforward to implement: measure symmetry operator and filter",
+    "Can detect a significant fraction of errors in structured problems",
+    "Composable with other techniques (e.g., SV + ZNE)"
+  ],
+  "disadvantages": [
+    "Cannot detect errors that preserve the symmetry",
+    "Post-selection overhead: effective shot count reduced by the pass rate",
+    "Requires additional measurements for symmetry operators",
+    "Limited to problems with known discrete symmetries"
+  ],
+  "use_cases": [
+    "Quantum chemistry (particle number, spin conservation)",
+    "Lattice gauge theories (gauge symmetry verification)",
+    "Condensed matter simulation (translation, rotation symmetries)",
+    "Combined with subspace expansion or N-representability constraints"
+  ]
+}

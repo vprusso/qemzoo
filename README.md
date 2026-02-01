@@ -16,7 +16,6 @@ This starts a local server at [http://localhost:8000](http://localhost:8000) and
 
 - **Catalog** (`index.html`) — searchable, filterable listing of all techniques with LaTeX-rendered math
 - **Graph View** (`graph.html`) — interactive force-directed graph showing technique relationships
-- **Playground** (`playground.html`) — apply QEM techniques to preloaded circuits and compare results
 
 ## Adding a technique
 
@@ -29,8 +28,6 @@ This starts a local server at [http://localhost:8000](http://localhost:8000) and
 - `data/techniques.json` — all technique entries as structured data
 - `data/references.json` — reference metadata (mirrors `references.bib`)
 - `references.bib` — BibTeX source of truth for citations
-- `circuits/` — preloaded QASM circuits and `manifest.json` for the playground
 - `index.html` / `style.css` / `script.js` — catalog frontend
 - `graph.html` / `graph.js` — graph view (D3.js)
-- `playground.html` / `playground.js` — playground frontend (Chart.js)
-- `main.py` — local server with `/api/run` endpoint for playground simulations
+- `main.py` — local static file server

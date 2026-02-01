@@ -8,7 +8,7 @@
   },
   "li2017": {
     "authors": "Y. Li, S. C. Benjamin",
-    "title": "Efficient Variational Quantum Simulator Incorporating Active Error Minimization",
+    "title": "Efficient Variational Quantum Simulator Incorporating Active Error Minimisation",
     "journal": "Physical Review X",
     "year": 2017,
     "arxiv": "1611.09301"
@@ -29,7 +29,7 @@
   },
   "bravyi2021": {
     "authors": "S. Bravyi, S. Sheldon, A. Kandala, D. C. Mckay, J. M. Gambetta",
-    "title": "Mitigating Measurement Errors in Multiqubit Experiments",
+    "title": "Mitigating Measurement Errors in Multi-Qubit Experiments",
     "journal": "Physical Review A",
     "year": 2021,
     "arxiv": "2006.14044"
@@ -42,7 +42,7 @@
     "arxiv": "1801.03524"
   },
   "mcclean2017": {
-    "authors": "J. R. McClean, M. E. Kimchi-Schwartz, J. Carter, W. A. de Jong",
+    "authors": "J. R. McClean, M. E. Schwartz, J. Carter, W. A. de Jong",
     "title": "Hybrid Quantum-Classical Hierarchy for Mitigation of Decoherence and Determination of Excited States",
     "journal": "Physical Review A",
     "year": 2017,
@@ -119,11 +119,11 @@
     "arxiv": "1512.01098"
   },
   "ware2021": {
-    "authors": "M. Ware, G. Ribeill, D. Risté, C. A. Ryan, T. A. Ohki",
-    "title": "Experimental Pauli-Frame Randomization on a Superconducting Qubit",
+    "authors": "M. Ware, G. Ribeill, D. Ristè, C. A. Ryan, B. Johnson, M. P. da Silva",
+    "title": "Experimental Demonstration of Pauli-Frame Randomization on a Superconducting Qubit",
     "journal": "Physical Review A",
     "year": 2021,
-    "arxiv": "1811.11752"
+    "arxiv": "1803.01818"
   },
   "lowe2021": {
     "authors": "A. Lowe, M. H. Gordon, P. Czarnik, A. Arrasmith, P. J. Coles, L. Cincio",
@@ -133,8 +133,9 @@
     "arxiv": "2011.01157"
   },
   "russo2024": {
-    "authors": "V. Russo, A. Mari, R. LaRose, N. Shammah, W. J. Zeng",
-    "title": "Layerwise Richardson Extrapolation",
+    "authors": "V. Russo, A. Mari",
+    "title": "Quantum Error Mitigation by Layerwise Richardson Extrapolation",
+    "journal": "Physical Review A",
     "year": 2024,
     "arxiv": "2402.04000"
   },

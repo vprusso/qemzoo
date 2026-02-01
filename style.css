@@ -322,6 +322,12 @@ footer a {
   color: var(--accent);
 }
 
+footer .attribution {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: #999;
+}
+
 /* No results */
 .no-results {
   text-align: center;
@@ -329,4 +335,315 @@ footer a {
   color: #888;
   font-style: italic;
   display: none;
+}
+
+/* Breadcrumb */
+nav.breadcrumb {
+  font-size: 0.9rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+nav.breadcrumb a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+nav.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+/* Detail page */
+.detail-page {
+  max-width: 960px;
+}
+
+.detail-title {
+  font-size: 1.8rem;
+  color: var(--accent);
+  margin-bottom: 0.3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.detail-abbr {
+  font-weight: normal;
+  color: #666;
+}
+
+.detail-page .aka {
+  font-style: italic;
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.detail-section {
+  margin-bottom: 2rem;
+}
+
+.detail-section h3 {
+  font-size: 1.2rem;
+  color: var(--accent);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.2rem;
+  margin-bottom: 0.8rem;
+}
+
+.detail-section p {
+  margin-bottom: 0.6rem;
+}
+
+/* Steps list */
+ol.steps-list {
+  padding-left: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+ol.steps-list li {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+/* Equation blocks */
+.equation-block {
+  background: var(--accent-light);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 0.8rem 1rem;
+  margin-bottom: 0.8rem;
+}
+
+.equation-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #555;
+  font-family: system-ui, -apple-system, sans-serif;
+  margin-bottom: 0.3rem;
+}
+
+.equation-math {
+  text-align: center;
+}
+
+/* Properties table (detail page) */
+.properties-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.properties-table th {
+  text-align: left;
+  width: 200px;
+  padding: 0.35rem 0.6rem;
+  background: var(--accent-light);
+  border: 1px solid var(--border);
+  font-weight: 600;
+}
+
+.properties-table td {
+  padding: 0.35rem 0.6rem;
+  border: 1px solid var(--border);
+}
+
+/* Pros/Cons grid */
+.pros-cons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+
+@media (max-width: 600px) {
+  .pros-cons { grid-template-columns: 1fr; }
+}
+
+.pros-cons h4 {
+  font-size: 1rem;
+  margin-bottom: 0.4rem;
+}
+
+.pros h4 { color: #2c8a4c; }
+.cons h4 { color: #c44; }
+
+.pros-cons ul {
+  padding-left: 1.3rem;
+  font-size: 0.95rem;
+}
+
+.pros-cons li {
+  margin-bottom: 0.3rem;
+}
+
+/* Related techniques grid */
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.8rem;
+}
+
+.related-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  text-decoration: none;
+  color: var(--text);
+  background: #fff;
+}
+
+.related-card:hover {
+  border-color: var(--accent);
+  background: var(--accent-light);
+}
+
+.related-name {
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.related-reason {
+  font-size: 0.82rem;
+  color: #666;
+  font-style: italic;
+}
+
+/* Tradeoff mini chart */
+.tradeoff-mini {
+  max-width: 420px;
+}
+
+.tradeoff-mini svg {
+  width: 100%;
+  height: auto;
+}
+
+.tradeoff-notes {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 0.5rem;
+}
+
+/* Detail page references */
+ol.detail-refs {
+  font-size: 0.88rem;
+  line-height: 1.7;
+  padding-left: 2rem;
+}
+
+ol.detail-refs li {
+  margin-bottom: 0.3rem;
+}
+
+ol.detail-refs a {
+  color: var(--accent);
+}
+
+/* Tradeoff scatter plot (catalog page) */
+.tradeoff-section {
+  margin-top: 2.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.tradeoff-section h2 {
+  font-size: 1.4rem;
+  color: var(--accent);
+  margin-bottom: 0.8rem;
+}
+
+#tradeoff-chart {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+#tradeoff-chart svg {
+  width: 100%;
+  height: auto;
+}
+
+.tradeoff-section .tradeoff-description {
+  font-size: 0.9rem;
+  color: #555;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* Chart sections */
+.chart-section {
+  margin-top: 2.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.chart-section h2 {
+  font-size: 1.4rem;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.chart-description {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+#adoption-chart svg,
+#composability-chart svg {
+  width: 100%;
+  height: auto;
+}
+
+/* Comparison table */
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.comparison-table th {
+  background: var(--accent-light);
+  padding: 0.4rem 0.5rem;
+  border: 1px solid var(--border);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-align: center;
+  color: #333;
+}
+
+.comparison-table th:first-child {
+  text-align: left;
+  width: 80px;
+}
+
+.comparison-table td {
+  padding: 0.35rem 0.4rem;
+  border: 1px solid var(--border);
+}
+
+.comparison-table td:first-child {
+  white-space: nowrap;
+}
+
+.comparison-table tr:hover {
+  background: var(--accent-light);
+}
+
+.error-msg {
+  color: #c44;
+  padding: 2rem;
+  text-align: center;
+}
+
+.detail-loading {
+  color: #888;
+  padding: 2rem;
+  text-align: center;
+  font-style: italic;
 }

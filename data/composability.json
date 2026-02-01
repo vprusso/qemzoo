@@ -1,0 +1,26 @@
+{
+  "description": "Composability matrix for QEM/QES techniques. Each entry indicates whether two techniques can be composed, and in what order. 'inner' means the row technique is applied first (closer to the circuit), 'outer' means the column technique wraps around it.",
+  "techniques": ["DD", "PT", "SV", "REM", "ZNE", "LRE", "PEC", "CDR", "VD", "QSE"],
+  "ids": ["dd", "pauli-twirling", "symmetry-verification", "measurement-error-mitigation", "zne", "lre", "pec", "cdr", "purification", "subspace-expansion"],
+  "matrix": [
+    {"from": "dd",   "to": "zne",  "compatible": true,  "order": "DD then ZNE",  "notes": "DD suppresses idle noise, ZNE extrapolates residual gate noise. Well-studied combination."},
+    {"from": "dd",   "to": "pec",  "compatible": true,  "order": "DD then PEC",  "notes": "DD reduces baseline noise, lowering PEC overhead."},
+    {"from": "dd",   "to": "lre",  "compatible": true,  "order": "DD then LRE",  "notes": "DD as preprocessing before layerwise extrapolation."},
+    {"from": "pauli-twirling", "to": "zne",  "compatible": true,  "order": "PT then ZNE",  "notes": "PT converts coherent errors to stochastic, making ZNE extrapolation more reliable."},
+    {"from": "pauli-twirling", "to": "pec",  "compatible": true,  "order": "PT then PEC",  "notes": "PT simplifies noise to Pauli channel, reducing PEC characterization cost. Standard pipeline."},
+    {"from": "pauli-twirling", "to": "lre",  "compatible": true,  "order": "PT then LRE",  "notes": "PT as preprocessing for more predictable noise scaling."},
+    {"from": "pauli-twirling", "to": "dd",   "compatible": true,  "order": "Either order",  "notes": "Both are circuit-level transforms. Order depends on noise structure."},
+    {"from": "measurement-error-mitigation", "to": "zne",  "compatible": true,  "order": "ZNE then REM",  "notes": "ZNE handles gate noise, REM corrects readout. REM applied last (post-measurement)."},
+    {"from": "measurement-error-mitigation", "to": "pec",  "compatible": true,  "order": "PEC then REM",  "notes": "PEC handles gate noise, REM corrects readout. Standard full-circuit mitigation."},
+    {"from": "measurement-error-mitigation", "to": "cdr",  "compatible": true,  "order": "CDR then REM",  "notes": "CDR corrects gate noise, REM corrects readout independently."},
+    {"from": "symmetry-verification", "to": "zne",  "compatible": true,  "order": "SV then ZNE or ZNE then SV", "notes": "SV post-selects valid outcomes; ZNE extrapolates remaining noise. Order flexible."},
+    {"from": "symmetry-verification", "to": "subspace-expansion", "compatible": true, "order": "SV informs QSE", "notes": "Symmetry constraints can define the subspace for expansion."},
+    {"from": "zne",  "to": "lre",  "compatible": false, "order": "",  "notes": "LRE is a generalization of ZNE. Using both is redundant."},
+    {"from": "zne",  "to": "pec",  "compatible": false, "order": "",  "notes": "Both address gate noise independently. Composing is not standard and benefits are unclear."},
+    {"from": "cdr",  "to": "zne",  "compatible": true,  "order": "Combined as vnCDR",  "notes": "Variable-noise CDR uses ZNE-style noise scaling as input features for regression."},
+    {"from": "purification", "to": "measurement-error-mitigation", "compatible": true, "order": "VD then REM", "notes": "VD purifies state, REM corrects readout errors on the purified measurement."},
+    {"from": "subspace-expansion", "to": "measurement-error-mitigation", "compatible": true, "order": "QSE then REM", "notes": "QSE corrects state errors, REM corrects measurement errors."},
+    {"from": "dd",   "to": "measurement-error-mitigation", "compatible": true, "order": "DD then REM", "notes": "DD suppresses gate/idle noise, REM corrects readout. Independent stages."},
+    {"from": "pauli-twirling", "to": "measurement-error-mitigation", "compatible": true, "order": "PT then REM", "notes": "PT tailors gate noise, REM corrects readout. Independent stages."}
+  ]
+}

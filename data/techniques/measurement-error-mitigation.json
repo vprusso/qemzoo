@@ -1,0 +1,52 @@
+{
+  "description": [
+    "Readout Error Mitigation (REM) corrects for errors occurring during the final readout stage of a quantum computation. On current hardware, measurement errors (bit-flips during readout) are often among the largest error sources, with assignment error rates of 1–5%.",
+    "The technique characterizes the measurement channel by preparing all \\(2^n\\) computational basis states and recording how often each is correctly assigned, forming a \\(2^n \\times 2^n\\) confusion (assignment) matrix \\(A\\). The corrected probability distribution is obtained by applying \\(A^{-1}\\) to the raw measurement results.",
+    "For large qubit counts, the full confusion matrix is intractable (\\(2^n\\) calibration circuits). Practical implementations use tensor product approximations (assuming independent qubit readout errors) or correlated subsets, reducing calibration to \\(O(n)\\) circuits."
+  ],
+  "how_it_works": [
+    "Calibration: prepare each computational basis state \\(|b\\rangle\\) for \\(b \\in \\{0,1\\}^n\\) and measure many times to estimate the assignment probability \\(A_{b'b} = P(\\text{measure } b' \\mid \\text{prepared } b)\\).",
+    "Construct the confusion matrix \\(A\\) from calibration data. For the tensor product approximation, characterize each qubit independently: \\(A = A_1 \\otimes A_2 \\otimes \\cdots \\otimes A_n\\).",
+    "Compute the inverse (or pseudo-inverse) \\(A^{-1}\\).",
+    "Apply \\(A^{-1}\\) to the raw measurement probability vector \\(\\vec{p}_{\\text{raw}}\\) to obtain corrected probabilities: \\(\\vec{p}_{\\text{corrected}} = A^{-1} \\vec{p}_{\\text{raw}}\\).",
+    "Compute corrected expectation values from \\(\\vec{p}_{\\text{corrected}}\\). Negative probabilities may be clipped or handled via constrained optimization."
+  ],
+  "key_equations": [
+    {
+      "label": "Confusion matrix relation",
+      "latex": "\\vec{p}_{\\text{raw}} = A \\, \\vec{p}_{\\text{ideal}} \\implies \\vec{p}_{\\text{corrected}} = A^{-1} \\vec{p}_{\\text{raw}}"
+    },
+    {
+      "label": "Tensor product approximation",
+      "latex": "A \\approx A_1 \\otimes A_2 \\otimes \\cdots \\otimes A_n, \\quad A_i = \\begin{pmatrix} 1-p_0^{(i)} & p_1^{(i)} \\\\ p_0^{(i)} & 1-p_1^{(i)} \\end{pmatrix}"
+    },
+    {
+      "label": "Variance amplification",
+      "latex": "\\text{Var}[\\hat{O}_{\\text{corrected}}] \\leq \\|A^{-1}\\|^2 \\, \\text{Var}[\\hat{O}_{\\text{raw}}]"
+    }
+  ],
+  "bias_variance": {
+    "bias": 0.05,
+    "variance": 0.5,
+    "overhead": 0.5,
+    "notes": "Nearly unbiased if calibration is accurate and the measurement error model is correct. Variance is amplified by the condition number of the confusion matrix. Calibration overhead is O(2^n) for full matrix or O(n) for tensor product."
+  },
+  "advantages": [
+    "Addresses one of the largest error sources on current hardware",
+    "Nearly unbiased when calibration is accurate",
+    "Can be applied independently of other techniques (composable)",
+    "Tensor product approximation makes it scalable to many qubits"
+  ],
+  "disadvantages": [
+    "Full confusion matrix calibration is exponential in qubit count",
+    "Tensor product approximation ignores correlated readout errors",
+    "Calibration drifts over time, requiring periodic recalibration",
+    "Inversion can produce negative probabilities, requiring post-processing"
+  ],
+  "use_cases": [
+    "Standard preprocessing step on IBM Quantum and other cloud platforms",
+    "Combined with gate-level mitigation (ZNE, PEC) for full-circuit error reduction",
+    "Quantum chemistry and optimization applications where measurement error dominates",
+    "Large-scale experiments where tensor product approximation is sufficient"
+  ]
+}

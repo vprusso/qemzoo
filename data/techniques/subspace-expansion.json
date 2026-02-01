@@ -1,0 +1,51 @@
+{
+  "description": [
+    "Quantum Subspace Expansion (QSE) improves noisy variational estimates by expanding the search space around a reference state obtained from the quantum device. By applying a set of excitation operators to the reference state, QSE constructs a subspace that can capture both the ideal state and noise-induced leakage directions.",
+    "A generalized eigenvalue problem is solved classically within this subspace, projecting out noise artifacts and yielding an improved energy estimate. The method was originally developed for quantum chemistry (McClean et al., 2017) as an extension of the variational quantum eigensolver (VQE).",
+    "QSE is particularly effective when the noise causes the quantum state to leak out of the target subspace (e.g., the ground state sector), as the expanded subspace can recapture this leakage."
+  ],
+  "how_it_works": [
+    "Obtain a reference state \\(|\\psi_0\\rangle\\) from a noisy quantum device (e.g., via VQE).",
+    "Choose a set of expansion operators \\(\\{O_i\\}\\) (e.g., single and double excitation operators for chemistry problems).",
+    "Measure the matrix elements \\(H_{ij} = \\langle \\psi_0 | O_i^\\dagger H O_j | \\psi_0 \\rangle\\) and \\(S_{ij} = \\langle \\psi_0 | O_i^\\dagger O_j | \\psi_0 \\rangle\\) on the quantum device.",
+    "Solve the generalized eigenvalue problem \\(H \\vec{c} = E \\, S \\vec{c}\\) classically to obtain the improved energy \\(E\\) and coefficients \\(\\vec{c}\\)."
+  ],
+  "key_equations": [
+    {
+      "label": "Generalized eigenvalue problem",
+      "latex": "\\sum_j H_{ij} c_j = E \\sum_j S_{ij} c_j"
+    },
+    {
+      "label": "Hamiltonian matrix elements",
+      "latex": "H_{ij} = \\langle \\psi_0 | O_i^\\dagger H O_j | \\psi_0 \\rangle"
+    },
+    {
+      "label": "Overlap matrix elements",
+      "latex": "S_{ij} = \\langle \\psi_0 | O_i^\\dagger O_j | \\psi_0 \\rangle"
+    }
+  ],
+  "bias_variance": {
+    "bias": 0.3,
+    "variance": 0.4,
+    "overhead": 0.4,
+    "notes": "Bias depends on whether the expanded subspace contains the true ground state. Variance comes from the additional matrix element measurements. Overhead is moderate — measuring O(k^2) matrix elements for k expansion operators."
+  },
+  "advantages": [
+    "No noise model required",
+    "Can correct for noise-induced leakage out of the target subspace",
+    "Naturally integrates with VQE workflows",
+    "Classical post-processing is a standard eigenvalue problem"
+  ],
+  "disadvantages": [
+    "Requires additional quantum measurements for matrix elements",
+    "Effectiveness depends on choice of expansion operators",
+    "Noise in matrix element measurements can degrade the eigenvalue solution",
+    "Primarily applicable to energy estimation, not general expectation values"
+  ],
+  "use_cases": [
+    "Post-processing VQE results for quantum chemistry",
+    "Correcting for state preparation errors in variational algorithms",
+    "Excited state estimation via subspace diagonalization",
+    "Combined with symmetry verification to constrain the subspace"
+  ]
+}

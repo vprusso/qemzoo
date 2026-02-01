@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Attach click to the whole node group, fire only if not a drag.
   node.on("click", (event, d) => {
     if (!dragged) {
-      window.location.href = `index.html#${d.id}`;
+      window.location.href = `technique.html?id=${d.id}`;
     }
   });
 

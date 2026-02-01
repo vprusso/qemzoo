@@ -1,0 +1,50 @@
+{
+  "description": [
+    "Layerwise Richardson Extrapolation (LRE) generalizes zero-noise extrapolation by treating each layer of a quantum circuit as having an independent noise parameter. Instead of scaling all noise uniformly, LRE scales noise at each layer independently and performs a multivariate extrapolation to the zero-noise limit.",
+    "This approach is motivated by the observation that different layers may experience different effective noise rates, and a global noise model can be too coarse. By extrapolating in the full \\(d\\)-dimensional noise space (where \\(d\\) is the circuit depth), LRE achieves lower bias than global ZNE at the same extrapolation order.",
+    "The number of distinct circuit evaluations needed scales as \\(\\binom{d + k - 1}{k}\\) for a circuit of depth \\(d\\) and extrapolation order \\(k\\), which is polynomial in \\(d\\) for fixed \\(k\\)."
+  ],
+  "how_it_works": [
+    "Decompose the target circuit into \\(d\\) layers, each with its own noise rate \\(\\lambda_j\\).",
+    "Choose a set of per-layer scale factors. For order \\(k\\), generate all multi-index combinations \\((c_1, \\ldots, c_d)\\) with appropriate constraints.",
+    "For each combination, scale the noise in layer \\(j\\) by factor \\(c_j\\) (e.g., via local unitary folding) and measure the expectation value.",
+    "Perform a multivariate Richardson extrapolation to \\((\\lambda_1, \\ldots, \\lambda_d) = (0, \\ldots, 0)\\)."
+  ],
+  "key_equations": [
+    {
+      "label": "Multivariate extrapolation",
+      "latex": "\\langle O \\rangle_0 \\approx \\sum_{\\mathbf{c}} \\gamma_{\\mathbf{c}} \\, \\langle O \\rangle_{\\mathbf{c} \\cdot \\boldsymbol{\\lambda}}"
+    },
+    {
+      "label": "Number of circuit evaluations",
+      "latex": "N_{\\text{circuits}} = \\binom{d + k - 1}{k}"
+    },
+    {
+      "label": "Bias scaling",
+      "latex": "\\text{Bias} = O(\\lambda^{k+1}) \\text{ for each layer independently}"
+    }
+  ],
+  "bias_variance": {
+    "bias": 0.25,
+    "variance": 0.7,
+    "overhead": 0.6,
+    "notes": "Lower bias than global ZNE at the same order because per-layer scaling captures noise heterogeneity. Variance and circuit count grow with depth and order."
+  },
+  "advantages": [
+    "Lower bias than global ZNE by accounting for per-layer noise variation",
+    "Polynomial scaling in circuit depth for fixed extrapolation order",
+    "Does not require a detailed noise model — only per-layer noise scaling",
+    "Natural fit for layered ansatze (e.g., hardware-efficient VQE circuits)"
+  ],
+  "disadvantages": [
+    "More circuit evaluations than global ZNE",
+    "Variance from multivariate Richardson coefficients can be large",
+    "Requires the ability to scale noise independently at each layer",
+    "Extrapolation order limited by practical circuit count and variance budget"
+  ],
+  "use_cases": [
+    "Deep variational circuits where per-layer noise varies significantly",
+    "Trotterized Hamiltonian simulation with many distinct layers",
+    "Situations where global ZNE bias is unacceptable"
+  ]
+}

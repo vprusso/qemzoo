@@ -1,0 +1,14 @@
+[
+  {"id": "zne", "bias": 0.35, "variance": 0.65, "overhead": 0.5, "notes": "Higher extrapolation order reduces bias but increases variance exponentially."},
+  {"id": "pec", "bias": 0.05, "variance": 0.9, "overhead": 0.9, "notes": "Unbiased but extreme sampling overhead that grows exponentially with circuit depth."},
+  {"id": "lre", "bias": 0.25, "variance": 0.7, "overhead": 0.6, "notes": "Per-layer noise scaling reduces bias vs global ZNE at cost of more circuit variants."},
+  {"id": "cdr", "bias": 0.4, "variance": 0.35, "overhead": 0.3, "notes": "Bias depends on how well near-Clifford training circuits match target noise; low variance at inference."},
+  {"id": "learning-based", "bias": 0.45, "variance": 0.3, "overhead": 0.3, "notes": "Bias from model expressivity limits; variance controlled by training data quantity."},
+  {"id": "measurement-error-mitigation", "bias": 0.05, "variance": 0.5, "overhead": 0.5, "notes": "Nearly unbiased if calibration is accurate; variance from inverting the confusion matrix."},
+  {"id": "dd", "bias": 0.3, "variance": 0.05, "overhead": 0.05, "notes": "No sampling overhead; residual bias from finite pulse width and higher-order terms."},
+  {"id": "pauli-twirling", "bias": 0.5, "variance": 0.05, "overhead": 0.1, "notes": "Does not reduce noise magnitude, only converts coherent errors to stochastic."},
+  {"id": "symmetry-verification", "bias": 0.2, "variance": 0.3, "overhead": 0.35, "notes": "Post-selection discards data, increasing effective variance; bias depends on noise type."},
+  {"id": "purification", "bias": 0.15, "variance": 0.4, "overhead": 0.5, "notes": "Bias suppressed exponentially in number of copies M; overhead is M copies of the circuit."},
+  {"id": "subspace-expansion", "bias": 0.3, "variance": 0.4, "overhead": 0.4, "notes": "Quality depends on subspace basis; additional measurements needed for matrix elements."},
+  {"id": "n-representability", "bias": 0.25, "variance": 0.1, "overhead": 0.05, "notes": "Purely classical post-processing; bias reduction depends on constraint tightness."}
+]

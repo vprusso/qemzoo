@@ -1,0 +1,46 @@
+{
+  "description": [
+    "Clifford Data Regression (CDR) uses near-Clifford circuits as training data to learn the relationship between noisy and ideal expectation values. Because Clifford circuits can be efficiently simulated classically, the training labels (ideal values) are free to compute.",
+    "The method trains a regression model (typically linear) on pairs \\((\\langle O \\rangle_{\\text{noisy}}, \\langle O \\rangle_{\\text{ideal}})\\) from near-Clifford circuits that are structurally similar to the target circuit. The fitted model is then applied to correct the noisy output of the actual (non-Clifford) target circuit.",
+    "A variant called vnCDR (variable-noise CDR) combines CDR with noise scaling from ZNE, using data at multiple noise levels to improve the regression model."
+  ],
+  "how_it_works": [
+    "Construct a set of near-Clifford training circuits by replacing non-Clifford gates in the target circuit with nearby Clifford gates.",
+    "For each training circuit, compute the ideal expectation value classically (efficient for Clifford circuits) and measure the noisy expectation value on the quantum device.",
+    "Fit a regression model \\(f\\) such that \\(\\langle O \\rangle_{\\text{ideal}} \\approx f(\\langle O \\rangle_{\\text{noisy}})\\). A simple linear model uses \\(f(x) = ax + b\\).",
+    "Apply \\(f\\) to the noisy expectation value of the target circuit to obtain the mitigated estimate."
+  ],
+  "key_equations": [
+    {
+      "label": "Linear CDR correction",
+      "latex": "\\langle O \\rangle_{\\text{mitigated}} = a \\, \\langle O \\rangle_{\\text{noisy}} + b"
+    },
+    {
+      "label": "Training objective",
+      "latex": "\\min_{a, b} \\sum_{i} \\left( a \\, \\langle O \\rangle_{\\text{noisy}}^{(i)} + b - \\langle O \\rangle_{\\text{ideal}}^{(i)} \\right)^2"
+    }
+  ],
+  "bias_variance": {
+    "bias": 0.4,
+    "variance": 0.35,
+    "overhead": 0.3,
+    "notes": "Bias depends on how well the near-Clifford training circuits approximate the noise profile of the target circuit. Variance is low at inference time since it's just a function evaluation."
+  },
+  "advantages": [
+    "No explicit noise model needed — the noise effect is learned from data",
+    "Low overhead at inference time (single function evaluation)",
+    "Training circuits are classically simulable (Clifford)",
+    "Can be combined with ZNE (vnCDR) for improved accuracy"
+  ],
+  "disadvantages": [
+    "Assumes near-Clifford circuits experience similar noise to the target circuit",
+    "Bias increases when target circuit is far from the Clifford training distribution",
+    "Training requires quantum device time for running near-Clifford circuits",
+    "Linear model may be too simplistic for complex noise patterns"
+  ],
+  "use_cases": [
+    "Variational algorithms where the ansatz structure is known",
+    "Scenarios where device noise is relatively stable during training and inference",
+    "Combined with ZNE as vnCDR for multi-noise-level regression"
+  ]
+}

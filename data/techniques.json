@@ -75,9 +75,9 @@
   },
   {
     "id": "measurement-error-mitigation",
-    "name": "Measurement Error Mitigation",
+    "name": "Readout Error Mitigation",
     "abbreviation": "REM",
-    "aliases": ["readout error mitigation", "assignment matrix inversion"],
+    "aliases": ["measurement error mitigation", "assignment matrix inversion"],
     "category": "mitigation",
     "summary": "Corrects for errors occurring during the final measurement (readout) stage of a quantum computation. The key idea is to characterize the measurement channel by preparing known computational basis states and recording the assignment probabilities, forming a confusion matrix \\(A\\). The inverse \\(A^{-1}\\) is then applied to raw measurement results to recover corrected expectation values.",
     "properties": {
@@ -152,9 +152,9 @@
   },
   {
     "id": "purification",
-    "name": "Purification-Based Methods",
+    "name": "Virtual Distillation",
     "abbreviation": "VD",
-    "aliases": ["virtual distillation", "error suppression by derangement"],
+    "aliases": ["purification-based methods", "error suppression by derangement"],
     "category": "mitigation",
     "summary": "Exploits the fact that noise makes a pure quantum state mixed. By preparing \\(M\\) independent copies of the noisy state and measuring collective observables (e.g., via a derangement or cyclic-shift operator), the contribution of the dominant eigenvector of the density matrix is amplified exponentially in \\(M\\), effectively purifying the state.",
     "properties": {
