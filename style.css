@@ -7,6 +7,7 @@
   --card-bg: #fff;
   --mitigation: #2c5f8a;
   --suppression: #6b4c8a;
+  --detection: #4a8a2c;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -230,6 +231,11 @@ h2.letter-heading {
 .badge-suppression {
   background: #f0e8f8;
   color: var(--suppression);
+}
+
+.badge-detection {
+  background: #e8f8e8;
+  color: var(--detection);
 }
 
 .technique .aka {

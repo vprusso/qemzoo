@@ -10,8 +10,28 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   try {
-    const [techniques, references, tradeoffs, detail] = await Promise.all([
-      fetch("data/techniques.json").then((r) => r.json()),
+    const techniques = await fetch("data/techniques.json").then((r) => r.json());
+
+    // Resolve aliases: if the id doesn't match directly, search abbreviations and aliases.
+    let resolvedId = id;
+    let tech = techniques.find((t) => t.id === id);
+    if (!tech) {
+      const query = id.toLowerCase().replace(/[-_]/g, " ");
+      tech = techniques.find((t) =>
+        (t.abbreviation && t.abbreviation.toLowerCase() === query) ||
+        t.aliases.some((a) => a.toLowerCase() === query) ||
+        t.name.toLowerCase() === query
+      );
+      if (tech) {
+        // Redirect to the canonical URL so bookmarks use the real id.
+        window.location.replace(`technique.html?id=${tech.id}`);
+        return;
+      }
+      content.innerHTML = '<p class="error-msg">Technique not found. Return to the <a href="index.html">catalog</a>.</p>';
+      return;
+    }
+
+    const [references, tradeoffs, detail] = await Promise.all([
       fetch("data/references.json").then((r) => r.json()),
       fetch("data/tradeoffs.json").then((r) => r.json()),
       fetch(`data/techniques/${id}.json`).then((r) => {
@@ -19,12 +39,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         return r.json();
       }),
     ]);
-
-    const tech = techniques.find((t) => t.id === id);
-    if (!tech) {
-      content.innerHTML = '<p class="error-msg">Technique not found. Return to the <a href="index.html">catalog</a>.</p>';
-      return;
-    }
 
     // Update page title and breadcrumb.
     const displayName = tech.abbreviation ? `${tech.name} (${tech.abbreviation})` : tech.name;
@@ -199,7 +213,7 @@ function renderMiniTradeoff(tradeoffs, techniques, currentId) {
     .attr("font-size", "9px").text("ideal");
 
   // Category colors.
-  const catColors = { mitigation: "#2c5f8a", suppression: "#6b4c8a" };
+  const catColors = { mitigation: "#2c5f8a", suppression: "#6b4c8a", detection: "#4a8a2c" };
 
   // Plot all points.
   for (const t of tradeoffs) {

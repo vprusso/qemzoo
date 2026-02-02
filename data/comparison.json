@@ -115,6 +115,24 @@
       "composable": 3,
       "scalability": 4,
       "generality": 4
+    },
+    {
+      "id": "accreditation",
+      "noise_model": 5,
+      "overhead": 3,
+      "bias": 5,
+      "composable": 4,
+      "scalability": 3,
+      "generality": 3
+    },
+    {
+      "id": "qed",
+      "noise_model": 5,
+      "overhead": 2,
+      "bias": 4,
+      "composable": 4,
+      "scalability": 2,
+      "generality": 3
     }
   ]
 }

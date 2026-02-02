@@ -139,6 +139,33 @@
     "year": 2024,
     "arxiv": "2402.04000"
   },
+  "ferracin2019": {
+    "authors": "S. Ferracin, T. Kapourniotis, A. Datta",
+    "title": "Accrediting Outputs of Noisy Intermediate-Scale Quantum Computing Devices",
+    "journal": "New Journal of Physics",
+    "year": 2019,
+    "arxiv": "1811.09709"
+  },
+  "mezher2020": {
+    "authors": "R. Mezher, J. Bowles, S. Ferracin, T. Kapourniotis, A. Leverrier",
+    "title": "Fault-Tolerant Quantum Speedups Under a Single-Instance Hardness Assumption",
+    "year": 2020,
+    "arxiv": "2006.06432"
+  },
+  "knill2005": {
+    "authors": "E. Knill",
+    "title": "Quantum Computing with Realistically Noisy Devices",
+    "journal": "Nature",
+    "year": 2005,
+    "arxiv": "quant-ph/0410199"
+  },
+  "linke2017": {
+    "authors": "N. M. Linke, M. Gutierrez, K. A. Landsman, C. Figgatt, S. Debnath, K. R. Brown, C. Monroe",
+    "title": "Fault-Tolerant Quantum Error Detection",
+    "journal": "Science Advances",
+    "year": 2017,
+    "arxiv": "1611.06946"
+  },
   "cai2023": {
     "authors": "Z. Cai, R. Babbush, S. C. Benjamin, S. Endo, W. J. Huggins, Y. Li, J. R. McClean, T. E. O'Brien",
     "title": "Quantum Error Mitigation",

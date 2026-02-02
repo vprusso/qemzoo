@@ -28,13 +28,16 @@ document.addEventListener("DOMContentLoaded", async () => {
   let activeCategory = "all";
 
   // Show technique counts on filter buttons.
-  const mitCount = techniques.filter(t => t.category === "mitigation").length;
-  const supCount = techniques.filter(t => t.category === "suppression").length;
+  const categoryCounts = {};
+  for (const t of techniques) {
+    categoryCounts[t.category] = (categoryCounts[t.category] || 0) + 1;
+  }
   filterBtns.forEach(btn => {
     const cat = btn.dataset.category;
     if (cat === "all") btn.textContent = `All (${techniques.length})`;
-    else if (cat === "mitigation") btn.textContent = `Mitigation (${mitCount})`;
-    else if (cat === "suppression") btn.textContent = `Suppression (${supCount})`;
+    else if (categoryCounts[cat] !== undefined) {
+      btn.textContent = `${cat.charAt(0).toUpperCase() + cat.slice(1)} (${categoryCounts[cat]})`;
+    }
   });
 
   // Group techniques by first letter.

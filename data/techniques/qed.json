@@ -1,0 +1,52 @@
+{
+  "description": [
+    "Quantum Error Detection (QED) encodes logical qubits into a quantum error-detecting code and uses stabilizer measurements to flag when errors have occurred. Unlike full quantum error correction (QEC), QED does not attempt to identify and reverse errors — it simply discards flagged runs via post-selection, keeping only runs where no error was detected.",
+    "The simplest example is the \\(\\llbracket 4, 2, 2 \\rrbracket\\) code, which encodes 2 logical qubits into 4 physical qubits and can detect any single-qubit error. More generally, any \\(\\llbracket n, k, d \\rrbracket\\) stabilizer code with distance \\(d \\geq 2\\) can detect up to \\(d-1\\) errors.",
+    "QED is particularly attractive for near-term devices because it requires fewer qubits and simpler circuits than full QEC, while still providing exponential suppression of detectable errors (at the cost of a reduced acceptance rate)."
+  ],
+  "how_it_works": [
+    "Encode \\(k\\) logical qubits into \\(n\\) physical qubits using an error-detecting code (e.g., the \\(\\llbracket 4, 2, 2 \\rrbracket\\) code).",
+    "Perform the desired quantum computation using fault-tolerant (or native) gate implementations on the encoded qubits.",
+    "Measure the code's stabilizer generators (either at the end or at intermediate points in the circuit).",
+    "Post-select: keep only the measurement outcomes where all stabilizers return the +1 eigenvalue (no error detected). Discard flagged runs.",
+    "Decode the surviving logical measurement outcomes to obtain the result."
+  ],
+  "key_equations": [
+    {
+      "label": "Post-selected fidelity improvement",
+      "latex": "F_{\\text{post}} = \\frac{F_{\\text{raw}} - p_{\\text{undetectable}}}{1 - p_{\\text{detectable}}} \\geq F_{\\text{raw}}"
+    },
+    {
+      "label": "Acceptance rate",
+      "latex": "P_{\\text{accept}} = 1 - p_{\\text{detectable}} \\approx (1 - p)^{n \\cdot d_{\\text{circuit}}}"
+    },
+    {
+      "label": "Undetectable error scaling",
+      "latex": "p_{\\text{undetectable}} = O(p^d) \\text{ for a distance-}d\\text{ code}"
+    }
+  ],
+  "bias_variance": {
+    "bias": 0.1,
+    "variance": 0.35,
+    "overhead": 0.45,
+    "notes": "Undetectable errors contribute residual bias scaling as O(p^d). Variance increases due to post-selection reducing effective sample size. Overhead from encoding qubits and reduced acceptance rate."
+  },
+  "advantages": [
+    "Exponential suppression of detectable errors with code distance",
+    "No noise model required — code structure determines detection capability",
+    "Simpler than full quantum error correction (fewer qubits, simpler syndrome extraction)",
+    "Can be combined with other QEM techniques on the post-selected data"
+  ],
+  "disadvantages": [
+    "Acceptance rate decreases with noise rate and circuit depth",
+    "Undetectable errors (weight \\(\\geq d\\)) pass through uncorrected",
+    "Requires additional physical qubits for encoding (overhead ratio \\(n/k\\))",
+    "Fault-tolerant gate compilation adds circuit depth"
+  ],
+  "use_cases": [
+    "Near-term experiments where full QEC is not yet feasible",
+    "Improving fidelity of small quantum computations (2-4 logical qubits)",
+    "Hybrid QEM pipelines: QED post-selection followed by ZNE or PEC on surviving data",
+    "Lattice gauge theory simulations where gauge symmetry provides a natural detecting code"
+  ]
+}

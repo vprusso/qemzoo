@@ -77,7 +77,7 @@
     "id": "measurement-error-mitigation",
     "name": "Readout Error Mitigation",
     "abbreviation": "REM",
-    "aliases": ["measurement error mitigation", "assignment matrix inversion"],
+    "aliases": ["measurement error mitigation", "MEM", "assignment matrix inversion"],
     "category": "mitigation",
     "summary": "Corrects for errors occurring during the final measurement (readout) stage of a quantum computation. The key idea is to characterize the measurement channel by preparing known computational basis states and recording the assignment probabilities, forming a confusion matrix \\(A\\). The inverse \\(A^{-1}\\) is then applied to raw measurement results to recover corrected expectation values.",
     "properties": {
@@ -194,7 +194,7 @@
     "name": "Symmetry Verification",
     "abbreviation": "SV",
     "aliases": ["symmetry-based post-selection", "symmetry constraints"],
-    "category": "suppression",
+    "category": "detection",
     "summary": "Exploits known symmetries of the target quantum system (e.g., particle number conservation, parity, or spin symmetry) to detect and discard erroneous measurement outcomes. If the ideal output state is known to lie in a particular symmetry sector, any measurement result that violates this symmetry is post-selected away. A post-processing variant projects expectation values onto the symmetric subspace without discarding data.",
     "properties": {
       "Bias": "Reduced (post-selection) or adjustable (post-processing)",
@@ -228,6 +228,44 @@
       {"id": "pec", "reason": "both are foundational QEM techniques from Temme et al. (2017)"},
       {"id": "pauli-twirling", "reason": "Pauli twirling simplifies noise for ZNE"},
       {"id": "cdr", "reason": "vnCDR combines CDR with noise scaling from ZNE"}
+    ]
+  },
+  {
+    "id": "accreditation",
+    "name": "Accreditation Protocols",
+    "abbreviation": null,
+    "aliases": ["output accreditation", "trap-based verification"],
+    "category": "detection",
+    "summary": "Certifies the output of a noisy quantum computation by interleaving 'trap' circuits — circuits whose ideal output is efficiently computable — alongside the target circuit. If the trap outputs pass verification, the target output is accredited with a certified error bound. The protocol provides a confidence interval on the distance between the noisy and ideal output distributions without requiring a noise model.",
+    "properties": {
+      "Bias": "None for the certification bound; target expectation value is untouched",
+      "Sampling overhead": "Moderate; requires running additional trap circuits",
+      "Noise model required": "None; model-free certification",
+      "Applicability": "General-purpose; most useful when output correctness must be certified"
+    },
+    "references": ["ferracin2019", "mezher2020"],
+    "related": [
+      {"id": "symmetry-verification", "reason": "both detect errors via post-selection or verification"},
+      {"id": "zne", "reason": "accreditation can certify whether ZNE output is trustworthy"}
+    ]
+  },
+  {
+    "id": "qed",
+    "name": "Quantum Error Detection",
+    "abbreviation": "QED",
+    "aliases": ["post-selective error detection", "stabilizer post-selection", "error-detecting codes"],
+    "category": "detection",
+    "summary": "Encodes logical qubits into a quantum error-detecting code (e.g., a \\(\\llbracket n, k, d \\rrbracket\\) stabilizer code with \\(d \\geq 2\\)) and measures stabilizer generators at the end of (or during) the computation. Outcomes that flag a stabilizer violation are discarded via post-selection. Unlike full quantum error correction, QED does not attempt to correct errors — it only detects them, trading acceptance rate for output fidelity.",
+    "properties": {
+      "Bias": "Removed for detectable errors; undetectable errors remain",
+      "Sampling overhead": "Inversely proportional to acceptance rate; depends on noise and code distance",
+      "Noise model required": "None; code structure determines detectable errors",
+      "Applicability": "Any circuit that can be embedded in an error-detecting code; most effective for low to moderate noise"
+    },
+    "references": ["knill2005", "linke2017"],
+    "related": [
+      {"id": "symmetry-verification", "reason": "SV is a special case using symmetry as the detecting code"},
+      {"id": "accreditation", "reason": "both use post-selection to improve output quality"}
     ]
   }
 ]

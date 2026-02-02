@@ -1,7 +1,7 @@
 {
   "description": "Composability matrix for QEM/QES techniques. Each entry indicates whether two techniques can be composed, and in what order. 'inner' means the row technique is applied first (closer to the circuit), 'outer' means the column technique wraps around it.",
-  "techniques": ["DD", "PT", "SV", "REM", "ZNE", "LRE", "PEC", "CDR", "VD", "QSE"],
-  "ids": ["dd", "pauli-twirling", "symmetry-verification", "measurement-error-mitigation", "zne", "lre", "pec", "cdr", "purification", "subspace-expansion"],
+  "techniques": ["DD", "PT", "SV", "REM", "ZNE", "LRE", "PEC", "CDR", "VD", "QSE", "Accred.", "QED"],
+  "ids": ["dd", "pauli-twirling", "symmetry-verification", "measurement-error-mitigation", "zne", "lre", "pec", "cdr", "purification", "subspace-expansion", "accreditation", "qed"],
   "matrix": [
     {"from": "dd",   "to": "zne",  "compatible": true,  "order": "DD then ZNE",  "notes": "DD suppresses idle noise, ZNE extrapolates residual gate noise. Well-studied combination."},
     {"from": "dd",   "to": "pec",  "compatible": true,  "order": "DD then PEC",  "notes": "DD reduces baseline noise, lowering PEC overhead."},
@@ -21,6 +21,11 @@
     {"from": "purification", "to": "measurement-error-mitigation", "compatible": true, "order": "VD then REM", "notes": "VD purifies state, REM corrects readout errors on the purified measurement."},
     {"from": "subspace-expansion", "to": "measurement-error-mitigation", "compatible": true, "order": "QSE then REM", "notes": "QSE corrects state errors, REM corrects measurement errors."},
     {"from": "dd",   "to": "measurement-error-mitigation", "compatible": true, "order": "DD then REM", "notes": "DD suppresses gate/idle noise, REM corrects readout. Independent stages."},
-    {"from": "pauli-twirling", "to": "measurement-error-mitigation", "compatible": true, "order": "PT then REM", "notes": "PT tailors gate noise, REM corrects readout. Independent stages."}
+    {"from": "pauli-twirling", "to": "measurement-error-mitigation", "compatible": true, "order": "PT then REM", "notes": "PT tailors gate noise, REM corrects readout. Independent stages."},
+    {"from": "qed", "to": "zne", "compatible": true, "order": "QED then ZNE", "notes": "QED post-selects error-free runs, ZNE extrapolates residual noise on surviving data."},
+    {"from": "qed", "to": "measurement-error-mitigation", "compatible": true, "order": "QED then REM", "notes": "QED detects gate errors, REM corrects readout errors. Independent stages."},
+    {"from": "symmetry-verification", "to": "qed", "compatible": true, "order": "Either", "notes": "Both are post-selection methods; symmetry checks can complement code-based detection."},
+    {"from": "accreditation", "to": "zne", "compatible": true, "order": "ZNE then accreditation", "notes": "Accreditation certifies the quality of ZNE-mitigated results."},
+    {"from": "accreditation", "to": "pec", "compatible": true, "order": "PEC then accreditation", "notes": "Accreditation certifies the quality of PEC-mitigated results."}
   ]
 }

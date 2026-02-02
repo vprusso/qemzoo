@@ -37,7 +37,7 @@ function renderTradeoffChart(tradeoffs, techniques) {
   const y = d3.scaleLinear().domain([0, 1]).range([inner.h, 0]);
   const r = d3.scaleLinear().domain([0, 1]).range([6, 18]);
 
-  const catColors = { mitigation: "#2c5f8a", suppression: "#6b4c8a" };
+  const catColors = { mitigation: "#2c5f8a", suppression: "#6b4c8a", detection: "#4a8a2c" };
 
   // Grid lines.
   g.append("g").attr("class", "grid")
@@ -213,7 +213,7 @@ function renderComparisonChart(comparison, techniques) {
   }
   html += "</tr></thead><tbody>";
 
-  const catColors = { mitigation: "#2c5f8a", suppression: "#6b4c8a" };
+  const catColors = { mitigation: "#2c5f8a", suppression: "#6b4c8a", detection: "#4a8a2c" };
   const sorted = ratings.slice().sort((a, b) => {
     const ta = techniques.find((t) => t.id === a.id);
     const tb = techniques.find((t) => t.id === b.id);

@@ -1,0 +1,48 @@
+{
+  "description": [
+    "Accreditation protocols provide a way to certify the output of a noisy quantum computation without requiring any knowledge of the noise model. The key idea is to interleave the target computation with 'trap' circuits whose ideal output is known (efficiently computable classically), then check whether the traps produce the correct output.",
+    "If a sufficient fraction of trap circuits pass, the protocol provides a rigorous bound on the total variation distance between the noisy and ideal output distributions of the target circuit. This gives a confidence interval rather than a corrected expectation value.",
+    "The protocol was introduced by Ferracin, Kapourniotis, and Datta (2019) for circuits composed of Clifford gates plus a limited number of non-Clifford gates. Extensions handle broader circuit classes and provide tighter bounds."
+  ],
+  "how_it_works": [
+    "Choose a set of trap circuits: these are circuits whose ideal output distribution is efficiently computable (e.g., circuits that are close to Clifford).",
+    "Randomly interleave trap circuit executions with target circuit executions on the quantum device, so that the device cannot distinguish traps from targets.",
+    "Execute all circuits and collect measurement outcomes.",
+    "For each trap circuit, compare the measured output to the known ideal output. Compute the fraction of traps that pass verification.",
+    "If the pass rate exceeds a threshold, accredit the target output: the protocol guarantees that the target output distribution is within a certified total variation distance \\(\\epsilon\\) of the ideal."
+  ],
+  "key_equations": [
+    {
+      "label": "Accreditation bound",
+      "latex": "\\Pr\\bigl[\\|p_{\\text{noisy}} - p_{\\text{ideal}}\\|_{\\text{TV}} > \\epsilon\\bigr] \\leq \\delta"
+    },
+    {
+      "label": "Trap pass rate threshold",
+      "latex": "\\text{Accept if } \\frac{\\text{\\# traps passed}}{\\text{\\# traps total}} \\geq 1 - \\frac{\\epsilon}{N_{\\text{trap}}}"
+    }
+  ],
+  "bias_variance": {
+    "bias": 0.05,
+    "variance": 0.45,
+    "overhead": 0.4,
+    "notes": "No bias in the certification bound. Overhead from running trap circuits; variance from the statistical nature of the bound."
+  },
+  "advantages": [
+    "Model-free: no noise characterization required",
+    "Provides rigorous, certified error bounds on output quality",
+    "Composable with other QEM techniques (can certify their output)",
+    "Applicable to a broad class of quantum circuits"
+  ],
+  "disadvantages": [
+    "Does not correct errors — only certifies output quality",
+    "Overhead from running additional trap circuits",
+    "Certification bound may be loose for highly noisy devices",
+    "Trap circuit design is constrained to efficiently simulable circuits"
+  ],
+  "use_cases": [
+    "Certifying results of quantum advantage experiments",
+    "Validating output of variational quantum algorithms before downstream classical use",
+    "Quality assurance in quantum cloud computing services",
+    "Benchmarking device performance on application-relevant circuits"
+  ]
+}

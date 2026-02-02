@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const categoryColors = {
     mitigation: "#2c5f8a",
     suppression: "#6b4c8a",
+    detection: "#4a8a2c",
   };
 
   // Build nodes and links from technique data.

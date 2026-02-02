@@ -10,5 +10,7 @@
   {"id": "symmetry-verification", "bias": 0.2, "variance": 0.3, "overhead": 0.35, "notes": "Post-selection discards data, increasing effective variance; bias depends on noise type."},
   {"id": "purification", "bias": 0.15, "variance": 0.4, "overhead": 0.5, "notes": "Bias suppressed exponentially in number of copies M; overhead is M copies of the circuit."},
   {"id": "subspace-expansion", "bias": 0.3, "variance": 0.4, "overhead": 0.4, "notes": "Quality depends on subspace basis; additional measurements needed for matrix elements."},
-  {"id": "n-representability", "bias": 0.25, "variance": 0.1, "overhead": 0.05, "notes": "Purely classical post-processing; bias reduction depends on constraint tightness."}
+  {"id": "n-representability", "bias": 0.25, "variance": 0.1, "overhead": 0.05, "notes": "Purely classical post-processing; bias reduction depends on constraint tightness."},
+  {"id": "accreditation", "bias": 0.05, "variance": 0.45, "overhead": 0.4, "notes": "No bias in certification bound; overhead from running trap circuits."},
+  {"id": "qed", "bias": 0.1, "variance": 0.35, "overhead": 0.45, "notes": "Residual bias from undetectable errors O(p^d); post-selection reduces effective sample size."}
 ]
