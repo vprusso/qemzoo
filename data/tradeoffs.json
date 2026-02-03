@@ -3,7 +3,6 @@
   {"id": "pec", "bias": 0.05, "variance": 0.9, "overhead": 0.9, "notes": "Unbiased but extreme sampling overhead that grows exponentially with circuit depth."},
   {"id": "lre", "bias": 0.25, "variance": 0.7, "overhead": 0.6, "notes": "Per-layer noise scaling reduces bias vs global ZNE at cost of more circuit variants."},
   {"id": "cdr", "bias": 0.4, "variance": 0.35, "overhead": 0.3, "notes": "Bias depends on how well near-Clifford training circuits match target noise; low variance at inference."},
-  {"id": "learning-based", "bias": 0.45, "variance": 0.3, "overhead": 0.3, "notes": "Bias from model expressivity limits; variance controlled by training data quantity."},
   {"id": "measurement-error-mitigation", "bias": 0.05, "variance": 0.5, "overhead": 0.5, "notes": "Nearly unbiased if calibration is accurate; variance from inverting the confusion matrix."},
   {"id": "dd", "bias": 0.3, "variance": 0.05, "overhead": 0.05, "notes": "No sampling overhead; residual bias from finite pulse width and higher-order terms."},
   {"id": "pauli-twirling", "bias": 0.5, "variance": 0.05, "overhead": 0.1, "notes": "Does not reduce noise magnitude, only converts coherent errors to stochastic."},
@@ -12,5 +11,15 @@
   {"id": "subspace-expansion", "bias": 0.3, "variance": 0.4, "overhead": 0.4, "notes": "Quality depends on subspace basis; additional measurements needed for matrix elements."},
   {"id": "n-representability", "bias": 0.25, "variance": 0.1, "overhead": 0.05, "notes": "Purely classical post-processing; bias reduction depends on constraint tightness."},
   {"id": "accreditation", "bias": 0.05, "variance": 0.45, "overhead": 0.4, "notes": "No bias in certification bound; overhead from running trap circuits."},
-  {"id": "qed", "bias": 0.1, "variance": 0.35, "overhead": 0.45, "notes": "Residual bias from undetectable errors O(p^d); post-selection reduces effective sample size."}
+  {"id": "qed", "bias": 0.1, "variance": 0.35, "overhead": 0.45, "notes": "Residual bias from undetectable errors O(p^d); post-selection reduces effective sample size."},
+  {"id": "trex", "bias": 0.05, "variance": 0.3, "overhead": 0.2, "notes": "Nearly unbiased if calibration factor is accurate. Low overhead; avoids exponential matrix inversion."},
+  {"id": "pea", "bias": 0.3, "variance": 0.6, "overhead": 0.45, "notes": "Bias inherits from ZNE extrapolation model. Amplification is more accurate than folding or pulse stretching."},
+  {"id": "nox", "bias": 0.3, "variance": 0.5, "overhead": 0.4, "notes": "First-order mitigation; does not cancel second-order noise terms. Noise-learning step adds calibration overhead."},
+  {"id": "echo-verification", "bias": 0.15, "variance": 0.4, "overhead": 0.5, "notes": "Doubles circuit depth via forward+inverse. Post-selection reduces sample size. Effective against coherent errors."},
+  {"id": "tem", "bias": 0.05, "variance": 0.7, "overhead": 0.6, "notes": "Optimal sampling overhead among linear methods. Accuracy depends on MPO bond dimension and noise model quality."},
+  {"id": "robust-shadows", "bias": 0.05, "variance": 0.4, "overhead": 0.35, "notes": "Unbiased with calibration. Overhead from calibration stage; efficient for estimating many observables simultaneously."},
+  {"id": "crosstalk-mitigation", "bias": 0.25, "variance": 0.05, "overhead": 0.1, "notes": "No sampling overhead; may increase circuit duration from serialization. Effectiveness depends on crosstalk severity."},
+  {"id": "dual-state-purification", "bias": 0.15, "variance": 0.35, "overhead": 0.4, "notes": "Doubles circuit executions but no qubit overhead. Error reduction improves with circuit size."},
+  {"id": "odr", "bias": 0.2, "variance": 0.2, "overhead": 0.15, "notes": "Simple rescaling; low overhead. Residual bias if noise-estimation circuits don't match target noise profile."},
+  {"id": "noise-aware-compilation", "bias": 0.3, "variance": 0.05, "overhead": 0.05, "notes": "No sampling overhead; purely compile-time. Effectiveness depends on hardware noise non-uniformity."}
 ]

@@ -13,11 +13,11 @@
   "key_equations": [
     {
       "label": "Symmetry-projected estimator",
-      "latex": "\\langle O \\rangle_{\\text{SV}} = \\frac{\\text{Tr}[\\Pi_S O \\rho \\Pi_S]}{\\text{Tr}[\\Pi_S \\rho]}"
+      "latex": "\\langle O \\rangle_{\\text{SV}} = \\frac{\\operatorname{tr}[\\Pi_S O \\rho \\Pi_S]}{\\operatorname{tr}[\\Pi_S \\rho]}"
     },
     {
       "label": "Post-selection pass rate",
-      "latex": "p_{\\text{pass}} = \\text{Tr}[\\Pi_S \\rho]"
+      "latex": "p_{\\text{pass}} = \\operatorname{tr}[\\Pi_S \\rho]"
     },
     {
       "label": "Effective noise reduction",

@@ -12,9 +12,8 @@
       "Noise model required": "Implicitly learned from data; no explicit noise model needed",
       "Applicability": "General-purpose; works best when near-Clifford training circuits approximate target noise profile"
     },
-    "references": ["czarnik2021", "lowe2021"],
+    "references": ["czarnik2021", "lowe2021", "strikis2021"],
     "related": [
-      {"id": "learning-based", "reason": "CDR is a specific instance of learning-based QEM"},
       {"id": "zne", "reason": "vnCDR combines CDR with variable noise scaling"}
     ]
   },
@@ -34,25 +33,6 @@
     "references": ["viola1999", "souza2012"],
     "related": [
       {"id": "pauli-twirling", "reason": "both are suppression techniques applied at the gate level"}
-    ]
-  },
-  {
-    "id": "learning-based",
-    "name": "Learning-Based Methods",
-    "abbreviation": null,
-    "aliases": ["machine-learning error mitigation", "data-driven mitigation"],
-    "category": "mitigation",
-    "summary": "A family of techniques that use classical machine learning to learn the effect of noise on quantum circuits and correct for it. Approaches include training on circuits with known outputs (e.g., Clifford circuits) to build a noise model, then applying the learned correction to target circuits. Methods range from linear regression to neural networks. CDR is a specific instance of this broader family.",
-    "properties": {
-      "Bias": "Depends on model expressivity and training data quality",
-      "Sampling overhead": "Typically low at inference time; training cost varies",
-      "Noise model required": "Implicitly learned from data; no explicit model needed",
-      "Scalability": "Promising for large systems if training data is representative"
-    },
-    "references": ["czarnik2021", "strikis2021"],
-    "related": [
-      {"id": "cdr", "reason": "CDR is a specific learning-based method"},
-      {"id": "zne", "reason": "learning-based methods can incorporate noise-scaled data"}
     ]
   },
   {
@@ -97,6 +77,7 @@
     "abbreviation": null,
     "aliases": ["fermionic constraints", "reduced density matrix constraints"],
     "category": "mitigation",
+    "note": "This is a family of constraint-based techniques rather than a single specific protocol.",
     "summary": "Leverages known constraints from quantum chemistry and many-body physics on reduced density matrices (RDMs). Physical RDMs must satisfy \\(N\\)-representability conditions (e.g., the 2-RDM must be derivable from a valid \\(N\\)-particle state). By projecting noisy estimates of RDMs onto the set of \\(N\\)-representable matrices, unphysical noise artifacts are removed.",
     "properties": {
       "Bias": "Reduced; projection removes unphysical contributions",
@@ -171,7 +152,7 @@
   },
   {
     "id": "subspace-expansion",
-    "name": "Subspace Expansion",
+    "name": "Quantum Subspace Expansion",
     "abbreviation": "QSE",
     "aliases": ["quantum subspace expansion"],
     "category": "mitigation",
@@ -194,7 +175,7 @@
     "name": "Symmetry Verification",
     "abbreviation": "SV",
     "aliases": ["symmetry-based post-selection", "symmetry constraints"],
-    "category": "detection",
+    "category": "mitigation",
     "summary": "Exploits known symmetries of the target quantum system (e.g., particle number conservation, parity, or spin symmetry) to detect and discard erroneous measurement outcomes. If the ideal output state is known to lie in a particular symmetry sector, any measurement result that violates this symmetry is post-selected away. A post-processing variant projects expectation values onto the symmetric subspace without discarding data.",
     "properties": {
       "Bias": "Reduced (post-selection) or adjustable (post-processing)",
@@ -232,10 +213,10 @@
   },
   {
     "id": "accreditation",
-    "name": "Accreditation Protocols",
-    "abbreviation": null,
-    "aliases": ["output accreditation", "trap-based verification"],
-    "category": "detection",
+    "name": "Trap-Based Verification",
+    "abbreviation": "TBV",
+    "aliases": ["output accreditation", "accreditation protocols"],
+    "category": "mitigation",
     "summary": "Certifies the output of a noisy quantum computation by interleaving 'trap' circuits — circuits whose ideal output is efficiently computable — alongside the target circuit. If the trap outputs pass verification, the target output is accredited with a certified error bound. The protocol provides a confidence interval on the distance between the noisy and ideal output distributions without requiring a noise model.",
     "properties": {
       "Bias": "None for the certification bound; target expectation value is untouched",
@@ -254,8 +235,8 @@
     "name": "Quantum Error Detection",
     "abbreviation": "QED",
     "aliases": ["post-selective error detection", "stabilizer post-selection", "error-detecting codes"],
-    "category": "detection",
-    "summary": "Encodes logical qubits into a quantum error-detecting code (e.g., a \\(\\llbracket n, k, d \\rrbracket\\) stabilizer code with \\(d \\geq 2\\)) and measures stabilizer generators at the end of (or during) the computation. Outcomes that flag a stabilizer violation are discarded via post-selection. Unlike full quantum error correction, QED does not attempt to correct errors — it only detects them, trading acceptance rate for output fidelity.",
+    "category": "mitigation",
+    "summary": "Encodes logical qubits into a quantum error-detecting code (e.g., a \\([\\![ n, k, d ]\\!]\\) stabilizer code with \\(d \\geq 2\\)) and measures stabilizer generators at the end of (or during) the computation. Outcomes that flag a stabilizer violation are discarded via post-selection. Unlike full quantum error correction, QED does not attempt to correct errors — it only detects them, trading acceptance rate for output fidelity.",
     "properties": {
       "Bias": "Removed for detectable errors; undetectable errors remain",
       "Sampling overhead": "Inversely proportional to acceptance rate; depends on noise and code distance",
@@ -266,6 +247,202 @@
     "related": [
       {"id": "symmetry-verification", "reason": "SV is a special case using symmetry as the detecting code"},
       {"id": "accreditation", "reason": "both use post-selection to improve output quality"}
+    ]
+  },
+  {
+    "id": "trex",
+    "name": "Twirled Readout Error eXtinction",
+    "abbreviation": "TREX",
+    "aliases": ["measurement twirling", "twirled readout mitigation"],
+    "category": "mitigation",
+    "summary": "Mitigates readout errors by randomly applying Pauli-X bit flips before measurement and tracking the flips classically. This twirling diagonalizes an arbitrary readout-noise channel into a single multiplicative factor per Pauli observable, which can be estimated and divided out. The method is model-free — it does not require characterizing the full assignment matrix — and avoids the exponential overhead of full matrix inversion.",
+    "properties": {
+      "Bias": "Zero (in principle); multiplicative correction is exact if calibration factor is accurate",
+      "Sampling overhead": "Moderate; increases with readout error rate but avoids exponential matrix inversion",
+      "Noise model required": "None (model-free); only requires ability to insert bit flips before measurement",
+      "Applicability": "General-purpose readout error mitigation; used as resilience level 1 in Qiskit Runtime"
+    },
+    "references": ["vandenberg2022"],
+    "related": [
+      {"id": "measurement-error-mitigation", "reason": "both address readout errors; TREX avoids explicit confusion-matrix inversion"},
+      {"id": "pauli-twirling", "reason": "both use Pauli randomization to simplify noise structure"}
+    ]
+  },
+  {
+    "id": "pea",
+    "name": "Probabilistic Error Amplification",
+    "abbreviation": "PEA",
+    "aliases": ["learned noise amplification"],
+    "category": "mitigation",
+    "summary": "A noise-amplification strategy for zero-noise extrapolation that first learns the twirled noise model of each layer of entangling gates (e.g., via a sparse Pauli–Lindblad model) and then probabilistically injects single-qubit noise proportional to the learned model to achieve controlled, accurate noise scaling. Unlike pulse stretching (which assumes noise scales with gate duration) or gate folding (which requires large stretch factors), PEA provides precise amplification factors without additional calibration, making it practical for utility-scale circuits.",
+    "properties": {
+      "Bias": "Inherits from ZNE extrapolation model; amplification itself is accurate",
+      "Sampling overhead": "Low per noise level (no exponential overhead unlike PEC); requires multiple noise levels for extrapolation",
+      "Noise model required": "Learned sparse Pauli–Lindblad model of per-layer noise",
+      "Applicability": "Utility-scale circuits; demonstrated on 127 qubits with 60 layers of two-qubit gates"
+    },
+    "references": ["kim2023", "vandenberg2023"],
+    "related": [
+      {"id": "zne", "reason": "PEA is a noise amplification method used within ZNE"},
+      {"id": "pec", "reason": "PEA uses the same learned noise model as PEC but avoids exponential sampling overhead"},
+      {"id": "pauli-twirling", "reason": "PEA operates on twirled (Pauli) noise channels"}
+    ]
+  },
+  {
+    "id": "nox",
+    "name": "Noiseless Output eXtrapolation",
+    "abbreviation": "NOX",
+    "aliases": ["noisy output extrapolation"],
+    "category": "mitigation",
+    "summary": "Combines efficient noise reconstruction (e.g., cycle benchmarking) with noise amplification and extrapolation to the zero-noise limit. Unlike standard ZNE, which uses heuristic noise-scaling methods, NOX learns a detailed noise model per cycle of gates and uses it to perform accurate, targeted noise amplification. This allows it to handle non-local and gate-dependent noise processes that violate the assumptions of simpler extrapolation methods. The protocol was validated on superconducting processors and has been applied to quantum field theory simulations.",
+    "properties": {
+      "Bias": "First-order mitigation; does not cancel second-order noise terms",
+      "Sampling overhead": "Moderate; noise-learning calibration plus multiple noise-scaled circuit executions",
+      "Noise model required": "Learned via efficient noise reconstruction (cycle benchmarking); handles non-local and gate-dependent noise",
+      "Applicability": "General-purpose; demonstrated on superconducting processors for circuits with up to ~37 hard cycles"
+    },
+    "references": ["ferracin2022"],
+    "related": [
+      {"id": "zne", "reason": "NOX is a more principled version of ZNE using a learned noise model for amplification"},
+      {"id": "pec", "reason": "NOX combines noise reconstruction from PEC with extrapolation from ZNE"},
+      {"id": "pea", "reason": "both use learned noise models for accurate noise amplification within ZNE"},
+      {"id": "pauli-twirling", "reason": "NOX operates on twirled noise channels via randomized compiling"}
+    ]
+  },
+  {
+    "id": "echo-verification",
+    "name": "Echo Verification",
+    "abbreviation": "EV",
+    "aliases": ["computational echo", "mirror verification"],
+    "category": "mitigation",
+    "summary": "Detects errors by running the target circuit forward and then its inverse (the 'echo'), so that the ideal output should return to the initial state. Deviations from the initial state signal that errors occurred. An ancilla qubit can be used to condition on successful verification, or ancilla-free variants measure the overlap directly. Echo verification effectively performs a purity-based check that amplifies the signal from the dominant eigenvector of the noisy density matrix.",
+    "properties": {
+      "Bias": "Reduced; errors that survive the echo are suppressed exponentially",
+      "Sampling overhead": "Roughly doubles circuit depth (forward + inverse); post-selection reduces effective sample size",
+      "Noise model required": "None (model-free)",
+      "Applicability": "General-purpose; especially effective for coherent errors and short-to-moderate depth circuits"
+    },
+    "references": ["cai2021ev"],
+    "related": [
+      {"id": "purification", "reason": "both exploit purity to suppress noise; EV uses time-reversal instead of copies"},
+      {"id": "symmetry-verification", "reason": "both use post-selection to discard erroneous runs"},
+      {"id": "cdr", "reason": "EV+CDR is a powerful combined technique demonstrated in recent experiments"}
+    ]
+  },
+  {
+    "id": "tem",
+    "name": "Tensor Network Error Mitigation",
+    "abbreviation": "TEM",
+    "aliases": ["MPO error mitigation", "matrix product operator mitigation"],
+    "category": "mitigation",
+    "summary": "Represents the noise channel as a matrix product operator (MPO) and applies its inverse to noisy measurement outcomes to recover mitigated expectation values. The tensor network structure captures spatially and temporally correlated noise with polynomial complexity, avoiding the exponential overhead of full process tomography. The MPO inverse is computed variationally or analytically, and the method scales to large circuits while maintaining provably optimal sampling overhead.",
+    "properties": {
+      "Bias": "Zero (in principle) if noise model is exact",
+      "Sampling overhead": "Optimal among linear mitigation methods; polynomial in bond dimension",
+      "Noise model required": "Learned MPO representation of the noise channel",
+      "Applicability": "General-purpose; particularly effective for circuits with spatially correlated noise"
+    },
+    "references": ["guo2022", "filippov2023"],
+    "related": [
+      {"id": "pec", "reason": "both invert the noise channel; TEM uses tensor network structure for efficiency"},
+      {"id": "nox", "reason": "both learn structured noise models; TEM uses MPO representation"}
+    ]
+  },
+  {
+    "id": "robust-shadows",
+    "name": "Robust Shadow Estimation",
+    "abbreviation": "RSE",
+    "aliases": ["error-mitigated classical shadows", "noise-resilient shadows"],
+    "category": "mitigation",
+    "summary": "Extends the classical shadow estimation protocol to be robust against noise by adding a calibration stage. Instead of assuming ideal measurement channels, the protocol characterizes the noisy measurement channel and uses the calibrated inverse to construct unbiased classical shadows. This enables sample-efficient estimation of many observables simultaneously while being resilient to gate and measurement errors, with only minimal assumptions on the noise.",
+    "properties": {
+      "Bias": "Zero (unbiased estimator with calibrated inverse)",
+      "Sampling overhead": "Same as standard shadows up to a noise-dependent multiplicative factor",
+      "Noise model required": "Calibration via a small set of known input states; no explicit noise model",
+      "Applicability": "Any observable estimation task; especially useful for tomographic and many-observable settings"
+    },
+    "references": ["chen2021"],
+    "related": [
+      {"id": "measurement-error-mitigation", "reason": "both calibrate the measurement channel; RSE generalizes to full shadow framework"},
+      {"id": "trex", "reason": "both mitigate measurement-stage noise with calibration"}
+    ]
+  },
+  {
+    "id": "crosstalk-mitigation",
+    "name": "Crosstalk-Adaptive Scheduling",
+    "abbreviation": "CAS",
+    "aliases": ["XtalkSched", "crosstalk-aware compilation"],
+    "category": "suppression",
+    "summary": "Suppresses crosstalk errors by intelligently scheduling gate operations to avoid simultaneous execution on qubit pairs with high crosstalk. The method first characterizes crosstalk via simultaneous randomized benchmarking, then formulates gate scheduling as an optimization problem that balances serialization (to avoid crosstalk) against parallelism (to minimize decoherence from extended circuit duration). Demonstrated up to 5.6x error reduction on 20-qubit IBM systems.",
+    "properties": {
+      "Bias": "Reduced; avoids crosstalk-induced coherent errors",
+      "Sampling overhead": "None (same number of shots); may increase circuit duration from serialization",
+      "Noise model required": "Crosstalk characterization via simultaneous randomized benchmarking",
+      "Applicability": "Multi-qubit circuits on hardware with significant crosstalk (e.g., superconducting processors)"
+    },
+    "references": ["murali2020"],
+    "related": [
+      {"id": "dd", "reason": "both are suppression techniques; DD handles idle noise, CAS handles crosstalk"},
+      {"id": "noise-aware-compilation", "reason": "both use hardware calibration data to improve circuit execution"}
+    ]
+  },
+  {
+    "id": "dual-state-purification",
+    "name": "Dual-State Purification",
+    "abbreviation": "DSP",
+    "aliases": ["dual-map purification"],
+    "category": "mitigation",
+    "summary": "Purifies a noisy quantum state by combining it with a 'dual state' prepared by running the inverse circuit through the dual (conjugate) noise channel. The overlap between the noisy state and its dual provides an estimate equivalent to virtual distillation but without requiring multiple copies of the state or ancilla qubits. Combined with tomography purification, the method ensures the final estimate is obtained from an effectively pure state, with error reduction that improves for larger circuits.",
+    "properties": {
+      "Bias": "Reduced; purification suppresses off-diagonal noise contributions",
+      "Sampling overhead": "Roughly doubles circuit executions (forward + dual); no qubit overhead",
+      "Noise model required": "None (model-free); relies on structure of the noise channel",
+      "Applicability": "Variational algorithms; demonstrated on cloud quantum computers with VQE"
+    },
+    "references": ["huo2022"],
+    "related": [
+      {"id": "purification", "reason": "both perform virtual purification; DSP avoids multi-copy overhead"},
+      {"id": "echo-verification", "reason": "both use forward and inverse circuits; DSP extracts purified expectation values"}
+    ]
+  },
+  {
+    "id": "odr",
+    "name": "Operator Decoherence Renormalization",
+    "abbreviation": "ODR",
+    "aliases": ["noise renormalization", "noise-estimation circuits"],
+    "category": "mitigation",
+    "summary": "Estimates the effective decoherence rate acting on a target observable by running short 'noise-estimation circuits' — circuits structurally similar to the target but with known ideal outputs. The measured decay rate is then used to renormalize (rescale) the noisy expectation value of the target observable, dividing out the noise-induced suppression factor. The method is simple, requires no detailed noise model, and is particularly effective for depolarizing-like noise.",
+    "properties": {
+      "Bias": "Residual bias if noise on estimation circuits differs from target circuit",
+      "Sampling overhead": "Low; requires running a small number of additional calibration circuits",
+      "Noise model required": "Minimal; assumes noise acts as a multiplicative suppression on observables",
+      "Applicability": "Expectation value estimation; demonstrated in quantum simulation and Fourier moment computation"
+    },
+    "references": ["urbanek2021"],
+    "related": [
+      {"id": "trex", "reason": "both correct multiplicative noise factors via calibration"},
+      {"id": "zne", "reason": "both address systematic noise bias; ODR uses direct rescaling instead of extrapolation"},
+      {"id": "cdr", "reason": "both use classically simulable calibration circuits to learn noise effects"}
+    ]
+  },
+  {
+    "id": "noise-aware-compilation",
+    "name": "Noise-Aware Compilation",
+    "abbreviation": "NAC",
+    "aliases": ["noise-aware routing", "hardware-aware transpilation", "calibration-aware compilation"],
+    "category": "suppression",
+    "summary": "Suppresses errors at the compilation stage by using up-to-date hardware calibration data (gate error rates, coherence times, crosstalk maps) to make routing, qubit mapping, and gate scheduling decisions. This includes selecting low-error qubit subgraphs, routing SWAP operations through high-fidelity paths, and timing gate execution to avoid decoherence and crosstalk. Modern implementations recover up to 40% of missing fidelity compared to noise-unaware compilation.",
+    "properties": {
+      "Bias": "Reduced by avoiding high-error hardware resources",
+      "Sampling overhead": "None; purely a compilation-stage optimization",
+      "Noise model required": "Hardware calibration data (gate errors, T1/T2 times, crosstalk tables)",
+      "Applicability": "Any quantum circuit; most impactful on hardware with non-uniform error rates"
+    },
+    "references": ["murali2020", "nishio2020"],
+    "related": [
+      {"id": "crosstalk-mitigation", "reason": "CAS is a specific form of noise-aware compilation targeting crosstalk"},
+      {"id": "dd", "reason": "both are suppression techniques; NAC optimizes layout, DD optimizes idle periods"},
+      {"id": "pauli-twirling", "reason": "both are preprocessing steps that improve downstream mitigation"}
     ]
   }
 ]

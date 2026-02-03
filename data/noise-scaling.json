@@ -1,0 +1,67 @@
+[
+  {
+    "id": "unitary-folding",
+    "name": "Unitary Folding",
+    "aliases": ["gate folding", "circuit folding"],
+    "summary": "Amplifies noise by inserting identity-equivalent gate pairs \\(G G^\\dagger\\) into the circuit. For a scale factor \\(\\lambda\\), gates are replaced with \\(G (G^\\dagger G)^{(\\lambda-1)/2}\\). Can be applied globally (to the whole circuit) or locally (to individual gates). Simple to implement but requires integer or odd-integer scale factors for exact folding.",
+    "properties": {
+      "Scale factors": "Integer or odd-integer multiples (1, 3, 5, ...); fractional via partial folding",
+      "Hardware requirements": "None beyond standard gate set",
+      "Advantages": "Simple, no pulse-level access needed, widely supported",
+      "Disadvantages": "Large stretch factors needed for deep circuits; folded gates may have different noise than original"
+    },
+    "references": ["giurgica2020", "he2020"]
+  },
+  {
+    "id": "pulse-stretching",
+    "name": "Pulse Stretching",
+    "aliases": ["time stretching", "pulse scaling"],
+    "summary": "Amplifies noise by stretching the duration of control pulses while maintaining their area (so the unitary is unchanged). Assumes that noise scales linearly with gate duration, which holds for some but not all noise sources. Requires pulse-level control of the quantum hardware.",
+    "properties": {
+      "Scale factors": "Continuous (any \\(\\lambda \\geq 1\\))",
+      "Hardware requirements": "Pulse-level access (e.g., OpenPulse on IBM systems)",
+      "Advantages": "Continuous scale factors; no additional gates",
+      "Disadvantages": "Assumes noise ∝ duration (often inaccurate); requires pulse calibration; not available on all platforms"
+    },
+    "references": ["temme2017", "kandala2019"]
+  },
+  {
+    "id": "identity-insertion",
+    "name": "Identity Insertion",
+    "aliases": ["identity scaling"],
+    "summary": "Amplifies noise by inserting pairs of single-qubit gates that compose to identity (e.g., \\(X X\\), \\(H H\\)) at random or systematic locations in the circuit. Simpler than full unitary folding but less precise control over noise amplification.",
+    "properties": {
+      "Scale factors": "Discrete (depends on number of insertions)",
+      "Hardware requirements": "None",
+      "Advantages": "Very simple to implement",
+      "Disadvantages": "Coarse control over scale factor; inserted gates may have different error rates"
+    },
+    "references": ["dumitrescu2018"]
+  },
+  {
+    "id": "circuit-unoptimization",
+    "name": "Circuit Unoptimization",
+    "aliases": ["quantum circuit unoptimization"],
+    "summary": "Amplifies noise by transforming a circuit into an equivalent but longer circuit using gate decomposition and recomposition rules. Unlike folding, unoptimization produces structurally different circuits at each noise level, enabling averaging over circuit variants to reduce bias from coherent errors. Resists server-side compiler optimization that would undo the noise scaling.",
+    "properties": {
+      "Scale factors": "Continuous (including fractional values near 1.0)",
+      "Hardware requirements": "None",
+      "Advantages": "Exponentially many circuit variants for averaging; resists compiler simplification; fractional scaling",
+      "Disadvantages": "More complex to implement; circuit structure changes significantly"
+    },
+    "references": ["pelofske2024", "pelofske2025"]
+  },
+  {
+    "id": "pea-amplification",
+    "name": "Probabilistic Error Amplification",
+    "aliases": ["learned noise injection", "PEA"],
+    "summary": "Amplifies noise by learning the per-layer noise model (via sparse Pauli–Lindblad tomography) and probabilistically injecting additional Pauli errors proportional to the learned rates. Provides accurate, targeted amplification without the assumptions of pulse stretching or the discrete steps of folding.",
+    "properties": {
+      "Scale factors": "Continuous",
+      "Hardware requirements": "Noise characterization (Pauli–Lindblad learning)",
+      "Advantages": "Accurate amplification using learned noise model; no pulse access needed",
+      "Disadvantages": "Requires upfront noise learning; noise model may drift"
+    },
+    "references": ["kim2023", "vandenberg2023"]
+  }
+]

@@ -13,38 +13,6 @@
     };
   </script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
-  <style>
-    #graph-container {
-      width: 100%;
-      height: 70vh;
-      min-height: 500px;
-      border: 1px solid var(--border);
-      border-radius: 5px;
-      background: #fff;
-      position: relative;
-      overflow: hidden;
-    }
-    #graph-container svg {
-      width: 100%;
-      height: 100%;
-      display: block;
-      touch-action: pan-y;
-    }
-    .node { cursor: pointer; }
-    .node circle { stroke: #fff; stroke-width: 2px; }
-    .node text { font-size: 11px; font-family: system-ui, -apple-system, sans-serif; pointer-events: none; }
-    .link { stroke: #bbb; stroke-opacity: 0.6; }
-    .link:hover { stroke: var(--accent); stroke-opacity: 1; }
-    .tooltip {
-      position: absolute; background: rgba(0,0,0,0.8); color: #fff;
-      padding: 0.4rem 0.7rem; border-radius: 4px; font-size: 0.8rem;
-      pointer-events: none; font-family: system-ui, -apple-system, sans-serif;
-      display: none; max-width: 250px;
-    }
-    .legend { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1rem; font-family: system-ui, -apple-system, sans-serif; font-size: 0.9rem; }
-    .legend-item { display: flex; align-items: center; gap: 0.3rem; }
-    .legend-dot { width: 12px; height: 12px; border-radius: 50%; }
-  </style>
 </head>
 <body>
 
@@ -58,18 +26,11 @@
   <a href="visualize.html" class="active">Visualize</a>
 </nav>
 
-<!-- Relationship Graph -->
-<section class="chart-section" id="graph-section" style="border-top:none;margin-top:0;padding-top:0">
-  <h2>Technique Relationships</h2>
-  <p class="chart-description">Force-directed graph of QEM/QES techniques. Click a node to view details. Hover over edges to see relationships. Drag to rearrange; scroll to zoom.</p>
-  <div class="legend">
-    <div class="legend-item"><div class="legend-dot" style="background:#2c5f8a"></div> Mitigation</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#6b4c8a"></div> Suppression</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#4a8a2c"></div> Detection</div>
-  </div>
-  <div id="graph-container">
-    <div class="tooltip" id="tooltip"></div>
-  </div>
+<!-- Noise Scaling Methods -->
+<section class="chart-section" id="noise-scaling-section" style="border-top:none;margin-top:0;padding-top:0">
+  <h2>Noise Scaling Methods</h2>
+  <p class="chart-description">Techniques for controllably amplifying noise in quantum circuits, used within Zero-Noise Extrapolation (ZNE) and related methods.</p>
+  <div id="noise-scaling-list"></div>
 </section>
 
 <!-- Bias/Variance Trade-off -->
@@ -79,13 +40,6 @@
   <div id="tradeoff-chart" style="position:relative">
     <div class="tooltip" id="tradeoff-tooltip" style="position:absolute;background:rgba(0,0,0,0.8);color:#fff;padding:0.4rem 0.7rem;border-radius:4px;font-size:0.8rem;pointer-events:none;font-family:system-ui,sans-serif;display:none;max-width:300px;z-index:10"></div>
   </div>
-</section>
-
-<!-- Research Adoption -->
-<section class="chart-section" id="adoption-section">
-  <h2>Research Adoption</h2>
-  <p class="chart-description">Approximate number of papers per year referencing each technique on arXiv/Semantic Scholar. Reflects growing interest in QEM since ~2019.</p>
-  <div id="adoption-chart"></div>
 </section>
 
 <!-- Technique Comparison -->
@@ -114,7 +68,6 @@
 </footer>
 
 <script src="https://d3js.org/d3.v7.min.js"></script>
-<script src="graph.js"></script>
 <script src="visualize.js"></script>
 </body>
 </html>

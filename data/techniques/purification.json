@@ -1,19 +1,19 @@
 {
   "description": [
     "Purification-Based Methods (also called Virtual Distillation) exploit the fact that noise turns a pure quantum state into a mixed state. By preparing multiple independent copies of the noisy state and measuring collective observables, the contribution of the dominant eigenvector of the density matrix is amplified exponentially.",
-    "The key insight is that for \\(M\\) copies of a noisy state \\(\\rho\\), the quantity \\(\\text{Tr}[O \\rho^M] / \\text{Tr}[\\rho^M]\\) converges to the expectation value with respect to the dominant eigenvector as \\(M\\) grows. This is measured by applying a cyclic shift (derangement) operator across the \\(M\\) copies.",
+    "The key insight is that for \\(M\\) copies of a noisy state \\(\\rho\\), the quantity \\(\\operatorname{tr}[O \\rho^M] / \\operatorname{tr}[\\rho^M]\\) converges to the expectation value with respect to the dominant eigenvector as \\(M\\) grows. This is measured by applying a cyclic shift (derangement) operator across the \\(M\\) copies.",
     "Proposed independently by Huggins et al. and Koczor in 2021, these methods require \\(M\\) copies of the quantum state but no noise model or classical simulation. The trade-off is hardware cost (\\(M\\times\\) qubits and entangling measurements) versus exponential bias suppression."
   ],
   "how_it_works": [
     "Prepare \\(M\\) independent copies of the noisy state \\(\\rho\\) on \\(M \\times n\\) qubits.",
     "Apply a cyclic shift operator \\(S\\) that permutes the \\(M\\) copies: \\(S |\\psi_1\\rangle|\\psi_2\\rangle \\cdots |\\psi_M\\rangle = |\\psi_M\\rangle|\\psi_1\\rangle \\cdots |\\psi_{M-1}\\rangle\\).",
-    "Measure the observable \\(O \\otimes S\\) across all copies. This effectively computes \\(\\text{Tr}[O \\rho^M]\\).",
-    "Normalize by \\(\\text{Tr}[\\rho^M]\\) (measured separately or simultaneously) to obtain the purified estimate: \\(\\langle O \\rangle_{\\text{purified}} = \\text{Tr}[O \\rho^M] / \\text{Tr}[\\rho^M]\\)."
+    "Measure the observable \\(O \\otimes S\\) across all copies. This effectively computes \\(\\operatorname{tr}[O \\rho^M]\\).",
+    "Normalize by \\(\\operatorname{tr}[\\rho^M]\\) (measured separately or simultaneously) to obtain the purified estimate: \\(\\langle O \\rangle_{\\text{purified}} = \\operatorname{tr}[O \\rho^M] / \\operatorname{tr}[\\rho^M]\\)."
   ],
   "key_equations": [
     {
       "label": "Purified estimator",
-      "latex": "\\langle O \\rangle_{\\text{purified}} = \\frac{\\text{Tr}[O \\rho^M]}{\\text{Tr}[\\rho^M]}"
+      "latex": "\\langle O \\rangle_{\\text{purified}} = \\frac{\\operatorname{tr}[O \\rho^M]}{\\operatorname{tr}[\\rho^M]}"
     },
     {
       "label": "Bias suppression",
@@ -21,7 +21,7 @@
     },
     {
       "label": "Purity estimation",
-      "latex": "\\text{Tr}[\\rho^M] = \\text{Tr}[S \\, \\rho^{\\otimes M}]"
+      "latex": "\\operatorname{tr}[\\rho^M] = \\operatorname{tr}[S \\, \\rho^{\\otimes M}]"
     }
   ],
   "bias_variance": {
@@ -39,7 +39,7 @@
   "disadvantages": [
     "Requires \\(M\\) times the qubit count",
     "Entangling measurements across copies are experimentally challenging",
-    "Variance of the ratio estimator can be large when \\(\\text{Tr}[\\rho^M]\\) is small",
+    "Variance of the ratio estimator can be large when \\(\\operatorname{tr}[\\rho^M]\\) is small",
     "Limited to expectation values (not full state reconstruction)"
   ],
   "use_cases": [

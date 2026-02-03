@@ -1,0 +1,48 @@
+{
+  "description": [
+    "Twirled Readout Error eXtinction (TREX) is a model-free readout error mitigation technique that avoids the exponential cost of full confusion-matrix inversion. Instead of characterizing the full \\(2^n \\times 2^n\\) assignment matrix, TREX uses randomized bit flips before measurement to diagonalize the readout noise channel.",
+    "The method was proposed by van den Berg, Minev, and Temme (2022) and is implemented as resilience level 1 in IBM's Qiskit Runtime. It is particularly attractive because it requires no prior characterization of the readout noise and adds minimal overhead.",
+    "The key insight is that applying a uniformly random Pauli-X bit flip to each qubit before measurement, and tracking the flip classically, transforms an arbitrary readout-error channel into a diagonal (multiplicative) channel. Each Pauli observable then picks up a single multiplicative bias factor that can be estimated and divided out."
+  ],
+  "how_it_works": [
+    "For each shot, independently and uniformly at random, decide whether to apply a Pauli-X gate to each qubit immediately before measurement.",
+    "Record the random bit-flip pattern alongside the measurement outcome.",
+    "In classical post-processing, undo the known bit flips to recover the intended measurement result.",
+    "The random twirling diagonalizes the readout-error transfer matrix: each Pauli observable \\(P\\) acquires a multiplicative factor \\(\\lambda_P\\).",
+    "Estimate \\(\\lambda_P\\) from calibration circuits (e.g., preparing \\(|0\\rangle^{\\otimes n}\\)) and divide the raw expectation value by \\(\\lambda_P\\) to obtain the corrected result."
+  ],
+  "key_equations": [
+    {
+      "label": "Twirled readout channel",
+      "latex": "\\widetilde{\\mathcal{M}}(\\rho) = \\sum_P \\lambda_P \\, \\operatorname{tr}(P \\rho) \\, P"
+    },
+    {
+      "label": "Corrected expectation value",
+      "latex": "\\langle P \\rangle_{\\text{corrected}} = \\frac{\\langle P \\rangle_{\\text{raw}}}{\\lambda_P}"
+    }
+  ],
+  "bias_variance": {
+    "bias": 0.05,
+    "variance": 0.3,
+    "overhead": 0.2,
+    "notes": "Nearly unbiased if calibration factor is accurate. Low overhead compared to full matrix inversion. Variance increases modestly with readout error rate."
+  },
+  "advantages": [
+    "Model-free: no need to characterize the full readout-error matrix",
+    "Avoids exponential cost of \\(2^n \\times 2^n\\) matrix inversion",
+    "Simple to implement — only requires random X gates before measurement",
+    "Scales well to large qubit counts",
+    "Composable with gate-noise mitigation techniques (ZNE, PEC, etc.)"
+  ],
+  "disadvantages": [
+    "Only addresses readout errors, not gate errors",
+    "Correction accuracy depends on stability of readout-error rates between calibration and experiment",
+    "Division by small \\(\\lambda_P\\) amplifies statistical noise for high-weight Pauli observables"
+  ],
+  "use_cases": [
+    "Default readout-error mitigation in IBM Qiskit Runtime (resilience level 1)",
+    "Preprocessing step before gate-error mitigation (ZNE, PEC)",
+    "Large-scale experiments where full confusion-matrix calibration is infeasible",
+    "Any expectation-value estimation on noisy hardware"
+  ]
+}

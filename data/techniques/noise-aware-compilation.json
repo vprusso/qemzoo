@@ -1,0 +1,50 @@
+{
+  "description": [
+    "Noise-Aware Compilation (NAC) suppresses errors at the compilation stage by incorporating up-to-date hardware calibration data into circuit optimization decisions. This includes qubit mapping (selecting low-error subgraphs), SWAP routing (choosing high-fidelity paths), and gate scheduling (timing operations to minimize decoherence and crosstalk).",
+    "Unlike mitigation techniques that correct errors after execution, NAC proactively avoids errors by steering the compiled circuit away from noisy hardware resources. Modern implementations in Qiskit (enabled by default since v0.21) recover on average nearly 40% of missing fidelity compared to noise-unaware compilation.",
+    "NAC is a broad category encompassing qubit layout optimization, noise-adaptive routing, and calibration-aware transpilation. It is most impactful on hardware with non-uniform error rates, which is typical of current superconducting and trapped-ion processors."
+  ],
+  "how_it_works": [
+    "Retrieve current hardware calibration data: per-gate error rates, qubit coherence times (T1, T2), and crosstalk tables.",
+    "Score candidate qubit mappings using heuristic cost functions derived from calibration data (e.g., total expected gate error along SWAP routes).",
+    "Select the optimal qubit subgraph and initial layout that minimizes expected total error.",
+    "Route SWAP operations through high-fidelity qubit paths, avoiding noisy links.",
+    "Schedule gate execution to minimize idle time (decoherence) and avoid crosstalk between parallel operations."
+  ],
+  "key_equations": [
+    {
+      "label": "Layout cost function",
+      "latex": "C(\\pi) = \\sum_{g \\in \\text{gates}} \\epsilon_{\\pi(g)} + \\sum_{q \\in \\text{qubits}} \\frac{t_{\\text{idle}}(q)}{T_2(q)}"
+    },
+    {
+      "label": "Fidelity improvement",
+      "latex": "F_{\\text{NAC}} \\approx F_{\\text{naive}} + 0.4 (1 - F_{\\text{naive}})"
+    }
+  ],
+  "bias_variance": {
+    "bias": 0.3,
+    "variance": 0.05,
+    "overhead": 0.05,
+    "notes": "No sampling overhead — purely compile-time optimization. Does not eliminate noise, only reduces it by avoiding worst hardware resources. Effectiveness depends on noise non-uniformity."
+  },
+  "advantages": [
+    "Zero runtime overhead — optimization happens at compile time",
+    "Compatible with all other suppression and mitigation techniques",
+    "Significant impact on current hardware with non-uniform noise",
+    "Enabled by default in modern quantum SDKs (Qiskit, Cirq)",
+    "Reduces baseline noise, improving effectiveness of downstream mitigation"
+  ],
+  "disadvantages": [
+    "Does not eliminate noise, only reduces it",
+    "Effectiveness depends on hardware noise non-uniformity",
+    "Calibration data may be stale if hardware drifts",
+    "Optimal mapping is NP-hard in general; heuristics are used in practice",
+    "Limited benefit on hardware with uniform error rates"
+  ],
+  "use_cases": [
+    "Default preprocessing for any quantum computation on real hardware",
+    "Large circuits where SWAP routing overhead is significant",
+    "Hardware with significant variation in qubit/gate quality",
+    "Reducing baseline noise before applying ZNE, PEC, or other mitigation"
+  ]
+}

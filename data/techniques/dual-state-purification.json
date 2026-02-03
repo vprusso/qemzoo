@@ -1,0 +1,49 @@
+{
+  "description": [
+    "Dual-State Purification (DSP) achieves virtual purification of a noisy quantum state without requiring multiple copies or ancilla qubits. Instead, it prepares a 'dual state' by running the inverse circuit through the conjugate (dual) noise channel and combines the noisy and dual state measurements.",
+    "The method was proposed by Huo and Li (2022). The overlap between the noisy state and its dual state yields an estimate equivalent to virtual distillation's second-order purification, but with no qubit overhead. Combined with tomography purification, the final estimate is guaranteed to come from an effectively pure state.",
+    "Numerical simulations under depolarizing noise show that the error reduction factor improves with both qubit count and circuit depth, making DSP particularly attractive for larger circuits."
+  ],
+  "how_it_works": [
+    "Prepare the noisy state \\(\\rho\\) by executing the target circuit \\(U\\) through the noisy channel \\(\\mathcal{E}\\).",
+    "Prepare the dual state \\(\\tilde{\\rho}\\) by executing the inverse circuit \\(U^\\dagger\\) through the dual (conjugate) noise channel.",
+    "Measure both states to estimate \\(\\operatorname{tr}(O\\rho\\tilde{\\rho}) / \\operatorname{tr}(\\rho\\tilde{\\rho})\\), which approximates the purified expectation value.",
+    "Apply tomography purification to ensure the result corresponds to a pure state estimate.",
+    "The purified estimate suppresses contributions from non-dominant eigenvectors of the density matrix."
+  ],
+  "key_equations": [
+    {
+      "label": "Purified expectation value",
+      "latex": "\\langle O \\rangle_{\\text{DSP}} = \\frac{\\operatorname{tr}(O \\rho \\tilde{\\rho})}{\\operatorname{tr}(\\rho \\tilde{\\rho})}"
+    },
+    {
+      "label": "Error suppression",
+      "latex": "\\text{Error} \\sim O((\\lambda_2/\\lambda_1)^2) \\text{ where } \\lambda_1, \\lambda_2 \\text{ are dominant eigenvalues}"
+    }
+  ],
+  "bias_variance": {
+    "bias": 0.15,
+    "variance": 0.35,
+    "overhead": 0.4,
+    "notes": "Doubles circuit executions but requires no additional qubits. Error reduction improves for larger circuits. Variance from estimating the ratio of traces."
+  },
+  "advantages": [
+    "No qubit overhead (unlike virtual distillation which needs M copies)",
+    "No ancilla qubits required",
+    "Error reduction improves with circuit size",
+    "Model-free: no noise characterization needed",
+    "Demonstrated on cloud quantum computers with VQE"
+  ],
+  "disadvantages": [
+    "Requires implementing the inverse circuit efficiently",
+    "Doubles the number of circuit executions",
+    "Assumes the dual noise channel is accessible (may not hold for all noise types)",
+    "Variance from ratio estimation can be significant at high noise"
+  ],
+  "use_cases": [
+    "Variational quantum eigensolver (VQE) on near-term hardware",
+    "Settings where virtual distillation's multi-copy overhead is prohibitive",
+    "Circuits where the inverse is efficiently computable",
+    "Cloud quantum computing where qubit resources are limited"
+  ]
+}

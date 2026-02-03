@@ -1,0 +1,49 @@
+{
+  "description": [
+    "Operator Decoherence Renormalization (ODR) mitigates noise by estimating the effective decoherence rate acting on a target observable and rescaling the noisy expectation value accordingly. The decoherence rate is measured using short 'noise-estimation circuits' — circuits structurally similar to the target but with known ideal outputs.",
+    "The method was introduced by Urbanek et al. (2021) and demonstrated on superconducting quantum hardware for mitigating depolarizing noise. It has since been applied to quantum simulation and Fourier moment computation in nuclear physics.",
+    "ODR is attractive for its simplicity: it requires only a few additional calibration circuits and a simple division to correct the noisy result. It is most effective when noise acts as a multiplicative suppression on observables, as is the case for depolarizing-like noise."
+  ],
+  "how_it_works": [
+    "Design noise-estimation circuits that are structurally similar to the target circuit but have classically computable ideal outputs.",
+    "Execute the noise-estimation circuits on the quantum hardware and compare measured outputs to known ideal values.",
+    "Compute the effective noise suppression factor \\(f\\) from the ratio of measured to ideal expectation values on the estimation circuits.",
+    "Execute the target circuit and measure the noisy expectation value \\(\\langle O \\rangle_{\\text{noisy}}\\).",
+    "Renormalize: \\(\\langle O \\rangle_{\\text{mitigated}} = \\langle O \\rangle_{\\text{noisy}} / f\\)."
+  ],
+  "key_equations": [
+    {
+      "label": "Noise suppression factor",
+      "latex": "f = \\frac{\\langle O \\rangle_{\\text{noisy, cal}}}{\\langle O \\rangle_{\\text{ideal, cal}}}"
+    },
+    {
+      "label": "Renormalized expectation value",
+      "latex": "\\langle O \\rangle_{\\text{ODR}} = \\frac{\\langle O \\rangle_{\\text{noisy}}}{f}"
+    }
+  ],
+  "bias_variance": {
+    "bias": 0.2,
+    "variance": 0.2,
+    "overhead": 0.15,
+    "notes": "Low overhead — only a few calibration circuits needed. Residual bias if noise on estimation circuits differs from target. Variance from division by estimated factor."
+  },
+  "advantages": [
+    "Extremely simple to implement (calibration + division)",
+    "Very low overhead (few additional circuits)",
+    "No detailed noise model required",
+    "Effective for depolarizing-like noise",
+    "Can be combined with other mitigation techniques"
+  ],
+  "disadvantages": [
+    "Assumes noise acts as a multiplicative suppression factor",
+    "Bias if noise-estimation circuits don't match the target noise profile",
+    "Less effective for noise with strong state-dependent or gate-dependent structure",
+    "Division by small factors amplifies statistical noise"
+  ],
+  "use_cases": [
+    "Quantum simulation with depolarizing-like noise",
+    "Fourier moment computation in nuclear effective field theory",
+    "Quick first-pass error mitigation when detailed noise models are unavailable",
+    "Combined with echo verification for enhanced mitigation"
+  ]
+}

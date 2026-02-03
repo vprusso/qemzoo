@@ -108,15 +108,6 @@
       "generality": 1
     },
     {
-      "id": "learning-based",
-      "noise_model": 4,
-      "overhead": 4,
-      "bias": 3,
-      "composable": 3,
-      "scalability": 4,
-      "generality": 4
-    },
-    {
       "id": "accreditation",
       "noise_model": 5,
       "overhead": 3,
@@ -133,6 +124,96 @@
       "composable": 4,
       "scalability": 2,
       "generality": 3
+    },
+    {
+      "id": "trex",
+      "noise_model": 5,
+      "overhead": 4,
+      "bias": 4,
+      "composable": 5,
+      "scalability": 5,
+      "generality": 5
+    },
+    {
+      "id": "pea",
+      "noise_model": 2,
+      "overhead": 3,
+      "bias": 3,
+      "composable": 4,
+      "scalability": 5,
+      "generality": 4
+    },
+    {
+      "id": "nox",
+      "noise_model": 2,
+      "overhead": 3,
+      "bias": 3,
+      "composable": 4,
+      "scalability": 4,
+      "generality": 4
+    },
+    {
+      "id": "echo-verification",
+      "noise_model": 5,
+      "overhead": 2,
+      "bias": 4,
+      "composable": 4,
+      "scalability": 3,
+      "generality": 4
+    },
+    {
+      "id": "tem",
+      "noise_model": 2,
+      "overhead": 3,
+      "bias": 5,
+      "composable": 3,
+      "scalability": 4,
+      "generality": 4
+    },
+    {
+      "id": "robust-shadows",
+      "noise_model": 4,
+      "overhead": 4,
+      "bias": 5,
+      "composable": 4,
+      "scalability": 4,
+      "generality": 5
+    },
+    {
+      "id": "crosstalk-mitigation",
+      "noise_model": 3,
+      "overhead": 5,
+      "bias": 3,
+      "composable": 5,
+      "scalability": 4,
+      "generality": 2
+    },
+    {
+      "id": "dual-state-purification",
+      "noise_model": 5,
+      "overhead": 3,
+      "bias": 4,
+      "composable": 3,
+      "scalability": 3,
+      "generality": 4
+    },
+    {
+      "id": "odr",
+      "noise_model": 4,
+      "overhead": 4,
+      "bias": 3,
+      "composable": 4,
+      "scalability": 4,
+      "generality": 3
+    },
+    {
+      "id": "noise-aware-compilation",
+      "noise_model": 3,
+      "overhead": 5,
+      "bias": 2,
+      "composable": 5,
+      "scalability": 5,
+      "generality": 5
     }
   ]
 }

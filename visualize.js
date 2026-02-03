@@ -1,21 +1,68 @@
 document.addEventListener("DOMContentLoaded", async () => {
-  const techniques = await fetch("data/techniques.json").then((r) => r.json());
+  const cacheBust = `?v=${Date.now()}`;
+  const techniques = await fetch(`data/techniques.json${cacheBust}`).then((r) => r.json());
 
   try {
-    const [tradeoffs, adoption, comparison, composability] = await Promise.all([
-      fetch("data/tradeoffs.json").then((r) => r.json()),
-      fetch("data/adoption.json").then((r) => r.ok ? r.json() : null),
-      fetch("data/comparison.json").then((r) => r.json()),
-      fetch("data/composability.json").then((r) => r.json()),
+    const [tradeoffs, comparison, composability, noiseScaling, references] = await Promise.all([
+      fetch(`data/tradeoffs.json${cacheBust}`).then((r) => r.json()),
+      fetch(`data/comparison.json${cacheBust}`).then((r) => r.json()),
+      fetch(`data/composability.json${cacheBust}`).then((r) => r.json()),
+      fetch(`data/noise-scaling.json${cacheBust}`).then((r) => r.json()),
+      fetch(`data/references.json${cacheBust}`).then((r) => r.json()),
     ]);
+    renderNoiseScalingSection(noiseScaling, references);
     renderTradeoffChart(tradeoffs, techniques);
-    if (adoption) renderAdoptionChart(adoption, techniques);
     renderComparisonChart(comparison, techniques);
     renderComposabilityChart(composability, techniques);
   } catch (e) {
     console.warn("Could not load chart data:", e);
   }
 });
+
+// ── Noise Scaling Methods ─────────────────────────────────────────────────────
+
+function renderNoiseScalingSection(methods, references) {
+  const container = document.getElementById("noise-scaling-list");
+  if (!container) return;
+
+  let html = '<div class="noise-scaling-grid">';
+
+  for (const m of methods) {
+    const aliases = m.aliases.length ? `<div class="aliases">Also known as: ${m.aliases.join(", ")}</div>` : "";
+
+    const propRows = Object.entries(m.properties)
+      .map(([k, v]) => `<tr><th>${k}</th><td>${v}</td></tr>`)
+      .join("");
+
+    const refLinks = m.references
+      .map((key) => {
+        const ref = references[key];
+        if (!ref) return `[${key}]`;
+        return `<a href="https://arxiv.org/abs/${ref.arxiv}" target="_blank" title="${ref.title}">[${ref.arxiv}]</a>`;
+      })
+      .join(" ");
+
+    html += `
+      <div class="noise-scaling-card">
+        <h3>${m.name}</h3>
+        ${aliases}
+        <p class="summary">${m.summary}</p>
+        <table class="properties">${propRows}</table>
+        <div class="references"><strong>References:</strong> ${refLinks}</div>
+      </div>
+    `;
+  }
+
+  html += '</div>';
+  container.innerHTML = html;
+
+  // Typeset MathJax if available
+  if (window.MathJax && window.MathJax.typesetPromise) {
+    window.MathJax.typesetPromise([container]);
+  }
+}
+
+// ── Bias/Variance Trade-off Chart ─────────────────────────────────────────────
 
 function renderTradeoffChart(tradeoffs, techniques) {
   const container = document.getElementById("tradeoff-chart");
@@ -37,7 +84,7 @@ function renderTradeoffChart(tradeoffs, techniques) {
   const y = d3.scaleLinear().domain([0, 1]).range([inner.h, 0]);
   const r = d3.scaleLinear().domain([0, 1]).range([6, 18]);
 
-  const catColors = { mitigation: "#2c5f8a", suppression: "#6b4c8a", detection: "#4a8a2c" };
+  const catColors = { mitigation: "#2c5f8a", suppression: "#6b4c8a" };
 
   // Grid lines.
   g.append("g").attr("class", "grid")
@@ -118,86 +165,6 @@ function renderTradeoffChart(tradeoffs, techniques) {
     .attr("font-family", "system-ui, sans-serif").attr("fill", "#666").text("Circle size = sampling overhead");
 }
 
-// ── Adoption timeline chart ──────────────────────────────────────────────────
-
-function renderAdoptionChart(adoption, techniques) {
-  const container = document.getElementById("adoption-chart");
-  if (!container || typeof d3 === "undefined") return;
-
-  const width = 700;
-  const height = 400;
-  const margin = { top: 25, right: 140, bottom: 45, left: 55 };
-  const inner = { w: width - margin.left - margin.right, h: height - margin.top - margin.bottom };
-
-  const svg = d3.select(container).append("svg").attr("viewBox", [0, 0, width, height]);
-  const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
-
-  const allYears = new Set();
-  const series = [];
-  const palette = ["#2c5f8a", "#c44", "#2c8a4c", "#e89c2c", "#6b4c8a", "#2ca5a5", "#a52c5f", "#8a8a2c", "#5f2c8a", "#2c8a6b"];
-  let ci = 0;
-
-  for (const [id, yearData] of Object.entries(adoption)) {
-    if (id.startsWith("_")) continue;
-    const tech = techniques.find((t) => t.id === id);
-    if (!tech) continue;
-    const points = [];
-    for (const [yr, count] of Object.entries(yearData)) {
-      allYears.add(+yr);
-      points.push({ year: +yr, count });
-    }
-    points.sort((a, b) => a.year - b.year);
-    series.push({
-      id,
-      label: tech.abbreviation || tech.name,
-      color: palette[ci % palette.length],
-      points,
-    });
-    ci++;
-  }
-
-  const years = Array.from(allYears).sort();
-  const maxCount = d3.max(series, (s) => d3.max(s.points, (p) => p.count)) || 10;
-
-  const x = d3.scaleLinear().domain([d3.min(years), d3.max(years)]).range([0, inner.w]);
-  const y = d3.scaleLinear().domain([0, maxCount * 1.1]).range([inner.h, 0]);
-
-  g.append("g").attr("transform", `translate(0,${inner.h})`)
-    .call(d3.axisBottom(x).ticks(years.length).tickFormat(d3.format("d")));
-  g.append("g").call(d3.axisLeft(y).ticks(6))
-    .append("text").attr("x", -inner.h / 2).attr("y", -40).attr("fill", "#333")
-    .attr("text-anchor", "middle").attr("font-size", "12px")
-    .attr("transform", "rotate(-90)").text("Papers per year");
-
-  const line = d3.line().x((d) => x(d.year)).y((d) => y(d.count)).curve(d3.curveMonotoneX);
-
-  for (const s of series) {
-    g.append("path")
-      .datum(s.points)
-      .attr("fill", "none")
-      .attr("stroke", s.color)
-      .attr("stroke-width", 2)
-      .attr("d", line);
-
-    g.selectAll(null).data(s.points).join("circle")
-      .attr("cx", (d) => x(d.year))
-      .attr("cy", (d) => y(d.count))
-      .attr("r", 3)
-      .attr("fill", s.color);
-
-    const last = s.points[s.points.length - 1];
-    g.append("text")
-      .attr("x", x(last.year) + 6)
-      .attr("y", y(last.count))
-      .attr("dy", "0.35em")
-      .attr("font-size", "10px")
-      .attr("font-family", "system-ui, sans-serif")
-      .attr("font-weight", "600")
-      .attr("fill", s.color)
-      .text(s.label);
-  }
-}
-
 // ── Technique comparison chart ───────────────────────────────────────────────
 
 function renderComparisonChart(comparison, techniques) {
@@ -213,7 +180,7 @@ function renderComparisonChart(comparison, techniques) {
   }
   html += "</tr></thead><tbody>";
 
-  const catColors = { mitigation: "#2c5f8a", suppression: "#6b4c8a", detection: "#4a8a2c" };
+  const catColors = { mitigation: "#2c5f8a", suppression: "#6b4c8a" };
   const sorted = ratings.slice().sort((a, b) => {
     const ta = techniques.find((t) => t.id === a.id);
     const tb = techniques.find((t) => t.id === b.id);

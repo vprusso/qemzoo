@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", async () => {
+  const cacheBust = `?v=${Date.now()}`;
   const [techniques, references] = await Promise.all([
-    fetch("data/techniques.json").then((r) => r.json()),
-    fetch("data/references.json").then((r) => r.json()),
+    fetch(`data/techniques.json${cacheBust}`).then((r) => r.json()),
+    fetch(`data/references.json${cacheBust}`).then((r) => r.json()),
   ]);
 
   // Sort alphabetically by name.

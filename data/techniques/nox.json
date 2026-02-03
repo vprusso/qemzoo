@@ -1,0 +1,49 @@
+{
+  "description": [
+    "Noiseless Output eXtrapolation (NOX) is an error mitigation protocol that combines efficient noise reconstruction with noise amplification and extrapolation to the zero-noise limit. It was developed by Ferracin et al. (2022) as a practical improvement over standard ZNE.",
+    "The key advantage of NOX is that it learns a detailed noise model per cycle of gates using efficient reconstruction methods (such as cycle benchmarking), then uses this model to perform accurate, targeted noise amplification. This allows it to handle non-local and gate-dependent noise processes that violate the assumptions of simpler extrapolation methods like pulse stretching or unitary folding.",
+    "NOX is a first-order mitigation method: it cancels first-order noise terms but does not remove second-order contributions. It was experimentally validated on superconducting processors at the Advanced Quantum Testbed and has been applied to quantum field theory simulations."
+  ],
+  "how_it_works": [
+    "Use randomized compiling to convert coherent errors into stochastic Pauli noise.",
+    "Perform efficient noise reconstruction (cycle benchmarking) to learn the Pauli error rates for each cycle of gates in the circuit.",
+    "For each desired noise amplification factor, inject additional Pauli errors proportional to the learned noise model by probabilistically inserting Pauli gates.",
+    "Execute the noise-amplified circuits and collect expectation values at multiple noise levels.",
+    "Extrapolate to the zero-noise limit using standard fitting models (linear, exponential, Richardson)."
+  ],
+  "key_equations": [
+    {
+      "label": "Noise amplification via learned model",
+      "latex": "\\mathcal{E}_{c} = \\mathcal{N} \\circ \\mathcal{N}_{\\text{extra}}^{(c-1)}, \\quad \\text{where } \\mathcal{N}_{\\text{extra}} \\text{ is derived from learned Pauli error rates}"
+    },
+    {
+      "label": "First-order correction",
+      "latex": "\\langle O \\rangle_{\\text{mitigated}} = \\langle O \\rangle_0 + O(\\epsilon^2), \\quad \\text{where } \\epsilon \\text{ is the noise strength}"
+    }
+  ],
+  "bias_variance": {
+    "bias": 0.3,
+    "variance": 0.5,
+    "overhead": 0.4,
+    "notes": "First-order mitigation only — second-order noise terms remain. Noise-learning calibration adds overhead. Variance depends on extrapolation model and number of noise levels."
+  },
+  "advantages": [
+    "Handles non-local and gate-dependent noise that violates standard ZNE assumptions",
+    "Uses efficient noise reconstruction rather than full process tomography",
+    "More accurate noise amplification than pulse stretching or unitary folding",
+    "Compatible with randomized compiling as a preprocessing step",
+    "Experimentally validated on superconducting hardware"
+  ],
+  "disadvantages": [
+    "First-order mitigation only; does not cancel second-order noise terms",
+    "Requires noise-learning calibration overhead (cycle benchmarking)",
+    "Limited to weak-noise regime for best performance",
+    "Noise model may drift between calibration and experiment execution"
+  ],
+  "use_cases": [
+    "Circuits with non-local or gate-dependent noise",
+    "Superconducting processor experiments",
+    "Quantum field theory simulations (Ising model dynamics)",
+    "Settings where standard ZNE noise-scaling methods are inaccurate"
+  ]
+}

@@ -7,7 +7,7 @@
   --card-bg: #fff;
   --mitigation: #2c5f8a;
   --suppression: #6b4c8a;
-  --detection: #4a8a2c;
+
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -233,10 +233,7 @@ h2.letter-heading {
   color: var(--suppression);
 }
 
-.badge-detection {
-  background: #e8f8e8;
-  color: var(--detection);
-}
+
 
 .technique .aka {
   font-style: italic;
@@ -312,6 +309,75 @@ h2.letter-heading {
 
 #references-list a {
   color: var(--accent);
+}
+
+/* Noise Scaling Methods */
+.noise-scaling-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.2rem;
+}
+
+.noise-scaling-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.2rem;
+}
+
+.noise-scaling-card h3 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.1rem;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+
+.noise-scaling-card .aliases {
+  font-size: 0.8rem;
+  color: #888;
+  font-style: italic;
+  margin-bottom: 0.6rem;
+}
+
+.noise-scaling-card .summary {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 0.8rem;
+}
+
+.noise-scaling-card .properties {
+  font-size: 0.82rem;
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 0.8rem;
+}
+
+.noise-scaling-card .properties th {
+  text-align: left;
+  padding: 0.3rem 0.5rem 0.3rem 0;
+  color: #555;
+  font-weight: 600;
+  width: 40%;
+  vertical-align: top;
+}
+
+.noise-scaling-card .properties td {
+  padding: 0.3rem 0;
+  vertical-align: top;
+}
+
+.noise-scaling-card .references {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.noise-scaling-card .references a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.noise-scaling-card .references a:hover {
+  text-decoration: underline;
 }
 
 /* Footer */

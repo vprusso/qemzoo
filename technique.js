@@ -9,8 +9,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     return;
   }
 
+  const cacheBust = `?v=${Date.now()}`;
   try {
-    const techniques = await fetch("data/techniques.json").then((r) => r.json());
+    const techniques = await fetch(`data/techniques.json${cacheBust}`).then((r) => r.json());
 
     // Resolve aliases: if the id doesn't match directly, search abbreviations and aliases.
     let resolvedId = id;
@@ -32,9 +33,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     const [references, tradeoffs, detail] = await Promise.all([
-      fetch("data/references.json").then((r) => r.json()),
-      fetch("data/tradeoffs.json").then((r) => r.json()),
-      fetch(`data/techniques/${id}.json`).then((r) => {
+      fetch(`data/references.json${cacheBust}`).then((r) => r.json()),
+      fetch(`data/tradeoffs.json${cacheBust}`).then((r) => r.json()),
+      fetch(`data/techniques/${id}.json${cacheBust}`).then((r) => {
         if (!r.ok) throw new Error("Detail file not found");
         return r.json();
       }),
@@ -213,7 +214,7 @@ function renderMiniTradeoff(tradeoffs, techniques, currentId) {
     .attr("font-size", "9px").text("ideal");
 
   // Category colors.
-  const catColors = { mitigation: "#2c5f8a", suppression: "#6b4c8a", detection: "#4a8a2c" };
+  const catColors = { mitigation: "#2c5f8a", suppression: "#6b4c8a" };
 
   // Plot all points.
   for (const t of tradeoffs) {

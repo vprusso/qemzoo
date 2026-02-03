@@ -1,0 +1,49 @@
+{
+  "description": [
+    "Echo Verification (EV) detects errors by running a quantum circuit forward and then its inverse, creating a 'computational echo.' If no errors occurred, the system returns exactly to its initial state. Any deviation signals noise corruption.",
+    "The method can be implemented with an ancilla qubit (using a Hadamard test to condition on successful echo) or in ancilla-free variants that directly estimate the overlap between the initial and echoed states. The technique effectively amplifies the contribution of the dominant eigenvector of the noisy density matrix.",
+    "EV has been combined with Clifford Data Regression (EV+CDR) to create a powerful hybrid technique that was demonstrated on superconducting quantum computers for Ising model time evolution and quantum field theory simulations."
+  ],
+  "how_it_works": [
+    "Prepare the initial state \\(|\\psi_0\\rangle\\) and apply the target unitary \\(U\\).",
+    "Apply the inverse unitary \\(U^\\dagger\\) to the resulting state.",
+    "Measure whether the system has returned to \\(|\\psi_0\\rangle\\). In the ancilla-based version, a control qubit conditions on successful verification.",
+    "Post-select on successful echo (system returned to initial state) to obtain verified expectation values.",
+    "Alternatively, use the echo success probability to rescale noisy expectation values without post-selection."
+  ],
+  "key_equations": [
+    {
+      "label": "Echo success probability",
+      "latex": "p_{\\text{echo}} = \\operatorname{tr}(|\\psi_0\\rangle\\langle\\psi_0| \\, \\mathcal{E}(U^\\dagger \\mathcal{E}(U |\\psi_0\\rangle\\langle\\psi_0| U^\\dagger) U))"
+    },
+    {
+      "label": "Verified expectation value",
+      "latex": "\\langle O \\rangle_{\\text{EV}} = \\frac{\\langle O \\rangle_{\\text{noisy}}}{p_{\\text{echo}}}"
+    }
+  ],
+  "bias_variance": {
+    "bias": 0.15,
+    "variance": 0.4,
+    "overhead": 0.5,
+    "notes": "Doubles circuit depth. Post-selection reduces effective sample size. Very effective against coherent errors which are fully detected by the echo."
+  },
+  "advantages": [
+    "Model-free: no noise characterization required",
+    "Detects both coherent and incoherent errors",
+    "Can be combined with CDR for powerful hybrid mitigation",
+    "Ancilla-free variants avoid qubit overhead",
+    "Particularly effective for coherent errors (fully detected by echo)"
+  ],
+  "disadvantages": [
+    "Doubles circuit depth (forward + inverse), increasing total noise exposure",
+    "Post-selection reduces effective sample size",
+    "Depolarizing noise on the inverse circuit is not fully cancelled",
+    "Requires ability to implement the inverse circuit efficiently"
+  ],
+  "use_cases": [
+    "Quantum simulation (Ising model dynamics, quantum field theory)",
+    "Combined EV+CDR for enhanced mitigation on superconducting hardware",
+    "Circuits where coherent errors dominate",
+    "Settings where the inverse circuit is efficiently computable"
+  ]
+}

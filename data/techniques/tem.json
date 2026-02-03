@@ -1,0 +1,49 @@
+{
+  "description": [
+    "Tensor Network Error Mitigation (TEM) represents the noise channel of a quantum circuit as a matrix product operator (MPO) and applies its inverse to noisy measurement outcomes. The tensor network structure captures spatially and temporally correlated noise with polynomial complexity.",
+    "The method was proposed by Guo and Yang (2022) using variational MPO inversion, and extended by Filippov et al. (2023) with a scalable algorithm that achieves provably optimal sampling overhead among linear mitigation methods.",
+    "TEM is particularly well-suited for circuits with spatially structured noise, where the MPO bond dimension remains moderate. It has been implemented as a commercial Qiskit function by Algorithmiq."
+  ],
+  "how_it_works": [
+    "Characterize the noise channel of the quantum circuit as a matrix product operator (MPO) using tomographic data or noise models.",
+    "Compute the inverse of the MPO noise channel, either variationally or analytically.",
+    "Execute the noisy circuit with informationally complete measurements.",
+    "Apply the MPO inverse to the measurement outcomes in classical post-processing.",
+    "Extract mitigated expectation values from the corrected state representation."
+  ],
+  "key_equations": [
+    {
+      "label": "MPO noise representation",
+      "latex": "\\mathcal{N} = \\sum_{\\{i_k, j_k\\}} \\operatorname{tr}(A_1^{i_1 j_1} A_2^{i_2 j_2} \\cdots A_n^{i_n j_n}) |i_1 \\cdots i_n\\rangle\\langle j_1 \\cdots j_n|"
+    },
+    {
+      "label": "Mitigated expectation value",
+      "latex": "\\langle O \\rangle_{\\text{mit}} = \\operatorname{tr}(O \\, \\mathcal{N}^{-1}(\\rho_{\\text{noisy}}))"
+    }
+  ],
+  "bias_variance": {
+    "bias": 0.05,
+    "variance": 0.7,
+    "overhead": 0.6,
+    "notes": "Unbiased if the MPO noise model is exact. Sampling overhead is optimal among linear mitigation methods. Overhead scales with MPO bond dimension."
+  },
+  "advantages": [
+    "Captures spatially and temporally correlated noise",
+    "Provably optimal sampling overhead among linear mitigation methods",
+    "Polynomial complexity in bond dimension (avoids exponential scaling)",
+    "Robust against changes in circuit size and depth",
+    "Available as a commercial Qiskit function (Algorithmiq)"
+  ],
+  "disadvantages": [
+    "Requires informationally complete measurements",
+    "Accuracy depends on MPO bond dimension capturing the noise structure",
+    "Noise characterization overhead for learning the MPO",
+    "Variance can be significant for highly correlated noise requiring large bond dimension"
+  ],
+  "use_cases": [
+    "Circuits with spatially correlated noise on multi-qubit processors",
+    "Settings where PEC sampling overhead is prohibitive",
+    "Large-scale quantum computations requiring scalable mitigation",
+    "Variational algorithms on superconducting hardware"
+  ]
+}

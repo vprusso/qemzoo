@@ -1,0 +1,49 @@
+{
+  "description": [
+    "Robust Shadow Estimation (RSE) extends the classical shadow protocol of Huang, Kueng, and Preskill to be resilient against experimental noise. The key idea is to add a calibration stage that characterizes the noisy measurement channel, then use the calibrated inverse instead of the ideal inverse when constructing classical shadows.",
+    "The method was introduced by Chen, Yu, Zeng, and Flammia (2021). It provides unbiased estimates of observables with sample complexity matching standard shadows up to a noise-dependent multiplicative factor, requiring only minimal assumptions on the noise.",
+    "RSE is particularly valuable in settings where many observables must be estimated from the same quantum state, as the calibration cost is amortized across all observables."
+  ],
+  "how_it_works": [
+    "Run a calibration stage: prepare a set of known input states and measure them through the noisy measurement channel to characterize the effective noise.",
+    "Construct the calibrated channel inverse from the calibration data.",
+    "Execute the target quantum circuit and perform randomized measurements (random Pauli or Clifford bases).",
+    "Apply the calibrated inverse (instead of the ideal inverse) to construct noise-robust classical shadows.",
+    "Estimate any desired observables from the robust shadows using standard median-of-means estimation."
+  ],
+  "key_equations": [
+    {
+      "label": "Standard shadow channel",
+      "latex": "\\mathcal{M}(\\rho) = \\mathbb{E}_{U}[U^\\dagger |b\\rangle\\langle b| U]"
+    },
+    {
+      "label": "Robust shadow estimator",
+      "latex": "\\hat{\\rho}_{\\text{robust}} = \\widetilde{\\mathcal{M}}^{-1}(U^\\dagger |b\\rangle\\langle b| U)"
+    }
+  ],
+  "bias_variance": {
+    "bias": 0.05,
+    "variance": 0.4,
+    "overhead": 0.35,
+    "notes": "Unbiased with proper calibration. Overhead from calibration is amortized over many observables. Sample complexity matches ideal shadows up to a noise-dependent factor."
+  },
+  "advantages": [
+    "Unbiased estimator with rigorous guarantees",
+    "Sample-efficient for estimating many observables simultaneously",
+    "Minimal assumptions on noise (no specific noise model required)",
+    "Calibration cost amortized across all observables",
+    "Compatible with random Pauli and random Clifford measurement schemes"
+  ],
+  "disadvantages": [
+    "Calibration stage adds upfront cost",
+    "Noise-dependent overhead factor can be large for high error rates",
+    "Assumes noise is approximately gate-independent during calibration",
+    "Less efficient than specialized methods when only one or few observables are needed"
+  ],
+  "use_cases": [
+    "Quantum state tomography on noisy hardware",
+    "Estimating many Pauli expectation values from a single state preparation",
+    "Fidelity estimation and entanglement verification",
+    "Any setting where classical shadows are used and hardware noise is non-negligible"
+  ]
+}
