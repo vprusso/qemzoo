@@ -1,1 +1,12 @@
+# OS files
 *.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.python-version
+*.egg-info/
+
+# Development
+uv.lock
