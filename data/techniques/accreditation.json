@@ -2,7 +2,7 @@
   "description": [
     "Accreditation protocols provide a way to certify the output of a noisy quantum computation without requiring any knowledge of the noise model. The key idea is to interleave the target computation with 'trap' circuits whose ideal output is known (efficiently computable classically), then check whether the traps produce the correct output.",
     "If a sufficient fraction of trap circuits pass, the protocol provides a rigorous bound on the total variation distance between the noisy and ideal output distributions of the target circuit. This gives a confidence interval rather than a corrected expectation value.",
-    "The protocol was introduced by Ferracin, Kapourniotis, and Datta (2019) for circuits composed of Clifford gates plus a limited number of non-Clifford gates. Extensions handle broader circuit classes and provide tighter bounds."
+    "The protocol applies to circuits composed of Clifford gates plus a limited number of non-Clifford gates, with extensions that handle broader circuit classes and provide tighter bounds."
   ],
   "how_it_works": [
     "Choose a set of trap circuits: these are circuits whose ideal output distribution is efficiently computable (e.g., circuits that are close to Clifford).",

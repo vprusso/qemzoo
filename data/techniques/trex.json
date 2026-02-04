@@ -1,7 +1,7 @@
 {
   "description": [
     "Twirled Readout Error eXtinction (TREX) is a model-free readout error mitigation technique that avoids the exponential cost of full confusion-matrix inversion. Instead of characterizing the full \\(2^n \\times 2^n\\) assignment matrix, TREX uses randomized bit flips before measurement to diagonalize the readout noise channel.",
-    "The method was proposed by van den Berg, Minev, and Temme (2022) and is implemented as resilience level 1 in IBM's Qiskit Runtime. It is particularly attractive because it requires no prior characterization of the readout noise and adds minimal overhead.",
+    "TREX is implemented as resilience level 1 in IBM's Qiskit Runtime. It is particularly attractive because it requires no prior characterization of the readout noise and adds minimal overhead.",
     "The key insight is that applying a uniformly random Pauli-X bit flip to each qubit before measurement, and tracking the flip classically, transforms an arbitrary readout-error channel into a diagonal (multiplicative) channel. Each Pauli observable then picks up a single multiplicative bias factor that can be estimated and divided out."
   ],
   "how_it_works": [

@@ -1,6 +1,6 @@
 {
   "description": [
-    "Noiseless Output eXtrapolation (NOX) is an error mitigation protocol that combines efficient noise reconstruction with noise amplification and extrapolation to the zero-noise limit. It was developed by Ferracin et al. (2022) as a practical improvement over standard ZNE.",
+    "Noiseless Output eXtrapolation (NOX) is an error mitigation protocol that combines efficient noise reconstruction with noise amplification and extrapolation to the zero-noise limit, offering a practical improvement over standard ZNE.",
     "The key advantage of NOX is that it learns a detailed noise model per cycle of gates using efficient reconstruction methods (such as cycle benchmarking), then uses this model to perform accurate, targeted noise amplification. This allows it to handle non-local and gate-dependent noise processes that violate the assumptions of simpler extrapolation methods like pulse stretching or unitary folding.",
     "NOX is a first-order mitigation method: it cancels first-order noise terms but does not remove second-order contributions. It was experimentally validated on superconducting processors at the Advanced Quantum Testbed and has been applied to quantum field theory simulations."
   ],

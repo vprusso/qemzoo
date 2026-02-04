@@ -127,7 +127,7 @@
     "references": ["temme2017", "li2017"],
     "related": [
       {"id": "pauli-twirling", "reason": "Pauli twirling simplifies noise model for PEC"},
-      {"id": "zne", "reason": "both are foundational QEM techniques from Temme et al. (2017)"},
+      {"id": "zne", "reason": "both are foundational QEM techniques"},
       {"id": "measurement-error-mitigation", "reason": "PEC can be combined with REM for full-circuit mitigation"}
     ]
   },
@@ -206,7 +206,7 @@
     "references": ["temme2017", "li2017", "kim2023"],
     "related": [
       {"id": "lre", "reason": "LRE is a multivariate generalization of ZNE"},
-      {"id": "pec", "reason": "both are foundational QEM techniques from Temme et al. (2017)"},
+      {"id": "pec", "reason": "both are foundational QEM techniques"},
       {"id": "pauli-twirling", "reason": "Pauli twirling simplifies noise for ZNE"},
       {"id": "cdr", "reason": "vnCDR combines CDR with noise scaling from ZNE"}
     ]

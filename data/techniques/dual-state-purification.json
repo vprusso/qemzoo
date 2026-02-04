@@ -1,7 +1,7 @@
 {
   "description": [
     "Dual-State Purification (DSP) achieves virtual purification of a noisy quantum state without requiring multiple copies or ancilla qubits. Instead, it prepares a 'dual state' by running the inverse circuit through the conjugate (dual) noise channel and combines the noisy and dual state measurements.",
-    "The method was proposed by Huo and Li (2022). The overlap between the noisy state and its dual state yields an estimate equivalent to virtual distillation's second-order purification, but with no qubit overhead. Combined with tomography purification, the final estimate is guaranteed to come from an effectively pure state.",
+    "The overlap between the noisy state and its dual state yields an estimate equivalent to virtual distillation's second-order purification, but with no qubit overhead. Combined with tomography purification, the final estimate is guaranteed to come from an effectively pure state.",
     "Numerical simulations under depolarizing noise show that the error reduction factor improves with both qubit count and circuit depth, making DSP particularly attractive for larger circuits."
   ],
   "how_it_works": [

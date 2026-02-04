@@ -1,7 +1,7 @@
 {
   "description": [
     "Tensor Network Error Mitigation (TEM) represents the noise channel of a quantum circuit as a matrix product operator (MPO) and applies its inverse to noisy measurement outcomes. The tensor network structure captures spatially and temporally correlated noise with polynomial complexity.",
-    "The method was proposed by Guo and Yang (2022) using variational MPO inversion, and extended by Filippov et al. (2023) with a scalable algorithm that achieves provably optimal sampling overhead among linear mitigation methods.",
+    "The method uses variational MPO inversion and has been extended with scalable algorithms that achieve provably optimal sampling overhead among linear mitigation methods.",
     "TEM is particularly well-suited for circuits with spatially structured noise, where the MPO bond dimension remains moderate. It has been implemented as a commercial Qiskit function by Algorithmiq."
   ],
   "how_it_works": [

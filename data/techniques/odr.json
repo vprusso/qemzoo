@@ -1,7 +1,7 @@
 {
   "description": [
     "Operator Decoherence Renormalization (ODR) mitigates noise by estimating the effective decoherence rate acting on a target observable and rescaling the noisy expectation value accordingly. The decoherence rate is measured using short 'noise-estimation circuits' — circuits structurally similar to the target but with known ideal outputs.",
-    "The method was introduced by Urbanek et al. (2021) and demonstrated on superconducting quantum hardware for mitigating depolarizing noise. It has since been applied to quantum simulation and Fourier moment computation in nuclear physics.",
+    "The method has been demonstrated on superconducting quantum hardware for mitigating depolarizing noise, and applied to quantum simulation and Fourier moment computation in nuclear physics.",
     "ODR is attractive for its simplicity: it requires only a few additional calibration circuits and a simple division to correct the noisy result. It is most effective when noise acts as a multiplicative suppression on observables, as is the case for depolarizing-like noise."
   ],
   "how_it_works": [

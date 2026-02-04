@@ -1,7 +1,7 @@
 {
   "description": [
     "Probabilistic Error Amplification (PEA) is a noise-amplification strategy designed for use within zero-noise extrapolation (ZNE). Unlike pulse stretching (which assumes noise scales linearly with gate duration) or unitary folding (which requires large stretch factors), PEA uses a learned noise model to inject precisely calibrated noise, enabling accurate and controlled amplification.",
-    "PEA was a critical component of the 127-qubit Ising model experiment by Kim et al. (2023), which provided evidence for the utility of quantum computing before fault tolerance. It relies on the sparse Pauli–Lindblad noise model developed by van den Berg et al. (2023).",
+    "PEA was a critical component of the 127-qubit Ising model experiment, which provided evidence for the utility of quantum computing before fault tolerance. It relies on the sparse Pauli–Lindblad noise model for efficient noise characterization.",
     "The method first learns the twirled noise channel for each layer of entangling gates via efficient tomographic protocols. It then amplifies noise by probabilistically inserting single-qubit Pauli errors proportional to the learned noise model, achieving precise noise scale factors without pulse-level calibration."
   ],
   "how_it_works": [

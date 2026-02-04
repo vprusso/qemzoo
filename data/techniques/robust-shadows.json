@@ -1,7 +1,7 @@
 {
   "description": [
     "Robust Shadow Estimation (RSE) extends the classical shadow protocol of Huang, Kueng, and Preskill to be resilient against experimental noise. The key idea is to add a calibration stage that characterizes the noisy measurement channel, then use the calibrated inverse instead of the ideal inverse when constructing classical shadows.",
-    "The method was introduced by Chen, Yu, Zeng, and Flammia (2021). It provides unbiased estimates of observables with sample complexity matching standard shadows up to a noise-dependent multiplicative factor, requiring only minimal assumptions on the noise.",
+    "The method provides unbiased estimates of observables with sample complexity matching standard shadows up to a noise-dependent multiplicative factor, requiring only minimal assumptions on the noise.",
     "RSE is particularly valuable in settings where many observables must be estimated from the same quantum state, as the calibration cost is amortized across all observables."
   ],
   "how_it_works": [
