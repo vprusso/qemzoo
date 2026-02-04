@@ -1,0 +1,41 @@
+{
+  "description": [
+    "Exponential extrapolation fits an exponential decay model to the measured data, motivated by the physical observation that expectation values often decay exponentially with circuit depth or noise strength.",
+    "The most common form is ⟨O⟩(λ) = A·exp(-Bλ) + C, where A, B, C are fitting parameters. This three-parameter model requires at least three data points and captures the asymptotic decay toward a noise-dominated fixed point.",
+    "Exponential extrapolation often outperforms polynomial methods for deep circuits where the true decay is closer to exponential than polynomial."
+  ],
+  "how_it_works": [
+    "Measure expectation values at three or more noise levels λ₁, λ₂, λ₃, ...",
+    "Fit the exponential model ⟨O⟩(λ) = A·exp(-Bλ) + C using nonlinear least squares.",
+    "The zero-noise estimate is ⟨O⟩(0) = A + C.",
+    "Alternative: fit ⟨O⟩(λ) = A·exp(Bλ) if decay constant B is expected to be positive."
+  ],
+  "key_equations": [
+    {
+      "label": "Exponential decay model",
+      "latex": "\\langle O \\rangle(\\lambda) = A e^{-B\\lambda} + C"
+    },
+    {
+      "label": "Zero-noise estimate",
+      "latex": "\\langle O \\rangle(0) = A + C"
+    },
+    {
+      "label": "Two-parameter variant (C = 0)",
+      "latex": "\\langle O \\rangle(\\lambda) = A e^{-B\\lambda} \\implies \\langle O \\rangle(0) = A"
+    }
+  ],
+  "advantages": [
+    "Physically motivated for many noise processes",
+    "Often more accurate than polynomials for deep circuits",
+    "Naturally bounded (doesn't extrapolate to unphysical values)",
+    "More stable than high-order polynomials",
+    "Only 3 parameters for the full model"
+  ],
+  "disadvantages": [
+    "Requires nonlinear fitting (more complex than polynomial)",
+    "May not converge if data doesn't follow exponential trend",
+    "Three parameters require at least 3 data points",
+    "Assumes specific functional form that may not match all noise types",
+    "Initial guess sensitivity in nonlinear fitting"
+  ]
+}

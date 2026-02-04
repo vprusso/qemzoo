@@ -1,4 +1,14 @@
 {
+  "diagrams": [
+    {
+      "caption": "Original circuit",
+      "src": "images/circuits/identity_original.svg"
+    },
+    {
+      "caption": "With identity gates inserted to extend circuit duration",
+      "src": "images/circuits/identity_inserted.svg"
+    }
+  ],
   "description": [
     "Identity insertion is a noise scaling technique that amplifies errors by inserting identity operations (or identity-equivalent gate sequences) into the circuit, extending the circuit duration and exposing qubits to more decoherence.",
     "Unlike unitary folding which applies G → GG†G transformations, identity insertion focuses on passive decoherence by inserting idle time or identity gates between computational operations.",

@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 200">
+  <style>
+    .wire { stroke: #666; stroke-width: 1.5; fill: none; }
+    .gate { stroke-width: 1.5; rx: 3; }
+    .gate-zz { fill: #7a5a9a; stroke: #5a3a7a; }
+    .gate-x { fill: #5a7a9a; stroke: #3a5a7a; }
+    .gate-text { fill: white; font-family: system-ui, sans-serif; font-size: 9px; text-anchor: middle; dominant-baseline: middle; }
+    .label { fill: #333; font-family: system-ui, sans-serif; font-size: 11px; }
+    .trotter-box { fill: none; stroke: #999; stroke-width: 1; stroke-dasharray: 4,2; rx: 4; }
+    .brace { stroke: #888; stroke-width: 1.5; fill: none; }
+  </style>
+
+  <!-- Title -->
+  <text x="210" y="20" text-anchor="middle" class="label" style="font-size: 14px; font-weight: 600;">Trotterized Hamiltonian Simulation</text>
+
+  <!-- Subtitle -->
+  <text x="210" y="38" text-anchor="middle" class="label" style="font-size: 10px; fill: #666;">e^{-iHt} ≈ (e^{-iH₁δt} e^{-iH₂δt})^r where δt = t/r</text>
+
+  <!-- Qubit labels -->
+  <text x="20" y="75" class="label">q₀</text>
+  <text x="20" y="110" class="label">q₁</text>
+  <text x="20" y="145" class="label">q₂</text>
+
+  <!-- Horizontal wires -->
+  <line x1="40" y1="75" x2="400" y2="75" class="wire"/>
+  <line x1="40" y1="110" x2="400" y2="110" class="wire"/>
+  <line x1="40" y1="145" x2="400" y2="145" class="wire"/>
+
+  <!-- Trotter step 1 box -->
+  <rect x="50" y="55" width="100" height="105" class="trotter-box"/>
+  <text x="100" y="170" text-anchor="middle" class="label" style="font-size: 9px; fill: #888;">Trotter step 1</text>
+
+  <!-- ZZ interactions (step 1) -->
+  <rect x="60" y="67" width="30" height="50" class="gate gate-zz"/>
+  <text x="75" y="92" class="gate-text">ZZ</text>
+  <rect x="60" y="102" width="30" height="50" class="gate gate-zz"/>
+  <text x="75" y="127" class="gate-text">ZZ</text>
+
+  <!-- Single qubit X rotations (step 1) -->
+  <rect x="100" y="65" width="24" height="20" class="gate gate-x"/>
+  <text x="112" y="75" class="gate-text">Rx</text>
+  <rect x="100" y="100" width="24" height="20" class="gate gate-x"/>
+  <text x="112" y="110" class="gate-text">Rx</text>
+  <rect x="100" y="135" width="24" height="20" class="gate gate-x"/>
+  <text x="112" y="145" class="gate-text">Rx</text>
+
+  <!-- Trotter step 2 box -->
+  <rect x="160" y="55" width="100" height="105" class="trotter-box"/>
+  <text x="210" y="170" text-anchor="middle" class="label" style="font-size: 9px; fill: #888;">Trotter step 2</text>
+
+  <!-- ZZ interactions (step 2) -->
+  <rect x="170" y="67" width="30" height="50" class="gate gate-zz"/>
+  <text x="185" y="92" class="gate-text">ZZ</text>
+  <rect x="170" y="102" width="30" height="50" class="gate gate-zz"/>
+  <text x="185" y="127" class="gate-text">ZZ</text>
+
+  <!-- Single qubit X rotations (step 2) -->
+  <rect x="210" y="65" width="24" height="20" class="gate gate-x"/>
+  <text x="222" y="75" class="gate-text">Rx</text>
+  <rect x="210" y="100" width="24" height="20" class="gate gate-x"/>
+  <text x="222" y="110" class="gate-text">Rx</text>
+  <rect x="210" y="135" width="24" height="20" class="gate gate-x"/>
+  <text x="222" y="145" class="gate-text">Rx</text>
+
+  <!-- Ellipsis -->
+  <text x="285" y="110" class="label" style="font-size: 18px; fill: #888;">···</text>
+
+  <!-- Final Trotter step box -->
+  <rect x="310" y="55" width="80" height="105" class="trotter-box"/>
+  <text x="350" y="170" text-anchor="middle" class="label" style="font-size: 9px; fill: #888;">Trotter step r</text>
+
+  <!-- ZZ interactions (final) -->
+  <rect x="320" y="67" width="30" height="50" class="gate gate-zz"/>
+  <text x="335" y="92" class="gate-text">ZZ</text>
+  <rect x="320" y="102" width="30" height="50" class="gate gate-zz"/>
+  <text x="335" y="127" class="gate-text">ZZ</text>
+
+  <!-- Single qubit X rotations (final) -->
+  <rect x="358" y="65" width="24" height="20" class="gate gate-x"/>
+  <text x="370" y="75" class="gate-text">Rx</text>
+  <rect x="358" y="100" width="24" height="20" class="gate gate-x"/>
+  <text x="370" y="110" class="gate-text">Rx</text>
+  <rect x="358" y="135" width="24" height="20" class="gate gate-x"/>
+  <text x="370" y="145" class="gate-text">Rx</text>
+
+  <!-- Legend -->
+  <rect x="20" y="185" width="16" height="12" class="gate gate-zz"/>
+  <text x="42" y="194" class="label" style="font-size: 9px;">Two-qubit interaction (e.g., ZZ)</text>
+  <rect x="180" y="185" width="16" height="12" class="gate gate-x"/>
+  <text x="202" y="194" class="label" style="font-size: 9px;">Single-qubit rotation</text>
+</svg>

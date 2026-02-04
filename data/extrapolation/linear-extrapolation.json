@@ -1,0 +1,40 @@
+{
+  "description": [
+    "Linear extrapolation is the simplest method for estimating the zero-noise expectation value from noisy measurements. It fits a straight line through data points measured at different noise levels and extrapolates to where the noise level equals zero.",
+    "The method assumes that the expectation value depends linearly on the noise strength: ⟨O⟩(λ) = a + bλ. This is often a reasonable approximation for small noise levels or short circuits, but breaks down when nonlinear effects become significant.",
+    "Despite its simplicity, linear extrapolation is widely used in practice because it requires only two noise levels (the minimum for any extrapolation), has low variance, and is computationally trivial."
+  ],
+  "how_it_works": [
+    "Measure the expectation value ⟨O⟩₁ at noise level λ₁ (typically the native hardware noise, λ₁ = 1).",
+    "Measure the expectation value ⟨O⟩₂ at an amplified noise level λ₂ > λ₁.",
+    "Fit the linear model: ⟨O⟩(λ) = a + bλ, giving b = (⟨O⟩₂ - ⟨O⟩₁)/(λ₂ - λ₁) and a = ⟨O⟩₁ - bλ₁.",
+    "The zero-noise estimate is ⟨O⟩(0) = a."
+  ],
+  "key_equations": [
+    {
+      "label": "Linear model",
+      "latex": "\\langle O \\rangle(\\lambda) = a + b\\lambda"
+    },
+    {
+      "label": "Zero-noise estimate",
+      "latex": "\\langle O \\rangle(0) = \\langle O \\rangle_1 - \\frac{\\langle O \\rangle_2 - \\langle O \\rangle_1}{\\lambda_2 - \\lambda_1} \\cdot \\lambda_1"
+    },
+    {
+      "label": "Two-point formula (λ₁ = 1)",
+      "latex": "\\langle O \\rangle(0) = \\frac{\\lambda_2 \\langle O \\rangle_1 - \\langle O \\rangle_2}{\\lambda_2 - 1}"
+    }
+  ],
+  "advantages": [
+    "Requires only 2 data points (minimum possible)",
+    "Lowest variance among extrapolation methods",
+    "No risk of overfitting",
+    "Computationally trivial",
+    "Good starting point for testing ZNE pipelines"
+  ],
+  "disadvantages": [
+    "Systematic bias of O(λ²) when true dependence is nonlinear",
+    "May significantly underestimate or overestimate for deep circuits",
+    "Cannot capture exponential decay behavior",
+    "No flexibility to adapt to different noise models"
+  ]
+}

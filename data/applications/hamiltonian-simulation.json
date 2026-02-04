@@ -1,0 +1,34 @@
+{
+  "description": [
+    "Hamiltonian simulation—computing the time evolution of quantum many-body systems—is considered one of the most natural applications for quantum computers. Simulating quantum dynamics on classical computers requires resources that scale exponentially with system size for general Hamiltonians.",
+    "Applications include simulating condensed matter systems, understanding quantum phase transitions, modeling chemical reactions, and exploring high-energy physics phenomena.",
+    "Trotterized time evolution circuits can become very deep for long simulation times or high accuracy, making error mitigation essential for extracting meaningful results from NISQ devices."
+  ],
+  "why_qem": [
+    "Simulation accuracy degrades with both circuit depth and simulation time. Error mitigation extends the regime where accurate dynamics can be extracted.",
+    "The landmark IBM 127-qubit experiment demonstrated that error-mitigated quantum simulation can reach regimes intractable for brute-force classical computation.",
+    "Probabilistic error amplification (PEA) enables precise noise scaling for ZNE without the large stretch factors required by gate folding, making it practical for utility-scale circuits.",
+    "Pauli twirling converts coherent errors into stochastic Pauli noise, which is easier to characterize and mitigate."
+  ],
+  "demonstrations": [
+    {
+      "title": "127-Qubit Kicked Ising Model (IBM, 2023)",
+      "description": "Simulated dynamics of a 2D kicked Ising model on 127 qubits with 60 layers of two-qubit gates (2800+ CNOT gates). Error-mitigated results matched tensor network simulations where tractable and extended beyond classical reach.",
+      "hardware": "IBM Eagle (127 qubits)",
+      "qubits": "127 qubits",
+      "techniques": "Pauli twirling, PEA-based ZNE, TREX"
+    },
+    {
+      "title": "Quantum Field Theory Simulation",
+      "description": "Applied NOX (noiseless output extrapolation) to simulate quantum field theory dynamics, demonstrating error mitigation for physics applications.",
+      "hardware": "IBM superconducting processors",
+      "techniques": "NOX, randomized compiling"
+    }
+  ],
+  "challenges": [
+    "Trotter errors from discretization add to hardware errors",
+    "Long-time dynamics require very deep circuits",
+    "Observable-dependent error mitigation effectiveness",
+    "Verifying results beyond classical simulability is difficult"
+  ]
+}

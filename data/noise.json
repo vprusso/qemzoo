@@ -1,0 +1,122 @@
+[
+  {
+    "id": "depolarizing",
+    "name": "Depolarizing Noise",
+    "aliases": ["depolarizing channel", "white noise"],
+    "category": "incoherent",
+    "summary": "Symmetric noise that randomly applies Pauli X, Y, or Z errors with equal probability. The qubit state decays toward the maximally mixed state \\(I/2\\), losing both phase and amplitude information. Often used as a worst-case noise model.",
+    "physical_origin": "Interaction with a high-temperature environment; aggregate effect of many unknown error sources",
+    "effect_on_bloch_sphere": "Uniform contraction toward the center (origin)",
+    "kraus_operators": "\\(K_0 = \\sqrt{1-p}\\,I, \\quad K_1 = \\sqrt{p/3}\\,X, \\quad K_2 = \\sqrt{p/3}\\,Y, \\quad K_3 = \\sqrt{p/3}\\,Z\\)",
+    "mitigated_by": ["pec", "zne", "pauli-twirling", "dd"],
+    "references": ["cai2023"]
+  },
+  {
+    "id": "dephasing",
+    "name": "Dephasing",
+    "aliases": ["phase damping", "T2 decay", "pure dephasing"],
+    "category": "incoherent",
+    "summary": "Loss of quantum phase information without energy exchange. Off-diagonal elements of the density matrix decay exponentially with time constant \\(T_2\\). The qubit retains its population but loses coherence.",
+    "physical_origin": "Fluctuating magnetic fields; low-frequency noise in control electronics; T2 relaxation processes",
+    "effect_on_bloch_sphere": "Contraction toward the z-axis (poles preserved, equator shrinks)",
+    "kraus_operators": "\\(K_0 = \\sqrt{1-p}\\,I, \\quad K_1 = \\sqrt{p}\\,Z\\)",
+    "mitigated_by": ["dd", "pauli-twirling", "zne", "echo-verification"],
+    "references": ["cai2023"]
+  },
+  {
+    "id": "amplitude-damping",
+    "name": "Amplitude Damping",
+    "aliases": ["T1 decay", "energy relaxation", "spontaneous emission"],
+    "category": "incoherent",
+    "summary": "Irreversible decay from the excited state \\(|1\\rangle\\) to the ground state \\(|0\\rangle\\). Models energy loss to the environment with time constant \\(T_1\\). Breaks the symmetry between computational basis states.",
+    "physical_origin": "Spontaneous emission; energy relaxation to thermal equilibrium; T1 processes in superconducting qubits",
+    "effect_on_bloch_sphere": "Contraction and drift toward the north pole (|0⟩ state)",
+    "kraus_operators": "\\(K_0 = \\begin{pmatrix} 1 & 0 \\\\ 0 & \\sqrt{1-\\gamma} \\end{pmatrix}, \\quad K_1 = \\begin{pmatrix} 0 & \\sqrt{\\gamma} \\\\ 0 & 0 \\end{pmatrix}\\)",
+    "mitigated_by": ["zne", "pec", "purification"],
+    "references": ["cai2023"]
+  },
+  {
+    "id": "bit-flip",
+    "name": "Bit Flip",
+    "aliases": ["X error", "bit flip channel"],
+    "category": "incoherent",
+    "summary": "Random application of the Pauli X operator, flipping \\(|0\\rangle \\leftrightarrow |1\\rangle\\) with probability \\(p\\). The simplest non-trivial noise model, analogous to classical bit errors.",
+    "physical_origin": "Spurious X rotations; readout errors; crosstalk inducing unintended flips",
+    "effect_on_bloch_sphere": "Contraction toward the x-axis",
+    "kraus_operators": "\\(K_0 = \\sqrt{1-p}\\,I, \\quad K_1 = \\sqrt{p}\\,X\\)",
+    "mitigated_by": ["pec", "qed", "symmetry-verification"],
+    "references": ["cai2023"]
+  },
+  {
+    "id": "phase-flip",
+    "name": "Phase Flip",
+    "aliases": ["Z error", "phase flip channel"],
+    "category": "incoherent",
+    "summary": "Random application of the Pauli Z operator, flipping the relative phase: \\(|+\\rangle \\leftrightarrow |-\\rangle\\). Equivalent to a bit flip in the Hadamard basis.",
+    "physical_origin": "Fluctuating qubit frequencies; Z rotations from stray fields; dephasing events",
+    "effect_on_bloch_sphere": "Contraction toward the z-axis",
+    "kraus_operators": "\\(K_0 = \\sqrt{1-p}\\,I, \\quad K_1 = \\sqrt{p}\\,Z\\)",
+    "mitigated_by": ["dd", "pauli-twirling", "pec"],
+    "references": ["cai2023"]
+  },
+  {
+    "id": "erasure",
+    "name": "Erasure",
+    "aliases": ["erasure channel", "loss", "leakage to detectable state"],
+    "category": "incoherent",
+    "summary": "The qubit is lost or transitions to a detectable non-computational state. Unlike other errors, erasure locations are known (heralded), making them easier to correct. Common in photonic and neutral atom systems.",
+    "physical_origin": "Photon loss in optical systems; atom loss in neutral atom arrays; leakage to non-computational levels",
+    "effect_on_bloch_sphere": "Qubit leaves the Bloch sphere entirely (flagged as lost)",
+    "kraus_operators": "\\(K_0 = \\sqrt{1-p}\\,I, \\quad K_1 = \\sqrt{p}\\,|e\\rangle\\langle 0|, \\quad K_2 = \\sqrt{p}\\,|e\\rangle\\langle 1|\\)",
+    "mitigated_by": ["qed", "symmetry-verification"],
+    "references": ["cai2023"]
+  },
+  {
+    "id": "leakage",
+    "name": "Leakage",
+    "aliases": ["leakage errors", "non-computational state transitions"],
+    "category": "incoherent",
+    "summary": "Transition from the computational subspace (\\(|0\\rangle, |1\\rangle\\)) to higher energy levels (\\(|2\\rangle, |3\\rangle, ...\\)). Unlike erasure, leakage is typically not heralded and can propagate through subsequent gates.",
+    "physical_origin": "Off-resonant driving in transmons; multi-photon transitions; insufficient anharmonicity",
+    "effect_on_bloch_sphere": "Qubit leaves the Bloch sphere (enters higher-dimensional space)",
+    "kraus_operators": "Depends on specific leakage pathway; generally non-Pauli",
+    "mitigated_by": ["dd", "symmetry-verification"],
+    "references": ["cai2023"]
+  },
+  {
+    "id": "coherent-errors",
+    "name": "Coherent Errors",
+    "aliases": ["unitary errors", "over-rotation", "under-rotation", "systematic errors"],
+    "category": "coherent",
+    "summary": "Deterministic, unitary deviations from the intended gate operation. Examples include over/under-rotation angles and axis tilts. Coherent errors can accumulate constructively, potentially causing worse scaling than incoherent errors.",
+    "physical_origin": "Miscalibrated pulse amplitudes or durations; frequency drift; crosstalk",
+    "effect_on_bloch_sphere": "Rotation to wrong location (deterministic, reversible)",
+    "kraus_operators": "Single unitary: \\(K_0 = U_{\\text{error}}\\) where \\(U_{\\text{error}} \\neq U_{\\text{ideal}}\\)",
+    "mitigated_by": ["pauli-twirling", "dd", "echo-verification", "noise-aware-compilation"],
+    "references": ["cai2023"]
+  },
+  {
+    "id": "crosstalk",
+    "name": "Crosstalk",
+    "aliases": ["cross-talk", "correlated errors", "ZZ coupling"],
+    "category": "coherent",
+    "summary": "Unwanted interactions between qubits, causing operations on one qubit to affect neighboring qubits. Includes always-on ZZ coupling in superconducting systems and addressing errors in trapped ions.",
+    "physical_origin": "Residual qubit-qubit coupling; shared control lines; spectral crowding; electromagnetic interference",
+    "effect_on_bloch_sphere": "Correlated rotations across multiple qubits",
+    "kraus_operators": "Two-qubit unitary: \\(U = \\exp(-i \\theta Z \\otimes Z)\\) for ZZ crosstalk",
+    "mitigated_by": ["crosstalk-mitigation", "dd", "noise-aware-compilation", "pauli-twirling"],
+    "references": ["murali2020"]
+  },
+  {
+    "id": "spam",
+    "name": "SPAM Errors",
+    "aliases": ["state preparation and measurement errors", "readout errors", "initialization errors"],
+    "category": "incoherent",
+    "summary": "Errors in preparing the initial state or measuring the final state. Readout errors cause \\(|0\\rangle\\) to be measured as 1 (and vice versa). SPAM errors are independent of circuit depth but can dominate for shallow circuits.",
+    "physical_origin": "Thermal population; measurement discrimination errors; T1 decay during readout; insufficient reset",
+    "effect_on_bloch_sphere": "Misidentification of final Bloch sphere location",
+    "kraus_operators": "Readout confusion matrix: \\(A = \\begin{pmatrix} 1-p_0 & p_1 \\\\ p_0 & 1-p_1 \\end{pmatrix}\\)",
+    "mitigated_by": ["measurement-error-mitigation", "trex", "robust-shadows"],
+    "references": ["bravyi2021", "vandenberg2022"]
+  }
+]

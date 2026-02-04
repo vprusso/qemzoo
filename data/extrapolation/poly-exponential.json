@@ -1,0 +1,41 @@
+{
+  "description": [
+    "Poly-exponential extrapolation combines polynomial and exponential models to capture both the overall exponential decay and polynomial correction terms. This hybrid approach often provides better fits than either pure polynomial or pure exponential models.",
+    "The general form is ⟨O⟩(λ) = P(λ)·exp(-Bλ), where P(λ) is a polynomial. The polynomial captures short-range deviations while the exponential captures long-range decay behavior.",
+    "This model is motivated by perturbative expansions where the leading behavior is exponential but there are polynomial corrections at each order."
+  ],
+  "how_it_works": [
+    "Choose the polynomial degree n and measure at n+2 or more noise levels.",
+    "Fit the model ⟨O⟩(λ) = (a₀ + a₁λ + ... + aₙλⁿ)·exp(-Bλ).",
+    "The zero-noise estimate is ⟨O⟩(0) = a₀.",
+    "Fitting requires nonlinear optimization; good initial guesses help convergence."
+  ],
+  "key_equations": [
+    {
+      "label": "Poly-exponential model",
+      "latex": "\\langle O \\rangle(\\lambda) = \\left(\\sum_{k=0}^{n} a_k \\lambda^k\\right) e^{-B\\lambda}"
+    },
+    {
+      "label": "Zero-noise estimate",
+      "latex": "\\langle O \\rangle(0) = a_0"
+    },
+    {
+      "label": "Linear-exponential (n=1)",
+      "latex": "\\langle O \\rangle(\\lambda) = (a_0 + a_1 \\lambda) e^{-B\\lambda}"
+    }
+  ],
+  "advantages": [
+    "Combines benefits of polynomial and exponential models",
+    "Can capture complex noise dependencies",
+    "Often provides best fits for intermediate-depth circuits",
+    "More flexible than pure exponential",
+    "More stable than high-degree polynomials"
+  ],
+  "disadvantages": [
+    "More parameters than simpler models (risk of overfitting)",
+    "Requires nonlinear fitting",
+    "May have multiple local minima in optimization",
+    "Harder to interpret physically",
+    "Requires more data points than simpler alternatives"
+  ]
+}

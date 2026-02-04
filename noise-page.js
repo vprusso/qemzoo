@@ -1,25 +1,19 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const cacheBust = `?v=${Date.now()}`;
-  const [noiseScaling, extrapolation, references] = await Promise.all([
-    fetch(`data/noise-scaling.json${cacheBust}`).then((r) => r.json()),
-    fetch(`data/extrapolation.json${cacheBust}`).then((r) => r.json()),
+  const [noiseTypes, references, techniques] = await Promise.all([
+    fetch(`data/noise.json${cacheBust}`).then((r) => r.json()),
     fetch(`data/references.json${cacheBust}`).then((r) => r.json()),
+    fetch(`data/techniques.json${cacheBust}`).then((r) => r.json()),
   ]);
 
-  // Combine all techniques with category markers
-  const allTechniques = [
-    ...noiseScaling.map((t) => ({ ...t, category: "scaling", type: "noise-scaling" })),
-    ...extrapolation.map((t) => ({ ...t, category: "extrapolation", type: "extrapolation" })),
-  ];
-
   // Sort alphabetically by name
-  allTechniques.sort((a, b) => a.name.localeCompare(b.name));
+  noiseTypes.sort((a, b) => a.name.localeCompare(b.name));
 
-  // Build citation index: ref key -> number (1-based, ordered by first appearance)
+  // Build citation index
   const citationOrder = [];
   const citationMap = {};
-  for (const t of allTechniques) {
-    for (const key of t.references || []) {
+  for (const n of noiseTypes) {
+    for (const key of n.references || []) {
       if (!(key in citationMap)) {
         citationOrder.push(key);
         citationMap[key] = citationOrder.length;
@@ -27,7 +21,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }
 
-  const main = document.getElementById("techniques");
+  const main = document.getElementById("noise-list");
   const alphaNav = document.getElementById("alpha-nav");
   const noResults = document.querySelector(".no-results");
   const searchInput = document.getElementById("search");
@@ -35,28 +29,26 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   let activeCategory = "all";
 
-  // Show technique counts on filter buttons
-  const categoryCounts = { scaling: 0, extrapolation: 0 };
-  for (const t of allTechniques) {
-    categoryCounts[t.category] = (categoryCounts[t.category] || 0) + 1;
+  // Show noise type counts on filter buttons
+  const categoryCounts = { incoherent: 0, coherent: 0 };
+  for (const n of noiseTypes) {
+    categoryCounts[n.category] = (categoryCounts[n.category] || 0) + 1;
   }
   filterBtns.forEach((btn) => {
     const cat = btn.dataset.category;
     if (cat === "all") {
-      btn.textContent = `All (${allTechniques.length})`;
-    } else if (cat === "scaling") {
-      btn.textContent = `Noise Scaling (${categoryCounts.scaling})`;
-    } else if (cat === "extrapolation") {
-      btn.textContent = `Extrapolation (${categoryCounts.extrapolation})`;
+      btn.textContent = `All (${noiseTypes.length})`;
+    } else if (categoryCounts[cat] !== undefined) {
+      btn.textContent = `${cat.charAt(0).toUpperCase() + cat.slice(1)} (${categoryCounts[cat]})`;
     }
   });
 
-  // Group techniques by first letter
+  // Group noise types by first letter
   const grouped = {};
-  for (const t of allTechniques) {
-    const letter = t.name[0].toUpperCase();
+  for (const n of noiseTypes) {
+    const letter = n.name[0].toUpperCase();
     if (!grouped[letter]) grouped[letter] = [];
-    grouped[letter].push(t);
+    grouped[letter].push(n);
   }
 
   // Render alphabet nav
@@ -69,7 +61,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     alphaNav.appendChild(a);
   }
 
-  // Render technique cards
+  // Render noise cards
   for (const letter of letters) {
     const heading = document.createElement("h2");
     heading.className = "letter-heading";
@@ -77,38 +69,60 @@ document.addEventListener("DOMContentLoaded", async () => {
     heading.textContent = letter;
     main.appendChild(heading);
 
-    for (const t of grouped[letter]) {
+    for (const n of grouped[letter]) {
       const card = document.createElement("div");
       card.className = "technique";
-      card.dataset.category = t.category;
+      card.dataset.category = n.category;
       card.dataset.letter = letter;
-      card.id = t.id;
+      card.id = n.id;
 
-      const categoryLabel = t.category === "scaling" ? "Noise Scaling" : "Extrapolation";
+      const categoryLabel = n.category.charAt(0).toUpperCase() + n.category.slice(1);
       const aliases =
-        t.aliases && t.aliases.length
-          ? `<div class="aka">Also known as: ${t.aliases.join(", ")}</div>`
+        n.aliases && n.aliases.length
+          ? `<div class="aka">Also known as: ${n.aliases.join(", ")}</div>`
           : "";
 
-      const propRows = Object.entries(t.properties || {})
-        .map(([k, v]) => `<tr><th>${k}</th><td>${v}</td></tr>`)
-        .join("");
+      // Build list of mitigating techniques
+      let mitigatedByHtml = "";
+      if (n.mitigated_by && n.mitigated_by.length) {
+        const techLinks = n.mitigated_by
+          .map((id) => {
+            const tech = techniques.find((t) => t.id === id);
+            if (!tech) return null;
+            const label = tech.abbreviation || tech.name;
+            return `<a href="technique.html?id=${id}" class="tech-link">${label}</a>`;
+          })
+          .filter(Boolean)
+          .join(" ");
+        mitigatedByHtml = `<div class="mitigated-by"><strong>Mitigated by:</strong> ${techLinks}</div>`;
+      }
 
-      const refLinks = (t.references || [])
+      const refLinks = (n.references || [])
         .map((key) => {
           const num = citationMap[key];
           return `<a href="#ref-${key}">[${num}]</a>`;
         })
         .join(" ");
 
+      // Build properties table
+      const props = [];
+      if (n.physical_origin) {
+        props.push(["Physical origin", n.physical_origin]);
+      }
+      if (n.effect_on_bloch_sphere) {
+        props.push(["Bloch sphere effect", n.effect_on_bloch_sphere]);
+      }
+      const propRows = props.map(([k, v]) => `<tr><th>${k}</th><td>${v}</td></tr>`).join("");
+
       card.innerHTML = `
         <h3>
-          <a href="technique.html?id=${t.id}&type=${t.type}">${t.name}</a>
-          <span class="badge badge-${t.category}">${categoryLabel}</span>
+          <a href="technique.html?id=${n.id}&type=noise">${n.name}</a>
+          <span class="badge badge-${n.category}">${categoryLabel}</span>
         </h3>
         ${aliases}
-        <div class="summary"><p>${t.summary}</p></div>
+        <div class="summary"><p>${n.summary}</p></div>
         ${propRows ? `<div class="properties"><table>${propRows}</table></div>` : ""}
+        ${mitigatedByHtml}
         ${refLinks ? `<div class="references"><strong>References:</strong> ${refLinks}</div>` : ""}
       `;
       main.appendChild(card);

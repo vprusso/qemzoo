@@ -60,7 +60,7 @@
     "title": "Evidence for the Utility of Quantum Computing Before Fault Tolerance",
     "journal": "Nature",
     "year": 2023,
-    "arxiv": "2302.13522"
+    "doi": "10.1038/s41586-023-06096-3"
   },
   "maciejewski2020": {
     "authors": "F. B. Maciejewski, Z. Zimborás, M. Oszmaniec",
@@ -298,5 +298,47 @@
     "journal": "Physical Review A",
     "year": 2021,
     "arxiv": "2108.02237"
+  },
+  "pelofske2023": {
+    "authors": "E. Pelofske, V. Russo, R. LaRose, A. Mari, D. Strano, A. Bärtschi, S. Eidenbenz, W. J. Zeng",
+    "title": "Increasing the Measured Effective Quantum Volume with Zero Noise Extrapolation",
+    "journal": "IEEE International Conference on Quantum Computing and Engineering (QCE)",
+    "year": 2023,
+    "arxiv": "2306.15863"
+  },
+  "larose2022qv": {
+    "authors": "R. LaRose, A. Mari, V. Russo, D. Strano, W. J. Zeng",
+    "title": "Error Mitigation Increases the Effective Quantum Volume of Quantum Computers",
+    "journal": "arXiv preprint",
+    "year": 2022,
+    "arxiv": "2203.05489"
+  },
+  "harrigan2021": {
+    "authors": "M. P. Harrigan, K. J. Sung, M. Neeley, et al.",
+    "title": "Quantum Approximate Optimization of Non-Planar Graph Problems on a Planar Superconducting Processor",
+    "journal": "Nature Physics",
+    "year": 2021,
+    "arxiv": "2004.04197"
+  },
+  "weidenfeller2022": {
+    "authors": "J. Weidenfeller, L. C. Valor, J. Gacon, C. Tornow, L. Bello, S. Woerner, D. J. Egger",
+    "title": "Scaling of the Quantum Approximate Optimization Algorithm on Superconducting Qubit Based Hardware",
+    "journal": "Quantum",
+    "year": 2022,
+    "arxiv": "2202.03459"
+  },
+  "sagastizabal2019": {
+    "authors": "R. Sagastizabal, X. Bonet-Monroig, M. Singh, M. A. Rol, C. C. Bultink, X. Fu, C. H. Price, V. P. Ostroukh, N. Muthusubramanian, A. Bruno, M. Blok, T. E. O'Brien, L. DiCarlo",
+    "title": "Experimental Error Mitigation via Symmetry Verification in a Variational Quantum Eigensolver",
+    "journal": "Physical Review A",
+    "year": 2019,
+    "arxiv": "1902.11258"
+  },
+  "wang2021qml": {
+    "authors": "S. Wang, E. Fontana, M. Cerezo, K. Sharma, A. Sone, L. Cincio, P. J. Coles",
+    "title": "Noise-Induced Barren Plateaus in Variational Quantum Algorithms",
+    "journal": "Nature Communications",
+    "year": 2021,
+    "arxiv": "2007.14384"
   }
 }

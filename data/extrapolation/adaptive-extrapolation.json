@@ -1,0 +1,42 @@
+{
+  "description": [
+    "Adaptive extrapolation automatically selects the best extrapolation model from a set of candidates (linear, polynomial, exponential, etc.) based on the measured data. This data-driven approach reduces bias from choosing an inappropriate model.",
+    "The selection is typically done using cross-validation (leave-one-out), information criteria (AIC, BIC), or Bayesian model comparison. The goal is to find the model that best balances fit quality against complexity.",
+    "Adaptive methods are particularly valuable when the noise characteristics are unknown or vary across different circuits, making it difficult to choose a single extrapolation model a priori."
+  ],
+  "how_it_works": [
+    "Define a set of candidate models: linear, quadratic, cubic, exponential, poly-exponential, etc.",
+    "Measure expectation values at multiple noise levels (typically 5+ for reliable selection).",
+    "Fit each candidate model to the data.",
+    "Score each model using a selection criterion (e.g., leave-one-out cross-validation error, AIC, BIC).",
+    "Select the model with the best score and use it for the final extrapolation."
+  ],
+  "key_equations": [
+    {
+      "label": "Akaike Information Criterion (AIC)",
+      "latex": "\\text{AIC} = 2k - 2\\ln(\\hat{L})"
+    },
+    {
+      "label": "Bayesian Information Criterion (BIC)",
+      "latex": "\\text{BIC} = k\\ln(n) - 2\\ln(\\hat{L})"
+    },
+    {
+      "label": "Leave-one-out cross-validation",
+      "latex": "\\text{CV} = \\frac{1}{n}\\sum_{i=1}^{n}(y_i - \\hat{y}_{-i})^2"
+    }
+  ],
+  "advantages": [
+    "Adapts to the actual noise behavior in the data",
+    "Reduces bias from model misspecification",
+    "Automatically handles different circuit types",
+    "Can improve as more data becomes available",
+    "Principled approach to model selection"
+  ],
+  "disadvantages": [
+    "Requires more data points for reliable selection (typically 5+)",
+    "Higher computational cost (fitting multiple models)",
+    "Selection criterion may not always choose the best model for extrapolation",
+    "Can be sensitive to outliers or measurement errors",
+    "More complex implementation than fixed-model methods"
+  ]
+}

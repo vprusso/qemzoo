@@ -1,0 +1,40 @@
+{
+  "description": [
+    "Polynomial extrapolation fits a polynomial function to expectation values measured at multiple noise levels, then evaluates the polynomial at zero noise. Higher-degree polynomials can capture more complex noise dependencies but require more data points and risk overfitting.",
+    "The method is motivated by Taylor expansion: if ⟨O⟩(λ) is analytic in λ, it can be approximated by a polynomial near λ = 0. The degree of the polynomial determines the order of the error term in the extrapolation.",
+    "In practice, quadratic (degree-2) or cubic (degree-3) polynomials are most common. Higher degrees rarely improve results due to increased variance and numerical instability."
+  ],
+  "how_it_works": [
+    "Measure expectation values ⟨O⟩ᵢ at n+1 distinct noise levels λ₀, λ₁, ..., λₙ for a degree-n polynomial.",
+    "Fit the polynomial ⟨O⟩(λ) = a₀ + a₁λ + a₂λ² + ... + aₙλⁿ using least squares or Lagrange interpolation.",
+    "The zero-noise estimate is ⟨O⟩(0) = a₀.",
+    "For exact interpolation with n+1 points and degree n, the fit passes through all data points."
+  ],
+  "key_equations": [
+    {
+      "label": "Polynomial model",
+      "latex": "\\langle O \\rangle(\\lambda) = \\sum_{k=0}^{n} a_k \\lambda^k"
+    },
+    {
+      "label": "Zero-noise estimate",
+      "latex": "\\langle O \\rangle(0) = a_0"
+    },
+    {
+      "label": "Lagrange interpolation",
+      "latex": "\\langle O \\rangle(0) = \\sum_{i=0}^{n} \\langle O \\rangle_i \\prod_{j \\neq i} \\frac{-\\lambda_j}{\\lambda_i - \\lambda_j}"
+    }
+  ],
+  "advantages": [
+    "Systematic: degree-n polynomial has O(λⁿ⁺¹) bias",
+    "Flexible: can capture various noise dependencies",
+    "Well-understood mathematically",
+    "Easy to implement with standard numerical libraries"
+  ],
+  "disadvantages": [
+    "Requires n+1 data points for degree-n polynomial",
+    "Variance increases with polynomial degree",
+    "Risk of overfitting with high-degree polynomials",
+    "Numerically unstable for high degrees or closely-spaced λ values",
+    "May give unphysical results (e.g., extrapolating outside [-1, 1] for expectation values)"
+  ]
+}

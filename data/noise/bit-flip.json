@@ -1,0 +1,27 @@
+{
+  "description": [
+    "The bit flip channel is the simplest non-trivial quantum noise model, applying a Pauli X operation with probability p. This flips |0⟩ ↔ |1⟩, analogous to a classical bit error.",
+    "While rarely the dominant error in real hardware, the bit flip channel is important for pedagogical purposes and appears in simplified noise models. It can also model certain readout errors where the measurement outcome is flipped.",
+    "The bit flip channel is a Pauli channel, making it amenable to standard QEM techniques and compatible with stabilizer-based error detection."
+  ],
+  "quantum_channel": {
+    "kraus_form": "\\mathcal{E}(\\rho) = (1-p)\\rho + p X\\rho X",
+    "matrix_form": "\\mathcal{E}(\\rho) = \\begin{pmatrix} (1-p)\\rho_{00} + p\\rho_{11} & (1-2p)\\rho_{01} \\\\ (1-2p)\\rho_{10} & p\\rho_{00} + (1-p)\\rho_{11} \\end{pmatrix}"
+  },
+  "properties": {
+    "Type": "Pauli channel",
+    "Parameters": "p ∈ [0, 0.5] = bit flip probability",
+    "Fixed points": "|+⟩ and |−⟩ states (X eigenstates)",
+    "Classical analog": "Binary symmetric channel"
+  },
+  "physical_examples": [
+    "Readout errors (misidentifying |0⟩ as 1 or vice versa)",
+    "Spurious X rotations from crosstalk",
+    "Simplified model for teaching quantum error correction"
+  ],
+  "qem_considerations": [
+    "Detectable by Z-basis parity checks",
+    "PEC can exactly cancel with known error rate",
+    "Symmetry verification can detect bit flips that violate conserved quantities"
+  ]
+}

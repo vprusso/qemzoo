@@ -1,4 +1,18 @@
 {
+  "diagrams": [
+    {
+      "caption": "Original circuit (depth=4, gates=4)",
+      "src": "images/circuits/unopt_original.svg"
+    },
+    {
+      "caption": "After 1 iteration of unoptimization",
+      "src": "images/circuits/unopt_iter1.svg"
+    },
+    {
+      "caption": "After 2 iterations of unoptimization",
+      "src": "images/circuits/unopt_iter2.svg"
+    }
+  ],
   "description": [
     "Circuit unoptimization transforms a quantum circuit into a different circuit that uses more gate operations while maintaining the same unitary transformation. Unlike folding (which inserts G G† pairs), unoptimization produces structurally different circuits through gate insertion, swapping, decomposition, and resynthesis.",
     "The key advantage is that unoptimization generates exponentially many distinct circuit variants at each noise level. Averaging over these variants reduces bias from coherent errors and biased noise sources on quantum processors.",

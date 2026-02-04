@@ -1,0 +1,30 @@
+{
+  "description": [
+    "Crosstalk refers to unwanted interactions between qubits that cause operations on one qubit to affect neighboring qubits. This is a major error source in multi-qubit systems and becomes increasingly problematic as qubit counts grow.",
+    "In superconducting qubits, always-on ZZ coupling is a dominant form of crosstalk: even when no gate is applied, neighboring qubits accumulate a conditional phase. In trapped ions, crosstalk arises from imperfect addressing of individual ions.",
+    "Crosstalk errors are typically coherent and correlated across qubits, making them difficult to model and mitigate with techniques designed for independent, stochastic errors."
+  ],
+  "quantum_channel": {
+    "kraus_form": "U_{\\text{crosstalk}} = \\exp(-i \\zeta t \\, Z_i \\otimes Z_j) \\quad \\text{for ZZ coupling}",
+    "effect": "Accumulates phase conditioned on neighbor state: |11⟩ acquires phase 2ζt relative to |00⟩"
+  },
+  "properties": {
+    "Type": "Coherent, correlated (multi-qubit)",
+    "Parameters": "ζ = coupling strength (Hz); depends on qubit pair",
+    "Spatial structure": "Typically nearest-neighbor; can be longer-range",
+    "Temporal structure": "Always-on (idle crosstalk) or gate-dependent"
+  },
+  "physical_examples": [
+    "ZZ coupling in fixed-frequency transmon qubits",
+    "Frequency crowding in tunable couplers",
+    "Addressing errors in trapped ion chains",
+    "Shared microwave drive lines affecting multiple qubits"
+  ],
+  "qem_considerations": [
+    "Crosstalk-adaptive scheduling (XtalkSched) avoids simultaneous operations on high-crosstalk pairs",
+    "Dynamical decoupling can suppress idle ZZ crosstalk",
+    "Pauli twirling converts coherent crosstalk to stochastic errors",
+    "Noise-aware compilation routes circuits to minimize crosstalk exposure",
+    "Sparse Pauli-Lindblad models (PEA, NOX) can capture and mitigate correlated errors"
+  ]
+}

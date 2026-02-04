@@ -1,0 +1,30 @@
+{
+  "description": [
+    "SPAM (State Preparation And Measurement) errors occur at the beginning and end of a quantum computation, before and after the main circuit. Unlike gate errors, SPAM errors do not scale with circuit depth.",
+    "State preparation errors cause the initial state to deviate from the intended |0⟩⊗n. This can arise from thermal population, insufficient reset, or T1 decay during initialization.",
+    "Measurement errors cause the final state to be misidentified: |0⟩ may be reported as 1 (false positive) or |1⟩ as 0 (false negative). Readout fidelities of 99%+ are typical, but errors compound across many qubits."
+  ],
+  "quantum_channel": {
+    "readout_matrix": "A = \\begin{pmatrix} P(0|0) & P(0|1) \\\\ P(1|0) & P(1|1) \\end{pmatrix} = \\begin{pmatrix} 1-p_0 & p_1 \\\\ p_0 & 1-p_1 \\end{pmatrix}",
+    "expectation_bias": "\\langle Z \\rangle_{\\text{noisy}} = (1 - p_0 - p_1) \\langle Z \\rangle_{\\text{ideal}}"
+  },
+  "properties": {
+    "Type": "Classical (measurement) + quantum (preparation)",
+    "Parameters": "p₀ = P(measure 1 | state 0), p₁ = P(measure 0 | state 1)",
+    "Depth dependence": "Constant (does not scale with circuit depth)",
+    "Correlation": "Can be correlated across qubits (especially in multiplexed readout)"
+  },
+  "physical_examples": [
+    "Thermal excitation during initialization",
+    "T1 decay during measurement (qubit relaxes before readout completes)",
+    "Readout resonator state discrimination errors",
+    "Crosstalk in frequency-multiplexed readout"
+  ],
+  "qem_considerations": [
+    "Readout Error Mitigation (REM) inverts the confusion matrix A",
+    "TREX uses Pauli twirling to simplify readout correction",
+    "Robust shadow estimation calibrates the measurement channel",
+    "SPAM errors dominate for shallow circuits (depth < 10)",
+    "Tensor product approximation reduces calibration cost: A ≈ A₁ ⊗ A₂ ⊗ ... ⊗ Aₙ"
+  ]
+}

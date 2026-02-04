@@ -1,4 +1,18 @@
 {
+  "diagrams": [
+    {
+      "caption": "Original circuit before folding",
+      "src": "images/circuits/folding_original.svg"
+    },
+    {
+      "caption": "Global folding (λ=3): The entire circuit U is transformed to U U† U",
+      "src": "images/circuits/folding_global_lambda3.svg"
+    },
+    {
+      "caption": "Local folding: Only the CNOT gate is folded (G → G G† G)",
+      "src": "images/circuits/folding_local_cnot.svg"
+    }
+  ],
   "description": [
     "Unitary folding (also called gate folding or circuit folding) is the most widely used noise scaling technique for Zero-Noise Extrapolation. It amplifies noise by inserting identity-equivalent gate sequences into the circuit.",
     "The key insight is that for any unitary gate G, the sequence G G† G is mathematically equivalent to G alone, but executes three times as many gates. Since each gate application introduces noise, this effectively triples the noise level while preserving the ideal computation.",

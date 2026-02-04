@@ -1,0 +1,30 @@
+{
+  "description": [
+    "Dephasing (also called phase damping or T2 decay) describes the loss of quantum coherence without energy exchange. The off-diagonal elements of the density matrix decay exponentially while the diagonal elements (populations) remain unchanged.",
+    "Physically, dephasing arises from fluctuations in the qubit's energy splitting, causing the phase to undergo a random walk. This is the dominant decoherence mechanism in many qubit platforms and is characterized by the T2 coherence time.",
+    "Pure dephasing (T2*) refers to inhomogeneous dephasing from static frequency variations, while T2 includes both pure dephasing and contributions from T1 relaxation: 1/T2 = 1/(2T1) + 1/T2*."
+  ],
+  "quantum_channel": {
+    "kraus_form": "\\mathcal{E}(\\rho) = (1-p)\\rho + p Z\\rho Z",
+    "alternative_form": "\\mathcal{E}(\\rho) = \\begin{pmatrix} \\rho_{00} & \\sqrt{1-\\lambda}\\rho_{01} \\\\ \\sqrt{1-\\lambda}\\rho_{10} & \\rho_{11} \\end{pmatrix}",
+    "time_evolution": "\\rho_{01}(t) = \\rho_{01}(0) e^{-t/T_2}"
+  },
+  "properties": {
+    "Type": "Phase-damping channel (incoherent)",
+    "Parameters": "p ∈ [0, 0.5] or λ ∈ [0, 1] = dephasing strength; T2 = coherence time",
+    "Fixed points": "All diagonal states (classical mixtures of |0⟩ and |1⟩)",
+    "Populations": "Preserved (ρ₀₀ and ρ₁₁ unchanged)"
+  },
+  "physical_examples": [
+    "Fluctuating magnetic fields in superconducting qubits",
+    "Charge noise affecting transmon frequencies",
+    "Laser phase noise in trapped ions",
+    "Nuclear spin bath in solid-state qubits (NV centers)"
+  ],
+  "qem_considerations": [
+    "Dynamical decoupling is highly effective against low-frequency dephasing noise",
+    "Echo sequences (Hahn echo, CPMG) can refocus pure dephasing",
+    "Pauli twirling symmetrizes dephasing into depolarizing-like noise",
+    "ZNE works but may require careful noise scaling if T2 is time-dependent"
+  ]
+}

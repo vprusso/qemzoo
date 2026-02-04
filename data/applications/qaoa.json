@@ -1,0 +1,34 @@
+{
+  "description": [
+    "The Quantum Approximate Optimization Algorithm (QAOA) is a variational algorithm for solving combinatorial optimization problems. It alternates between a problem Hamiltonian (encoding the objective function) and a mixer Hamiltonian (enabling exploration of the solution space).",
+    "QAOA has been applied to problems including MaxCut, graph partitioning, portfolio optimization, and scheduling. The algorithm's performance improves with circuit depth (number of QAOA layers), but deeper circuits are more susceptible to noise.",
+    "Error mitigation enables QAOA to achieve better approximation ratios on NISQ hardware, potentially reaching the threshold where quantum advantage becomes possible."
+  ],
+  "why_qem": [
+    "QAOA performance is measured by the approximation ratio—the quality of the solution found relative to the optimal. Noise degrades this ratio by corrupting the quantum state and biasing measurements.",
+    "Unlike VQE, QAOA circuits often lack exploitable symmetries for verification. This makes ZNE and measurement error mitigation the primary tools.",
+    "Dynamical decoupling is particularly effective for QAOA because the algorithm naturally has idle periods between problem and mixer unitaries.",
+    "The combination of multiple error mitigation techniques (Pauli twirling + ZNE + measurement error mitigation) provides compounding benefits."
+  ],
+  "demonstrations": [
+    {
+      "title": "MaxCut on Google Sycamore",
+      "description": "Demonstrated QAOA for MaxCut on up to 23 qubits with error mitigation, achieving approximation ratios competitive with classical algorithms.",
+      "hardware": "Google Sycamore",
+      "qubits": "Up to 23 qubits",
+      "techniques": "Readout error mitigation, post-selection"
+    },
+    {
+      "title": "Portfolio Optimization",
+      "description": "Applied error-mitigated QAOA to financial portfolio optimization problems, demonstrating practical applicability of quantum optimization.",
+      "hardware": "IBM Quantum",
+      "techniques": "ZNE, measurement error mitigation"
+    }
+  ],
+  "challenges": [
+    "QAOA requires many circuit evaluations for optimization, multiplying the impact of sampling overhead",
+    "Problem Hamiltonians may require high-weight Pauli terms, increasing circuit depth",
+    "Optimal QAOA parameters are problem-instance dependent, complicating benchmarking",
+    "The crossover point for quantum advantage in optimization remains unclear"
+  ]
+}

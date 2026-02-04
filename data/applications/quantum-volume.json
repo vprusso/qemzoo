@@ -1,0 +1,26 @@
+{
+  "description": [
+    "Quantum Volume (QV) is a single-number metric introduced by IBM to quantify the overall capability of a quantum computer. It measures the largest random square circuit (equal width and depth) that a device can successfully execute with a heavy output probability greater than 2/3.",
+    "The metric captures gate fidelity, qubit connectivity, coherence times, and compiler efficiency in a hardware-agnostic way. A quantum computer with \\(\\text{QV} = 2^n\\) can reliably execute random circuits on \\(n\\) qubits with depth \\(n\\).",
+    "Error mitigation techniques can increase the effective quantum volume by correcting errors in the output distribution, enabling successful execution of larger circuits than the raw hardware would allow."
+  ],
+  "why_qem": [
+    "Without error mitigation, the achievable quantum volume is limited by the cumulative effect of gate errors, decoherence, and measurement errors. As circuit depth increases, these errors compound exponentially.",
+    "Zero-noise extrapolation (ZNE) with unitary folding allows estimation of what the output distribution would be in the absence of noise. Combined with dynamical decoupling to suppress idle errors, this can push the effective QV beyond vendor benchmarks.",
+    "Importantly, these improvements come without additional sampling overhead—the same number of circuit executions yields better results."
+  ],
+  "demonstrations": [
+    {
+      "title": "First QV Increase via ZNE (2022-2023)",
+      "description": "Demonstrated increased effective quantum volume on four IBM Quantum superconducting processors using digital ZNE with global and local unitary folding.",
+      "hardware": "IBM Quantum (multiple processors)",
+      "techniques": "ZNE with unitary folding, dynamical decoupling"
+    }
+  ],
+  "challenges": [
+    "QV circuits are random and unstructured, making it difficult to exploit problem-specific symmetries",
+    "The heavy output probability threshold (2/3) is strict and sensitive to residual errors",
+    "Folding-based ZNE increases circuit depth, which can introduce additional decoherence",
+    "Extrapolation model choice affects accuracy; exponential models often work better than polynomial for deep circuits"
+  ]
+}

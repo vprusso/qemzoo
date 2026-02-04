@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 220">
+  <style>
+    .wire { stroke: #666; stroke-width: 1.5; fill: none; }
+    .gate { stroke-width: 1.5; rx: 3; }
+    .gate-encode { fill: #6a6a9a; stroke: #4a4a7a; }
+    .gate-var { fill: #5a9a6a; stroke: #3a7a4a; }
+    .gate-text { fill: white; font-family: system-ui, sans-serif; font-size: 9px; text-anchor: middle; dominant-baseline: middle; }
+    .label { fill: #333; font-family: system-ui, sans-serif; font-size: 11px; }
+    .box { fill: #f5f5f5; stroke: #999; stroke-width: 1.5; rx: 6; }
+    .arrow { stroke: #666; stroke-width: 1.5; fill: none; marker-end: url(#arrowhead); }
+  </style>
+
+  <defs>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#666"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="225" y="20" text-anchor="middle" class="label" style="font-size: 14px; font-weight: 600;">Variational Quantum Classifier</text>
+
+  <!-- Input data -->
+  <rect x="15" y="65" width="60" height="50" class="box"/>
+  <text x="45" y="85" text-anchor="middle" class="label" style="font-size: 10px;">Input</text>
+  <text x="45" y="100" text-anchor="middle" class="label" style="font-size: 10px;">x ∈ ℝⁿ</text>
+
+  <!-- Arrow -->
+  <path d="M75,90 L95,90" class="arrow"/>
+
+  <!-- Quantum Circuit -->
+  <rect x="100" y="45" width="230" height="130" class="box"/>
+  <text x="215" y="62" text-anchor="middle" class="label" style="font-size: 10px; fill: #666;">Parameterized Quantum Circuit</text>
+
+  <!-- Wires -->
+  <line x1="115" y1="90" x2="315" y2="90" class="wire"/>
+  <line x1="115" y1="120" x2="315" y2="120" class="wire"/>
+  <line x1="115" y1="150" x2="315" y2="150" class="wire"/>
+
+  <!-- Initial state -->
+  <text x="118" y="90" class="label" style="font-size: 9px;">|0⟩</text>
+  <text x="118" y="120" class="label" style="font-size: 9px;">|0⟩</text>
+  <text x="118" y="150" class="label" style="font-size: 9px;">|0⟩</text>
+
+  <!-- Data encoding layer -->
+  <rect x="138" y="80" width="32" height="20" class="gate gate-encode"/>
+  <text x="154" y="90" class="gate-text">S(x₁)</text>
+  <rect x="138" y="110" width="32" height="20" class="gate gate-encode"/>
+  <text x="154" y="120" class="gate-text">S(x₂)</text>
+  <rect x="138" y="140" width="32" height="20" class="gate gate-encode"/>
+  <text x="154" y="150" class="gate-text">S(x₃)</text>
+
+  <text x="154" y="73" text-anchor="middle" class="label" style="font-size: 8px; fill: #6a6a9a;">Encoding</text>
+
+  <!-- Variational layer 1 -->
+  <rect x="180" y="80" width="28" height="20" class="gate gate-var"/>
+  <text x="194" y="90" class="gate-text">Ry(θ₁)</text>
+  <rect x="180" y="110" width="28" height="20" class="gate gate-var"/>
+  <text x="194" y="120" class="gate-text">Ry(θ₂)</text>
+  <rect x="180" y="140" width="28" height="20" class="gate gate-var"/>
+  <text x="194" y="150" class="gate-text">Ry(θ₃)</text>
+
+  <!-- Entangling gates -->
+  <circle cx="222" cy="90" r="3" fill="#666"/>
+  <line x1="222" y1="93" x2="222" y2="117" stroke="#666" stroke-width="1.5"/>
+  <circle cx="222" cy="120" r="6" fill="none" stroke="#666" stroke-width="1.5"/>
+
+  <circle cx="235" cy="120" r="3" fill="#666"/>
+  <line x1="235" y1="123" x2="235" y2="147" stroke="#666" stroke-width="1.5"/>
+  <circle cx="235" cy="150" r="6" fill="none" stroke="#666" stroke-width="1.5"/>
+
+  <!-- Variational layer 2 -->
+  <rect x="252" y="80" width="28" height="20" class="gate gate-var"/>
+  <text x="266" y="90" class="gate-text">Rz(θ₄)</text>
+  <rect x="252" y="110" width="28" height="20" class="gate gate-var"/>
+  <text x="266" y="120" class="gate-text">Rz(θ₅)</text>
+  <rect x="252" y="140" width="28" height="20" class="gate gate-var"/>
+  <text x="266" y="150" class="gate-text">Rz(θ₆)</text>
+
+  <text x="230" y="73" text-anchor="middle" class="label" style="font-size: 8px; fill: #5a9a6a;">Variational</text>
+
+  <!-- Measurement -->
+  <g transform="translate(295, 82)">
+    <rect x="0" y="0" width="16" height="14" fill="white" stroke="#666" stroke-width="1"/>
+    <path d="M2,10 Q8,3 14,10" stroke="#666" stroke-width="1" fill="none"/>
+  </g>
+
+  <!-- Arrow to classifier -->
+  <path d="M330,90 L355,90" class="arrow"/>
+
+  <!-- Classical post-processing -->
+  <rect x="360" y="55" width="80" height="70" class="box"/>
+  <text x="400" y="75" text-anchor="middle" class="label" style="font-size: 10px;">Classify</text>
+  <text x="400" y="92" text-anchor="middle" class="label" style="font-size: 9px;">⟨Z⟩ → ŷ</text>
+  <text x="400" y="110" text-anchor="middle" class="label" style="font-size: 9px; fill: #666;">Class 0 or 1</text>
+
+  <!-- Legend -->
+  <rect x="100" y="190" width="16" height="12" class="gate gate-encode"/>
+  <text x="122" y="199" class="label" style="font-size: 9px;">Data encoding S(x)</text>
+  <rect x="250" y="190" width="16" height="12" class="gate gate-var"/>
+  <text x="272" y="199" class="label" style="font-size: 9px;">Trainable parameters θ</text>
+</svg>

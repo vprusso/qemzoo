@@ -1,0 +1,31 @@
+{
+  "description": [
+    "Amplitude damping describes the irreversible loss of energy from a qubit, causing decay from the excited state |1⟩ to the ground state |0⟩. This is the quantum analog of classical dissipation and is characterized by the T1 relaxation time.",
+    "Unlike dephasing, amplitude damping is asymmetric: it preferentially drives the qubit toward |0⟩. This breaks the symmetry between computational basis states and cannot be described as a Pauli channel.",
+    "In superconducting qubits, T1 is typically limited by dielectric losses, quasiparticle tunneling, or coupling to spurious two-level systems. T1 times of 100-500 μs are common in modern transmon qubits."
+  ],
+  "quantum_channel": {
+    "kraus_form": "\\mathcal{E}(\\rho) = K_0 \\rho K_0^\\dagger + K_1 \\rho K_1^\\dagger",
+    "kraus_operators": "K_0 = \\begin{pmatrix} 1 & 0 \\\\ 0 & \\sqrt{1-\\gamma} \\end{pmatrix}, \\quad K_1 = \\begin{pmatrix} 0 & \\sqrt{\\gamma} \\\\ 0 & 0 \\end{pmatrix}",
+    "time_evolution": "\\gamma(t) = 1 - e^{-t/T_1}"
+  },
+  "properties": {
+    "Type": "Non-Pauli channel (non-unital)",
+    "Parameters": "γ ∈ [0, 1] = damping probability; T1 = relaxation time",
+    "Fixed point": "Ground state |0⟩",
+    "Asymmetry": "|1⟩ decays to |0⟩, but not vice versa"
+  },
+  "physical_examples": [
+    "Spontaneous emission in atoms and ions",
+    "Energy relaxation in superconducting qubits",
+    "Phonon emission in solid-state qubits",
+    "Photon loss in cavity QED"
+  ],
+  "qem_considerations": [
+    "Not a Pauli channel, so Pauli twirling does not fully symmetrize it",
+    "ZNE can work but noise scaling may be nonlinear",
+    "PEC requires non-Pauli operations for exact cancellation",
+    "Virtual distillation/purification can help by amplifying the dominant eigenstate",
+    "Often combined with T2 effects: total decoherence rate is 1/T2 ≥ 1/(2T1)"
+  ]
+}

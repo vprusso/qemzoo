@@ -1,0 +1,28 @@
+{
+  "description": [
+    "Utility-scale quantum computing refers to computations that provide practical value beyond what classical computers can efficiently achieve. This represents the transition from proof-of-concept demonstrations to genuinely useful quantum computations.",
+    "The term gained prominence with IBM's 2023 demonstration on their 127-qubit Eagle processor, which computed expectation values for circuits containing thousands of two-qubit gates—beyond brute-force classical simulation capabilities.",
+    "Utility-scale experiments push the limits of qubit count, circuit depth, and measurement accuracy simultaneously, making comprehensive error mitigation strategies essential."
+  ],
+  "why_qem": [
+    "At utility scale, raw hardware error rates make unmitigated results essentially random. Error mitigation is not optional—it is required to extract any signal from the computation.",
+    "The combination of multiple error mitigation techniques becomes crucial: Pauli twirling to tailor noise, PEA for accurate noise amplification, ZNE for extrapolation to zero noise, and TREX for readout correction.",
+    "Learned noise models (sparse Pauli-Lindblad) enable both PEA and PEC-style approaches without full process tomography, making mitigation practical for 100+ qubit systems.",
+    "These experiments demonstrate that error mitigation can extend quantum computing capabilities by orders of magnitude in effective circuit volume."
+  ],
+  "demonstrations": [
+    {
+      "title": "IBM 127-Qubit Utility Demonstration (2023)",
+      "description": "Executed 127-qubit circuits with 60 layers of two-qubit gates, totaling 2800+ CNOT operations. Error-mitigated expectation values were accurate where classical verification was possible, and extended into classically intractable regimes.",
+      "hardware": "IBM Eagle (ibm_kyiv)",
+      "qubits": "127 qubits",
+      "techniques": "Pauli twirling, PEA-based ZNE, TREX, dynamical decoupling"
+    }
+  ],
+  "challenges": [
+    "Verifying results in the classically intractable regime requires indirect methods",
+    "Sampling overhead for ZNE grows with circuit size",
+    "Debate continues on whether results represent true quantum utility vs. sophisticated classical simulation",
+    "Scaling to fault-tolerant quantum computing remains the ultimate goal"
+  ]
+}

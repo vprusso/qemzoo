@@ -1,0 +1,35 @@
+{
+  "description": [
+    "The Variational Quantum Eigensolver (VQE) is a hybrid quantum-classical algorithm for finding the ground state energy of a molecular Hamiltonian. It uses a parameterized quantum circuit (ansatz) to prepare trial wavefunctions, measures the energy expectation value, and classically optimizes the parameters.",
+    "VQE is one of the most promising near-term applications of quantum computing for quantum chemistry, with potential applications in drug discovery, materials science, and catalysis.",
+    "Chemical accuracy (errors < 1.6 mHa or ~1 kcal/mol) is required for practically useful predictions. Achieving this on NISQ devices requires sophisticated error mitigation strategies."
+  ],
+  "why_qem": [
+    "VQE circuits for chemically interesting molecules require significant depth, making them susceptible to noise. Even small errors in energy estimates can lead to qualitatively wrong predictions about molecular properties.",
+    "Symmetry verification is particularly powerful for VQE because molecular Hamiltonians conserve particle number, spin, and spatial symmetries. Measurements violating these symmetries can be discarded or corrected.",
+    "N-representability constraints from quantum chemistry provide additional physical constraints that can be used to project noisy reduced density matrices onto the physically allowed manifold.",
+    "Zero-noise extrapolation and Clifford data regression leverage the structure of VQE circuits to learn and correct systematic errors."
+  ],
+  "demonstrations": [
+    {
+      "title": "H₂ and LiH on Superconducting Hardware",
+      "description": "Early demonstrations of VQE with error mitigation achieved chemical accuracy for small molecules using measurement error mitigation and symmetry verification.",
+      "hardware": "IBM superconducting processors",
+      "qubits": "2-6 qubits",
+      "techniques": "Measurement error mitigation, symmetry verification"
+    },
+    {
+      "title": "BeH₂ with ZNE",
+      "description": "Extended VQE to larger molecules using zero-noise extrapolation to correct gate errors, demonstrating the scalability of error-mitigated quantum chemistry.",
+      "hardware": "IBM superconducting processors",
+      "qubits": "6 qubits",
+      "techniques": "ZNE, measurement error mitigation"
+    }
+  ],
+  "challenges": [
+    "Barren plateaus in variational optimization can be exacerbated by noise",
+    "Symmetry verification acceptance rates decrease with circuit depth",
+    "Classical simulation of training circuits for CDR becomes expensive for large molecules",
+    "Hardware-efficient ansatze may not preserve chemical symmetries, limiting symmetry verification"
+  ]
+}

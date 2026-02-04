@@ -1,0 +1,30 @@
+{
+  "description": [
+    "The depolarizing channel is a fundamental noise model in quantum computing that describes the symmetric loss of quantum information. With probability p, the qubit undergoes a random Pauli error (X, Y, or Z with equal probability p/3 each), and with probability 1-p it remains unchanged.",
+    "This channel causes the quantum state to decay toward the maximally mixed state I/2, representing complete loss of both amplitude and phase information. It is often used as a worst-case or average-case noise model because it treats all types of errors symmetrically.",
+    "The depolarizing channel is particularly important because many QEM techniques are analyzed under depolarizing noise assumptions, and Pauli twirling can convert arbitrary noise into effective depolarizing noise."
+  ],
+  "quantum_channel": {
+    "kraus_form": "\\mathcal{E}(\\rho) = (1-p)\\rho + \\frac{p}{3}(X\\rho X + Y\\rho Y + Z\\rho Z)",
+    "chi_matrix": "Diagonal with entries \\((1-p, p/3, p/3, p/3)\\) in Pauli basis",
+    "choi_state": "\\frac{1}{2}\\begin{pmatrix} 1-\\frac{2p}{3} & 0 & 0 & 1-\\frac{4p}{3} \\\\ 0 & \\frac{2p}{3} & 0 & 0 \\\\ 0 & 0 & \\frac{2p}{3} & 0 \\\\ 1-\\frac{4p}{3} & 0 & 0 & 1-\\frac{2p}{3} \\end{pmatrix}"
+  },
+  "properties": {
+    "Type": "Pauli channel (incoherent)",
+    "Parameters": "p ∈ [0, 1] = depolarizing probability",
+    "Fixed point": "Maximally mixed state I/2",
+    "Fidelity decay": "F = 1 - 2p/3 for initial pure state"
+  },
+  "physical_examples": [
+    "Interaction with a high-temperature (infinite temperature) bath",
+    "Time-averaged effect of many small unknown errors",
+    "Effective noise after Pauli twirling arbitrary channels",
+    "Simplified model for benchmarking and analysis"
+  ],
+  "qem_considerations": [
+    "ZNE works well: noise scales predictably with circuit depth under depolarizing model",
+    "PEC can exactly cancel depolarizing noise with known error rate",
+    "Pauli twirling converts coherent errors to depolarizing-like noise",
+    "Clifford Data Regression training is effective when target noise is depolarizing"
+  ]
+}

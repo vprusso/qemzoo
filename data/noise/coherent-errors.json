@@ -1,0 +1,30 @@
+{
+  "description": [
+    "Coherent errors are deterministic, unitary deviations from the intended gate operation. Unlike stochastic Pauli errors, coherent errors are systematic and can accumulate constructively, potentially causing error rates that scale quadratically with circuit depth rather than linearly.",
+    "Common examples include over-rotation (applying Rz(θ + δ) instead of Rz(θ)), axis tilts (rotating about a slightly wrong axis), and phase errors from frequency miscalibration.",
+    "Coherent errors are particularly insidious because they can evade detection by methods designed for stochastic errors. However, they can be converted to stochastic errors through randomized compiling (Pauli twirling)."
+  ],
+  "quantum_channel": {
+    "kraus_form": "\\mathcal{E}(\\rho) = U_{\\text{err}} \\rho U_{\\text{err}}^\\dagger \\quad \\text{(single Kraus operator)}",
+    "example": "U_{\\text{err}} = R_z(\\theta + \\delta) = e^{-i(\\theta + \\delta)Z/2} \\quad \\text{for over-rotation } \\delta"
+  },
+  "properties": {
+    "Type": "Unitary (coherent)",
+    "Parameters": "Depends on error type (rotation angle error, axis tilt, etc.)",
+    "Reversibility": "Fully reversible if error is known",
+    "Accumulation": "Can add constructively: error grows as O(n) or O(n²) with circuit depth n"
+  },
+  "physical_examples": [
+    "Miscalibrated pulse amplitudes causing over/under-rotation",
+    "Frequency drift causing Z-rotation errors",
+    "Crosstalk inducing unwanted ZZ interactions",
+    "Leakage-induced phase shifts"
+  ],
+  "qem_considerations": [
+    "Pauli twirling converts coherent errors to stochastic (incoherent) errors",
+    "Dynamical decoupling can cancel low-frequency coherent errors",
+    "Echo verification exploits time-reversal to detect coherent errors",
+    "ZNE may not work directly (coherent errors may not scale linearly with folding)",
+    "Noise-aware compilation can minimize exposure to known coherent error sources"
+  ]
+}

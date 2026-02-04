@@ -1,0 +1,80 @@
+[
+  {
+    "id": "quantum-volume",
+    "name": "Quantum Volume",
+    "category": "benchmarking",
+    "summary": "Quantum volume (QV) is a hardware-agnostic metric that measures the largest random circuit a quantum computer can successfully execute. Error mitigation techniques, particularly ZNE with unitary folding and dynamical decoupling, have been shown to increase the effective quantum volume beyond vendor-reported values while using the same number of samples.",
+    "qem_techniques": ["zne", "dd", "measurement-error-mitigation"],
+    "key_results": [
+      "First demonstration of increased effective QV over manufacturer benchmarks using ZNE",
+      "Achieved on multiple IBM Quantum superconducting processors",
+      "No additional sampling overhead required"
+    ],
+    "references": ["pelofske2023", "larose2022qv"]
+  },
+  {
+    "id": "vqe",
+    "name": "Variational Quantum Eigensolver",
+    "category": "chemistry",
+    "summary": "VQE is a hybrid quantum-classical algorithm for finding ground state energies of molecular Hamiltonians. Error mitigation is critical for achieving chemical accuracy on NISQ devices. Techniques like symmetry verification, ZNE, and N-representability constraints help correct noisy energy estimates.",
+    "qem_techniques": ["zne", "symmetry-verification", "n-representability", "measurement-error-mitigation", "cdr"],
+    "key_results": [
+      "Chemical accuracy achieved for small molecules (H₂, LiH, BeH₂) on NISQ hardware",
+      "Symmetry verification exploits particle number and spin conservation",
+      "CDR leverages near-Clifford training circuits for regression-based correction"
+    ],
+    "references": ["kandala2019", "mcardle2019", "czarnik2021"]
+  },
+  {
+    "id": "qaoa",
+    "name": "Quantum Approximate Optimization Algorithm",
+    "category": "optimization",
+    "summary": "QAOA is a variational algorithm for combinatorial optimization problems like MaxCut and portfolio optimization. Noise degrades the quality of approximate solutions, making error mitigation essential for demonstrating quantum advantage. ZNE and measurement error mitigation are commonly applied.",
+    "qem_techniques": ["zne", "measurement-error-mitigation", "dd", "pauli-twirling"],
+    "key_results": [
+      "Error-mitigated QAOA improves approximation ratios on optimization benchmarks",
+      "Demonstrated on problems including MaxCut, graph partitioning, and scheduling",
+      "Combination of ZNE with dynamical decoupling provides compounding benefits"
+    ],
+    "references": ["harrigan2021", "weidenfeller2022"]
+  },
+  {
+    "id": "hamiltonian-simulation",
+    "name": "Hamiltonian Simulation",
+    "category": "simulation",
+    "summary": "Simulating the time evolution of quantum many-body systems is a natural application for quantum computers. Error mitigation enables accurate simulation of dynamics for longer times and larger systems than raw hardware would allow. The IBM 127-qubit Ising model demonstration used PEA-based ZNE to achieve results beyond classical brute-force simulation.",
+    "qem_techniques": ["zne", "pea", "pauli-twirling", "dd"],
+    "key_results": [
+      "127-qubit kicked Ising model simulation with 60 layers of two-qubit gates",
+      "ZNE with probabilistic error amplification (PEA) enabled accurate observable estimation",
+      "Results verified against tensor network methods where tractable"
+    ],
+    "references": ["kim2023"]
+  },
+  {
+    "id": "quantum-machine-learning",
+    "name": "Quantum Machine Learning",
+    "category": "machine-learning",
+    "summary": "Quantum machine learning algorithms, including variational classifiers and quantum kernel methods, are sensitive to noise that can destroy the quantum advantage. Error mitigation helps preserve the expressibility of parameterized quantum circuits and the quality of learned models.",
+    "qem_techniques": ["zne", "measurement-error-mitigation", "cdr", "dd"],
+    "key_results": [
+      "Error-mitigated variational classifiers achieve higher test accuracy",
+      "ZNE improves fidelity of quantum kernel matrices",
+      "Measurement error mitigation critical for classification tasks with many output classes"
+    ],
+    "references": ["sagastizabal2019", "wang2021qml"]
+  },
+  {
+    "id": "utility-scale",
+    "name": "Utility-Scale Experiments",
+    "category": "demonstration",
+    "summary": "Utility-scale experiments aim to demonstrate quantum computations that provide value beyond what classical computers can efficiently achieve. These experiments push the limits of qubit count, circuit depth, and accuracy, relying heavily on error mitigation to bridge the gap between raw hardware capabilities and useful results.",
+    "qem_techniques": ["zne", "pea", "pauli-twirling", "trex", "dd"],
+    "key_results": [
+      "IBM's 127-qubit Eagle processor demonstrated error-mitigated results for 2800+ two-qubit gates",
+      "Combination of Pauli twirling, PEA-based ZNE, and TREX enabled accurate expectation values",
+      "Sparked debate on the boundary between classical simulability and quantum utility"
+    ],
+    "references": ["kim2023", "vandenberg2023"]
+  }
+]

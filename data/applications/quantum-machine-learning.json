@@ -1,0 +1,33 @@
+{
+  "description": [
+    "Quantum machine learning (QML) explores the intersection of quantum computing and machine learning, seeking quantum advantages in learning tasks. Applications include variational quantum classifiers, quantum kernel methods, quantum generative models, and quantum neural networks.",
+    "QML algorithms typically use parameterized quantum circuits to process classical or quantum data, with the goal of achieving better generalization, faster training, or access to classically intractable feature spaces.",
+    "Noise poses a fundamental challenge to QML: it can destroy the quantum features that provide potential advantages and induce barren plateaus that prevent training."
+  ],
+  "why_qem": [
+    "Noise-induced barren plateaus occur when noise causes the cost function gradient to vanish exponentially with circuit depth, making optimization impossible. Error mitigation can restore trainability.",
+    "For quantum kernel methods, the kernel matrix quality directly determines classification accuracy. Measurement errors and gate noise corrupt kernel entries, degrading performance.",
+    "Variational classifiers require many circuit evaluations during training; even small per-circuit errors accumulate to significantly impact the learned model.",
+    "ZNE and CDR can correct systematic biases in expectation values used for both training and inference."
+  ],
+  "demonstrations": [
+    {
+      "title": "Error-Mitigated Variational Classifiers",
+      "description": "Demonstrated that ZNE improves test accuracy of variational quantum classifiers on real hardware, enabling successful classification of datasets like Iris and MNIST subsets.",
+      "hardware": "IBM Quantum",
+      "techniques": "ZNE, measurement error mitigation"
+    },
+    {
+      "title": "Quantum Kernel Methods",
+      "description": "Applied error mitigation to quantum kernel estimation, showing improved kernel matrix fidelity and classification accuracy.",
+      "hardware": "Various NISQ devices",
+      "techniques": "Measurement error mitigation, ZNE"
+    }
+  ],
+  "challenges": [
+    "Noise-induced barren plateaus may require exponential resources to mitigate",
+    "Training requires many circuit evaluations, amplifying sampling overhead",
+    "Separating quantum advantage from error mitigation overhead is difficult",
+    "Classical surrogates may match QML performance for many practical tasks"
+  ]
+}

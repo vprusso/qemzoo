@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 200">
+  <style>
+    .wire { stroke: #666; stroke-width: 1.5; fill: none; }
+    .gate { stroke-width: 1.5; rx: 3; }
+    .gate-cost { fill: #9a6a3a; stroke: #7a4a2a; }
+    .gate-mixer { fill: #3a6a9a; stroke: #2a4a7a; }
+    .gate-text { fill: white; font-family: system-ui, sans-serif; font-size: 9px; text-anchor: middle; dominant-baseline: middle; }
+    .label { fill: #333; font-family: system-ui, sans-serif; font-size: 11px; }
+    .layer-box { fill: none; stroke: #999; stroke-width: 1; stroke-dasharray: 4,2; rx: 4; }
+  </style>
+
+  <!-- Title -->
+  <text x="210" y="20" text-anchor="middle" class="label" style="font-size: 14px; font-weight: 600;">QAOA Circuit Structure</text>
+
+  <!-- Subtitle -->
+  <text x="210" y="38" text-anchor="middle" class="label" style="font-size: 10px; fill: #666;">|ψ(γ,β)⟩ = U(β_p)U(γ_p)···U(β₁)U(γ₁)|+⟩^n</text>
+
+  <!-- Qubit labels -->
+  <text x="15" y="80" class="label">q₀</text>
+  <text x="15" y="115" class="label">q₁</text>
+  <text x="15" y="150" class="label">q₂</text>
+
+  <!-- Horizontal wires -->
+  <line x1="35" y1="80" x2="395" y2="80" class="wire"/>
+  <line x1="35" y1="115" x2="395" y2="115" class="wire"/>
+  <line x1="35" y1="150" x2="395" y2="150" class="wire"/>
+
+  <!-- Initial Hadamard layer -->
+  <rect x="42" y="70" width="20" height="20" fill="#888" stroke="#666" stroke-width="1.5" rx="3"/>
+  <text x="52" y="80" class="gate-text">H</text>
+  <rect x="42" y="105" width="20" height="20" fill="#888" stroke="#666" stroke-width="1.5" rx="3"/>
+  <text x="52" y="115" class="gate-text">H</text>
+  <rect x="42" y="140" width="20" height="20" fill="#888" stroke="#666" stroke-width="1.5" rx="3"/>
+  <text x="52" y="150" class="gate-text">H</text>
+
+  <!-- QAOA Layer 1 -->
+  <rect x="72" y="58" width="95" height="108" class="layer-box"/>
+  <text x="120" y="175" text-anchor="middle" class="label" style="font-size: 9px; fill: #888;">Layer 1</text>
+
+  <!-- Cost unitary U(γ₁) - ZZ gates -->
+  <rect x="80" y="72" width="30" height="50" class="gate gate-cost"/>
+  <text x="95" y="97" class="gate-text">e^{-iγ₁Z⊗Z}</text>
+  <rect x="80" y="107" width="30" height="50" class="gate gate-cost"/>
+  <text x="95" y="132" class="gate-text" style="font-size: 8px;">ZZ(γ₁)</text>
+
+  <!-- Mixer unitary U(β₁) - Rx gates -->
+  <rect x="118" y="70" width="24" height="20" class="gate gate-mixer"/>
+  <text x="130" y="80" class="gate-text">Rx(β₁)</text>
+  <rect x="118" y="105" width="24" height="20" class="gate gate-mixer"/>
+  <text x="130" y="115" class="gate-text">Rx(β₁)</text>
+  <rect x="118" y="140" width="24" height="20" class="gate gate-mixer"/>
+  <text x="130" y="150" class="gate-text">Rx(β₁)</text>
+
+  <!-- Cost label -->
+  <text x="95" y="62" text-anchor="middle" class="label" style="font-size: 8px; fill: #9a6a3a;">Cost</text>
+  <!-- Mixer label -->
+  <text x="130" y="62" text-anchor="middle" class="label" style="font-size: 8px; fill: #3a6a9a;">Mixer</text>
+
+  <!-- Ellipsis -->
+  <text x="190" y="115" class="label" style="font-size: 18px; fill: #888;">···</text>
+
+  <!-- QAOA Layer p -->
+  <rect x="220" y="58" width="95" height="108" class="layer-box"/>
+  <text x="268" y="175" text-anchor="middle" class="label" style="font-size: 9px; fill: #888;">Layer p</text>
+
+  <!-- Cost unitary U(γ_p) -->
+  <rect x="228" y="72" width="30" height="50" class="gate gate-cost"/>
+  <text x="243" y="97" class="gate-text" style="font-size: 8px;">ZZ(γ_p)</text>
+  <rect x="228" y="107" width="30" height="50" class="gate gate-cost"/>
+  <text x="243" y="132" class="gate-text" style="font-size: 8px;">ZZ(γ_p)</text>
+
+  <!-- Mixer unitary U(β_p) -->
+  <rect x="266" y="70" width="24" height="20" class="gate gate-mixer"/>
+  <text x="278" y="80" class="gate-text" style="font-size: 8px;">Rx(β_p)</text>
+  <rect x="266" y="105" width="24" height="20" class="gate gate-mixer"/>
+  <text x="278" y="115" class="gate-text" style="font-size: 8px;">Rx(β_p)</text>
+  <rect x="266" y="140" width="24" height="20" class="gate gate-mixer"/>
+  <text x="278" y="150" class="gate-text" style="font-size: 8px;">Rx(β_p)</text>
+
+  <!-- Measurement -->
+  <g transform="translate(330, 72)">
+    <rect x="0" y="0" width="18" height="14" fill="white" stroke="#666" stroke-width="1"/>
+    <path d="M2,10 Q9,3 16,10" stroke="#666" stroke-width="1" fill="none"/>
+  </g>
+  <g transform="translate(330, 107)">
+    <rect x="0" y="0" width="18" height="14" fill="white" stroke="#666" stroke-width="1"/>
+    <path d="M2,10 Q9,3 16,10" stroke="#666" stroke-width="1" fill="none"/>
+  </g>
+  <g transform="translate(330, 142)">
+    <rect x="0" y="0" width="18" height="14" fill="white" stroke="#666" stroke-width="1"/>
+    <path d="M2,10 Q9,3 16,10" stroke="#666" stroke-width="1" fill="none"/>
+  </g>
+
+  <!-- Cost function output -->
+  <text x="370" y="115" text-anchor="middle" class="label" style="font-size: 10px;">→ C(z)</text>
+
+  <!-- Legend -->
+  <rect x="20" y="185" width="16" height="12" class="gate gate-cost"/>
+  <text x="42" y="194" class="label" style="font-size: 9px;">Cost Hamiltonian U(γ)</text>
+  <rect x="180" y="185" width="16" height="12" class="gate gate-mixer"/>
+  <text x="202" y="194" class="label" style="font-size: 9px;">Mixer Hamiltonian U(β)</text>
+</svg>

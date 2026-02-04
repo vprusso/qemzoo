@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 240">
+  <style>
+    .label { fill: #333; font-family: system-ui, sans-serif; font-size: 11px; }
+    .box { stroke-width: 1.5; rx: 6; }
+    .arrow { stroke: #666; stroke-width: 1.5; fill: none; marker-end: url(#arrowhead); }
+    .chip { fill: #2a4a6a; }
+    .qubit { fill: #4a8aba; stroke: #2a6a9a; stroke-width: 1; }
+    .qubit-line { stroke: #6aaacc; stroke-width: 1; }
+  </style>
+
+  <defs>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#666"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="225" y="20" text-anchor="middle" class="label" style="font-size: 14px; font-weight: 600;">Utility-Scale Quantum Computing</text>
+  <text x="225" y="38" text-anchor="middle" class="label" style="font-size: 10px; fill: #666;">127 qubits × 60 layers = 2800+ two-qubit gates</text>
+
+  <!-- Chip representation -->
+  <rect x="30" y="55" width="140" height="120" class="chip" rx="8"/>
+  <text x="100" y="185" text-anchor="middle" class="label" style="font-size: 10px;">IBM Eagle (127 qubits)</text>
+
+  <!-- Qubit grid (simplified heavy-hex) -->
+  <g transform="translate(45, 70)">
+    <!-- Row 1 -->
+    <circle cx="15" cy="10" r="5" class="qubit"/>
+    <circle cx="35" cy="10" r="5" class="qubit"/>
+    <circle cx="55" cy="10" r="5" class="qubit"/>
+    <circle cx="75" cy="10" r="5" class="qubit"/>
+    <circle cx="95" cy="10" r="5" class="qubit"/>
+    <line x1="20" y1="10" x2="30" y2="10" class="qubit-line"/>
+    <line x1="40" y1="10" x2="50" y2="10" class="qubit-line"/>
+    <line x1="60" y1="10" x2="70" y2="10" class="qubit-line"/>
+    <line x1="80" y1="10" x2="90" y2="10" class="qubit-line"/>
+
+    <!-- Row 2 -->
+    <circle cx="25" cy="30" r="5" class="qubit"/>
+    <circle cx="45" cy="30" r="5" class="qubit"/>
+    <circle cx="65" cy="30" r="5" class="qubit"/>
+    <circle cx="85" cy="30" r="5" class="qubit"/>
+    <line x1="15" y1="15" x2="25" y2="25" class="qubit-line"/>
+    <line x1="35" y1="15" x2="25" y2="25" class="qubit-line"/>
+    <line x1="55" y1="15" x2="45" y2="25" class="qubit-line"/>
+    <line x1="55" y1="15" x2="65" y2="25" class="qubit-line"/>
+    <line x1="75" y1="15" x2="65" y2="25" class="qubit-line"/>
+    <line x1="75" y1="15" x2="85" y2="25" class="qubit-line"/>
+    <line x1="95" y1="15" x2="85" y2="25" class="qubit-line"/>
+
+    <!-- Row 3 -->
+    <circle cx="15" cy="50" r="5" class="qubit"/>
+    <circle cx="35" cy="50" r="5" class="qubit"/>
+    <circle cx="55" cy="50" r="5" class="qubit"/>
+    <circle cx="75" cy="50" r="5" class="qubit"/>
+    <circle cx="95" cy="50" r="5" class="qubit"/>
+    <line x1="25" y1="35" x2="15" y2="45" class="qubit-line"/>
+    <line x1="25" y1="35" x2="35" y2="45" class="qubit-line"/>
+    <line x1="45" y1="35" x2="35" y2="45" class="qubit-line"/>
+    <line x1="45" y1="35" x2="55" y2="45" class="qubit-line"/>
+    <line x1="65" y1="35" x2="55" y2="45" class="qubit-line"/>
+    <line x1="65" y1="35" x2="75" y2="45" class="qubit-line"/>
+    <line x1="85" y1="35" x2="75" y2="45" class="qubit-line"/>
+    <line x1="85" y1="35" x2="95" y2="45" class="qubit-line"/>
+    <line x1="20" y1="50" x2="30" y2="50" class="qubit-line"/>
+    <line x1="40" y1="50" x2="50" y2="50" class="qubit-line"/>
+    <line x1="60" y1="50" x2="70" y2="50" class="qubit-line"/>
+    <line x1="80" y1="50" x2="90" y2="50" class="qubit-line"/>
+
+    <!-- Row 4 -->
+    <circle cx="25" cy="70" r="5" class="qubit"/>
+    <circle cx="45" cy="70" r="5" class="qubit"/>
+    <circle cx="65" cy="70" r="5" class="qubit"/>
+    <circle cx="85" cy="70" r="5" class="qubit"/>
+    <line x1="15" y1="55" x2="25" y2="65" class="qubit-line"/>
+    <line x1="35" y1="55" x2="25" y2="65" class="qubit-line"/>
+    <line x1="55" y1="55" x2="45" y2="65" class="qubit-line"/>
+    <line x1="55" y1="55" x2="65" y2="65" class="qubit-line"/>
+    <line x1="75" y1="55" x2="65" y2="65" class="qubit-line"/>
+    <line x1="75" y1="55" x2="85" y2="65" class="qubit-line"/>
+    <line x1="95" y1="55" x2="85" y2="65" class="qubit-line"/>
+
+    <!-- Ellipsis indicator -->
+    <text x="55" y="95" text-anchor="middle" fill="#8ac" font-family="system-ui" font-size="12px">···</text>
+  </g>
+
+  <!-- Arrow to mitigation stack -->
+  <path d="M180,115 L210,115" class="arrow"/>
+
+  <!-- Error Mitigation Stack -->
+  <rect x="220" y="50" width="100" height="130" fill="#f0f5f0" stroke="#6a9a6a" stroke-width="1.5" rx="6"/>
+  <text x="270" y="68" text-anchor="middle" class="label" style="font-size: 10px; font-weight: 600; fill: #3a6a3a;">QEM Stack</text>
+
+  <!-- Stack layers -->
+  <rect x="230" y="78" width="80" height="22" fill="#8ab" stroke="#5a8a9a" stroke-width="1" rx="3"/>
+  <text x="270" y="93" text-anchor="middle" class="label" style="font-size: 9px; fill: white;">Pauli Twirling</text>
+
+  <rect x="230" y="105" width="80" height="22" fill="#7a9" stroke="#5a7a6a" stroke-width="1" rx="3"/>
+  <text x="270" y="120" text-anchor="middle" class="label" style="font-size: 9px; fill: white;">PEA + ZNE</text>
+
+  <rect x="230" y="132" width="80" height="22" fill="#a8b" stroke="#8a6a9a" stroke-width="1" rx="3"/>
+  <text x="270" y="147" text-anchor="middle" class="label" style="font-size: 9px; fill: white;">TREX</text>
+
+  <rect x="230" y="159" width="80" height="14" fill="#999" stroke="#777" stroke-width="1" rx="3"/>
+  <text x="270" y="169" text-anchor="middle" class="label" style="font-size: 8px; fill: white;">DD</text>
+
+  <!-- Arrow to results -->
+  <path d="M330,115 L360,115" class="arrow"/>
+
+  <!-- Results -->
+  <rect x="370" y="60" width="70" height="110" fill="#f5f5f5" stroke="#999" stroke-width="1.5" rx="6"/>
+  <text x="405" y="80" text-anchor="middle" class="label" style="font-size: 10px; font-weight: 600;">Results</text>
+  <text x="405" y="100" text-anchor="middle" class="label" style="font-size: 9px;">Accurate</text>
+  <text x="405" y="115" text-anchor="middle" class="label" style="font-size: 9px;">⟨O⟩</text>
+  <text x="405" y="140" text-anchor="middle" class="label" style="font-size: 8px; fill: #666;">Beyond</text>
+  <text x="405" y="153" text-anchor="middle" class="label" style="font-size: 8px; fill: #666;">classical</text>
+  <text x="405" y="166" text-anchor="middle" class="label" style="font-size: 8px; fill: #666;">reach</text>
+
+  <!-- Bottom stats -->
+  <text x="100" y="210" text-anchor="middle" class="label" style="font-size: 9px; fill: #666;">Raw error rate: ~1% per 2Q gate</text>
+  <text x="100" y="225" text-anchor="middle" class="label" style="font-size: 9px; fill: #666;">Cumulative: (0.99)^2800 ≈ 0</text>
+  <text x="330" y="210" text-anchor="middle" class="label" style="font-size: 9px; fill: #3a6a3a;">Error mitigation recovers signal</text>
+  <text x="330" y="225" text-anchor="middle" class="label" style="font-size: 9px; fill: #3a6a3a;">from seemingly random output</text>
+</svg>

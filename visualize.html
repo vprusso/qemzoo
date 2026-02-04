@@ -24,6 +24,8 @@
 <nav class="site-nav">
   <a href="index.html">Protocols</a>
   <a href="techniques.html">Techniques</a>
+  <a href="noise.html">Noise</a>
+  <a href="applications.html">Applications</a>
   <a href="visualize.html" class="active">Visualize</a>
 </nav>
 
@@ -36,13 +38,6 @@
   </div>
 </section>
 
-<!-- Technique Comparison -->
-<section class="chart-section" id="comparison-section">
-  <h2>Technique Comparison</h2>
-  <p class="chart-description">Qualitative comparison of technique attributes on a 1–5 scale (5 = best). Ratings are approximate and context-dependent.</p>
-  <div id="comparison-chart"></div>
-</section>
-
 <!-- Composability Matrix -->
 <section class="chart-section" id="composability-section">
   <h2>Composability</h2>
@@ -52,13 +47,22 @@
   </div>
 </section>
 
+<!-- Noise-Technique Applicability Matrix -->
+<section class="chart-section" id="noise-applicability-section">
+  <h2>Noise–Technique Applicability</h2>
+  <p class="chart-description">Which QEM techniques are effective against which noise types. Green = applicable. Click a cell to see the corresponding technique or noise detail page.</p>
+  <div id="noise-applicability-chart" style="position:relative">
+    <div class="tooltip" id="noise-applicability-tooltip" style="position:absolute;background:rgba(0,0,0,0.8);color:#fff;padding:0.4rem 0.7rem;border-radius:4px;font-size:0.8rem;pointer-events:none;font-family:system-ui,sans-serif;display:none;max-width:300px;z-index:10"></div>
+  </div>
+</section>
+
 <footer>
   <p>
     The QEM Zoo &mdash; a catalog of quantum error mitigation and suppression techniques.<br>
     Motivated by Open Problem 1 in
     <a href="https://arxiv.org/abs/2210.00921">Cai et al., "Quantum Error Mitigation," <i>Rev. Mod. Phys.</i> (2023)</a>.
   </p>
-  <p class="attribution">Created and maintained by Vincent Russo</p>
+  <p class="attribution">Created and maintained by <a href="https://vprusso.github.io/">Vincent Russo</a></p>
 </footer>
 
 <script src="https://d3js.org/d3.v7.min.js"></script>
