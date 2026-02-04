@@ -1,7 +1,7 @@
 {
   "description": [
     "Zero-Noise Extrapolation (ZNE) is one of the most widely used quantum error mitigation techniques. The core idea is deceptively simple: if we can controllably increase the noise in a quantum circuit, we can measure expectation values at several noise levels and then extrapolate back to the zero-noise limit.",
-    "The technique was independently proposed by Temme et al. and Li & Benjamin in 2017. It has since become a workhorse of near-term quantum computing, featuring prominently in IBM's 127-qubit experiments (Kim et al., 2023).",
+    "The technique was independently proposed in 2017 and has since become a workhorse of near-term quantum computing, featuring prominently in utility-scale 127-qubit experiments.",
     "The key assumption is that the expectation value \\(\\langle O \\rangle\\) depends smoothly on the noise rate \\(\\lambda\\). By evaluating \\(\\langle O \\rangle\\) at noise levels \\(c_1 \\lambda, c_2 \\lambda, \\ldots, c_M \\lambda\\) (where \\(c_i \\geq 1\\) are scale factors), one fits a model \\(f(\\lambda)\\) and extrapolates to \\(f(0)\\)."
   ],
   "how_it_works": [
@@ -44,7 +44,7 @@
   ],
   "use_cases": [
     "Variational algorithms (VQE, QAOA) on near-term processors",
-    "IBM 127-qubit Ising model experiments (Kim et al., 2023)",
+    "Utility-scale quantum experiments (e.g., 127-qubit Ising model)",
     "Benchmarking quantum advantage claims",
     "Composition with dynamical decoupling or Pauli twirling as a preprocessing step"
   ]
