@@ -214,6 +214,15 @@
       "composable": 5,
       "scalability": 5,
       "generality": 5
+    },
+    {
+      "id": "nepec",
+      "noise_model": 3,
+      "overhead": 2,
+      "bias": 4,
+      "composable": 4,
+      "scalability": 3,
+      "generality": 4
     }
   ]
 }

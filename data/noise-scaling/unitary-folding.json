@@ -1,0 +1,48 @@
+{
+  "description": [
+    "Unitary folding (also called gate folding or circuit folding) is the most widely used noise scaling technique for Zero-Noise Extrapolation. It amplifies noise by inserting identity-equivalent gate sequences into the circuit.",
+    "The key insight is that for any unitary gate G, the sequence G G† G is mathematically equivalent to G alone, but executes three times as many gates. Since each gate application introduces noise, this effectively triples the noise level while preserving the ideal computation.",
+    "Folding can be applied globally (folding the entire circuit) or locally (folding individual gates). Local folding provides finer control over the noise amplification factor."
+  ],
+  "how_it_works": [
+    "Start with the original circuit implementing unitary U.",
+    "To achieve noise scale factor λ, apply the transformation G → G(G†G)ⁿ where n = (λ-1)/2.",
+    "For global folding with λ = 3: the circuit U becomes U U† U. For λ = 5: U U† U U† U.",
+    "For local folding, apply the same transformation to individual gates.",
+    "Fractional scale factors can be achieved by folding only a subset of gates (partial folding).",
+    "Execute the folded circuits at multiple noise levels and extrapolate to the zero-noise limit."
+  ],
+  "key_equations": [
+    {
+      "label": "Gate folding transformation",
+      "latex": "G \\mapsto G (G^\\dagger G)^n \\quad \\text{for integer } n \\geq 0"
+    },
+    {
+      "label": "Scale factor relationship",
+      "latex": "\\lambda = 2n + 1 \\quad \\Leftrightarrow \\quad n = \\frac{\\lambda - 1}{2}"
+    },
+    {
+      "label": "Global circuit folding",
+      "latex": "U \\mapsto U (U^\\dagger U)^n"
+    }
+  ],
+  "advantages": [
+    "Simple to implement using standard gate operations",
+    "No pulse-level hardware access required",
+    "Works on any gate-based quantum computer",
+    "Widely supported in software frameworks (Mitiq, Qiskit, Cirq, PennyLane)"
+  ],
+  "disadvantages": [
+    "Exact folding only achieves odd integer scale factors (1, 3, 5, ...)",
+    "For non-Hermitian gates, G and G† may have different noise profiles, causing non-linear scaling",
+    "May fail to amplify coherent errors (since G†G can cancel systematic errors)",
+    "Does not scale SPAM (state preparation and measurement) noise",
+    "Server-side compiler optimization may undo the folding"
+  ],
+  "use_cases": [
+    "Zero-Noise Extrapolation on near-term quantum hardware",
+    "Variational quantum algorithms (VQE, QAOA) where expectation values are measured",
+    "Situations where pulse-level control is unavailable",
+    "Quick prototyping of error mitigation strategies"
+  ]
+}

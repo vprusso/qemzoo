@@ -29,27 +29,27 @@
     "id": "identity-insertion",
     "name": "Identity Insertion",
     "aliases": ["identity scaling"],
-    "summary": "Amplifies noise by inserting pairs of single-qubit gates that compose to identity (e.g., \\(X X\\), \\(H H\\)) at random or systematic locations in the circuit. Simpler than full unitary folding but less precise control over noise amplification.",
+    "summary": "Amplifies noise by inserting identity operations between circuit gates, extending circuit duration and exposing qubits to more decoherence. Unlike folding (\\(G \\to GG^\\dagger G\\)), identity insertion focuses on passive decoherence rather than gate noise, making it effective when T1/T2 errors dominate.",
     "properties": {
-      "Scale factors": "Discrete (depends on number of insertions)",
+      "Scale factors": "Discrete (ratio of scaled to original depth)",
       "Hardware requirements": "None",
-      "Advantages": "Very simple to implement",
-      "Disadvantages": "Coarse control over scale factor; inserted gates may have different error rates"
+      "Advantages": "Simple; effective for decoherence-dominated noise",
+      "Disadvantages": "Primarily scales idle noise, not gate noise; coarse control"
     },
-    "references": ["dumitrescu2018"]
+    "references": ["giurgica2020"]
   },
   {
     "id": "circuit-unoptimization",
     "name": "Circuit Unoptimization",
     "aliases": ["quantum circuit unoptimization"],
-    "summary": "Amplifies noise by transforming a circuit into an equivalent but longer circuit using gate decomposition and recomposition rules. Unlike folding, unoptimization produces structurally different circuits at each noise level, enabling averaging over circuit variants to reduce bias from coherent errors. Resists server-side compiler optimization that would undo the noise scaling.",
+    "summary": "Amplifies noise by iteratively transforming a circuit into an equivalent but longer circuit via a four-step procedure: (1) insert a random two-qubit gate \\(A\\) and \\(A^\\dagger\\) between existing gates, (2) swap gates via conjugation, (3) decompose into elementary gates, (4) resynthesize. The noise scale factor is \\(\\lambda = n(R(C))/n(C)\\) where \\(n\\) is gate count. Unlike folding, unoptimization produces structurally different circuits, enabling averaging over exponentially many variants to reduce coherent error bias. Resists server-side compiler optimization.",
     "properties": {
       "Scale factors": "Continuous (including fractional values near 1.0)",
       "Hardware requirements": "None",
       "Advantages": "Exponentially many circuit variants for averaging; resists compiler simplification; fractional scaling",
       "Disadvantages": "More complex to implement; circuit structure changes significantly"
     },
-    "references": ["pelofske2024", "pelofske2025"]
+    "references": ["mori2024", "pelofske2025"]
   },
   {
     "id": "pea-amplification",

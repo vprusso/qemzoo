@@ -1,0 +1,51 @@
+{
+  "description": [
+    "Circuit unoptimization transforms a quantum circuit into a different circuit that uses more gate operations while maintaining the same unitary transformation. Unlike folding (which inserts G G† pairs), unoptimization produces structurally different circuits through gate insertion, swapping, decomposition, and resynthesis.",
+    "The key advantage is that unoptimization generates exponentially many distinct circuit variants at each noise level. Averaging over these variants reduces bias from coherent errors and biased noise sources on quantum processors.",
+    "Another practical benefit is that unoptimized circuits resist server-side compiler optimization. Transpilers cannot easily simplify the expanded sequences back to the original, making ZNE viable even when optimization cannot be disabled."
+  ],
+  "how_it_works": [
+    "Start with the original compiled circuit C with gate count n(C).",
+    "Apply the four-step iterative unoptimization recipe:",
+    "  (1) INSERT: Add a random two-qubit unitary A and its conjugate A† between two existing two-qubit gates B₁ and B₂ that share a qubit.",
+    "  (2) SWAP: Exchange B₁ with A†, creating a modified gate via conjugation.",
+    "  (3) DECOMPOSE: Break the resulting multi-qubit unitaries into elementary gates.",
+    "  (4) SYNTHESIZE: Apply circuit synthesis/optimization passes to reduce overhead while preserving the increased gate count.",
+    "Repeat the procedure i times to produce unoptimized circuit Rᵢ(C) with increased gate count.",
+    "The noise scale factor is λᵢ = n(Rᵢ(C)) / n(C), where n denotes total gate count.",
+    "Execute circuits at multiple noise levels and extrapolate to zero noise."
+  ],
+  "key_equations": [
+    {
+      "label": "Noise scale factor",
+      "latex": "\\lambda_i = \\frac{n(R_i(C))}{n(C)}"
+    },
+    {
+      "label": "Gate count after i iterations",
+      "latex": "n(R_i(C)) > n(R_{i-1}(C)) > \\cdots > n(C)"
+    },
+    {
+      "label": "Variant averaging for ZNE",
+      "latex": "\\langle O \\rangle_{\\lambda} = \\frac{1}{N} \\sum_{j=1}^{N} \\langle O \\rangle_{\\lambda}^{(j)}"
+    }
+  ],
+  "advantages": [
+    "Generates exponentially many structurally distinct circuit variants at each noise level",
+    "Enables noise averaging over circuit variants to reduce coherent error bias",
+    "Resists server-side compiler simplification—transpilers cannot easily undo the expansion",
+    "Enables fractional noise scaling factors near λ = 1",
+    "No pulse-level access required"
+  ],
+  "disadvantages": [
+    "More complex to implement than simple folding",
+    "Circuit structure changes significantly at each noise level",
+    "May increase circuit depth substantially for large scale factors",
+    "Requires careful implementation of the insert-swap-decompose-synthesize procedure"
+  ],
+  "use_cases": [
+    "ZNE on cloud quantum computers where server-side optimization cannot be disabled",
+    "Mitigating coherent errors through variant averaging",
+    "Situations requiring fine-grained fractional scale factors",
+    "QAOA and quantum volume circuits (demonstrated in the original paper)"
+  ]
+}

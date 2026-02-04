@@ -426,6 +426,26 @@
     ]
   },
   {
+    "id": "nepec",
+    "name": "Noise-Extended Probabilistic Error Cancellation",
+    "abbreviation": "NEPEC",
+    "aliases": ["noise-scaled PEC", "extended PEC"],
+    "category": "mitigation",
+    "summary": "Combines probabilistic error cancellation (PEC) with zero-noise extrapolation (ZNE) by extending the quasi-probability decomposition to include noise-scaled operations. Standard PEC requires expressing ideal gates as combinations of noisy implementable operations, but this decomposition may not exist or may have prohibitive overhead. NEPEC overcomes this by first scaling noise to higher levels where decompositions are possible, then extrapolating to the zero-noise limit. The framework also enables 'gate extrapolation' — performing PEC without knowing the noise model by extrapolating from multiple noise levels.",
+    "properties": {
+      "Bias": "Zero in principle (unbiased PEC combined with extrapolation)",
+      "Sampling overhead": "Reduced compared to pure PEC; combines quasi-probability sampling with extrapolation",
+      "Noise model required": "Partial or none; can use gate extrapolation to avoid explicit noise characterization",
+      "Applicability": "General-purpose; especially useful when standard PEC decomposition is unavailable or expensive"
+    },
+    "references": ["mari2021nepec"],
+    "related": [
+      {"id": "pec", "reason": "NEPEC extends PEC by incorporating noise scaling"},
+      {"id": "zne", "reason": "NEPEC uses extrapolation to the zero-noise limit"},
+      {"id": "pea", "reason": "both combine noise scaling with other QEM techniques"}
+    ]
+  },
+  {
     "id": "noise-aware-compilation",
     "name": "Noise-Aware Compilation",
     "abbreviation": "NAC",

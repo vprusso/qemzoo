@@ -1,8 +1,10 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const params = new URLSearchParams(window.location.search);
   const id = params.get("id");
+  const type = params.get("type"); // "noise-scaling" or null (default = protocol)
   const content = document.getElementById("detail-content");
   const breadcrumbName = document.getElementById("breadcrumb-name");
+  const breadcrumb = document.getElementById("breadcrumb");
 
   if (!id) {
     content.innerHTML = '<p class="error-msg">No technique specified. Return to the <a href="index.html">catalog</a>.</p>';
@@ -10,6 +12,13 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   const cacheBust = `?v=${Date.now()}`;
+
+  // Handle noise-scaling methods
+  if (type === "noise-scaling") {
+    await renderNoiseScalingDetail(id, content, breadcrumbName, breadcrumb, cacheBust);
+    return;
+  }
+
   try {
     const techniques = await fetch(`data/techniques.json${cacheBust}`).then((r) => r.json());
 
@@ -241,5 +250,136 @@ function renderMiniTradeoff(tradeoffs, techniques, currentId) {
       .attr("font-weight", isCurrent ? "bold" : "normal")
       .attr("fill", isCurrent ? "#222" : "#999")
       .text(label);
+  }
+}
+
+// Render noise-scaling method detail page
+async function renderNoiseScalingDetail(id, content, breadcrumbName, breadcrumb, cacheBust) {
+  try {
+    // Update breadcrumb to link to techniques page
+    breadcrumb.innerHTML = '<a href="techniques.html">Techniques</a> &rsaquo; <span id="breadcrumb-name">Loading...</span>';
+    const breadcrumbNameEl = document.getElementById("breadcrumb-name");
+
+    const [methods, references, detail] = await Promise.all([
+      fetch(`data/noise-scaling.json${cacheBust}`).then((r) => r.json()),
+      fetch(`data/references.json${cacheBust}`).then((r) => r.json()),
+      fetch(`data/noise-scaling/${id}.json${cacheBust}`).then((r) => {
+        if (!r.ok) throw new Error("Detail file not found");
+        return r.json();
+      }),
+    ]);
+
+    const method = methods.find((m) => m.id === id);
+    if (!method) {
+      content.innerHTML = '<p class="error-msg">Method not found. Return to the <a href="techniques.html">techniques</a> page.</p>';
+      return;
+    }
+
+    // Update page title and breadcrumb.
+    document.title = `${method.name} — QEM Zoo`;
+    breadcrumbNameEl.textContent = method.name;
+
+    // Build citation map for references used by this method.
+    const citationMap = {};
+    method.references.forEach((key, i) => {
+      citationMap[key] = i + 1;
+    });
+
+    let html = "";
+
+    // Title.
+    html += `<h2 class="detail-title">${method.name} <span class="badge badge-technique">Technique</span></h2>`;
+
+    if (method.aliases && method.aliases.length) {
+      html += `<div class="aka">Also known as: ${method.aliases.join(", ")}</div>`;
+    }
+
+    // Summary.
+    html += `<section class="detail-section"><h3>Overview</h3><p>${method.summary}</p></section>`;
+
+    // Extended description.
+    if (detail.description && detail.description.length) {
+      html += `<section class="detail-section"><h3>Description</h3>`;
+      for (const para of detail.description) {
+        html += `<p>${para}</p>`;
+      }
+      html += `</section>`;
+    }
+
+    // How it works.
+    if (detail.how_it_works && detail.how_it_works.length) {
+      html += `<section class="detail-section"><h3>How It Works</h3><ol class="steps-list">`;
+      for (const step of detail.how_it_works) {
+        html += `<li>${step}</li>`;
+      }
+      html += `</ol></section>`;
+    }
+
+    // Key equations.
+    if (detail.key_equations && detail.key_equations.length) {
+      html += `<section class="detail-section"><h3>Key Equations</h3>`;
+      for (const eq of detail.key_equations) {
+        html += `<div class="equation-block">`;
+        html += `<div class="equation-label">${eq.label}</div>`;
+        html += `<div class="equation-math">\\[${eq.latex}\\]</div>`;
+        html += `</div>`;
+      }
+      html += `</section>`;
+    }
+
+    // Properties table.
+    if (method.properties) {
+      const propRows = Object.entries(method.properties)
+        .map(([k, v]) => `<tr><th>${k}</th><td>${v}</td></tr>`)
+        .join("");
+      html += `<section class="detail-section"><h3>Properties</h3><table class="properties-table">${propRows}</table></section>`;
+    }
+
+    // Advantages / Disadvantages.
+    if ((detail.advantages && detail.advantages.length) || (detail.disadvantages && detail.disadvantages.length)) {
+      html += `<section class="detail-section"><h3>Trade-offs</h3><div class="pros-cons">`;
+      if (detail.advantages && detail.advantages.length) {
+        html += `<div class="pros"><h4>Advantages</h4><ul>`;
+        for (const a of detail.advantages) html += `<li>${a}</li>`;
+        html += `</ul></div>`;
+      }
+      if (detail.disadvantages && detail.disadvantages.length) {
+        html += `<div class="cons"><h4>Disadvantages</h4><ul>`;
+        for (const d of detail.disadvantages) html += `<li>${d}</li>`;
+        html += `</ul></div>`;
+      }
+      html += `</div></section>`;
+    }
+
+    // Use cases.
+    if (detail.use_cases && detail.use_cases.length) {
+      html += `<section class="detail-section"><h3>Use Cases</h3><ul>`;
+      for (const u of detail.use_cases) html += `<li>${u}</li>`;
+      html += `</ul></section>`;
+    }
+
+    // References.
+    if (method.references && method.references.length) {
+      html += `<section class="detail-section"><h3>References</h3><ol class="detail-refs">`;
+      for (const key of method.references) {
+        const ref = references[key];
+        if (!ref) continue;
+        const arxivLink = ref.arxiv
+          ? ` <a href="https://arxiv.org/abs/${ref.arxiv}">arXiv:${ref.arxiv}</a>`
+          : "";
+        const journal = ref.journal ? `, <i>${ref.journal}</i>` : "";
+        html += `<li>${ref.authors}, "${ref.title}"${journal} (${ref.year}).${arxivLink}</li>`;
+      }
+      html += `</ol></section>`;
+    }
+
+    content.innerHTML = html;
+
+    // Typeset MathJax.
+    if (window.MathJax && window.MathJax.typesetPromise) {
+      window.MathJax.typesetPromise();
+    }
+  } catch (e) {
+    content.innerHTML = `<p class="error-msg">Error loading technique: ${e.message}. Return to the <a href="techniques.html">techniques</a> page.</p>`;
   }
 }

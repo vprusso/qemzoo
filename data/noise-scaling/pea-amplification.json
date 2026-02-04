@@ -1,0 +1,44 @@
+{
+  "description": [
+    "Probabilistic Error Amplification (PEA) is a noise scaling technique that amplifies errors by learning the actual noise model of the device and then probabilistically injecting additional Pauli errors in proportion to the learned rates.",
+    "Unlike folding or pulse stretching, PEA uses a data-driven approach: it first characterizes the noise via sparse Pauli-Lindblad tomography, then uses this noise model to inject errors that accurately amplify the existing noise profile.",
+    "This technique was a key component in IBM's demonstration of utility-scale quantum computation, enabling accurate ZNE on circuits with over 100 qubits and thousands of gates."
+  ],
+  "how_it_works": [
+    "Perform sparse Pauli-Lindblad noise learning on the device to characterize per-layer noise channels.",
+    "The noise learning involves: (1) Pauli twirling of two-qubit gate layers, (2) repeating identity pairs of layers to characterize noise, (3) deriving fidelity values for each noise channel.",
+    "To amplify noise by factor λ, inject additional Pauli errors sampled from the learned noise model.",
+    "Execute circuits at multiple noise levels (λ = 1.0, 1.3, 1.6, etc.) and extrapolate to λ = 0.",
+    "The learned noise model ensures amplification matches the actual hardware noise profile."
+  ],
+  "key_equations": [
+    {
+      "label": "Expectation value scaling",
+      "latex": "\\langle A(\\lambda) \\rangle = \\langle A(0) \\rangle + \\sum_k a_k \\lambda^k + R"
+    },
+    {
+      "label": "Noise amplification",
+      "latex": "\\text{Inject Pauli errors with rates proportional to } (\\lambda - 1) \\times \\text{learned rates}"
+    }
+  ],
+  "advantages": [
+    "Accurate noise amplification using the actual learned noise model",
+    "Continuous scale factors",
+    "No pulse-level access required",
+    "Targets the specific error processes present on the hardware",
+    "Avoids exponential sampling overhead of PEC",
+    "Demonstrated effectiveness on utility-scale circuits (127+ qubits)"
+  ],
+  "disadvantages": [
+    "Requires upfront noise characterization (sparse Pauli-Lindblad learning)",
+    "Noise model may drift over time, requiring periodic recalibration",
+    "Assumes noise is well-described by sparse Pauli-Lindblad model",
+    "More complex implementation than folding-based methods"
+  ],
+  "use_cases": [
+    "Large-scale ZNE on 100+ qubit devices",
+    "Circuits where folding-based scaling is inaccurate",
+    "Applications requiring high-precision error mitigation",
+    "IBM Quantum hardware with Pauli-Lindblad noise learning support"
+  ]
+}

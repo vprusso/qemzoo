@@ -1,0 +1,56 @@
+{
+  "description": [
+    "Noise-Extended Probabilistic Error Cancellation (NEPEC) is a general framework that combines and generalizes probabilistic error cancellation (PEC) and zero-noise extrapolation (ZNE). The key insight is that the quasi-probability decomposition required for PEC may not exist at the hardware's native noise level, but can exist at higher (scaled) noise levels.",
+    "Standard PEC expresses ideal gates as linear combinations of noisy implementable operations. However, finding such a decomposition requires detailed knowledge of the noise model and may be impossible or have prohibitive overhead for certain noise channels. NEPEC overcomes these limitations by first scaling noise to levels where decomposition is possible.",
+    "A particularly powerful variant is 'gate extrapolation,' which performs error cancellation without any explicit noise model. By measuring the effect of quasi-probability correction at multiple scaled noise levels and extrapolating, the zero-noise result can be estimated even when the native noise channel is unknown."
+  ],
+  "how_it_works": [
+    "Identify the target gate or circuit to be corrected.",
+    "If the quasi-probability decomposition exists at the native noise level, standard PEC can be applied.",
+    "If not, scale the noise to a higher level λ > 1 where decomposition becomes possible.",
+    "Apply PEC at the scaled noise level to obtain a partially corrected expectation value.",
+    "Repeat at multiple noise levels λ₁, λ₂, λ₃, ...",
+    "Extrapolate the results to the zero-noise limit (λ → 0) using polynomial or exponential fitting.",
+    "For gate extrapolation: use noise scaling without explicit noise characterization, relying on extrapolation to remove residual bias."
+  ],
+  "key_equations": [
+    {
+      "label": "Standard PEC decomposition",
+      "latex": "\\mathcal{G}_{\\text{ideal}} = \\sum_i \\eta_i \\mathcal{O}_i, \\quad \\text{where } \\mathcal{O}_i \\text{ are noisy implementable operations}"
+    },
+    {
+      "label": "Quasi-probability normalization",
+      "latex": "\\gamma = \\sum_i |\\eta_i| \\geq 1"
+    },
+    {
+      "label": "Noise-scaled decomposition",
+      "latex": "\\mathcal{G}_{\\text{ideal}} = \\sum_i \\eta_i(\\lambda) \\mathcal{O}_i(\\lambda), \\quad \\text{where } \\lambda \\text{ is the noise scale factor}"
+    },
+    {
+      "label": "Gate extrapolation",
+      "latex": "\\langle O \\rangle_{\\text{ideal}} = \\lim_{\\lambda \\to 0} \\langle O \\rangle_{\\text{PEC}}(\\lambda)"
+    }
+  ],
+  "bias_variance": {
+    "notes": "NEPEC reduces the sampling overhead of PEC by allowing operation at higher noise levels where the quasi-probability norm γ is smaller. The extrapolation step adds variance but enables operation without a complete noise model."
+  },
+  "advantages": [
+    "Enables PEC when standard decomposition is unavailable at native noise levels",
+    "Gate extrapolation eliminates the need for explicit noise characterization",
+    "Reduced sampling overhead compared to pure PEC in many scenarios",
+    "Flexibly interpolates between PEC (λ → 1) and ZNE (no quasi-probability correction)",
+    "Can estimate expectation values at 'virtual' noise levels below hardware noise"
+  ],
+  "disadvantages": [
+    "Combines variance from both quasi-probability sampling and extrapolation",
+    "Requires ability to controllably scale noise",
+    "Extrapolation accuracy depends on the functional form of noise dependence",
+    "More complex implementation than either PEC or ZNE alone"
+  ],
+  "use_cases": [
+    "Error mitigation when the hardware noise model is partially or fully unknown",
+    "Circuits where standard PEC decomposition has prohibitive overhead",
+    "Estimating observables at virtual noise levels below hardware capabilities",
+    "Research into the interplay between noise cancellation and extrapolation"
+  ]
+}

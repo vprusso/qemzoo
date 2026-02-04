@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QEM Zoo - Techniques</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+      startup: { typeset: false }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+
+<header>
+  <h1><a href="index.html">The QEM Zoo</a></h1>
+  <p class="subtitle">Supporting techniques used within QEM protocols</p>
+</header>
+
+<nav class="site-nav">
+  <a href="index.html">Protocols</a>
+  <a href="techniques.html" class="active">Techniques</a>
+  <a href="visualize.html">Visualize</a>
+</nav>
+
+<section class="techniques-intro">
+  <p>
+    This page catalogs supporting techniques that are used as components within larger QEM protocols.
+    Unlike the main <a href="index.html">Protocols</a> catalog, these are not standalone error mitigation methods
+    but rather building blocks — for example, noise scaling methods used within Zero-Noise Extrapolation.
+  </p>
+</section>
+
+<section class="technique-category" id="noise-scaling">
+  <h2>Noise Scaling Methods</h2>
+  <p class="category-description">
+    Techniques for controllably amplifying noise in quantum circuits. These are used within
+    Zero-Noise Extrapolation (ZNE) and related protocols to measure expectation values at
+    multiple noise levels before extrapolating to the zero-noise limit.
+  </p>
+  <div id="noise-scaling-list" class="technique-grid"></div>
+</section>
+
+<section id="references-section" style="display:none">
+  <h2>References</h2>
+  <ol id="references-list"></ol>
+</section>
+
+<footer>
+  <p>
+    The QEM Zoo &mdash; a catalog of quantum error mitigation and suppression techniques.<br>
+    Motivated by Open Problem 1 in
+    <a href="https://arxiv.org/abs/2210.00921">Cai et al., "Quantum Error Mitigation," <i>Rev. Mod. Phys.</i> (2023)</a>.
+  </p>
+  <p class="attribution">Created and maintained by Vincent Russo</p>
+</footer>
+
+<script src="techniques-page.js"></script>
+</body>
+</html>

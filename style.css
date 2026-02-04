@@ -233,6 +233,11 @@ h2.letter-heading {
   color: var(--suppression);
 }
 
+.badge-technique {
+  background: #e8f8f0;
+  color: #3a7a5a;
+}
+
 
 
 .technique .aka {

@@ -27,17 +27,17 @@
     "year": 2018,
     "arxiv": "1801.03897"
   },
-  "pelofske2024": {
-    "authors": "E. Pelofske, V. Russo",
+  "mori2024": {
+    "authors": "Y. Mori, H. Hakoshima, K. Sudo, T. Mori, K. Mitarai, K. Fujii",
     "title": "Quantum Circuit Unoptimization",
     "journal": "Physical Review Research",
     "year": 2024,
     "arxiv": "2311.03805"
   },
   "pelofske2025": {
-    "authors": "E. Pelofske, V. Russo",
+    "authors": "E. Pelofske",
     "title": "Digital Zero-Noise Extrapolation with Quantum Circuit Unoptimization",
-    "journal": "IEEE QCE",
+    "journal": "arXiv preprint",
     "year": 2025,
     "arxiv": "2503.06341"
   },
@@ -291,5 +291,12 @@
     "journal": "Reviews of Modern Physics",
     "year": 2023,
     "arxiv": "2210.00921"
+  },
+  "mari2021nepec": {
+    "authors": "A. Mari, N. Shammah, W. J. Zeng",
+    "title": "Extending Quantum Probabilistic Error Cancellation by Noise Scaling",
+    "journal": "Physical Review A",
+    "year": 2021,
+    "arxiv": "2108.02237"
   }
 }

@@ -1,7 +1,7 @@
 {
   "description": "Composability matrix for QEM/QES techniques. Each entry indicates whether two techniques can be composed, and in what order. 'inner' means the row technique is applied first (closer to the circuit), 'outer' means the column technique wraps around it.",
-  "techniques": ["DD", "PT", "SV", "REM", "ZNE", "LRE", "PEC", "CDR", "VD", "QSE", "N-Rep", "TBV", "QED", "TREX", "PEA", "NOX", "EV", "TEM", "RSE", "CAS", "DSP", "ODR", "NAC"],
-  "ids": ["dd", "pauli-twirling", "symmetry-verification", "measurement-error-mitigation", "zne", "lre", "pec", "cdr", "purification", "subspace-expansion", "n-representability", "accreditation", "qed", "trex", "pea", "nox", "echo-verification", "tem", "robust-shadows", "crosstalk-mitigation", "dual-state-purification", "odr", "noise-aware-compilation"],
+  "techniques": ["DD", "PT", "SV", "REM", "ZNE", "LRE", "PEC", "CDR", "VD", "QSE", "N-Rep", "TBV", "QED", "TREX", "PEA", "NOX", "EV", "TEM", "RSE", "CAS", "DSP", "ODR", "NAC", "NEPEC"],
+  "ids": ["dd", "pauli-twirling", "symmetry-verification", "measurement-error-mitigation", "zne", "lre", "pec", "cdr", "purification", "subspace-expansion", "n-representability", "accreditation", "qed", "trex", "pea", "nox", "echo-verification", "tem", "robust-shadows", "crosstalk-mitigation", "dual-state-purification", "odr", "noise-aware-compilation", "nepec"],
   "matrix": [
     {"from": "dd",   "to": "zne",  "compatible": true,  "order": "DD then ZNE",  "notes": "DD suppresses idle noise, ZNE extrapolates residual gate noise. Well-studied combination."},
     {"from": "dd",   "to": "pec",  "compatible": true,  "order": "DD then PEC",  "notes": "DD reduces baseline noise, lowering PEC overhead."},
@@ -58,6 +58,10 @@
     {"from": "dual-state-purification", "to": "trex", "compatible": true, "order": "DSP then TREX", "notes": "DSP purifies state; TREX corrects readout independently."},
     {"from": "odr", "to": "measurement-error-mitigation", "compatible": true, "order": "ODR then REM", "notes": "ODR rescales gate-noise bias; REM corrects readout. Independent stages."},
     {"from": "odr", "to": "trex", "compatible": true, "order": "ODR then TREX", "notes": "ODR rescales gate-noise bias; TREX corrects readout independently."},
-    {"from": "odr", "to": "dd", "compatible": true, "order": "DD then ODR", "notes": "DD suppresses idle noise; ODR rescales residual noise on observables."}
+    {"from": "odr", "to": "dd", "compatible": true, "order": "DD then ODR", "notes": "DD suppresses idle noise; ODR rescales residual noise on observables."},
+    {"from": "nepec", "to": "measurement-error-mitigation", "compatible": true, "order": "NEPEC then REM", "notes": "NEPEC handles gate noise; REM corrects readout. Independent stages."},
+    {"from": "nepec", "to": "trex", "compatible": true, "order": "NEPEC then TREX", "notes": "NEPEC handles gate noise; TREX corrects readout independently."},
+    {"from": "nepec", "to": "pauli-twirling", "compatible": true, "order": "PT then NEPEC", "notes": "PT tailors noise to Pauli channel; NEPEC then performs extended error cancellation."},
+    {"from": "nepec", "to": "dd", "compatible": true, "order": "DD then NEPEC", "notes": "DD suppresses idle noise; NEPEC handles residual gate noise."}
   ]
 }

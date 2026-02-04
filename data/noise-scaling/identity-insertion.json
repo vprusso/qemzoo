@@ -1,0 +1,40 @@
+{
+  "description": [
+    "Identity insertion is a noise scaling technique that amplifies errors by inserting identity operations (or identity-equivalent gate sequences) into the circuit, extending the circuit duration and exposing qubits to more decoherence.",
+    "Unlike unitary folding which applies G → GG†G transformations, identity insertion focuses on passive decoherence by inserting idle time or identity gates between computational operations.",
+    "This method is particularly effective when noise is dominated by idle qubit errors and T1/T2 decoherence rather than gate errors."
+  ],
+  "how_it_works": [
+    "Identify locations in the circuit where identity operations can be inserted (typically between existing gates or layers).",
+    "Insert identity gates or identity layers to extend the circuit duration.",
+    "The scale factor is determined by the ratio of the extended circuit depth to the original depth.",
+    "Execute circuits with varying amounts of identity insertion and extrapolate to the zero-insertion limit."
+  ],
+  "key_equations": [
+    {
+      "label": "Basic transformation",
+      "latex": "G \\mapsto I \\cdot G \\quad \\text{or} \\quad G \\mapsto G \\cdot I"
+    },
+    {
+      "label": "Scale factor (integer)",
+      "latex": "\\lambda = \\frac{\\text{scaled depth}}{\\text{original depth}}"
+    }
+  ],
+  "advantages": [
+    "Simple to implement",
+    "No special hardware requirements",
+    "Effective for noise models dominated by idle qubit decoherence",
+    "Does not require applying inverse gates (which may have different noise profiles)"
+  ],
+  "disadvantages": [
+    "Primarily scales idle/decoherence noise, not gate noise",
+    "Less effective when gate errors dominate over decoherence",
+    "Coarse control over the scale factor",
+    "May not accurately amplify correlated or non-Markovian noise"
+  ],
+  "use_cases": [
+    "ZNE when decoherence (T1, T2) dominates over gate errors",
+    "Circuits with significant idle time between operations",
+    "Situations where gate folding produces non-linear noise scaling"
+  ]
+}

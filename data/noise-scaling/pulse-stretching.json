@@ -1,0 +1,41 @@
+{
+  "description": [
+    "Pulse stretching is a noise scaling technique that amplifies errors by increasing the duration of control pulses while preserving the implemented unitary operation. This approach operates at the pulse level rather than the gate level.",
+    "The method exploits the fact that many noise sources (such as T1 relaxation and T2 dephasing) scale with time. By stretching a pulse to take longer while maintaining its integrated effect, the same logical operation is performed but with more accumulated noise.",
+    "Unlike gate folding, pulse stretching allows for continuous scale factors, providing smoother extrapolation curves for Zero-Noise Extrapolation."
+  ],
+  "how_it_works": [
+    "Access the pulse-level representation of each gate (e.g., via OpenPulse on IBM systems).",
+    "Stretch pulse durations by a factor λ while adjusting amplitudes to preserve the total rotation angle.",
+    "The stretched pulse implements the same unitary but takes λ times longer, accumulating more decoherence.",
+    "Execute circuits with stretched pulses at multiple scale factors λ₁, λ₂, λ₃, ...",
+    "Extrapolate measured expectation values to the zero-noise limit."
+  ],
+  "key_equations": [
+    {
+      "label": "Noise scaling assumption",
+      "latex": "\\epsilon(\\lambda) \\approx \\lambda \\cdot \\epsilon_0 \\quad \\text{(for time-dependent noise)}"
+    },
+    {
+      "label": "Scale factor",
+      "latex": "\\lambda = \\frac{T_{\\text{stretched}}}{T_{\\text{original}}}"
+    }
+  ],
+  "advantages": [
+    "Continuous scale factors allow fine-grained control and smoother extrapolation",
+    "No additional gates added to the circuit",
+    "Circuit depth (in terms of gate count) remains unchanged",
+    "Natural approach when noise is dominated by time-dependent processes (T1, T2)"
+  ],
+  "disadvantages": [
+    "Requires pulse-level access to the quantum hardware (not available on all platforms)",
+    "Assumes noise scales linearly with duration, which may not hold for all error types",
+    "Stretched pulses may require recalibration to maintain fidelity",
+    "Coherent errors and crosstalk may not scale as expected with pulse duration"
+  ],
+  "use_cases": [
+    "ZNE on hardware with pulse-level control (e.g., IBM systems via OpenPulse)",
+    "Situations where continuous scale factors are needed for accurate extrapolation",
+    "Circuits dominated by idling errors or T1/T2 decoherence"
+  ]
+}
