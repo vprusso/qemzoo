@@ -1,0 +1,29 @@
+{
+  "description": [
+    "The erasure channel models the complete loss of a qubit, where the qubit transitions to a detectable non-computational state |e\u27e9. Unlike other noise channels, the location of an erasure error is known (heralded) because the qubit is flagged as lost, making erasure errors significantly easier to correct than general Pauli errors.",
+    "Erasure is the dominant error mechanism in photonic quantum computing (photon loss) and is increasingly relevant in neutral atom arrays where atoms can be lost from optical traps. Recent work has shown that certain superconducting qubit architectures can be engineered to convert leakage into detectable erasure, dramatically improving error correction thresholds.",
+    "The erasure threshold for quantum error correction is approximately 50% per qubit, compared to roughly 11% for depolarizing noise, making erasure-dominated systems attractive for fault-tolerant quantum computing."
+  ],
+  "quantum_channel": {
+    "kraus_form": "\\mathcal{E}(\\rho) = (1-p)\\rho + p |e\\rangle\\langle e|",
+    "kraus_operators": "K_0 = \\sqrt{1-p}\\,I, \\quad K_1 = \\sqrt{p}\\,|e\\rangle\\langle 0|, \\quad K_2 = \\sqrt{p}\\,|e\\rangle\\langle 1|"
+  },
+  "properties": {
+    "Type": "Non-Pauli (leaves computational subspace)",
+    "Parameters": "p \u2208 [0, 1] = erasure probability",
+    "Heralded": "Yes \u2014 erasure location is detectable",
+    "QEC threshold": "~50% per qubit (much higher than depolarizing ~11%)"
+  },
+  "physical_examples": [
+    "Photon loss in linear optical quantum computing",
+    "Atom loss from optical traps in neutral atom arrays",
+    "Engineered erasure qubits in superconducting systems (dual-rail transmons)",
+    "Fiber transmission loss in quantum communication"
+  ],
+  "qem_considerations": [
+    "Post-selection on non-erased qubits is the simplest mitigation strategy",
+    "QED codes can efficiently detect and discard erased qubits",
+    "Symmetry verification can flag missing qubits via conserved quantity violations",
+    "Erasure is easier to handle than general noise: known location reduces overhead for both QEM and QEC"
+  ]
+}

@@ -1,4 +1,10 @@
 {
+  "diagrams": [
+    {
+      "src": "images/techniques/lre-workflow.png",
+      "caption": "LRE workflow: a circuit is decomposed into layers, noise is scaled independently per layer via folding, and expectation values are linearly combined to extrapolate to the zero-noise limit."
+    }
+  ],
   "description": [
     "Layerwise Richardson Extrapolation (LRE) generalizes zero-noise extrapolation by treating each layer of a quantum circuit as having an independent noise parameter. Instead of scaling all noise uniformly, LRE scales noise at each layer independently and performs a multivariate extrapolation to the zero-noise limit.",
     "This approach is motivated by the observation that different layers may experience different effective noise rates, and a global noise model can be too coarse. By extrapolating in the full \\(d\\)-dimensional noise space (where \\(d\\) is the circuit depth), LRE achieves lower bias than global ZNE at the same extrapolation order.",

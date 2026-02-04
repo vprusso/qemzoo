@@ -90,6 +90,19 @@ document.addEventListener("DOMContentLoaded", async () => {
       html += `</section>`;
     }
 
+    // Diagrams.
+    if (detail.diagrams && detail.diagrams.length) {
+      html += `<section class="detail-section"><h3>Diagram</h3>`;
+      html += `<div class="circuit-diagrams">`;
+      for (const diag of detail.diagrams) {
+        html += `<figure class="circuit-figure">`;
+        html += `<img src="${diag.src}" alt="${diag.caption}" class="circuit-diagram">`;
+        html += `<figcaption>${diag.caption}</figcaption>`;
+        html += `</figure>`;
+      }
+      html += `</div></section>`;
+    }
+
     // How it works.
     if (detail.how_it_works && detail.how_it_works.length) {
       html += `<section class="detail-section"><h3>How It Works</h3><ol class="steps-list">`;

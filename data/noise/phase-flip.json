@@ -1,0 +1,30 @@
+{
+  "description": [
+    "The phase flip channel randomly applies a Pauli Z operation with probability p, flipping the relative phase between |0\u27e9 and |1\u27e9. It is the Hadamard-conjugate of the bit flip channel: a phase flip in the computational basis is equivalent to a bit flip in the Hadamard (X) basis.",
+    "While the populations (diagonal elements) of the density matrix remain unchanged, the off-diagonal coherences are damped by a factor of (1-2p). At p=0.5, all coherence is destroyed and the channel becomes a full Z-dephasing channel.",
+    "The phase flip channel is a Pauli channel and can be exactly corrected by PEC with a known error rate. It is also naturally suppressed by dynamical decoupling sequences that refocus Z-type errors."
+  ],
+  "quantum_channel": {
+    "kraus_form": "\\mathcal{E}(\\rho) = (1-p)\\rho + p Z\\rho Z",
+    "kraus_operators": "K_0 = \\sqrt{1-p}\\,I, \\quad K_1 = \\sqrt{p}\\,Z",
+    "matrix_form": "\\mathcal{E}(\\rho) = \\begin{pmatrix} \\rho_{00} & (1-2p)\\rho_{01} \\\\ (1-2p)\\rho_{10} & \\rho_{11} \\end{pmatrix}"
+  },
+  "properties": {
+    "Type": "Pauli channel (incoherent)",
+    "Parameters": "p \u2208 [0, 0.5] = phase flip probability",
+    "Fixed points": "|0\u27e9 and |1\u27e9 states (Z eigenstates)",
+    "Classical analog": "No direct classical analog (purely quantum effect)"
+  },
+  "physical_examples": [
+    "Fluctuating qubit frequencies causing random Z rotations",
+    "Stray magnetic fields along the quantization axis",
+    "Charge noise in superconducting transmon qubits",
+    "Simplified model for dephasing processes"
+  ],
+  "qem_considerations": [
+    "Dynamical decoupling (spin echo, CPMG) effectively refocuses phase flip errors",
+    "Pauli twirling preserves Z-error structure; can symmetrize into depolarizing noise",
+    "PEC can exactly cancel phase flip noise with a known error rate p",
+    "Detectable by X-basis parity checks in stabilizer codes"
+  ]
+}

@@ -658,7 +658,6 @@ ol.steps-list li {
   color: #555;
   text-align: center;
   font-style: italic;
-  max-width: 350px;
 }
 
 @media (max-width: 600px) {

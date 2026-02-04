@@ -56,7 +56,7 @@ NOISE_TYPES = {
         "name": "Coherent Errors",
         "description": "Rotation to wrong location",
         "effect": "rotate",
-        "params": [0.0, 0.1, 0.2, 0.3]  # rotation angles (in units of pi)
+        "params": [0.0, 0.15, 0.3, 0.5]  # rotation angles (in units of pi)
     }
 }
 
@@ -87,18 +87,21 @@ def apply_noise(points, noise_type, param):
     x, y, z = points
 
     if noise_type == "shrink_uniform":
-        # Depolarizing: uniform shrink toward origin
-        scale = 1 - param
+        # Depolarizing: E(rho) = (1-p)rho + (p/3)(XrhoX + YrhoY + ZrhoZ)
+        # Bloch vector contracts by factor (1 - 4p/3)
+        scale = 1 - 4 * param / 3
         return scale * x, scale * y, scale * z
 
     elif noise_type == "shrink_xy":
-        # Dephasing/phase flip: shrink x,y toward z-axis
-        scale = 1 - param
+        # Dephasing/phase flip: E(rho) = (1-p)rho + p Z rho Z
+        # r_x,r_y contract by (1-2p); r_z preserved
+        scale = 1 - 2 * param
         return scale * x, scale * y, z
 
     elif noise_type == "shrink_yz":
-        # Bit flip: shrink y,z toward x-axis
-        scale = 1 - param
+        # Bit flip: E(rho) = (1-p)rho + p X rho X
+        # r_x preserved; r_y,r_z contract by (1-2p), flipping sign for p > 0.5
+        scale = 1 - 2 * param
         return x, scale * y, scale * z
 
     elif noise_type == "amplitude_damp":
@@ -110,11 +113,19 @@ def apply_noise(points, noise_type, param):
         return new_x, new_y, new_z
 
     elif noise_type == "rotate":
-        # Coherent error: rotation around z-axis
+        # Coherent error: over-rotation around a tilted axis (45° in y-z plane).
+        # Axis u = (0, 1, 1)/sqrt(2) displaces states across latitude bands,
+        # making the rotation clearly visible unlike a pure z-rotation.
+        # Rodrigues' formula: r' = r cos θ + (u×r) sin θ + u(u·r)(1-cos θ)
         theta = param * np.pi
-        new_x = np.cos(theta) * x - np.sin(theta) * y
-        new_y = np.sin(theta) * x + np.cos(theta) * y
-        return new_x, new_y, z
+        ct, st = np.cos(theta), np.sin(theta)
+        s2 = 1 / np.sqrt(2)  # ux=0, uy=s2, uz=s2
+        dot = s2 * y + s2 * z                     # u · r
+        cx, cy, cz = s2*z - s2*y, s2*x, -s2*x    # u × r
+        new_x = ct * x + st * cx
+        new_y = ct * y + st * cy + (1 - ct) * s2 * dot
+        new_z = ct * z + st * cz + (1 - ct) * s2 * dot
+        return new_x, new_y, new_z
 
     return x, y, z
 
