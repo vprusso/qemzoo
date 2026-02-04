@@ -66,7 +66,7 @@
       "Noise model required": "Measurement-only; characterized via \\(2^n\\) calibration circuits (or fewer with tensor product approximation)",
       "Scalability": "Full matrix inversion is \\(O(2^n)\\); tensor product or correlated subsets used in practice"
     },
-    "references": ["maciejewski2020", "bravyi2021"],
+    "references": ["maciejewski2020", "bravyi2021", "nation2021"],
     "related": [
       {"id": "symmetry-verification", "reason": "both can detect/correct measurement-stage errors"}
     ]
@@ -97,7 +97,7 @@
     "abbreviation": "PT",
     "aliases": ["randomized compiling", "Pauli-frame randomization"],
     "category": "suppression",
-    "summary": "Converts coherent (systematic) gate errors into stochastic Pauli noise by randomly conjugating each gate with Pauli operators drawn from the gate's stabilizer group. Over many randomized circuit instances, off-diagonal terms in the error channel average out, leaving a Pauli channel. This tailored noise is easier to analyze and mitigate with downstream techniques such as PEC or ZNE.",
+    "summary": "Converts coherent (systematic) gate errors into stochastic Pauli noise by randomly conjugating each gate with Pauli operators drawn from the Pauli group, choosing pairs that preserve the gate's action up to a tracked phase. Over many randomized circuit instances, off-diagonal terms in the error channel average out, leaving a Pauli channel. This tailored noise is easier to analyze and mitigate with downstream techniques such as PEC or ZNE.",
     "properties": {
       "Bias": "Converts coherent errors to stochastic; does not remove noise on its own",
       "Sampling overhead": "Minimal; requires averaging over random Pauli insertions",
@@ -120,11 +120,11 @@
     "summary": "Decomposes each ideal (noiseless) gate operation into a linear combination of noisy implementable operations with real (possibly negative) quasi-probability coefficients. By randomly sampling from this decomposition and weighting results by the sign of the coefficient, the noise-free expectation value is recovered exactly in the limit of infinite samples.",
     "properties": {
       "Bias": "Zero (unbiased estimator)",
-      "Sampling overhead": "Exponential: scales as \\(e^{2\\gamma}\\) where \\(\\gamma\\) is the total one-norm of the quasi-probability decomposition",
+      "Sampling overhead": "Exponential: scales as \\(\\gamma^2\\) where \\(\\gamma = \\prod_i C_i\\) is the total one-norm of the quasi-probability decomposition",
       "Noise model required": "Full characterization of local gate noise (e.g., via gate set tomography)",
       "Scalability": "Overhead grows exponentially with circuit depth and noise rate"
     },
-    "references": ["temme2017", "li2017"],
+    "references": ["temme2017", "endo2018", "piveteau2022"],
     "related": [
       {"id": "pauli-twirling", "reason": "Pauli twirling simplifies noise model for PEC"},
       {"id": "zne", "reason": "both are foundational QEM techniques"},
@@ -163,7 +163,7 @@
       "Noise model required": "None",
       "Applicability": "Primarily variational algorithms (VQE)"
     },
-    "references": ["mcclean2017", "huggins2019"],
+    "references": ["mcclean2017", "huggins2019", "yoshioka2022"],
     "related": [
       {"id": "n-representability", "reason": "both are post-processing methods for variational algorithms"},
       {"id": "purification", "reason": "both use multiple quantum states to improve estimates"},
@@ -183,7 +183,7 @@
       "Noise model required": "None; requires knowledge of system symmetries",
       "Applicability": "Systems with known conserved quantities (chemistry, condensed matter, lattice gauge theories)"
     },
-    "references": ["mcardle2019", "bonet-monroig2018"],
+    "references": ["mcardle2019", "bonet-monroig2018", "cai2021symmetry"],
     "related": [
       {"id": "n-representability", "reason": "both exploit physical constraints"},
       {"id": "subspace-expansion", "reason": "symmetry constraints can define subspaces"},
@@ -198,12 +198,12 @@
     "category": "mitigation",
     "summary": "Intentionally increases the noise level of a quantum circuit (e.g., by stretching pulses, inserting identity-gate pairs, or rescaling error rates) to collect expectation values at multiple noise levels. These data points are then extrapolated to the hypothetical zero-noise limit using polynomial, exponential, or other fitting models.",
     "properties": {
-      "Bias": "Approximately \\(O(\\lambda^M)\\) where \\(M\\) is the extrapolation order and \\(\\lambda\\) is the noise rate",
+      "Bias": "Approximately \\(O(\\lambda^n)\\) where \\(n\\) is the number of noise levels used for extrapolation and \\(\\lambda\\) is the noise rate",
       "Sampling overhead": "Exponential in number of data points \\(M\\) (for Richardson); moderate for linear extrapolation",
       "Noise model required": "Minimal; only requires ability to scale noise controllably",
       "Scalability": "Demonstrated on up to 127 qubits; widely used in practice"
     },
-    "references": ["temme2017", "li2017", "kim2023"],
+    "references": ["temme2017", "li2017", "endo2018", "kim2023"],
     "related": [
       {"id": "lre", "reason": "LRE is a multivariate generalization of ZNE"},
       {"id": "pec", "reason": "both are foundational QEM techniques"},
@@ -224,7 +224,7 @@
       "Noise model required": "None; model-free certification",
       "Applicability": "General-purpose; most useful when output correctness must be certified"
     },
-    "references": ["ferracin2019", "mezher2020"],
+    "references": ["ferracin2019"],
     "related": [
       {"id": "symmetry-verification", "reason": "both detect errors via post-selection or verification"},
       {"id": "zne", "reason": "accreditation can certify whether ZNE output is trustworthy"}
@@ -292,7 +292,7 @@
     "id": "nox",
     "name": "Noiseless Output eXtrapolation",
     "abbreviation": "NOX",
-    "aliases": ["noisy output extrapolation"],
+    "aliases": ["noise-learned output extrapolation"],
     "category": "mitigation",
     "summary": "Combines efficient noise reconstruction (e.g., cycle benchmarking) with noise amplification and extrapolation to the zero-noise limit. Unlike standard ZNE, which uses heuristic noise-scaling methods, NOX learns a detailed noise model per cycle of gates and uses it to perform accurate, targeted noise amplification. This allows it to handle non-local and gate-dependent noise processes that violate the assumptions of simpler extrapolation methods. The protocol was validated on superconducting processors and has been applied to quantum field theory simulations.",
     "properties": {

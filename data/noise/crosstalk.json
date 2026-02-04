@@ -6,7 +6,7 @@
   ],
   "quantum_channel": {
     "kraus_form": "U_{\\text{crosstalk}} = \\exp(-i \\zeta t \\, Z_i \\otimes Z_j) \\quad \\text{for ZZ coupling}",
-    "effect": "Accumulates phase conditioned on neighbor state: |11⟩ acquires phase 2ζt relative to |00⟩"
+    "effect": "States with different parity acquire a relative phase: |01⟩ and |10⟩ accumulate phase 2ζt relative to |00⟩ and |11⟩"
   },
   "properties": {
     "Type": "Coherent, correlated (multi-qubit)",

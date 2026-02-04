@@ -4,56 +4,64 @@
     "title": "Digital Zero Noise Extrapolation for Quantum Error Mitigation",
     "journal": "IEEE International Conference on Quantum Computing and Engineering (QCE)",
     "year": 2020,
-    "arxiv": "2005.10921"
+    "arxiv": "2005.10921",
+    "doi": "10.1109/QCE49297.2020.00045"
   },
   "he2020": {
     "authors": "A. He, B. Nachman, W. A. de Jong, C. W. Bauer",
     "title": "Zero-Noise Extrapolation for Quantum-Gate Error Mitigation with Identity Insertions",
     "journal": "Physical Review A",
     "year": 2020,
-    "arxiv": "2003.04941"
+    "arxiv": "2003.04941",
+    "doi": "10.1103/PhysRevA.102.012426"
   },
   "kandala2019": {
     "authors": "A. Kandala, K. Temme, A. D. Córcoles, A. Mezzacapo, J. M. Chow, J. M. Gambetta",
     "title": "Error Mitigation Extends the Computational Reach of a Noisy Quantum Processor",
     "journal": "Nature",
     "year": 2019,
-    "arxiv": "1805.04492"
+    "arxiv": "1805.04492",
+    "doi": "10.1038/s41586-019-1040-7"
   },
   "dumitrescu2018": {
     "authors": "E. F. Dumitrescu, A. J. McCaskey, G. Hagen, G. R. Jansen, T. D. Morris, T. Papenbrock, R. C. Pooser, D. J. Dean, P. Lougovski",
     "title": "Cloud Quantum Computing of an Atomic Nucleus",
     "journal": "Physical Review Letters",
     "year": 2018,
-    "arxiv": "1801.03897"
+    "arxiv": "1801.03897",
+    "doi": "10.1103/PhysRevLett.120.210501"
   },
-  "mori2024": {
+  "mori2025": {
     "authors": "Y. Mori, H. Hakoshima, K. Sudo, T. Mori, K. Mitarai, K. Fujii",
     "title": "Quantum Circuit Unoptimization",
     "journal": "Physical Review Research",
-    "year": 2024,
-    "arxiv": "2311.03805"
+    "year": 2025,
+    "arxiv": "2311.03805",
+    "doi": "10.1103/PhysRevResearch.7.023139"
   },
   "pelofske2025": {
     "authors": "E. Pelofske, V. Russo",
     "title": "Digital Zero-Noise Extrapolation with Quantum Circuit Unoptimization",
     "journal": "arXiv preprint",
     "year": 2025,
-    "arxiv": "2503.06341"
+    "arxiv": "2503.06341",
+    "doi": "10.48550/arXiv.2503.06341"
   },
   "temme2017": {
     "authors": "K. Temme, S. Bravyi, J. M. Gambetta",
     "title": "Error Mitigation for Short-Depth Quantum Circuits",
     "journal": "Physical Review Letters",
     "year": 2017,
-    "arxiv": "1612.02058"
+    "arxiv": "1612.02058",
+    "doi": "10.1103/PhysRevLett.119.180509"
   },
   "li2017": {
     "authors": "Y. Li, S. C. Benjamin",
     "title": "Efficient Variational Quantum Simulator Incorporating Active Error Minimisation",
     "journal": "Physical Review X",
     "year": 2017,
-    "arxiv": "1611.09301"
+    "arxiv": "1611.09301",
+    "doi": "10.1103/PhysRevX.7.021050"
   },
   "kim2023": {
     "authors": "Y. Kim, A. Eddins, S. Anand, K. X. Wei, E. van den Berg, S. Rosenblatt, H. Nayfeh, Y. Wu, M. Zaletel, K. Temme, A. Kandala",
@@ -67,278 +75,423 @@
     "title": "Mitigation of Readout Noise in Near-Term Quantum Devices by Classical Post-Processing Based on Detector Tomography",
     "journal": "Quantum",
     "year": 2020,
-    "arxiv": "1907.08518"
+    "arxiv": "1907.08518",
+    "doi": "10.22331/q-2020-04-24-257"
   },
   "bravyi2021": {
-    "authors": "S. Bravyi, S. Sheldon, A. Kandala, D. C. Mckay, J. M. Gambetta",
+    "authors": "S. Bravyi, S. Sheldon, A. Kandala, D. C. McKay, J. M. Gambetta",
     "title": "Mitigating Measurement Errors in Multi-Qubit Experiments",
     "journal": "Physical Review A",
     "year": 2021,
-    "arxiv": "2006.14044"
+    "arxiv": "2006.14044",
+    "doi": "10.1103/PhysRevA.103.042605"
   },
   "rubin2018": {
     "authors": "N. C. Rubin, R. Babbush, J. R. McClean",
     "title": "Application of Fermionic Marginal Constraints to Hybrid Quantum Algorithms",
     "journal": "New Journal of Physics",
     "year": 2018,
-    "arxiv": "1801.03524"
+    "arxiv": "1801.03524",
+    "doi": "10.1088/1367-2630/aab919"
   },
   "mcclean2017": {
-    "authors": "J. R. McClean, M. E. Schwartz, J. Carter, W. A. de Jong",
+    "authors": "J. R. McClean, M. E. Kimchi-Schwartz, J. Carter, W. A. de Jong",
     "title": "Hybrid Quantum-Classical Hierarchy for Mitigation of Decoherence and Determination of Excited States",
     "journal": "Physical Review A",
     "year": 2017,
-    "arxiv": "1603.05681"
+    "arxiv": "1603.05681",
+    "doi": "10.1103/PhysRevA.95.042308"
   },
   "huggins2021": {
     "authors": "W. J. Huggins, S. McArdle, T. E. O'Brien, J. Lee, N. C. Rubin, S. Boixo, K. B. Whaley, R. Babbush, J. R. McClean",
     "title": "Virtual Distillation for Quantum Error Mitigation",
     "journal": "Physical Review X",
     "year": 2021,
-    "arxiv": "2011.07064"
+    "arxiv": "2011.07064",
+    "doi": "10.1103/PhysRevX.11.041036"
   },
   "koczor2021": {
     "authors": "B. Koczor",
     "title": "Exponential Error Suppression for Near-Term Quantum Devices",
     "journal": "Physical Review X",
     "year": 2021,
-    "arxiv": "2011.05942"
+    "arxiv": "2011.05942",
+    "doi": "10.1103/PhysRevX.11.031057"
   },
   "mcardle2019": {
     "authors": "S. McArdle, X. Yuan, S. Benjamin",
     "title": "Error-Mitigated Digital Quantum Simulation",
     "journal": "Physical Review Letters",
     "year": 2019,
-    "arxiv": "1807.02467"
+    "arxiv": "1807.02467",
+    "doi": "10.1103/PhysRevLett.122.180501"
   },
   "bonet-monroig2018": {
     "authors": "X. Bonet-Monroig, R. Sagastizabal, M. Singh, T. E. O'Brien",
     "title": "Low-Cost Error Mitigation by Symmetry Verification",
     "journal": "Physical Review A",
     "year": 2018,
-    "arxiv": "1807.10050"
+    "arxiv": "1807.10050",
+    "doi": "10.1103/PhysRevA.98.062339"
   },
   "czarnik2021": {
     "authors": "P. Czarnik, A. Arrasmith, P. J. Coles, L. Cincio",
     "title": "Error Mitigation with Clifford Quantum-Circuit Data",
     "journal": "Quantum",
     "year": 2021,
-    "arxiv": "2005.10189"
+    "arxiv": "2005.10189",
+    "doi": "10.22331/q-2021-11-26-592"
   },
   "strikis2021": {
     "authors": "A. Strikis, D. Qin, Y. Chen, S. C. Benjamin, Y. Li",
     "title": "Learning-Based Quantum Error Mitigation",
     "journal": "PRX Quantum",
     "year": 2021,
-    "arxiv": "2005.07601"
+    "arxiv": "2005.07601",
+    "doi": "10.1103/PRXQuantum.2.040330"
   },
   "huggins2019": {
     "authors": "W. J. Huggins, J. R. McClean, N. C. Rubin, Z. Jiang, N. Wiebe, K. B. Whaley, R. Babbush",
     "title": "Efficient and Noise Resilient Measurements for Quantum Chemistry on Near-Term Quantum Computers",
     "journal": "npj Quantum Information",
     "year": 2021,
-    "arxiv": "1907.13117"
+    "arxiv": "1907.13117",
+    "doi": "10.1038/s41534-020-00341-7"
   },
   "viola1999": {
     "authors": "L. Viola, E. Knill, S. Lloyd",
     "title": "Dynamical Decoupling of Open Quantum Systems",
     "journal": "Physical Review Letters",
     "year": 1999,
-    "arxiv": "quant-ph/9809071"
+    "arxiv": "quant-ph/9809071",
+    "doi": "10.1103/PhysRevLett.82.2417"
   },
   "souza2012": {
     "authors": "A. M. Souza, G. A. Álvarez, D. Suter",
     "title": "Robust Dynamical Decoupling",
     "journal": "Philosophical Transactions of the Royal Society A",
     "year": 2012,
-    "arxiv": "1110.6334"
+    "arxiv": "1110.6334",
+    "doi": "10.1098/rsta.2011.0355"
   },
   "wallman2016": {
     "authors": "J. J. Wallman, J. Emerson",
     "title": "Noise Tailoring for Scalable Quantum Computation via Randomized Compiling",
     "journal": "Physical Review A",
     "year": 2016,
-    "arxiv": "1512.01098"
+    "arxiv": "1512.01098",
+    "doi": "10.1103/PhysRevA.94.052325"
   },
   "ware2021": {
     "authors": "M. Ware, G. Ribeill, D. Ristè, C. A. Ryan, B. Johnson, M. P. da Silva",
     "title": "Experimental Demonstration of Pauli-Frame Randomization on a Superconducting Qubit",
     "journal": "Physical Review A",
     "year": 2021,
-    "arxiv": "1803.01818"
+    "arxiv": "1803.01818",
+    "doi": "10.1103/PhysRevA.103.042604"
   },
   "lowe2021": {
     "authors": "A. Lowe, M. H. Gordon, P. Czarnik, A. Arrasmith, P. J. Coles, L. Cincio",
     "title": "Unified Approach to Data-Driven Quantum Error Mitigation",
     "journal": "Physical Review Research",
     "year": 2021,
-    "arxiv": "2011.01157"
+    "arxiv": "2011.01157",
+    "doi": "10.1103/PhysRevResearch.3.033098"
   },
   "russo2024": {
     "authors": "V. Russo, A. Mari",
     "title": "Quantum Error Mitigation by Layerwise Richardson Extrapolation",
     "journal": "Physical Review A",
     "year": 2024,
-    "arxiv": "2402.04000"
+    "arxiv": "2402.04000",
+    "doi": "10.1103/PhysRevA.110.062420"
   },
   "ferracin2019": {
     "authors": "S. Ferracin, T. Kapourniotis, A. Datta",
     "title": "Accrediting Outputs of Noisy Intermediate-Scale Quantum Computing Devices",
     "journal": "New Journal of Physics",
     "year": 2019,
-    "arxiv": "1811.09709"
-  },
-  "mezher2020": {
-    "authors": "R. Mezher, J. Bowles, S. Ferracin, T. Kapourniotis, A. Leverrier",
-    "title": "Fault-Tolerant Quantum Speedups Under a Single-Instance Hardness Assumption",
-    "year": 2020,
-    "arxiv": "2006.06432"
+    "arxiv": "1811.09709",
+    "doi": "10.1088/1367-2630/ab4fd6"
   },
   "knill2005": {
     "authors": "E. Knill",
     "title": "Quantum Computing with Realistically Noisy Devices",
     "journal": "Nature",
     "year": 2005,
-    "arxiv": "quant-ph/0410199"
+    "arxiv": "quant-ph/0410199",
+    "doi": "10.1038/nature03350"
   },
   "linke2017": {
     "authors": "N. M. Linke, M. Gutierrez, K. A. Landsman, C. Figgatt, S. Debnath, K. R. Brown, C. Monroe",
     "title": "Fault-Tolerant Quantum Error Detection",
     "journal": "Science Advances",
     "year": 2017,
-    "arxiv": "1611.06946"
+    "arxiv": "1611.06946",
+    "doi": "10.1126/sciadv.1701074"
   },
   "vandenberg2022": {
     "authors": "E. van den Berg, Z. K. Minev, K. Temme",
     "title": "Model-Free Readout-Error Mitigation for Quantum Expectation Values",
     "journal": "Physical Review A",
     "year": 2022,
-    "arxiv": "2012.09738"
+    "arxiv": "2012.09738",
+    "doi": "10.1103/PhysRevA.105.032620"
   },
   "vandenberg2023": {
     "authors": "E. van den Berg, Z. K. Minev, A. Kandala, K. Temme",
     "title": "Probabilistic Error Cancellation with Sparse Pauli–Lindblad Models on Noisy Quantum Processors",
     "journal": "Nature Physics",
     "year": 2023,
-    "arxiv": "2201.09866"
+    "arxiv": "2201.09866",
+    "doi": "10.1038/s41567-023-02042-2"
   },
   "cai2021ev": {
     "authors": "Z. Cai",
     "title": "Resource-Efficient Purification-Based Quantum Error Mitigation",
     "journal": "arXiv preprint",
     "year": 2021,
-    "arxiv": "2107.07279"
+    "arxiv": "2107.07279",
+    "doi": "10.48550/arXiv.2107.07279"
   },
   "guo2022": {
     "authors": "Y. Guo, S. Yang",
     "title": "Quantum Error Mitigation via Matrix Product Operators",
     "journal": "PRX Quantum",
     "year": 2022,
-    "arxiv": "2201.00752"
+    "arxiv": "2201.00752",
+    "doi": "10.1103/PRXQuantum.3.040313"
   },
   "filippov2023": {
     "authors": "S. Filippov, M. Leahy, M. A. C. Rossi, G. García-Pérez",
     "title": "Scalable Tensor-Network Error Mitigation for Near-Term Quantum Computing",
     "journal": "arXiv preprint",
     "year": 2023,
-    "arxiv": "2307.11740"
+    "arxiv": "2307.11740",
+    "doi": "10.48550/arXiv.2307.11740"
   },
   "chen2021": {
     "authors": "S. Chen, W. Yu, P. Zeng, S. T. Flammia",
     "title": "Robust Shadow Estimation",
     "journal": "PRX Quantum",
     "year": 2021,
-    "arxiv": "2011.09636"
+    "arxiv": "2011.09636",
+    "doi": "10.1103/PRXQuantum.2.030348"
   },
   "murali2020": {
     "authors": "P. Murali, D. C. McKay, M. Martonosi, A. Javadi-Abhari",
     "title": "Software Mitigation of Crosstalk on Noisy Intermediate-Scale Quantum Computers",
     "journal": "ASPLOS",
     "year": 2020,
-    "arxiv": "2001.02826"
+    "arxiv": "2001.02826",
+    "doi": "10.1145/3373376.3378477"
   },
   "huo2022": {
     "authors": "M. Huo, Y. Li",
     "title": "Dual-State Purification for Practical Quantum Error Mitigation",
     "journal": "Physical Review A",
     "year": 2022,
-    "arxiv": "2105.01239"
+    "arxiv": "2105.01239",
+    "doi": "10.1103/PhysRevA.105.022427"
   },
   "urbanek2021": {
     "authors": "M. Urbanek, B. Nachman, V. R. Pascuzzi, A. He, C. W. Bauer, W. A. de Jong",
     "title": "Mitigating Depolarizing Noise on Quantum Computers with Noise-Estimation Circuits",
     "journal": "Physical Review Letters",
     "year": 2021,
-    "arxiv": "2103.08591"
+    "arxiv": "2103.08591",
+    "doi": "10.1103/PhysRevLett.127.270502"
   },
   "nishio2020": {
     "authors": "S. Nishio, Y. Pan, T. Satoh, H. Amano, R. Van Meter",
     "title": "Extracting Success from IBM's 20-Qubit Machines Using Error-Aware Compilation",
     "journal": "ACM Journal on Emerging Technologies in Computing Systems",
     "year": 2020,
-    "arxiv": "1903.10963"
+    "arxiv": "1903.10963",
+    "doi": "10.1145/3386162"
   },
   "ferracin2022": {
     "authors": "S. Ferracin, A. Hashim, J.-L. Ville, R. Naik, A. Carignan-Dugas, H. Qassim, A. Morvan, D. I. Santiago, I. Siddiqi, J. J. Wallman",
     "title": "Efficiently Improving the Performance of Noisy Quantum Computers",
     "journal": "Quantum",
     "year": 2024,
-    "arxiv": "2201.10672"
+    "arxiv": "2201.10672",
+    "doi": "10.22331/q-2024-01-11-1223"
   },
   "cai2023": {
     "authors": "Z. Cai, R. Babbush, S. C. Benjamin, S. Endo, W. J. Huggins, Y. Li, J. R. McClean, T. E. O'Brien",
     "title": "Quantum Error Mitigation",
     "journal": "Reviews of Modern Physics",
     "year": 2023,
-    "arxiv": "2210.00921"
+    "arxiv": "2210.00921",
+    "doi": "10.1103/RevModPhys.95.045005"
   },
   "mari2021nepec": {
     "authors": "A. Mari, N. Shammah, W. J. Zeng",
     "title": "Extending Quantum Probabilistic Error Cancellation by Noise Scaling",
     "journal": "Physical Review A",
     "year": 2021,
-    "arxiv": "2108.02237"
+    "arxiv": "2108.02237",
+    "doi": "10.1103/PhysRevA.104.052607"
   },
   "pelofske2023": {
     "authors": "E. Pelofske, V. Russo, R. LaRose, A. Mari, D. Strano, A. Bärtschi, S. Eidenbenz, W. J. Zeng",
     "title": "Increasing the Measured Effective Quantum Volume with Zero Noise Extrapolation",
-    "journal": "IEEE International Conference on Quantum Computing and Engineering (QCE)",
-    "year": 2023,
-    "arxiv": "2306.15863"
+    "journal": "ACM Transactions on Quantum Computing",
+    "year": 2024,
+    "arxiv": "2306.15863",
+    "doi": "10.1145/3680286"
   },
   "larose2022qv": {
     "authors": "R. LaRose, A. Mari, V. Russo, D. Strano, W. J. Zeng",
     "title": "Error Mitigation Increases the Effective Quantum Volume of Quantum Computers",
     "journal": "arXiv preprint",
     "year": 2022,
-    "arxiv": "2203.05489"
+    "arxiv": "2203.05489",
+    "doi": "10.48550/arXiv.2203.05489"
   },
   "harrigan2021": {
     "authors": "M. P. Harrigan, K. J. Sung, M. Neeley, et al.",
     "title": "Quantum Approximate Optimization of Non-Planar Graph Problems on a Planar Superconducting Processor",
     "journal": "Nature Physics",
     "year": 2021,
-    "arxiv": "2004.04197"
+    "arxiv": "2004.04197",
+    "doi": "10.1038/s41567-020-01105-y"
   },
   "weidenfeller2022": {
     "authors": "J. Weidenfeller, L. C. Valor, J. Gacon, C. Tornow, L. Bello, S. Woerner, D. J. Egger",
     "title": "Scaling of the Quantum Approximate Optimization Algorithm on Superconducting Qubit Based Hardware",
     "journal": "Quantum",
     "year": 2022,
-    "arxiv": "2202.03459"
+    "arxiv": "2202.03459",
+    "doi": "10.22331/q-2022-12-07-870"
   },
   "sagastizabal2019": {
     "authors": "R. Sagastizabal, X. Bonet-Monroig, M. Singh, M. A. Rol, C. C. Bultink, X. Fu, C. H. Price, V. P. Ostroukh, N. Muthusubramanian, A. Bruno, M. Blok, T. E. O'Brien, L. DiCarlo",
     "title": "Experimental Error Mitigation via Symmetry Verification in a Variational Quantum Eigensolver",
     "journal": "Physical Review A",
     "year": 2019,
-    "arxiv": "1902.11258"
+    "arxiv": "1902.11258",
+    "doi": "10.1103/PhysRevA.100.010302"
   },
   "wang2021qml": {
     "authors": "S. Wang, E. Fontana, M. Cerezo, K. Sharma, A. Sone, L. Cincio, P. J. Coles",
     "title": "Noise-Induced Barren Plateaus in Variational Quantum Algorithms",
     "journal": "Nature Communications",
     "year": 2021,
-    "arxiv": "2007.14384"
+    "arxiv": "2007.14384",
+    "doi": "10.1038/s41467-021-27045-6"
+  },
+  "endo2018": {
+    "authors": "S. Endo, S. C. Benjamin, Y. Li",
+    "title": "Practical Quantum Error Mitigation for Near-Future Applications",
+    "journal": "Physical Review X",
+    "year": 2018,
+    "arxiv": "1712.09271",
+    "doi": "10.1103/PhysRevX.8.031027"
+  },
+  "preskill2018": {
+    "authors": "J. Preskill",
+    "title": "Quantum Computing in the NISQ Era and Beyond",
+    "journal": "Quantum",
+    "year": 2018,
+    "arxiv": "1801.00862",
+    "doi": "10.22331/q-2018-08-06-79"
+  },
+  "takagi2022": {
+    "authors": "R. Takagi, S. Endo, S. Minagawa, M. Gu",
+    "title": "Fundamental Limits of Quantum Error Mitigation",
+    "journal": "npj Quantum Information",
+    "year": 2022,
+    "arxiv": "2109.04457",
+    "doi": "10.1038/s41534-022-00618-z"
+  },
+  "quek2024": {
+    "authors": "Y. Quek, D. S. Franca, S. Khatri, J. J. Meyer, J. Eisert",
+    "title": "Exponentially Tighter Bounds on Limitations of Quantum Error Mitigation",
+    "journal": "Nature Physics",
+    "year": 2024,
+    "arxiv": "2210.11505",
+    "doi": "10.1038/s41567-024-02536-7"
+  },
+  "cai2021symmetry": {
+    "authors": "Z. Cai",
+    "title": "Quantum Error Mitigation Using Symmetry Expansion",
+    "journal": "Quantum",
+    "year": 2021,
+    "arxiv": "2101.03151",
+    "doi": "10.22331/q-2021-09-21-548"
+  },
+  "piveteau2022": {
+    "authors": "C. Piveteau, D. Sutter, S. Woerner",
+    "title": "Quasiprobability Decompositions with Reduced Sampling Overhead",
+    "journal": "npj Quantum Information",
+    "year": 2022,
+    "arxiv": "2101.09290",
+    "doi": "10.1038/s41534-022-00517-3"
+  },
+  "nation2021": {
+    "authors": "P. Nation, H. Kang, N. Sundaresan, J. M. Gambetta",
+    "title": "Scalable Mitigation of Measurement Errors on Quantum Computers",
+    "journal": "PRX Quantum",
+    "year": 2021,
+    "arxiv": "2108.12518",
+    "doi": "10.1103/PRXQuantum.2.040326"
+  },
+  "kim2023scalable": {
+    "authors": "Y. Kim, C. J. Wood, T. J. Yoder, S. T. Merkel, J. M. Gambetta, K. Temme, A. Kandala",
+    "title": "Scalable Error Mitigation for Noisy Quantum Circuits Produces Competitive Expectation Values",
+    "journal": "Nature Physics",
+    "year": 2023,
+    "arxiv": "2108.09197",
+    "doi": "10.1038/s41567-022-01914-3"
+  },
+  "larose2022mitiq": {
+    "authors": "R. LaRose, A. Mari, P. J. Karalekas, N. Shammah, W. J. Zeng",
+    "title": "Mitiq: A Software Package for Error Mitigation on Noisy Quantum Computers",
+    "journal": "Quantum",
+    "year": 2022,
+    "arxiv": "2009.04417",
+    "doi": "10.22331/q-2022-08-11-774"
+  },
+  "yoshioka2022": {
+    "authors": "N. Yoshioka, H. Hakoshima, Y. Matsuzaki, Y. Tokunaga, Y. Suzuki, S. Endo",
+    "title": "Generalized Quantum Subspace Expansion",
+    "journal": "Physical Review Letters",
+    "year": 2022,
+    "arxiv": "2107.02611",
+    "doi": "10.1103/PhysRevLett.129.020502"
+  },
+  "suzuki2022": {
+    "authors": "Y. Suzuki, S. Endo, K. Fujii, Y. Tokunaga",
+    "title": "Quantum Error Mitigation as a Universal Error Reduction Technique: Applications from the NISQ to the Fault-Tolerant Quantum Computing Eras",
+    "journal": "PRX Quantum",
+    "year": 2022,
+    "arxiv": "2010.03887",
+    "doi": "10.1103/PRXQuantum.3.010345"
+  },
+  "bultrini2023": {
+    "authors": "D. Bultrini, M. H. Gordon, P. Czarnik, A. Arrasmith, M. Cerezo, P. J. Coles, L. Cincio",
+    "title": "Unifying and Benchmarking State-of-the-Art Quantum Error Mitigation Techniques",
+    "journal": "Quantum",
+    "year": 2023,
+    "arxiv": "2107.13470",
+    "doi": "10.22331/q-2023-06-06-1034"
+  },
+  "lostaglio2021": {
+    "authors": "M. Lostaglio, A. Ciani",
+    "title": "Error Mitigation and Quantum-Assisted Simulation in the Error Corrected Regime",
+    "journal": "Physical Review Letters",
+    "year": 2021,
+    "arxiv": "2103.07526",
+    "doi": "10.1103/PhysRevLett.127.200506"
+  },
+  "piveteau2021gates": {
+    "authors": "C. Piveteau, D. Sutter, S. Bravyi, J. M. Gambetta, K. Temme",
+    "title": "Error Mitigation for Universal Gates on Encoded Qubits",
+    "journal": "Physical Review Letters",
+    "year": 2021,
+    "arxiv": "2103.04915",
+    "doi": "10.1103/PhysRevLett.127.200505"
   }
 }

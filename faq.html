@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ - The QEM Zoo</title>
+  <meta name="description" content="Frequently asked questions about The QEM Zoo: what it is, how to use it, how to cite it, and how to contribute.">
+  <meta name="keywords" content="quantum error mitigation, QEM, quantum error suppression, QES, FAQ, quantum computing">
+  <meta name="author" content="Vincent Russo">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="canonical" href="https://qemzoo.com/faq.html">
+  <!-- Open Graph -->
+  <meta property="og:title" content="FAQ - The QEM Zoo">
+  <meta property="og:description" content="Frequently asked questions about The QEM Zoo: what it is, how to use it, how to cite it, and how to contribute.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://qemzoo.com/faq.html">
+  <meta property="og:image" content="https://qemzoo.com/favicon.svg">
+  <meta property="og:site_name" content="The QEM Zoo">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="FAQ - The QEM Zoo">
+  <meta name="twitter:description" content="Frequently asked questions about The QEM Zoo: what it is, how to use it, how to cite it, and how to contribute.">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    .faq-section {
+      margin-bottom: 2.5rem;
+    }
+    .faq-section h2 {
+      color: var(--accent);
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .faq-item {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .faq-item h3 {
+      margin-top: 0;
+      color: #333;
+    }
+    .faq-item p:last-child {
+      margin-bottom: 0;
+    }
+    .citation-box {
+      background: #f5f5f5;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1rem;
+      font-family: monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .resource-list {
+      list-style: none;
+      padding: 0;
+    }
+    .resource-list li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .resource-list li:last-child {
+      border-bottom: none;
+    }
+    .contact-email {
+      font-weight: bold;
+      color: var(--accent);
+    }
+    .disclaimer {
+      background: #fff3cd;
+      border: 1px solid #ffc107;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+    }
+    .disclaimer h3 {
+      margin-top: 0;
+      color: #856404;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1><a href="index.html">The QEM Zoo</a></h1>
+  <p class="subtitle">A comprehensive catalog of quantum error mitigation and suppression techniques</p>
+</header>
+
+<nav class="site-nav">
+  <a href="index.html">Protocols</a>
+  <a href="techniques.html">Techniques</a>
+  <a href="noise.html">Noise</a>
+  <a href="applications.html">Applications</a>
+  <a href="visualize.html">Visualize</a>
+</nav>
+
+<main class="faq-container">
+  <h1>Frequently Asked Questions</h1>
+
+  <section class="faq-section">
+    <h2>About The QEM Zoo</h2>
+
+    <div class="faq-item">
+      <h3>What is The QEM Zoo?</h3>
+      <p>
+        The QEM Zoo is a comprehensive, freely accessible catalog of quantum error mitigation (QEM)
+        and quantum error suppression (QES) techniques. It aims to be a living reference for researchers,
+        students, and practitioners working with near-term quantum computers.
+      </p>
+      <p>
+        The site is inspired by similar community resources like the
+        <a href="https://complexityzoo.net/Complexity_Zoo">Complexity Zoo</a> and the
+        <a href="https://errorcorrectionzoo.org/">Error Correction Zoo</a>.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Why does quantum error mitigation matter?</h3>
+      <p>
+        Today's quantum computers are noisy. Gate errors, decoherence, and crosstalk corrupt
+        computations well before they finish, and full fault-tolerant quantum error correction —
+        which can suppress these errors to arbitrarily low levels — requires hardware resources
+        far beyond what current devices offer. This leaves a gap: we have quantum processors
+        that are too noisy to run deep circuits reliably, yet too small to encode logical qubits
+        with error-correcting codes.
+      </p>
+      <p>
+        Quantum error mitigation (QEM) and quantum error suppression (QES) techniques bridge this gap.
+        Rather than correcting errors at the hardware level, they use clever circuit design,
+        classical post-processing, and statistical methods to extract more accurate answers from
+        noisy results. These techniques are what make it possible to do useful work on near-term
+        quantum hardware — and understanding their strengths, limitations, and tradeoffs is essential
+        for anyone working with today's quantum devices.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Why does this exist?</h3>
+      <p>
+        The need for such a resource was identified as an open problem in the comprehensive review
+        <a href="https://arxiv.org/abs/2210.00921">"Quantum Error Mitigation" by Cai et al. (2023)</a>,
+        published in Reviews of Modern Physics. The field of quantum error mitigation has grown rapidly,
+        with dozens of techniques proposed across hundreds of papers. Keeping track of all these methods,
+        their relationships, tradeoffs, and applications has become increasingly difficult.
+      </p>
+      <p>
+        The QEM Zoo aims to fill this gap by providing a structured, searchable, and continuously updated
+        reference that organizes this knowledge in one place.
+      </p>
+    </div>
+  </section>
+
+  <section class="faq-section">
+    <h2>Using The QEM Zoo</h2>
+
+    <div class="faq-item">
+      <h3>How do I navigate the site?</h3>
+      <p>The site is organized into several main sections:</p>
+      <ul>
+        <li><strong><a href="index.html">Protocols</a></strong> - The main catalog of QEM and QES methods (e.g., ZNE, PEC, dynamical decoupling)</li>
+        <li><strong><a href="techniques.html">Techniques</a></strong> - Supporting methods like noise scaling and extrapolation</li>
+        <li><strong><a href="noise.html">Noise</a></strong> - Types of quantum noise and which techniques address them</li>
+        <li><strong><a href="applications.html">Applications</a></strong> - Real-world use cases like VQE, QAOA, and quantum simulation</li>
+        <li><strong><a href="visualize.html">Visualize</a></strong> - Interactive charts showing tradeoffs and technique relationships</li>
+      </ul>
+      <p>
+        Each page has a search bar and category filters. You can also use the A-Z navigation to jump to
+        techniques alphabetically. Click on any technique name to see its detailed page with equations,
+        references, and related methods.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <h3>What do the bias/variance/overhead ratings mean?</h3>
+      <p>
+        On the <a href="visualize.html">Visualize</a> page and in technique details, you'll see metrics for:
+      </p>
+      <ul>
+        <li><strong>Bias</strong> - How much systematic error remains after mitigation (lower is better)</li>
+        <li><strong>Variance</strong> - How much statistical noise is introduced (lower is better)</li>
+        <li><strong>Overhead</strong> - Additional computational cost (circuit executions, classical processing)</li>
+      </ul>
+      <p>
+        These are qualitative assessments meant to help compare techniques. Real-world performance
+        depends heavily on the specific noise model, circuit, and implementation.
+      </p>
+    </div>
+  </section>
+
+  <section class="faq-section">
+    <h2>Additional Resources</h2>
+
+    <div class="faq-item">
+      <h3>Where can I learn more about quantum error mitigation?</h3>
+      <p>Here are some recommended resources:</p>
+      <ul class="resource-list">
+        <li>
+          <strong>Review Paper:</strong>
+          <a href="https://arxiv.org/abs/2210.00921">Quantum Error Mitigation (Cai et al., 2023)</a> -
+          Comprehensive review in Reviews of Modern Physics
+        </li>
+        <li>
+          <strong>Software:</strong>
+          <a href="https://mitiq.readthedocs.io/">Mitiq</a> -
+          Open-source Python library for quantum error mitigation by Unitary Fund
+        </li>
+        <li>
+          <strong>Related Resource:</strong>
+          <a href="https://errorcorrectionzoo.org/">Error Correction Zoo</a> -
+          Catalog of quantum error correcting codes
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="faq-section">
+    <h2>Citing The QEM Zoo</h2>
+
+    <div class="faq-item">
+      <h3>How do I cite this resource?</h3>
+      <p>If you find The QEM Zoo useful in your research, please cite it as:</p>
+      <div class="citation-box">@misc{qemzoo,
+  author = {Russo, Vincent},
+  title = {The {QEM} Zoo: A Catalog of Quantum Error Mitigation and Suppression Techniques},
+  year = {2025},
+  url = {https://qemzoo.com},
+  note = {Accessed: YYYY-MM-DD}
+}</div>
+      <p style="margin-top: 1rem;">Or in plain text:</p>
+      <div class="citation-box">V. Russo, "The QEM Zoo: A Catalog of Quantum Error Mitigation and Suppression Techniques," 2025. [Online]. Available: https://qemzoo.com</div>
+    </div>
+  </section>
+
+  <section class="faq-section">
+    <h2>Contributing & Contact</h2>
+
+    <div class="faq-item">
+      <h3>I found an error or have a suggestion. How do I report it?</h3>
+      <p>
+        I welcome corrections, suggestions, and contributions! If you've found an error,
+        have a technique to add, or want to suggest improvements, please reach out:
+      </p>
+      <p class="contact-email">
+        <a href="mailto:vincentrusso1&#64;gmail&#46;com" id="contact-link">Click to reveal email</a>
+      </p>
+      <script>
+        document.getElementById('contact-link').addEventListener('click', function(e) {
+          e.preventDefault();
+          var u = 'vincentrusso1'; var d = 'gmail.com';
+          var addr = u + '@' + d;
+          this.textContent = addr;
+          this.href = 'mailto:' + addr;
+        });
+      </script>
+      <p>
+        When reporting errors, please include:
+      </p>
+      <ul>
+        <li>The specific page or technique where the error appears</li>
+        <li>What the error is and what the correct information should be</li>
+        <li>A reference (paper, textbook, etc.) supporting the correction, if applicable</li>
+      </ul>
+    </div>
+
+    <div class="faq-item">
+      <h3>Can I contribute a new technique or application?</h3>
+      <p>
+        Yes! If you know of a QEM/QES technique that isn't covered, or if you have detailed
+        information to add to an existing entry, please reach out. Contributions with references
+        to peer-reviewed papers are especially appreciated.
+      </p>
+    </div>
+  </section>
+
+  <div class="disclaimer">
+    <h3>Disclaimer</h3>
+    <p>
+      Just because qubits are noisy doesn't mean the information about them needs to be.
+      The QEM Zoo is maintained by <a href="https://vprusso.github.io/">Vincent Russo</a> as a community resource,
+      and I take full responsibility for any errors or inaccuracies on this site.
+      If you spot something wrong — a misattributed result, a mangled equation, a missing technique —
+      please don't just post-select it away. Reach out using the contact information above so it can be corrected.
+    </p>
+    <p>
+      The information provided here is for educational and research purposes. When using any technique in practice,
+      always consult the original papers cited in each entry.
+    </p>
+  </div>
+
+</main>
+
+<footer>
+  <p class="attribution">Created and maintained by <a href="https://vprusso.github.io/">Vincent Russo</a></p>
+</footer>
+
+</body>
+</html>

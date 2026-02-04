@@ -210,7 +210,7 @@
       "id": "noise-aware-compilation",
       "noise_model": 3,
       "overhead": 5,
-      "bias": 2,
+      "bias": 3,
       "composable": 5,
       "scalability": 5,
       "generality": 5

@@ -5,7 +5,7 @@
     "aliases": ["gate folding", "circuit folding"],
     "summary": "Amplifies noise by inserting identity-equivalent gate pairs \\(G G^\\dagger\\) into the circuit. For a scale factor \\(\\lambda\\), gates are replaced with \\(G (G^\\dagger G)^{(\\lambda-1)/2}\\). Can be applied globally (to the whole circuit) or locally (to individual gates). Simple to implement but requires integer or odd-integer scale factors for exact folding.",
     "properties": {
-      "Scale factors": "Integer or odd-integer multiples (1, 3, 5, ...); fractional via partial folding",
+      "Scale factors": "Odd-integer multiples (1, 3, 5, ...); fractional via partial folding",
       "Hardware requirements": "None beyond standard gate set",
       "Advantages": "Simple, no pulse-level access needed, widely supported",
       "Disadvantages": "Large stretch factors needed for deep circuits; folded gates may have different noise than original"
@@ -49,7 +49,7 @@
       "Advantages": "Exponentially many circuit variants for averaging; resists compiler simplification; fractional scaling",
       "Disadvantages": "More complex to implement; circuit structure changes significantly"
     },
-    "references": ["mori2024", "pelofske2025"]
+    "references": ["mori2025", "pelofske2025"]
   },
   {
     "id": "pea-amplification",

@@ -1,6 +1,6 @@
 {
   "description": [
-    "Probabilistic Error Cancellation (PEC) is the only known quantum error mitigation technique that yields an unbiased estimator of the ideal expectation value. The price for this exactness is an exponential sampling overhead.",
+    "Probabilistic Error Cancellation (PEC) is the canonical quantum error mitigation technique that yields an unbiased estimator of the ideal expectation value for gate errors. The price for this exactness is an exponential sampling overhead.",
     "The key insight is that the ideal (noiseless) operation can be expressed as a linear combination of noisy implementable operations with real-valued (possibly negative) quasi-probability coefficients. By sampling noisy circuits according to the absolute values of these coefficients and weighting results by their signs, the ideal expectation value is recovered in expectation.",
     "PEC was proposed simultaneously with ZNE and requires a detailed noise model, typically obtained via gate set tomography or cycle benchmarking."
   ],
@@ -29,7 +29,7 @@
     "bias": 0.05,
     "variance": 0.9,
     "overhead": 0.9,
-    "notes": "PEC is unbiased in the infinite-sample limit, but the sampling overhead grows exponentially as e^{2γ} where γ is the total one-norm of the quasi-probability decomposition. This makes PEC impractical for deep circuits or high noise rates."
+    "notes": "PEC is unbiased in the infinite-sample limit, but the sampling overhead grows as γ² where γ is the total one-norm of the quasi-probability decomposition. Since γ itself grows exponentially with circuit depth, this makes PEC impractical for deep circuits or high noise rates."
   },
   "advantages": [
     "Unbiased estimator — converges to the exact ideal value",

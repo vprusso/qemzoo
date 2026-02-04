@@ -8,7 +8,7 @@
     "key_results": [
       "First demonstration of increased effective QV over manufacturer benchmarks using ZNE",
       "Achieved on multiple IBM Quantum superconducting processors",
-      "No additional sampling overhead required"
+      "Moderate additional sampling overhead from running circuits at multiple noise levels"
     ],
     "references": ["pelofske2023", "larose2022qv"]
   },

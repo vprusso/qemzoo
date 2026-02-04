@@ -13,7 +13,7 @@
   "demonstrations": [
     {
       "title": "127-Qubit Kicked Ising Model (IBM, 2023)",
-      "description": "Simulated dynamics of a 2D kicked Ising model on 127 qubits with 60 layers of two-qubit gates (2800+ CNOT gates). Error-mitigated results matched tensor network simulations where tractable and extended beyond classical reach.",
+      "description": "Simulated dynamics of a kicked Ising model on a 127-qubit heavy-hex lattice with 60 layers of two-qubit gates (2800+ CNOT gates). Error-mitigated results matched tensor network simulations where tractable and extended beyond classical reach.",
       "hardware": "IBM Eagle (127 qubits)",
       "qubits": "127 qubits",
       "techniques": "Pauli twirling, PEA-based ZNE, TREX"

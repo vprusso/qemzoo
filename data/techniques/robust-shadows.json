@@ -14,7 +14,7 @@
   "key_equations": [
     {
       "label": "Standard shadow channel",
-      "latex": "\\mathcal{M}(\\rho) = \\mathbb{E}_{U}[U^\\dagger |b\\rangle\\langle b| U]"
+      "latex": "\\mathcal{M}(\\rho) = \\mathbb{E}_{U}\\left[\\sum_{b} \\langle b|U\\rho U^\\dagger|b\\rangle \\, U^\\dagger |b\\rangle\\langle b| U\\right]"
     },
     {
       "label": "Robust shadow estimator",

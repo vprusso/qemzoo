@@ -35,7 +35,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     const techniques = await fetch(`data/techniques.json${cacheBust}`).then((r) => r.json());
 
     // Resolve aliases: if the id doesn't match directly, search abbreviations and aliases.
-    let resolvedId = id;
     let tech = techniques.find((t) => t.id === id);
     if (!tech) {
       const query = id.toLowerCase().replace(/[-_]/g, " ");
@@ -66,12 +65,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     const displayName = tech.abbreviation ? `${tech.name} (${tech.abbreviation})` : tech.name;
     document.title = `${displayName} — QEM Zoo`;
     breadcrumbName.textContent = displayName;
-
-    // Build citation map for references used by this technique.
-    const citationMap = {};
-    tech.references.forEach((key, i) => {
-      citationMap[key] = i + 1;
-    });
 
     let html = "";
 
@@ -291,12 +284,6 @@ async function renderNoiseScalingDetail(id, content, breadcrumbName, breadcrumb,
     document.title = `${method.name} — QEM Zoo`;
     breadcrumbNameEl.textContent = method.name;
 
-    // Build citation map for references used by this method.
-    const citationMap = {};
-    method.references.forEach((key, i) => {
-      citationMap[key] = i + 1;
-    });
-
     let html = "";
 
     // Title.
@@ -435,12 +422,6 @@ async function renderNoiseDetail(id, content, breadcrumbName, breadcrumb, cacheB
     // Update page title and breadcrumb.
     document.title = `${noise.name} — QEM Zoo`;
     breadcrumbNameEl.textContent = noise.name;
-
-    // Build citation map
-    const citationMap = {};
-    (noise.references || []).forEach((key, i) => {
-      citationMap[key] = i + 1;
-    });
 
     let html = "";
 
@@ -606,12 +587,6 @@ async function renderExtrapolationDetail(id, content, breadcrumbName, breadcrumb
     // Update page title and breadcrumb.
     document.title = `${method.name} — QEM Zoo`;
     breadcrumbNameEl.textContent = method.name;
-
-    // Build citation map for references used by this method.
-    const citationMap = {};
-    (method.references || []).forEach((key, i) => {
-      citationMap[key] = i + 1;
-    });
 
     let html = "";
 

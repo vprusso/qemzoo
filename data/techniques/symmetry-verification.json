@@ -2,7 +2,7 @@
   "description": [
     "Symmetry Verification (SV) exploits known symmetries of the target quantum system to detect and discard erroneous measurement outcomes. If the ideal output state lies in a known symmetry sector (e.g., a specific particle number, spin, or parity), any measurement result violating this symmetry must be due to noise.",
     "The simplest approach is post-selection: discard all measurement outcomes that violate the symmetry. A more sophisticated approach projects expectation values onto the symmetric subspace without discarding data, which can be more sample-efficient.",
-    "SV is a suppression technique — it reduces the effective noise rate but does not fully eliminate it, as errors that preserve the symmetry go undetected. It is especially powerful in quantum chemistry and condensed matter physics where many symmetries are known."
+    "SV is a mitigation technique — it reduces the effective noise rate but does not fully eliminate it, as errors that preserve the symmetry go undetected. It is especially powerful in quantum chemistry and condensed matter physics where many symmetries are known."
   ],
   "how_it_works": [
     "Identify symmetries of the target Hamiltonian. For example, particle number conservation means \\([H, N] = 0\\), and the ideal state has a definite particle number \\(N_0\\).",
@@ -13,7 +13,7 @@
   "key_equations": [
     {
       "label": "Symmetry-projected estimator",
-      "latex": "\\langle O \\rangle_{\\text{SV}} = \\frac{\\operatorname{tr}[\\Pi_S O \\rho \\Pi_S]}{\\operatorname{tr}[\\Pi_S \\rho]}"
+      "latex": "\\langle O \\rangle_{\\text{SV}} = \\frac{\\operatorname{tr}[O \\, \\Pi_S \\rho \\Pi_S]}{\\operatorname{tr}[\\Pi_S \\rho \\Pi_S]}"
     },
     {
       "label": "Post-selection pass rate",
