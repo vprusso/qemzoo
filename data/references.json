@@ -493,5 +493,21 @@
     "year": 2021,
     "arxiv": "2103.04915",
     "doi": "10.1103/PhysRevLett.127.200505"
+  },
+  "saxena2024": {
+    "authors": "G. Saxena, T. H. Kyaw",
+    "title": "Error Mitigation by Restricted Evolution",
+    "journal": "arXiv preprint",
+    "year": 2024,
+    "arxiv": "2409.06636",
+    "doi": "10.48550/arXiv.2409.06636"
+  },
+  "diezvalle2025": {
+    "authors": "P. Diez-Valle, G. Saxena, J. S. Baker, J.-H. Lee, T. H. Kyaw",
+    "title": "Physics-Inspired Extrapolation for Efficient Error Mitigation and Hardware Certification",
+    "journal": "arXiv preprint",
+    "year": 2025,
+    "arxiv": "2505.07977",
+    "doi": "10.48550/arXiv.2505.07977"
   }
 }

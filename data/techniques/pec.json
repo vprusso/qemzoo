@@ -13,15 +13,15 @@
   ],
   "key_equations": [
     {
-      "label": "Quasi-probability decomposition",
+      "label": "Quasi-probability decomposition (G_i = ideal gate, η = quasi-probability coefficients, O = implementable operations)",
       "latex": "\\mathcal{G}_i = \\sum_{\\alpha} \\eta_{i,\\alpha} \\, \\mathcal{O}_{i,\\alpha}, \\quad \\eta_{i,\\alpha} \\in \\mathbb{R}"
     },
     {
-      "label": "One-norm (sampling overhead)",
+      "label": "One-norm (γ = total sampling overhead, C_i = per-gate one-norm, L = number of gates)",
       "latex": "\\gamma = \\prod_{i=1}^{L} C_i = \\prod_{i=1}^{L} \\sum_\\alpha |\\eta_{i,\\alpha}|"
     },
     {
-      "label": "Sampling overhead scaling",
+      "label": "Sampling overhead scaling (ε̄ = average error rate per gate)",
       "latex": "N_{\\text{samples}} \\propto \\gamma^2 = e^{2 \\sum_i \\ln C_i} \\approx e^{2 L \\bar{\\epsilon}}"
     }
   ],

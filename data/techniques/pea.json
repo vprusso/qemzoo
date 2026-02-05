@@ -13,11 +13,11 @@
   ],
   "key_equations": [
     {
-      "label": "Noise amplification",
+      "label": "Noise amplification (c = amplification factor, N = learned noise channel, N_extra = injected additional noise)",
       "latex": "\\mathcal{E}_{c} = \\mathcal{N}^{c} \\approx \\mathcal{N} \\cdot \\mathcal{N}_{\\text{extra}}^{(c-1)}"
     },
     {
-      "label": "Sparse Pauli–Lindblad model",
+      "label": "Sparse Pauli–Lindblad model (λ_i = Lindblad error rates, P_i = Pauli operators, L = Lindbladian superoperator)",
       "latex": "\\mathcal{N}(\\rho) = e^{\\mathcal{L}} \\rho, \\quad \\mathcal{L}(\\rho) = \\sum_i \\lambda_i (P_i \\rho P_i - \\rho)"
     }
   ],

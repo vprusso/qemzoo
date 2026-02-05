@@ -128,7 +128,9 @@
     "related": [
       {"id": "pauli-twirling", "reason": "Pauli twirling simplifies noise model for PEC"},
       {"id": "zne", "reason": "both are foundational QEM techniques"},
-      {"id": "measurement-error-mitigation", "reason": "PEC can be combined with REM for full-circuit mitigation"}
+      {"id": "measurement-error-mitigation", "reason": "PEC can be combined with REM for full-circuit mitigation"},
+      {"id": "emre", "reason": "EMRE retains only the positive part of PEC's quasi-probability decomposition"},
+      {"id": "hemre", "reason": "HEMRE interpolates between PEC and EMRE"}
     ]
   },
   {
@@ -208,7 +210,8 @@
       {"id": "lre", "reason": "LRE is a multivariate generalization of ZNE"},
       {"id": "pec", "reason": "both are foundational QEM techniques"},
       {"id": "pauli-twirling", "reason": "Pauli twirling simplifies noise for ZNE"},
-      {"id": "cdr", "reason": "vnCDR combines CDR with noise scaling from ZNE"}
+      {"id": "cdr", "reason": "vnCDR combines CDR with noise scaling from ZNE"},
+      {"id": "pie", "reason": "PIE replaces ZNE's heuristic fitting models with a physics-motivated function"}
     ]
   },
   {
@@ -463,6 +466,69 @@
       {"id": "crosstalk-mitigation", "reason": "CAS is a specific form of noise-aware compilation targeting crosstalk"},
       {"id": "dd", "reason": "both are suppression techniques; NAC optimizes layout, DD optimizes idle periods"},
       {"id": "pauli-twirling", "reason": "both are preprocessing steps that improve downstream mitigation"}
+    ]
+  },
+  {
+    "id": "emre",
+    "name": "Error Mitigation by Restricted Evolution",
+    "abbreviation": "EMRE",
+    "aliases": ["restricted evolution mitigation"],
+    "category": "mitigation",
+    "summary": "Trades unbiasedness for constant sampling overhead by retaining only the positive (implementable) part of the quasi-probability decomposition used in PEC. For each ideal gate, EMRE finds the closest implementable operation in the semidefinite ordering sense and a scaling factor (the generalized robustness \\(R^+\\)) that quantifies the distance. The resulting estimator has finite bias that depends on the generalized robustness, but its sample complexity is constant — independent of noise rate and circuit depth.",
+    "properties": {
+      "Bias": "Finite; bounded by \\(s - 1\\) where \\(s = \\prod_i (1 + R^+_i)\\) grows with circuit depth",
+      "Sampling overhead": "Constant: \\(M = \\frac{2}{c^2} \\ln(2/p_{\\text{fail}})\\), independent of noise and depth",
+      "Noise model required": "Full characterization of gate noise to compute the generalized quasi-probability decomposition",
+      "Applicability": "High-fidelity hardware (gate fidelity ≥ 99.7%); shallow-to-moderate depth circuits"
+    },
+    "references": ["saxena2024"],
+    "related": [
+      {"id": "pec", "reason": "EMRE uses the same quasi-probability framework as PEC but discards the negative correction terms"},
+      {"id": "hemre", "reason": "HEMRE is a hybrid protocol interpolating between EMRE and PEC"},
+      {"id": "pie", "reason": "PIE derives its extrapolation model from EMRE's theoretical framework"},
+      {"id": "zne", "reason": "EMRE avoids the heuristic extrapolation model assumptions of ZNE"}
+    ]
+  },
+  {
+    "id": "hemre",
+    "name": "Hybrid Error Mitigation by Restricted Evolution",
+    "abbreviation": "HEMRE",
+    "aliases": ["hybrid EMRE"],
+    "category": "mitigation",
+    "summary": "Interpolates continuously between PEC and EMRE by introducing an adjustable bias tolerance parameter \\(\\Delta_{\\text{fixed}}\\). Gates whose generalized robustness is below the threshold receive the EMRE approximation (biased but cheap), while remaining gates receive full PEC treatment (unbiased but expensive). At \\(\\Delta_{\\text{fixed}} = 0\\) HEMRE reduces to PEC; as \\(\\Delta_{\\text{fixed}} \\to \\infty\\) it reduces to EMRE.",
+    "properties": {
+      "Bias": "Tunable; bounded by user-specified \\(\\Delta_{\\text{fixed}}\\)",
+      "Sampling overhead": "Intermediate between PEC (exponential) and EMRE (constant); depends on gate partition",
+      "Noise model required": "Full characterization of gate noise for both EMRE and PEC decompositions",
+      "Applicability": "Moderate-noise regimes (0.1%–1% error rates) where neither pure EMRE nor pure PEC is optimal"
+    },
+    "references": ["saxena2024"],
+    "related": [
+      {"id": "pec", "reason": "HEMRE reduces to PEC when the bias tolerance is zero"},
+      {"id": "emre", "reason": "HEMRE reduces to EMRE when the bias tolerance is unlimited"},
+      {"id": "pie", "reason": "both build on the EMRE theoretical framework"},
+      {"id": "zne", "reason": "HEMRE avoids model-dependent extrapolation"}
+    ]
+  },
+  {
+    "id": "pie",
+    "name": "Physics-Inspired Extrapolation",
+    "abbreviation": "PIE",
+    "aliases": ["physics-inspired ZNE"],
+    "category": "mitigation",
+    "summary": "Performs zero-noise extrapolation using a theoretically motivated fitting function derived from the EMRE framework rather than heuristic polynomial or exponential models. The model \\(f(\\lambda) = \\langle O \\rangle_{\\text{ideal}} \\cdot s^{-\\lambda}\\) linearizes in log-space, where the intercept gives the ideal expectation value and the slope equals the max-relative entropy between ideal and noisy circuits. This provides simultaneous error mitigation and hardware certification at no additional cost. Demonstrated on 84-qubit IBM Eagle processor.",
+    "properties": {
+      "Bias": "Low; converges to zero as noise decreases. Comes from neglecting the GQPD correction term",
+      "Sampling overhead": "Linear (~4× base circuit execution); typically requires only 4 noise-scaled data points",
+      "Noise model required": "None; noise-agnostic like standard ZNE",
+      "Applicability": "Shallow-to-moderate depth circuits; demonstrated at scale (84 qubits)"
+    },
+    "references": ["diezvalle2025", "saxena2024"],
+    "related": [
+      {"id": "zne", "reason": "PIE uses the same circuit folding as ZNE but with a physics-motivated fitting function"},
+      {"id": "emre", "reason": "PIE's fitting function is derived from EMRE's generalized quasi-probability decomposition"},
+      {"id": "hemre", "reason": "both build on the EMRE theoretical framework"},
+      {"id": "lre", "reason": "both are extrapolation-based methods; PIE uses a single global physics-motivated model"}
     ]
   }
 ]

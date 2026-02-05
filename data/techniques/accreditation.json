@@ -13,7 +13,7 @@
   ],
   "key_equations": [
     {
-      "label": "Accreditation bound",
+      "label": "Accreditation bound (δ = failure probability)",
       "latex": "\\Pr\\bigl[\\|p_{\\text{noisy}} - p_{\\text{ideal}}\\|_{\\text{TV}} > \\epsilon\\bigr] \\leq \\delta"
     },
     {

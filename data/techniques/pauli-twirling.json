@@ -12,11 +12,11 @@
   ],
   "key_equations": [
     {
-      "label": "Twirling identity",
+      "label": "Twirling identity (G = twirling group, |G| = group size, E = noise channel, ρ = density matrix)",
       "latex": "\\mathcal{T}[\\mathcal{E}](\\rho) = \\frac{1}{|G|} \\sum_{P \\in G} P^\\dagger \\, \\mathcal{E}(P \\rho P^\\dagger) \\, P"
     },
     {
-      "label": "Resulting Pauli channel",
+      "label": "Resulting Pauli channel (p_P = probability of Pauli error P, n = number of qubits)",
       "latex": "\\mathcal{T}[\\mathcal{E}](\\rho) = \\sum_{P \\in \\{I,X,Y,Z\\}^{\\otimes n}} p_P \\, P \\rho P, \\quad p_P \\geq 0, \\sum_P p_P = 1"
     }
   ],

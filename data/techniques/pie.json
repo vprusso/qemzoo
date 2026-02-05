@@ -1,0 +1,68 @@
+{
+  "diagrams": [
+    {
+      "src": "images/techniques/pie-workflow.png",
+      "caption": "PIE workflow: circuit folding amplifies noise at multiple levels, expectation values are transformed to log-space, and linear regression extrapolates to the zero-noise limit while the slope provides hardware certification via the max-relative entropy."
+    }
+  ],
+  "description": [
+    "Physics-Inspired Extrapolation (PIE) performs zero-noise extrapolation using a theoretically motivated fitting function derived from the EMRE framework, rather than the heuristic polynomial or exponential models used in standard ZNE. The key innovation is that PIE's extrapolation model has operationally meaningful parameters: the intercept gives the ideal expectation value, and the slope of the linear fit (in log-scale) directly corresponds to the max-relative entropy between the ideal and noisy quantum circuits.",
+    "Unlike standard ZNE where the choice of fitting model is a heuristic decision with no guarantee of correctness, PIE's fitting function is derived from the theoretical structure of the generalized quasi-probability decomposition (GQPD) used in EMRE. For a circuit folded to noise amplification level \\(\\lambda\\), the noisy expectation value follows \\(f(\\lambda) = \\langle O \\rangle_{\\text{ideal}} \\cdot s^{-\\lambda}\\), which linearizes to \\(\\ln f(\\lambda) = \\ln \\langle O \\rangle_{\\text{ideal}} - \\lambda \\ln s\\) in log-space.",
+    "PIE also provides simultaneous hardware certification at no additional cost: the slope parameter \\(\\ln s\\) directly quantifies the operational distance (max-relative entropy) between ideal and noisy circuits. The technique was validated on IBM quantum hardware and applied to simulate 84-qubit quantum dynamics on an IBM Eagle processor."
+  ],
+  "how_it_works": [
+    "Prepare the quantum circuit at increasing noise levels by applying unitary folding (inserting \\(G \\cdot G^\\dagger\\) pairs). The noise amplification levels are \\(\\lambda = 1, 3, 5, 7, \\ldots\\) (odd integers corresponding to 0, 1, 2, 3 foldings).",
+    "For each noise level \\(\\lambda\\), execute the folded circuit and measure the expectation value \\(\\langle O \\rangle_\\lambda\\). Typically 4 data points are sufficient.",
+    "Convert expectation values to log-scale: compute \\(\\ln \\langle O \\rangle_\\lambda\\) for each data point.",
+    "Fit the transformed data to the linear model \\(\\ln f(\\lambda) = \\ln \\langle O \\rangle_{\\text{ideal}} - \\lambda \\ln s\\) using standard linear regression.",
+    "The y-intercept at \\(\\lambda = 0\\) gives the error-mitigated estimate. Exponentiate to obtain \\(\\langle O \\rangle_{\\text{ideal}}\\).",
+    "The fitted slope \\(-\\ln s\\) directly provides the max-relative entropy \\(D_{\\max}(\\mathcal{U} \\| \\mathcal{E} \\circ \\mathcal{U})\\), quantifying the operational distance between ideal and noisy circuits (hardware certification)."
+  ],
+  "key_equations": [
+    {
+      "label": "PIE extrapolation model (λ = noise amplification level, s = generalized robustness factor from GQPD)",
+      "latex": "f(\\lambda) = \\langle O \\rangle_{\\text{ideal}} \\cdot s^{-\\lambda}"
+    },
+    {
+      "label": "Linearized form for regression",
+      "latex": "\\ln f(\\lambda) = \\ln \\langle O \\rangle_{\\text{ideal}} - \\lambda \\cdot \\ln s"
+    },
+    {
+      "label": "Max-relative entropy (U = ideal circuit, E = noise channel, E∘U = noisy circuit)",
+      "latex": "D_{\\max}(\\mathcal{U} \\| \\mathcal{E} \\circ \\mathcal{U}) = \\ln s"
+    },
+    {
+      "label": "Expectation value after n foldings",
+      "latex": "\\langle O \\rangle_{\\text{ideal}} \\approx s^{2n+1} \\cdot \\langle O \\rangle_{\\text{err}}"
+    }
+  ],
+  "bias_variance": {
+    "bias": 0.2,
+    "variance": 0.3,
+    "overhead": 0.3,
+    "notes": "PIE achieves comparable or lower bias than exponential ZNE with substantially lower variance, at linear overhead (~4× base circuit execution). Bias comes from neglecting the correction term in the GQPD and converges to zero as noise decreases."
+  },
+  "advantages": [
+    "Operationally meaningful parameters — every parameter has a physical interpretation (ideal value and max-relative entropy)",
+    "Numerically stable linear regression in log-space, more stable than nonlinear exponential fitting",
+    "Significantly lower variance than exponential ZNE extrapolation",
+    "Simultaneous hardware certification at no additional experimental cost",
+    "No explicit noise characterization required (noise-agnostic like standard ZNE)",
+    "Typically requires only 4 data points (circuit executions at different noise levels)",
+    "Demonstrated at scale: 84-qubit transverse-field Ising model on IBM Eagle processor"
+  ],
+  "disadvantages": [
+    "Performance degrades for large circuit depths where the GQPD approximation breaks down",
+    "Assumes the noise model remains consistent across circuit foldings",
+    "Limited to low-noise regimes where the EMRE approximation is valid",
+    "May require special handling of small or negative expectation values in log-domain",
+    "Requires circuit folding capability (inserting gate-inverse pairs), which increases circuit depth"
+  ],
+  "use_cases": [
+    "Shallow-to-moderate depth circuits on high-fidelity hardware",
+    "Quantum simulation (validated on 84-qubit transverse-field Ising model)",
+    "Quantum chemistry (validated on H₂ at 4 qubits and LiH at 12 qubits)",
+    "Hardware benchmarking and certification (simultaneous with mitigation)",
+    "Replacing heuristic ZNE fitting models with a principled alternative"
+  ]
+}

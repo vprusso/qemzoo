@@ -12,7 +12,7 @@
   ],
   "key_equations": [
     {
-      "label": "2-RDM energy",
+      "label": "2-RDM energy (h = Hamiltonian coefficients, Γ = 2-body RDM, γ = 1-body RDM, a†/a = fermionic creation/annihilation operators)",
       "latex": "E = \\sum_{pqrs} h_{pqrs} \\, \\Gamma_{pq,rs} + \\sum_{pq} h_{pq} \\, \\gamma_{p,q} + h_0"
     },
     {

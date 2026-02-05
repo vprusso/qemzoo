@@ -22,5 +22,8 @@
   {"id": "dual-state-purification", "bias": 0.15, "variance": 0.35, "overhead": 0.4, "notes": "Doubles circuit executions but no qubit overhead. Error reduction improves with circuit size."},
   {"id": "odr", "bias": 0.2, "variance": 0.2, "overhead": 0.15, "notes": "Simple rescaling; low overhead. Residual bias if noise-estimation circuits don't match target noise profile."},
   {"id": "noise-aware-compilation", "bias": 0.3, "variance": 0.05, "overhead": 0.05, "notes": "No sampling overhead; purely compile-time. Effectiveness depends on hardware noise non-uniformity."},
-  {"id": "nepec", "bias": 0.1, "variance": 0.75, "overhead": 0.7, "notes": "Combines PEC with extrapolation. Reduced overhead vs pure PEC; gate extrapolation variant avoids explicit noise model."}
+  {"id": "nepec", "bias": 0.1, "variance": 0.75, "overhead": 0.7, "notes": "Combines PEC with extrapolation. Reduced overhead vs pure PEC; gate extrapolation variant avoids explicit noise model."},
+  {"id": "emre", "bias": 0.55, "variance": 0.15, "overhead": 0.1, "notes": "Constant sampling overhead; bias grows with product of per-gate robustness factors."},
+  {"id": "hemre", "bias": 0.35, "variance": 0.5, "overhead": 0.5, "notes": "Tunable bias-variance tradeoff; intermediate between PEC and EMRE."},
+  {"id": "pie", "bias": 0.2, "variance": 0.3, "overhead": 0.3, "notes": "Physics-motivated fitting reduces variance vs exponential ZNE. Bias from GQPD approximation."}
 ]

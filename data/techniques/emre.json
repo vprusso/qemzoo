@@ -1,0 +1,65 @@
+{
+  "diagrams": [
+    {
+      "src": "images/techniques/emre-workflow.png",
+      "caption": "EMRE workflow: the ideal gate is decomposed via the generalized quasi-probability decomposition (GQPD), the negative correction term is discarded, and measurement outcomes are scaled by the generalized robustness factor."
+    }
+  ],
+  "description": [
+    "Error Mitigation by Restricted Evolution (EMRE) fundamentally reconceives the error mitigation problem by trading unbiasedness for constant sampling overhead. While PEC decomposes ideal gates into linear combinations of noisy operations that include negative quasi-probability coefficients — requiring exponential sampling to resolve the sign problem — EMRE retains only the positive (implementable) part of this decomposition.",
+    "The core insight is rooted in dynamical resource theory: for each ideal gate in a circuit, EMRE finds the closest implementable operation in the semidefinite ordering sense, and a scaling factor (the generalized robustness \\(R^+\\)) that quantifies how far the ideal gate is from the set of implementable operations. By replacing each ideal gate with this closest implementable operation and compensating with a multiplicative correction, EMRE restricts the quantum evolution to what the noisy hardware can actually perform.",
+    "The result is a biased estimator whose bias depends on the generalized robustness of the gates, but whose sample complexity is constant — completely independent of noise rate and circuit depth. This makes EMRE particularly advantageous for near-term quantum hardware with high gate fidelities (above 99.7%), where the bias is small but the exponential sampling cost of PEC would be prohibitive."
+  ],
+  "how_it_works": [
+    "For each gate layer \\(i\\) in the circuit, characterize the noise channel and compute the generalized quasi-probability decomposition (GQPD): \\(\\mathcal{U}_i = s_i \\mathcal{B}_i - (s_i - 1) \\mathcal{N}_i\\), where \\(\\mathcal{B}_i\\) is an implementable (CPTP) operation, \\(\\mathcal{N}_i\\) is a CPTP correction, and \\(s_i \\geq 1\\) is the generalized robustness factor.",
+    "Discard the negative correction term \\(-(s_i - 1) \\mathcal{N}_i\\) and replace each ideal gate with the implementable operation \\(\\mathcal{B}_i\\).",
+    "Execute the modified circuit \\(\\mathcal{B} = \\mathcal{B}_D \\circ \\cdots \\circ \\mathcal{B}_1\\) (composition of all implementable approximations).",
+    "Multiply each measurement outcome by the total scaling factor \\(s = \\prod_{i=1}^{D} s_i\\).",
+    "Average the scaled outcomes to obtain the EMRE-mitigated expectation value."
+  ],
+  "key_equations": [
+    {
+      "label": "Generalized quasi-probability decomposition",
+      "latex": "\\mathcal{U}_i = s_i \\, \\mathcal{B}_i - (s_i - 1) \\, \\mathcal{N}_i"
+    },
+    {
+      "label": "Total scaling factor",
+      "latex": "s = \\prod_{i=1}^{D} s_i"
+    },
+    {
+      "label": "EMRE sample complexity (c = target accuracy, p_fail = failure probability)",
+      "latex": "M_{\\text{EMRE}} = \\frac{2}{c^2} \\ln\\!\\left(\\frac{2}{p_{\\text{fail}}}\\right)"
+    },
+    {
+      "label": "Generalized robustness (p = depolarizing noise rate, n = number of qubits)",
+      "latex": "R^+_{\\text{depol}}(\\mathcal{U}) \\leq \\left(\\frac{4}{4-3p}\\right)^n - 1"
+    }
+  ],
+  "bias_variance": {
+    "bias": 0.55,
+    "variance": 0.15,
+    "overhead": 0.1,
+    "notes": "EMRE deliberately accepts finite bias to achieve constant sampling overhead. Bias grows with the product of per-gate robustness factors (exponential in depth for non-trivial noise) but is small for high-fidelity hardware (≥99.7%). Variance is very low with tightly clustered estimates."
+  },
+  "advantages": [
+    "Constant sampling overhead — eliminates the exponential scaling that plagues PEC",
+    "Superior performance for low-noise hardware (gate fidelities ≥ 99.7%)",
+    "Highly stable estimates with very small error bars",
+    "No extrapolation procedures or heuristic model assumptions required",
+    "Clear analytical relationship between bias and generalized robustness",
+    "Exact robustness expressions available for depolarizing and dephasing noise"
+  ],
+  "disadvantages": [
+    "Inherent bias that cannot be removed within the EMRE framework alone",
+    "Bias grows exponentially with circuit depth for non-trivial noise",
+    "Less effective in higher-noise regimes where the bias becomes significant",
+    "Requires knowledge of the noise model to compute the GQPD",
+    "The restricted evolution approximation degrades as noise increases"
+  ],
+  "use_cases": [
+    "Near-term quantum hardware with high gate fidelities (≥ 99.7%)",
+    "Scenarios where sampling budget is severely constrained",
+    "Shallow-to-moderate depth circuits where accumulated bias remains small",
+    "As a building block within the HEMRE hybrid framework"
+  ]
+}

@@ -12,11 +12,11 @@
   ],
   "key_equations": [
     {
-      "label": "Spin echo (first-order decoupling)",
+      "label": "Spin echo (H_env = environment Hamiltonian, τ = idle time, H₀ = system Hamiltonian)",
       "latex": "U_{\\text{echo}} = X \\cdot e^{-iH_{\\text{env}}\\tau/2} \\cdot X \\cdot e^{-iH_{\\text{env}}\\tau/2} \\approx e^{-iH_0 \\tau}"
     },
     {
-      "label": "Decoupling condition",
+      "label": "Decoupling condition (t_j = time of j-th pulse, n = number of pulses)",
       "latex": "\\sum_{j=0}^{n} (-1)^j (t_{j+1} - t_j) = 0 \\implies \\text{first-order error cancellation}"
     },
     {

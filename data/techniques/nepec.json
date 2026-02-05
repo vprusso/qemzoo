@@ -15,11 +15,11 @@
   ],
   "key_equations": [
     {
-      "label": "Standard PEC decomposition",
-      "latex": "\\mathcal{G}_{\\text{ideal}} = \\sum_i \\eta_i \\mathcal{O}_i, \\quad \\text{where } \\mathcal{O}_i \\text{ are noisy implementable operations}"
+      "label": "Standard PEC decomposition (η_i = quasi-probability coefficients, O_i = noisy implementable operations)",
+      "latex": "\\mathcal{G}_{\\text{ideal}} = \\sum_i \\eta_i \\mathcal{O}_i"
     },
     {
-      "label": "Quasi-probability normalization",
+      "label": "Quasi-probability one-norm (γ = sampling overhead factor)",
       "latex": "\\gamma = \\sum_i |\\eta_i| \\geq 1"
     },
     {

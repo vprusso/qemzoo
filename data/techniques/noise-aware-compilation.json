@@ -13,7 +13,7 @@
   ],
   "key_equations": [
     {
-      "label": "Layout cost function",
+      "label": "Layout cost function (π = qubit mapping, ε = gate error rate, T₂ = dephasing coherence time, t_idle = qubit idle time)",
       "latex": "C(\\pi) = \\sum_{g \\in \\text{gates}} \\epsilon_{\\pi(g)} + \\sum_{q \\in \\text{qubits}} \\frac{t_{\\text{idle}}(q)}{T_2(q)}"
     },
     {

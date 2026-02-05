@@ -13,11 +13,11 @@
   ],
   "key_equations": [
     {
-      "label": "Post-selected fidelity improvement",
+      "label": "Post-selected fidelity (p_detectable = prob. of detected errors, p_undetectable = prob. of undetected errors)",
       "latex": "F_{\\text{post}} = \\frac{F_{\\text{raw}} - p_{\\text{undetectable}}}{1 - p_{\\text{detectable}}} \\geq F_{\\text{raw}}"
     },
     {
-      "label": "Acceptance rate",
+      "label": "Acceptance rate (p = physical error rate, n = number of qubits, d_circuit = circuit depth)",
       "latex": "P_{\\text{accept}} = 1 - p_{\\text{detectable}} \\approx (1 - p)^{n \\cdot d_{\\text{circuit}}}"
     },
     {

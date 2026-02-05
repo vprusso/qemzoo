@@ -18,7 +18,7 @@
   ],
   "key_equations": [
     {
-      "label": "Multivariate extrapolation",
+      "label": "Multivariate extrapolation (γ_c = extrapolation coefficients, c = per-layer scale factors, λ = per-layer noise rates)",
       "latex": "\\langle O \\rangle_0 \\approx \\sum_{\\mathbf{c}} \\gamma_{\\mathbf{c}} \\, \\langle O \\rangle_{\\mathbf{c} \\cdot \\boldsymbol{\\lambda}}"
     },
     {

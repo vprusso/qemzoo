@@ -8,7 +8,7 @@
     "physical_origin": "Interaction with a high-temperature environment; aggregate effect of many unknown error sources",
     "effect_on_bloch_sphere": "Uniform contraction toward the center (origin)",
     "kraus_operators": "\\(K_0 = \\sqrt{1-p}\\,I, \\quad K_1 = \\sqrt{p/3}\\,X, \\quad K_2 = \\sqrt{p/3}\\,Y, \\quad K_3 = \\sqrt{p/3}\\,Z\\)",
-    "mitigated_by": ["pec", "zne", "pauli-twirling", "dd"],
+    "mitigated_by": ["pec", "zne", "pauli-twirling", "dd", "emre", "hemre", "pie"],
     "references": ["cai2023"]
   },
   {
@@ -20,7 +20,7 @@
     "physical_origin": "Fluctuating magnetic fields; low-frequency noise in control electronics; T2 relaxation processes",
     "effect_on_bloch_sphere": "Contraction toward the z-axis (poles preserved, equator shrinks)",
     "kraus_operators": "\\(K_0 = \\sqrt{1-p}\\,I, \\quad K_1 = \\sqrt{p}\\,Z\\)",
-    "mitigated_by": ["dd", "pauli-twirling", "zne", "echo-verification"],
+    "mitigated_by": ["dd", "pauli-twirling", "zne", "echo-verification", "emre", "hemre", "pie"],
     "references": ["cai2023"]
   },
   {
