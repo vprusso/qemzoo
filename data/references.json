@@ -509,5 +509,13 @@
     "year": 2025,
     "arxiv": "2505.07977",
     "doi": "10.48550/arXiv.2505.07977"
+  },
+  "majumdar2025": {
+    "authors": "R. Majumdar, P. Rivero, F. Metz, A. Hasan, D. S. Wang",
+    "title": "Combining Error Detection and Mitigation: A Hybrid Protocol for Near-Term Quantum Simulation",
+    "journal": "arXiv preprint",
+    "year": 2025,
+    "arxiv": "2510.01181",
+    "doi": "10.48550/arXiv.2510.01181"
   }
 }

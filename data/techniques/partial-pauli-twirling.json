@@ -1,0 +1,55 @@
+{
+  "description": [
+    "Partial Pauli Twirling (PPT) modifies the standard Pauli twirling protocol by using only a strategically selected subset of Pauli gates, rather than the full \\(4^n\\) Pauli group. The subset is chosen to optimize alignment between the resulting noise and the error space detectable by a quantum error-detecting code (QEDC).",
+    "Unlike full Pauli twirling, which converts arbitrary noise into a diagonal depolarizing channel, PPT does not guarantee complete conversion to a stochastic Pauli channel. Instead, it suppresses (but may not fully eliminate) off-diagonal coherent error components while requiring fewer circuit samples and avoiding error-prone gates.",
+    "PPT is particularly valuable when combined with quantum error detection codes like the \\([\\![ 4, 2, 2 ]\\!]\\) code, where the partial twirling set can be chosen such that errors align with what the code can detect. This creates a synergistic hybrid protocol that achieves mutual benefits from both techniques."
+  ],
+  "how_it_works": [
+    "Identify the quantum error-detecting code being used and its detectable error space \\(\\mathcal{E}\\).",
+    "Solve the optimization problem to find a partial twirling set \\(\\tilde{P}\\) that minimizes the distance between the twirled noisy channel and the target error space: \\(\\min_{\\tilde{P}} \\| \\frac{1}{|\\tilde{P}|} \\sum_{P_i \\in \\tilde{P}} P_i^\\dagger \\tilde{U} P_i - \\mathcal{E} \\circ U \\|\\).",
+    "For each gate in the circuit, randomly sample Pauli operators from the partial set \\(\\tilde{P}\\) (e.g., \\(\\{I, X, Z\\}\\) instead of \\(\\{I, X, Y, Z\\}\\)).",
+    "Execute multiple randomized circuit instances and average the results, similar to standard twirling.",
+    "Combine with QED post-selection: measure stabilizers and discard runs where errors were detected."
+  ],
+  "key_equations": [
+    {
+      "label": "Partial twirling optimization (P̃ = partial Pauli set, Ũ = noisy gate, E = target error space, U = ideal gate)",
+      "latex": "\\min_{\\tilde{P}} \\left\\| \\frac{1}{|\\tilde{P}|} \\sum_{P_i \\in \\tilde{P}} P_i^\\dagger \\tilde{U} P_i - \\mathcal{E} \\circ U \\right\\|"
+    },
+    {
+      "label": "Twirled channel (P = twirling set, Λ = noise channel)",
+      "latex": "\\Lambda_{\\text{twirled}} = \\frac{1}{|P|} \\sum_{P_i \\in P} P_i^\\dagger \\Lambda P_i"
+    },
+    {
+      "label": "Logical infidelity comparison (ω = rotation angle): Partial twirling achieves similar fidelity to full twirling",
+      "latex": "\\bar{r}_{\\text{partial}} = 1 - 4\\cos(\\omega/2)^6 \\sin(\\omega/2)^2 - \\frac{1}{288}\\csc(\\omega/2)^4 \\sin(\\omega)^6"
+    }
+  ],
+  "bias_variance": {
+    "bias": 0.45,
+    "variance": 0.1,
+    "overhead": 0.15,
+    "notes": "Slightly higher bias than full Pauli twirling due to incomplete noise diagonalization, but lower variance from reduced sampling requirements. Overhead is lower than full twirling due to smaller gate set."
+  },
+  "advantages": [
+    "Reduced sampling overhead compared to full Pauli twirling (fewer than \\(4^n\\) circuit variants needed)",
+    "Can avoid error-prone gates (e.g., skip Y gates on hardware where they have higher error rates)",
+    "Hardware-adaptable: customize the twirling set for specific quantum platforms and native gate sets",
+    "Synergistic with quantum error detection codes — aligns errors with detectable subspace",
+    "Maintains fidelity improvement even without perfect Pauli channel conversion",
+    "Reduces the chance that the twirling procedure itself introduces additional errors"
+  ],
+  "disadvantages": [
+    "Does not fully diagonalize the error channel's transfer matrix",
+    "Performs slightly worse than full Pauli twirling in isolation",
+    "Requires solving an optimization problem to select the appropriate gate subset",
+    "Benefits are maximized only when combined with a compatible error-detecting code"
+  ],
+  "use_cases": [
+    "Hybrid QED + error mitigation pipelines (e.g., with the [[4,2,2]] code)",
+    "Hardware with biased gate errors (e.g., avoiding Y gates on superconducting qubits)",
+    "Resource-constrained settings where full twirling overhead is prohibitive",
+    "IBM superconducting processors with native CX, CZ, ECR, or iSWAP gates",
+    "Any application where Pauli twirling is used as a preprocessing step and sampling budget is limited"
+  ]
+}

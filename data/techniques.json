@@ -108,7 +108,28 @@
     "related": [
       {"id": "pec", "reason": "Pauli twirling simplifies noise for PEC"},
       {"id": "zne", "reason": "Pauli twirling simplifies noise for ZNE"},
-      {"id": "dd", "reason": "both are suppression techniques applied at the gate level"}
+      {"id": "dd", "reason": "both are suppression techniques applied at the gate level"},
+      {"id": "partial-pauli-twirling", "reason": "PPT uses a subset of Pauli gates optimized for error-detecting codes"}
+    ]
+  },
+  {
+    "id": "partial-pauli-twirling",
+    "name": "Partial Pauli Twirling",
+    "abbreviation": "PPT",
+    "aliases": ["subset Pauli twirling", "optimized twirling"],
+    "category": "suppression",
+    "summary": "Modifies standard Pauli twirling by using only a strategically selected subset of Pauli gates rather than the full group. The subset is optimized to align errors with the detectable error space of a quantum error-detecting code, enabling synergistic combination with QED. This reduces sampling overhead and can avoid error-prone gates (e.g., Y gates on certain hardware) at the cost of incomplete noise diagonalization.",
+    "properties": {
+      "Bias": "Slightly higher than full twirling; does not fully diagonalize noise",
+      "Sampling overhead": "Lower than full Pauli twirling; fewer circuit variants needed",
+      "Noise model required": "None; optimization uses target error space from QED code",
+      "Applicability": "Hybrid QED + error mitigation pipelines; hardware with biased gate errors"
+    },
+    "references": ["majumdar2025"],
+    "related": [
+      {"id": "pauli-twirling", "reason": "PPT is a resource-efficient variant of full Pauli twirling"},
+      {"id": "qed", "reason": "PPT is designed to synergize with quantum error detection codes"},
+      {"id": "pec", "reason": "PPT can be used as preprocessing before PEC in hybrid protocols"}
     ]
   },
   {
@@ -249,7 +270,8 @@
     "references": ["knill2005", "linke2017"],
     "related": [
       {"id": "symmetry-verification", "reason": "SV is a special case using symmetry as the detecting code"},
-      {"id": "accreditation", "reason": "both use post-selection to improve output quality"}
+      {"id": "accreditation", "reason": "both use post-selection to improve output quality"},
+      {"id": "partial-pauli-twirling", "reason": "PPT aligns errors with QED's detectable error space for synergistic mitigation"}
     ]
   },
   {
