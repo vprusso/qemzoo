@@ -565,6 +565,7 @@ ol.steps-list li {
   border-radius: 5px;
   padding: 0.8rem 1rem;
   margin-bottom: 0.8rem;
+  overflow-x: auto;
 }
 
 .equation-label {
@@ -577,6 +578,7 @@ ol.steps-list li {
 
 .equation-math {
   text-align: center;
+  min-width: fit-content;
 }
 
 /* Properties table (detail page) */
@@ -609,6 +611,21 @@ ol.steps-list li {
 
 @media (max-width: 600px) {
   .pros-cons { grid-template-columns: 1fr; }
+
+  /* Equation blocks on mobile */
+  .equation-block {
+    padding: 0.6rem 0.8rem;
+  }
+
+  .equation-math {
+    font-size: 0.9em;
+  }
+
+  /* MathJax container overflow handling */
+  .equation-math mjx-container {
+    overflow-x: auto;
+    max-width: 100%;
+  }
 }
 
 .pros-cons h4 {
