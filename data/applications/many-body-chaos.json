@@ -1,0 +1,36 @@
+{
+  "diagrams": [
+    {
+      "src": "images/applications/many-body-chaos-workflow.png",
+      "caption": "Figure 1 from Fischer et al. (2026): Simulating dual-unitary circuits with tensor-network error mitigation.",
+      "reference": "fischer2026"
+    }
+  ],
+  "description": [
+    "Many-body quantum chaos studies how complex quantum systems scramble information and thermalize. Dual-unitary circuits—which exhibit unitarity in both space and time—provide an ideal testbed because they display maximal chaos while remaining analytically solvable for certain observables.",
+    "Simulating chaotic dynamics is challenging for classical computers because entanglement grows rapidly, causing tensor network methods to fail. Quantum processors can naturally handle this entanglement growth, making chaotic systems a compelling target for near-term quantum advantage.",
+    "The kicked Ising model at the dual-unitary point provides exact analytical benchmarks for infinite-temperature autocorrelation functions, enabling rigorous verification of quantum simulation accuracy."
+  ],
+  "why_qem": [
+    "Chaotic circuits rapidly spread errors throughout the system, making raw hardware results unreliable. Error mitigation is essential for extracting accurate dynamical correlators.",
+    "Tensor network error mitigation (TEM) constructs an approximate inverse of the noise channel, enabling efficient correction of spatially correlated errors without the exponential overhead of full process tomography.",
+    "Pauli twirling converts coherent gate errors into stochastic Pauli noise, which can be accurately characterized via a sparse Pauli-Lindblad model and inverted by TEM.",
+    "The combination of noise learning and TEM enables exploration of perturbed circuits beyond the exactly solvable dual-unitary point, where classical tensor network approximations struggle."
+  ],
+  "demonstrations": [
+    {
+      "title": "91-Qubit Dual-Unitary Circuit Simulation (IBM, 2026)",
+      "description": "Simulated infinite-temperature autocorrelation functions in dual-unitary circuits implementing kicked Ising dynamics. Error-mitigated results matched exact analytical solutions at the dual-unitary point and explored perturbed regimes beyond classical reach.",
+      "hardware": "IBM ibm_strasbourg (91 qubits)",
+      "qubits": "91 qubits",
+      "gates": "4,095 two-qubit ECR gates",
+      "techniques": "TEM, Pauli twirling, TREX (twirled readout error extinction), sparse Pauli-Lindblad noise model"
+    }
+  ],
+  "challenges": [
+    "Chaotic dynamics amplify small errors exponentially",
+    "Correlators decay rapidly, requiring precise measurement of small signals",
+    "Noise learning must accurately capture spatially correlated errors",
+    "Verification is only possible at exactly solvable points; perturbed regimes lack classical benchmarks"
+  ]
+}

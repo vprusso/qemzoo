@@ -517,5 +517,13 @@
     "year": 2025,
     "arxiv": "2510.01181",
     "doi": "10.48550/arXiv.2510.01181"
+  },
+  "fischer2026": {
+    "authors": "L. E. Fischer, M. Leahy, A. Eddins, N. Keenan, D. Ferracin, M. A. C. Rossi, Y. Kim, A. He, F. Pietracaprina, B. Sokolov, S. Dooley, Z. Zimborás, F. Tacchino, S. Maniscalco, J. Goold, G. García-Pérez, I. Tavernelli, A. Kandala, S. N. Filippov",
+    "title": "Dynamical Simulations of Many-Body Quantum Chaos on a Quantum Computer",
+    "journal": "Nature Physics",
+    "year": 2026,
+    "arxiv": "2411.00765",
+    "doi": "10.1038/s41567-025-03144-9"
   }
 }

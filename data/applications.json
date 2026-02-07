@@ -76,5 +76,20 @@
       "Sparked debate on the boundary between classical simulability and quantum utility"
     ],
     "references": ["kim2023", "vandenberg2023"]
+  },
+  {
+    "id": "many-body-chaos",
+    "name": "Many-Body Quantum Chaos",
+    "category": "simulation",
+    "summary": "Simulating chaotic quantum many-body dynamics, such as dual-unitary circuits and kicked Ising models, tests quantum processors against exactly solvable models exhibiting maximal chaos. Error mitigation enables accurate computation of dynamical correlators and exploration of emergent quantum phases beyond the reach of classical tensor network methods.",
+    "qem_techniques": ["tem", "pauli-twirling", "trex"],
+    "key_results": [
+      "91-qubit simulation of dual-unitary circuits with 4,095 two-qubit ECR gates on IBM ibm_strasbourg",
+      "Tensor network error mitigation (TEM) with learned sparse Pauli-Lindblad noise model",
+      "Results verified against exact analytical solutions at the dual-unitary point",
+      "Explored perturbed circuits beyond exact solvability, outperforming classical tensor network approximations",
+      "262,144 shots per data point with ~3.4 hour total execution time"
+    ],
+    "references": ["fischer2026"]
   }
 ]

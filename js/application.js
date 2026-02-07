@@ -62,6 +62,27 @@ document.addEventListener("DOMContentLoaded", async () => {
       html += `</section>`;
     }
 
+    // Diagrams from detail file
+    if (detail.diagrams && detail.diagrams.length) {
+      html += `<section class="detail-section"><h3>Workflow</h3>`;
+      html += `<div class="circuit-diagrams">`;
+      for (const diag of detail.diagrams) {
+        html += `<figure class="circuit-figure">`;
+        html += `<img src="${diag.src}" alt="${app.name} workflow" class="circuit-diagram"/>`;
+        if (diag.caption) {
+          let captionText = diag.caption;
+          // Add reference citation if provided
+          if (diag.reference && citationMap[diag.reference]) {
+            const citationNum = citationMap[diag.reference];
+            captionText += ` <a href="#references">[${citationNum}]</a>`;
+          }
+          html += `<figcaption>${captionText}</figcaption>`;
+        }
+        html += `</figure>`;
+      }
+      html += `</div></section>`;
+    }
+
     // Why error mitigation matters
     if (detail.why_qem && detail.why_qem.length) {
       html += `<section class="detail-section"><h3>Why Error Mitigation Matters</h3>`;
@@ -107,6 +128,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         html += `<p>${demo.description}</p>`;
         if (demo.hardware) html += `<p><strong>Hardware:</strong> ${demo.hardware}</p>`;
         if (demo.qubits) html += `<p><strong>Qubits:</strong> ${demo.qubits}</p>`;
+        if (demo.gates) html += `<p><strong>Gates:</strong> ${demo.gates}</p>`;
         if (demo.techniques) html += `<p><strong>Techniques:</strong> ${demo.techniques}</p>`;
         html += `</div>`;
       }
@@ -124,7 +146,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // References
     if (app.references && app.references.length) {
-      html += `<section class="detail-section"><h3>References</h3><ol class="detail-refs">`;
+      html += `<section class="detail-section" id="references"><h3>References</h3><ol class="detail-refs">`;
       for (const key of app.references) {
         const ref = references[key];
         if (!ref) continue;
