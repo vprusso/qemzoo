@@ -41,6 +41,29 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 
+  // Update protocol count in intro paragraph.
+  const protocolCountEl = document.getElementById("protocol-count");
+  if (protocolCountEl) {
+    protocolCountEl.textContent = techniques.length;
+  }
+
+  // Fetch and display counts for other sections.
+  const techniqueCountEl = document.getElementById("technique-count");
+  const noiseCountEl = document.getElementById("noise-count");
+  const applicationCountEl = document.getElementById("application-count");
+
+  if (techniqueCountEl || noiseCountEl || applicationCountEl) {
+    const counts = await Promise.all([
+      techniqueCountEl ? fetch(`data/noise-scaling.json${cacheBust}`).then(r => r.json()).then(d => d.length).catch(() => 0) : 0,
+      techniqueCountEl ? fetch(`data/extrapolation.json${cacheBust}`).then(r => r.json()).then(d => d.length).catch(() => 0) : 0,
+      noiseCountEl ? fetch(`data/noise.json${cacheBust}`).then(r => r.json()).then(d => d.length).catch(() => 0) : 0,
+      applicationCountEl ? fetch(`data/applications.json${cacheBust}`).then(r => r.json()).then(d => d.length).catch(() => 0) : 0,
+    ]);
+    if (techniqueCountEl) techniqueCountEl.textContent = counts[0] + counts[1];
+    if (noiseCountEl) noiseCountEl.textContent = counts[2];
+    if (applicationCountEl) applicationCountEl.textContent = counts[3];
+  }
+
   // Group techniques by first letter.
   const grouped = {};
   for (const t of techniques) {
