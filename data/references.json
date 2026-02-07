@@ -462,6 +462,21 @@
     "arxiv": "2107.02611",
     "doi": "10.1103/PhysRevLett.129.020502"
   },
+  "mcclean2020": {
+    "authors": "J. R. McClean, Z. Jiang, N. C. Rubin, R. Babbush, H. Neven",
+    "title": "Decoding Quantum Errors with Subspace Expansions",
+    "journal": "Nature Communications",
+    "year": 2020,
+    "arxiv": "1903.05786",
+    "doi": "10.1038/s41467-020-14341-w"
+  },
+  "corcoles2015": {
+    "authors": "A. D. Córcoles, E. Magesan, S. J. Srinivasan, A. W. Cross, M. Steffen, J. M. Gambetta, J. M. Chow",
+    "title": "Demonstration of a Quantum Error Detection Code Using a Square Lattice of Four Superconducting Qubits",
+    "journal": "Nature Communications",
+    "year": 2015,
+    "doi": "10.1038/ncomms7979"
+  },
   "suzuki2022": {
     "authors": "Y. Suzuki, S. Endo, K. Fujii, Y. Tokunaga",
     "title": "Quantum Error Mitigation as a Universal Error Reduction Technique: Applications from the NISQ to the Fault-Tolerant Quantum Computing Eras",

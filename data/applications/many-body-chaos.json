@@ -2,7 +2,7 @@
   "diagrams": [
     {
       "src": "images/applications/many-body-chaos-workflow.png",
-      "caption": "Figure 1 from Fischer et al. (2026): Simulating dual-unitary circuits with tensor-network error mitigation.",
+      "caption": "Simulating dual-unitary circuits with tensor-network error mitigation.",
       "reference": "fischer2026"
     }
   ],

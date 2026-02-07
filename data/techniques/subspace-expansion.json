@@ -2,7 +2,8 @@
   "description": [
     "Quantum Subspace Expansion (QSE) improves noisy variational estimates by expanding the search space around a reference state obtained from the quantum device. By applying a set of excitation operators to the reference state, QSE constructs a subspace that can capture both the ideal state and noise-induced leakage directions.",
     "A generalized eigenvalue problem is solved classically within this subspace, projecting out noise artifacts and yielding an improved energy estimate. The method was originally developed for quantum chemistry (McClean et al., 2017) as an extension of the variational quantum eigensolver (VQE).",
-    "QSE is particularly effective when the noise causes the quantum state to leak out of the target subspace (e.g., the ground state sector), as the expanded subspace can recapture this leakage."
+    "QSE is particularly effective when the noise causes the quantum state to leak out of the target subspace (e.g., the ground state sector), as the expanded subspace can recapture this leakage.",
+    "The method was later extended to function as a quantum error decoder (McClean et al., 2020), achieving a pseudo-threshold of approximately 50% under single-qubit depolarizing noise when applied to the [[5,1,3]] perfect code. This approach uses stochastic sampling and approximate projectors to correct logical errors without requiring syndrome measurements."
   ],
   "how_it_works": [
     "Obtain a reference state \\(|\\psi_0\\rangle\\) from a noisy quantum device (e.g., via VQE).",
@@ -46,6 +47,7 @@
     "Post-processing VQE results for quantum chemistry",
     "Correcting for state preparation errors in variational algorithms",
     "Excited state estimation via subspace diagonalization",
-    "Combined with symmetry verification to constrain the subspace"
+    "Combined with symmetry verification to constrain the subspace",
+    "Quantum error decoding for encoded logical qubits (e.g., [[5,1,3]] code)"
   ]
 }

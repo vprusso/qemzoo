@@ -186,11 +186,12 @@
       "Noise model required": "None",
       "Applicability": "Primarily variational algorithms (VQE)"
     },
-    "references": ["mcclean2017", "huggins2019", "yoshioka2022"],
+    "references": ["mcclean2017", "mcclean2020", "huggins2019", "yoshioka2022"],
     "related": [
       {"id": "n-representability", "reason": "both are post-processing methods for variational algorithms"},
       {"id": "purification", "reason": "both use multiple quantum states to improve estimates"},
-      {"id": "symmetry-verification", "reason": "subspace expansion can incorporate symmetry constraints"}
+      {"id": "symmetry-verification", "reason": "subspace expansion can incorporate symmetry constraints"},
+      {"id": "qed", "reason": "QSE can decode errors similarly to quantum error detection codes"}
     ]
   },
   {
@@ -267,11 +268,12 @@
       "Noise model required": "None; code structure determines detectable errors",
       "Applicability": "Any circuit that can be embedded in an error-detecting code; most effective for low to moderate noise"
     },
-    "references": ["knill2005", "linke2017"],
+    "references": ["knill2005", "corcoles2015", "linke2017", "mcclean2020"],
     "related": [
       {"id": "symmetry-verification", "reason": "SV is a special case using symmetry as the detecting code"},
       {"id": "accreditation", "reason": "both use post-selection to improve output quality"},
-      {"id": "partial-pauli-twirling", "reason": "PPT aligns errors with QED's detectable error space for synergistic mitigation"}
+      {"id": "partial-pauli-twirling", "reason": "PPT aligns errors with QED's detectable error space for synergistic mitigation"},
+      {"id": "subspace-expansion", "reason": "QSE can function as a quantum error decoder"}
     ]
   },
   {
