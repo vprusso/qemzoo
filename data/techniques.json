@@ -170,7 +170,8 @@
     "references": ["huggins2021", "koczor2021"],
     "related": [
       {"id": "subspace-expansion", "reason": "both use multiple quantum states to improve estimates"},
-      {"id": "symmetry-verification", "reason": "purity is itself a constraint that can be verified"}
+      {"id": "symmetry-verification", "reason": "purity is itself a constraint that can be verified"},
+      {"id": "logical-shadow-tomography", "reason": "virtual distillation is a special case of the LST framework"}
     ]
   },
   {
@@ -191,7 +192,8 @@
       {"id": "n-representability", "reason": "both are post-processing methods for variational algorithms"},
       {"id": "purification", "reason": "both use multiple quantum states to improve estimates"},
       {"id": "symmetry-verification", "reason": "subspace expansion can incorporate symmetry constraints"},
-      {"id": "qed", "reason": "QSE can decode errors similarly to quantum error detection codes"}
+      {"id": "qed", "reason": "QSE can decode errors similarly to quantum error detection codes"},
+      {"id": "logical-shadow-tomography", "reason": "QSE is a special case of the LST framework"}
     ]
   },
   {
@@ -391,7 +393,29 @@
     "references": ["chen2021"],
     "related": [
       {"id": "measurement-error-mitigation", "reason": "both calibrate the measurement channel; RSE generalizes to full shadow framework"},
-      {"id": "trex", "reason": "both mitigate measurement-stage noise with calibration"}
+      {"id": "trex", "reason": "both mitigate measurement-stage noise with calibration"},
+      {"id": "logical-shadow-tomography", "reason": "both use shadow tomography; LST adds codespace projection for error mitigation"}
+    ]
+  },
+  {
+    "id": "logical-shadow-tomography",
+    "name": "Logical Shadow Tomography",
+    "abbreviation": "LST",
+    "aliases": ["logical shadows", "codespace shadow tomography"],
+    "category": "mitigation",
+    "summary": "Performs shadow tomography on encoded logical states and uses classical post-processing to project noisy measurement data into the error-correction codespace. This filters out noise-induced errors without requiring mid-circuit syndrome measurements. LST unifies subspace expansion and virtual distillation as special cases, achieving sample complexity that scales with logical qubits \\(k\\) rather than physical qubits \\(n\\).",
+    "properties": {
+      "Bias": "Low; codespace projection filters detectable errors",
+      "Sampling overhead": "\\(O(4^k)\\) for \\(k\\) logical qubits; much better than \\(O(2^n)\\) for subspace expansion",
+      "Noise model required": "None; uses code structure",
+      "Applicability": "Encoded logical qubits; efficient estimation of logical Pauli observables"
+    },
+    "references": ["hu2022"],
+    "related": [
+      {"id": "robust-shadows", "reason": "both use shadow tomography; RSE calibrates measurement noise, LST projects onto codespace"},
+      {"id": "subspace-expansion", "reason": "QSE is a special case of the LST framework"},
+      {"id": "purification", "reason": "virtual distillation is a special case of the LST framework"},
+      {"id": "qed", "reason": "both use quantum error-detecting codes; LST applies codespace projection classically"}
     ]
   },
   {

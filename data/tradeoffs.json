@@ -26,5 +26,6 @@
   {"id": "emre", "bias": 0.55, "variance": 0.15, "overhead": 0.1, "notes": "Constant sampling overhead; bias grows with product of per-gate robustness factors."},
   {"id": "hemre", "bias": 0.35, "variance": 0.5, "overhead": 0.5, "notes": "Tunable bias-variance tradeoff; intermediate between PEC and EMRE."},
   {"id": "pie", "bias": 0.2, "variance": 0.3, "overhead": 0.3, "notes": "Physics-motivated fitting reduces variance vs exponential ZNE. Bias from GQPD approximation."},
-  {"id": "partial-pauli-twirling", "bias": 0.45, "variance": 0.1, "overhead": 0.15, "notes": "Slightly higher bias than full twirling due to incomplete diagonalization; lower overhead from smaller gate set."}
+  {"id": "partial-pauli-twirling", "bias": 0.45, "variance": 0.1, "overhead": 0.15, "notes": "Slightly higher bias than full twirling due to incomplete diagonalization; lower overhead from smaller gate set."},
+  {"id": "logical-shadow-tomography", "bias": 0.1, "variance": 0.35, "overhead": 0.3, "notes": "Low bias when codespace projection effectively filters errors. Overhead scales with logical qubit count, not physical."}
 ]

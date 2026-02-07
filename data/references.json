@@ -477,6 +477,14 @@
     "year": 2015,
     "doi": "10.1038/ncomms7979"
   },
+  "hu2022": {
+    "authors": "H.-Y. Hu, R. LaRose, Y.-Z. You, E. Rieffel, Z. Wang",
+    "title": "Logical Shadow Tomography: Efficient Estimation of Error-Mitigated Observables",
+    "journal": "arXiv preprint",
+    "year": 2022,
+    "arxiv": "2203.07263",
+    "doi": "10.48550/arXiv.2203.07263"
+  },
   "suzuki2022": {
     "authors": "Y. Suzuki, S. Endo, K. Fujii, Y. Tokunaga",
     "title": "Quantum Error Mitigation as a Universal Error Reduction Technique: Applications from the NISQ to the Fault-Tolerant Quantum Computing Eras",

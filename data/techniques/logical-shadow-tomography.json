@@ -1,0 +1,55 @@
+{
+  "description": [
+    "Logical Shadow Tomography (LST) is a technique for efficiently estimating error-mitigated expectation values by performing shadow tomography on encoded logical states. Rather than applying error correction, LST uses classical post-processing to project noisy measurement data into the error-correction codespace, filtering out noise-induced errors.",
+    "The key insight is that shadow tomography on logical qubits, combined with projection onto the codespace, provides a unified framework that encompasses both subspace expansion and virtual distillation as special cases. This allows LST to achieve the benefits of both approaches.",
+    "LST is particularly sample-efficient for estimating logical Pauli observables, requiring only \\(O(4^k)\\) samples for \\(k\\) logical qubits, compared to \\(O(2^n)\\) for subspace expansion on \\(n\\) physical qubits. Unlike virtual distillation, it does not require additional quantum copies or ancilla qubits."
+  ],
+  "diagrams": [
+    {
+      "src": "images/techniques/logical-shadow-tomography-workflow.png",
+      "caption": "Logical shadow tomography workflow: (a) logical qubits (red) are encoded into physical qubits (blue), undergo noisy computation, then shadow tomography with random unitaries U followed by classical post-processing; (b) special case using [n,1] codes per logical qubit.",
+      "reference": "hu2022"
+    }
+  ],
+  "how_it_works": [
+    "Encode \\(k\\) logical qubits into \\(n\\) physical qubits using a stabilizer code.",
+    "Perform randomized Pauli measurements (shadow tomography) on the physical qubits to collect classical snapshot data.",
+    "Classically reconstruct the logical density matrix from the shadow data by projecting onto the codespace defined by the stabilizer generators.",
+    "Estimate error-mitigated expectation values of logical observables from the projected density matrix using median-of-means estimation."
+  ],
+  "key_equations": [
+    {
+      "label": "Logical shadow estimator (Π = codespace projector, ρ = physical density matrix, O_L = logical observable)",
+      "latex": "\\langle O_L \\rangle_{\\text{mitigated}} = \\frac{\\text{Tr}(\\Pi \\rho \\Pi \\, O_L)}{\\text{Tr}(\\Pi \\rho \\Pi)}"
+    },
+    {
+      "label": "Sample complexity for k logical qubits (ε = precision, δ = failure probability)",
+      "latex": "N = O\\left(\\frac{4^k}{\\epsilon^2} \\log(1/\\delta)\\right)"
+    }
+  ],
+  "bias_variance": {
+    "bias": 0.1,
+    "variance": 0.35,
+    "overhead": 0.3,
+    "notes": "Low bias when codespace projection effectively filters errors. Variance depends on acceptance probability of the codespace projection. Overhead is primarily from the encoding; measurement overhead scales with logical (not physical) qubit count."
+  },
+  "advantages": [
+    "Sample complexity scales with logical qubits \\(k\\), not physical qubits \\(n\\)",
+    "No additional quantum copies or ancilla qubits required (unlike virtual distillation)",
+    "Unifies subspace expansion and virtual distillation as special cases",
+    "Compatible with any stabilizer code",
+    "Classical post-processing only — no mid-circuit measurements needed"
+  ],
+  "disadvantages": [
+    "Requires encoding into a quantum error-detecting/correcting code",
+    "Effectiveness depends on the code's ability to detect the dominant noise",
+    "Codespace projection reduces effective sample size (similar to post-selection)",
+    "Classical processing cost grows with code size"
+  ],
+  "use_cases": [
+    "Estimating observables on encoded logical qubits",
+    "Error mitigation when quantum error-detecting codes are already in use",
+    "Efficient estimation of many logical Pauli observables simultaneously",
+    "Situations where virtual distillation's qubit overhead is prohibitive"
+  ]
+}

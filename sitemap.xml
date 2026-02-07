@@ -205,6 +205,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://qemzoo.com/technique.html?id=logical-shadow-tomography</loc>
+    <lastmod>2025-02-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
   <!-- Application detail pages -->
   <url>
     <loc>https://qemzoo.com/application.html?id=vqe</loc>

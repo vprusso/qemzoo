@@ -90,14 +90,27 @@ document.addEventListener("DOMContentLoaded", async () => {
       html += `</section>`;
     }
 
+    // Build citation map for reference numbers.
+    const citationMap = {};
+    tech.references.forEach((key, idx) => {
+      citationMap[key] = idx + 1;
+    });
+
     // Diagrams.
     if (detail.diagrams && detail.diagrams.length) {
       html += `<section class="detail-section"><h3>Diagram</h3>`;
       html += `<div class="circuit-diagrams">`;
       for (const diag of detail.diagrams) {
         html += `<figure class="circuit-figure">`;
-        html += `<img src="${diag.src}" alt="${diag.caption}" class="circuit-diagram">`;
-        html += `<figcaption>${diag.caption}</figcaption>`;
+        html += `<img src="${diag.src}" alt="${diag.caption || tech.name + ' diagram'}" class="circuit-diagram">`;
+        if (diag.caption) {
+          let captionText = diag.caption;
+          if (diag.reference && citationMap[diag.reference]) {
+            const citationNum = citationMap[diag.reference];
+            captionText += ` <a href="#references">[${citationNum}]</a>`;
+          }
+          html += `<figcaption>${captionText}</figcaption>`;
+        }
         html += `</figure>`;
       }
       html += `</div></section>`;
@@ -180,7 +193,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // References.
     if (tech.references.length) {
-      html += `<section class="detail-section"><h3>References</h3><ol class="detail-refs">`;
+      html += `<section class="detail-section" id="references"><h3>References</h3><ol class="detail-refs">`;
       for (const key of tech.references) {
         const ref = references[key];
         if (!ref) continue;
