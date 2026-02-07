@@ -145,7 +145,7 @@
       "Noise model required": "Full characterization of local gate noise (e.g., via gate set tomography)",
       "Scalability": "Overhead grows exponentially with circuit depth and noise rate"
     },
-    "references": ["temme2017", "endo2018", "piveteau2022"],
+    "references": ["temme2017", "endo2018", "vandenberg2022", "piveteau2022"],
     "related": [
       {"id": "pauli-twirling", "reason": "Pauli twirling simplifies noise model for PEC"},
       {"id": "zne", "reason": "both are foundational QEM techniques"},

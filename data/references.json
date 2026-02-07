@@ -158,6 +158,14 @@
     "arxiv": "1907.13117",
     "doi": "10.1038/s41534-020-00341-7"
   },
+  "vandenberg2022": {
+    "authors": "E. van den Berg, Z. K. Minev, A. Kandala, K. Temme",
+    "title": "Probabilistic Error Cancellation with Sparse Pauli-Lindblad Models on Noisy Quantum Processors",
+    "journal": "Nature Physics",
+    "year": 2022,
+    "arxiv": "2201.09866",
+    "doi": "10.1038/s41567-023-02042-2"
+  },
   "viola1999": {
     "authors": "L. Viola, E. Knill, S. Lloyd",
     "title": "Dynamical Decoupling of Open Quantum Systems",
