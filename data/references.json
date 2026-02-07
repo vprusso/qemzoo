@@ -198,6 +198,22 @@
     "arxiv": "1803.01818",
     "doi": "10.1103/PhysRevA.103.042604"
   },
+  "hashim2021": {
+    "authors": "A. Hashim, R. K. Naik, A. Morvan, J.-L. Ville, B. Mitchell, J. M. Kreikebaum, M. Davis, E. Smith, C. Iancu, K. P. O'Brien, I. Hincks, J. J. Wallman, J. Emerson, I. Siddiqi",
+    "title": "Randomized Compiling for Scalable Quantum Computing on a Noisy Superconducting Quantum Processor",
+    "journal": "Physical Review X",
+    "year": 2021,
+    "arxiv": "2010.00215",
+    "doi": "10.1103/PhysRevX.11.041039"
+  },
+  "saki2023": {
+    "authors": "A. A. Saki, A. Katabarwa, S. Resch, G. Umbrarescu",
+    "title": "Hypothesis Testing for Error Mitigation: How to Evaluate Error Mitigation",
+    "journal": "arXiv preprint",
+    "year": 2023,
+    "arxiv": "2301.02690",
+    "doi": "10.48550/arXiv.2301.02690"
+  },
   "lowe2021": {
     "authors": "A. Lowe, M. H. Gordon, P. Czarnik, A. Arrasmith, P. J. Coles, L. Cincio",
     "title": "Unified Approach to Data-Driven Quantum Error Mitigation",

@@ -104,7 +104,7 @@
       "Noise model required": "None",
       "Applicability": "General-purpose; especially useful as a preprocessing step before PEC or ZNE"
     },
-    "references": ["wallman2016", "ware2021"],
+    "references": ["wallman2016", "ware2021", "hashim2021", "saki2023"],
     "related": [
       {"id": "pec", "reason": "Pauli twirling simplifies noise for PEC"},
       {"id": "zne", "reason": "Pauli twirling simplifies noise for ZNE"},
