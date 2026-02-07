@@ -15,13 +15,15 @@
       "title": "Error-Mitigated Variational Classifiers",
       "description": "Demonstrated that ZNE improves test accuracy of variational quantum classifiers on real hardware, enabling successful classification of datasets like Iris and MNIST subsets.",
       "hardware": "IBM Quantum",
-      "techniques": "ZNE, measurement error mitigation"
+      "techniques": "ZNE, measurement error mitigation",
+      "reference": "sagastizabal2019"
     },
     {
       "title": "Quantum Kernel Methods",
       "description": "Applied error mitigation to quantum kernel estimation, showing improved kernel matrix fidelity and classification accuracy.",
       "hardware": "Various NISQ devices",
-      "techniques": "Measurement error mitigation, ZNE"
+      "techniques": "Measurement error mitigation, ZNE",
+      "reference": "wang2021qml"
     }
   ],
   "challenges": [

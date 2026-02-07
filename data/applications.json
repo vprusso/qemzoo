@@ -10,7 +10,7 @@
       "Achieved on multiple IBM Quantum superconducting processors",
       "Moderate additional sampling overhead from running circuits at multiple noise levels"
     ],
-    "references": ["pelofske2023", "larose2022qv"]
+    "references": ["pelofske2023", "larose2022qv", "self2024"]
   },
   {
     "id": "vqe",
@@ -23,7 +23,7 @@
       "Symmetry verification exploits particle number and spin conservation",
       "CDR leverages near-Clifford training circuits for regression-based correction"
     ],
-    "references": ["kandala2019", "mcardle2019", "czarnik2021"]
+    "references": ["kandala2019", "mcardle2019", "czarnik2021", "urbanek2020"]
   },
   {
     "id": "qaoa",
@@ -49,7 +49,7 @@
       "ZNE with probabilistic error amplification (PEA) enabled accurate observable estimation",
       "Results verified against tensor network methods where tractable"
     ],
-    "references": ["kim2023"]
+    "references": ["kim2023", "urbanek2021"]
   },
   {
     "id": "quantum-machine-learning",

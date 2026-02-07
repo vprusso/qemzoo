@@ -124,7 +124,13 @@ document.addEventListener("DOMContentLoaded", async () => {
       html += `<section class="detail-section"><h3>Experimental Demonstrations</h3>`;
       for (const demo of detail.demonstrations) {
         html += `<div class="demonstration">`;
-        html += `<h4>${demo.title}</h4>`;
+        // Add reference citation to title if provided
+        let titleText = demo.title;
+        if (demo.reference && citationMap[demo.reference]) {
+          const citationNum = citationMap[demo.reference];
+          titleText += ` <a href="#references">[${citationNum}]</a>`;
+        }
+        html += `<h4>${titleText}</h4>`;
         html += `<p>${demo.description}</p>`;
         if (demo.hardware) html += `<p><strong>Hardware:</strong> ${demo.hardware}</p>`;
         if (demo.qubits) html += `<p><strong>Qubits:</strong> ${demo.qubits}</p>`;

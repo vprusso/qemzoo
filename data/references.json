@@ -238,7 +238,7 @@
     "arxiv": "1611.06946",
     "doi": "10.1126/sciadv.1701074"
   },
-  "vandenberg2022": {
+  "vandenberg2022trex": {
     "authors": "E. van den Berg, Z. K. Minev, K. Temme",
     "title": "Model-Free Readout-Error Mitigation for Quantum Expectation Values",
     "journal": "Physical Review A",
@@ -484,6 +484,65 @@
     "journal": "Nature Communications",
     "year": 2015,
     "doi": "10.1038/ncomms7979"
+  },
+  "urbanek2020": {
+    "authors": "M. Urbanek, B. Nachman, W. A. de Jong",
+    "title": "Error Detection on Quantum Computers Improves Accuracy of Chemical Calculations",
+    "journal": "Physical Review A",
+    "year": 2020,
+    "arxiv": "1910.00129",
+    "doi": "10.1103/PhysRevA.102.022427"
+  },
+  "gong2022": {
+    "authors": "M. Gong, X. Yuan, S. Wang, Y. Wu, Y. Zhao, C. Zha, S. Li, Z. Zhang, Q. Zhao, Y. Liu, F. Liang, J. Lin, Y. Xu, H. Deng, H. Rong, H. Lu, S. C. Benjamin, C.-Z. Peng, X. Ma, Y.-A. Chen, X. Zhu, J.-W. Pan",
+    "title": "Experimental Exploration of Five-Qubit Quantum Error Correcting Code with Superconducting Qubits",
+    "journal": "National Science Review",
+    "year": 2022,
+    "arxiv": "1907.04507",
+    "doi": "10.1093/nsr/nwab011"
+  },
+  "self2024": {
+    "authors": "C. N. Self, M. Benedetti, D. Amaro",
+    "title": "Protecting Expressive Circuits with a Quantum Error Detection Code",
+    "journal": "Nature Physics",
+    "year": 2024,
+    "arxiv": "2211.06703",
+    "doi": "10.1038/s41567-023-02282-2"
+  },
+  "chertkov2025": {
+    "authors": "E. Chertkov, A. C. Potter, D. Hayes, M. Foss-Feig",
+    "title": "Error Detection Without Post-Selection in Adaptive Quantum Circuits",
+    "journal": "arXiv preprint",
+    "year": 2025,
+    "arxiv": "2509.25326"
+  },
+  "martiel2025": {
+    "authors": "S. Martiel, A. Javadi-Abhari",
+    "title": "Low-Overhead Error Detection with Spacetime Codes",
+    "journal": "arXiv preprint",
+    "year": 2025,
+    "arxiv": "2504.15725"
+  },
+  "javadi2025": {
+    "authors": "A. Javadi-Abhari, S. Martiel, A. Seif, M. Takita, K. X. Wei",
+    "title": "Big Cats: Entanglement in 120 Qubits and Beyond",
+    "journal": "arXiv preprint",
+    "year": 2025,
+    "arxiv": "2510.09520"
+  },
+  "vezvaee2025": {
+    "authors": "A. Vezvaee, V. Tripathi, M. Morford-Oberst, F. Butt, V. Kasatkin, D. A. Lidar",
+    "title": "Demonstration of High-Fidelity Entangled Logical Qubits Using Transmons",
+    "journal": "arXiv preprint",
+    "year": 2025,
+    "arxiv": "2503.14472"
+  },
+  "zhang2026": {
+    "authors": "C. Zhang, C. Li, Z. Tian, Y. Jiang, F. Xu, S. Zhang, H. Wang, Y.-N. Zhang, X. Bai, B. Zhao, Y.-F. Zhang, H. Shu, J. Liu, K. Wu, C. Huang, K. Shi, M. Duan, T. Xin, P. Huang, T. Pan, S. Liu, G. Wang, G. Hu, Y. He, D. Yu",
+    "title": "Quantum Error Detection in a Silicon Quantum Processor",
+    "journal": "Nature Electronics",
+    "year": 2026,
+    "doi": "10.1038/s41928-025-01557-1"
   },
   "hu2022": {
     "authors": "H.-Y. Hu, R. LaRose, Y.-Z. You, E. Rieffel, Z. Wang",

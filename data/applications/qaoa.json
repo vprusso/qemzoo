@@ -16,13 +16,15 @@
       "description": "Demonstrated QAOA for MaxCut on up to 23 qubits with error mitigation, achieving approximation ratios competitive with classical algorithms.",
       "hardware": "Google Sycamore",
       "qubits": "Up to 23 qubits",
-      "techniques": "Readout error mitigation, post-selection"
+      "techniques": "Readout error mitigation, post-selection",
+      "reference": "harrigan2021"
     },
     {
       "title": "Portfolio Optimization",
       "description": "Applied error-mitigated QAOA to financial portfolio optimization problems, demonstrating practical applicability of quantum optimization.",
       "hardware": "IBM Quantum",
-      "techniques": "ZNE, measurement error mitigation"
+      "techniques": "ZNE, measurement error mitigation",
+      "reference": "weidenfeller2022"
     }
   ],
   "challenges": [

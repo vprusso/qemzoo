@@ -16,7 +16,8 @@
       "description": "Executed 127-qubit circuits with 60 layers of two-qubit gates, totaling 2800+ CNOT operations. Error-mitigated expectation values were accurate where classical verification was possible, and extended into classically intractable regimes.",
       "hardware": "IBM Eagle (ibm_kyiv)",
       "qubits": "127 qubits",
-      "techniques": "Pauli twirling, PEA-based ZNE, TREX, dynamical decoupling"
+      "techniques": "Pauli twirling, PEA-based ZNE, TREX, dynamical decoupling",
+      "reference": "kim2023"
     }
   ],
   "challenges": [

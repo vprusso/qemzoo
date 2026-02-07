@@ -32,6 +32,9 @@
     }
   ],
   "bias_variance": {
+    "bias": 0.1,
+    "variance": 0.75,
+    "overhead": 0.7,
     "notes": "NEPEC reduces the sampling overhead of PEC by allowing operation at higher noise levels where the quasi-probability norm γ is smaller. The extrapolation step adds variance but enables operation without a complete noise model."
   },
   "advantages": [

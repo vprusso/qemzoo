@@ -270,7 +270,7 @@
       "Noise model required": "None; code structure determines detectable errors",
       "Applicability": "Any circuit that can be embedded in an error-detecting code; most effective for low to moderate noise"
     },
-    "references": ["knill2005", "corcoles2015", "linke2017", "mcclean2020"],
+    "references": ["knill2005", "corcoles2015", "linke2017", "mcclean2020", "urbanek2020", "gong2022", "self2024", "chertkov2025", "martiel2025", "javadi2025", "vezvaee2025", "zhang2026"],
     "related": [
       {"id": "symmetry-verification", "reason": "SV is a special case using symmetry as the detecting code"},
       {"id": "accreditation", "reason": "both use post-selection to improve output quality"},
@@ -291,7 +291,7 @@
       "Noise model required": "None (model-free); only requires ability to insert bit flips before measurement",
       "Applicability": "General-purpose readout error mitigation; used as resilience level 1 in Qiskit Runtime"
     },
-    "references": ["vandenberg2022"],
+    "references": ["vandenberg2022trex"],
     "related": [
       {"id": "measurement-error-mitigation", "reason": "both address readout errors; TREX avoids explicit confusion-matrix inversion"},
       {"id": "pauli-twirling", "reason": "both use Pauli randomization to simplify noise structure"}

@@ -3,7 +3,7 @@
     "Quantum Error Detection (QED) encodes logical qubits into a quantum error-detecting code and uses stabilizer measurements to flag when errors have occurred. Unlike full quantum error correction (QEC), QED does not attempt to identify and reverse errors — it simply discards flagged runs via post-selection, keeping only runs where no error was detected.",
     "The simplest example is the \\([\\![ 4, 2, 2 ]\\!]\\) code, which encodes 2 logical qubits into 4 physical qubits and can detect any single-qubit error. More generally, any \\([\\![ n, k, d ]\\!]\\) stabilizer code with distance \\(d \\geq 2\\) can detect up to \\(d-1\\) errors.",
     "QED is particularly attractive for near-term devices because it requires fewer qubits and simpler circuits than full QEC, while still providing exponential suppression of detectable errors (at the cost of a reduced acceptance rate).",
-    "Early experimental demonstrations include a 2×2 lattice of superconducting qubits implementing surface code error detection (Córcoles et al., 2015), which detected both bit-flip and phase-flip errors simultaneously using syndrome qubit measurements."
+    "QED has been demonstrated across multiple hardware platforms: superconducting qubits (Bell state preparation with the \\([\\![ 2, 0, 2 ]\\!]\\) code, the \\([\\![ 4, 2, 2 ]\\!]\\) code for chemistry and state preparation, and GHZ states on 120+ qubits), trapped-ion systems (Iceberg codes for quantum volume on Quantinuum H2, dissipative quantum dynamics), and silicon quantum computers (2026)."
   ],
   "how_it_works": [
     "Encode \\(k\\) logical qubits into \\(n\\) physical qubits using an error-detecting code (e.g., the \\([\\![ 4, 2, 2 ]\\!]\\) code).",

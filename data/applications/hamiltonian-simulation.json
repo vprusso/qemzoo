@@ -16,13 +16,15 @@
       "description": "Simulated dynamics of a kicked Ising model on a 127-qubit heavy-hex lattice with 60 layers of two-qubit gates (2800+ CNOT gates). Error-mitigated results matched tensor network simulations where tractable and extended beyond classical reach.",
       "hardware": "IBM Eagle (127 qubits)",
       "qubits": "127 qubits",
-      "techniques": "Pauli twirling, PEA-based ZNE, TREX"
+      "techniques": "Pauli twirling, PEA-based ZNE, TREX",
+      "reference": "kim2023"
     },
     {
       "title": "Quantum Field Theory Simulation",
       "description": "Applied NOX (noiseless output extrapolation) to simulate quantum field theory dynamics, demonstrating error mitigation for physics applications.",
       "hardware": "IBM superconducting processors",
-      "techniques": "NOX, randomized compiling"
+      "techniques": "NOX, randomized compiling",
+      "reference": "urbanek2021"
     }
   ],
   "challenges": [

@@ -14,7 +14,15 @@
       "title": "First QV Increase via ZNE (2022-2023)",
       "description": "Demonstrated increased effective quantum volume on four IBM Quantum superconducting processors using digital ZNE with global and local unitary folding.",
       "hardware": "IBM Quantum (multiple processors)",
-      "techniques": "ZNE with unitary folding, dynamical decoupling"
+      "techniques": "ZNE with unitary folding, dynamical decoupling",
+      "reference": "pelofske2023"
+    },
+    {
+      "title": "Iceberg Code QED for Quantum Volume (2024)",
+      "description": "Used the [[k+2, k, 2]] Iceberg error-detecting code on Quantinuum H2 to achieve better-than-physical performance on mirror circuits and quantum volume benchmarks with 10 data qubits and 2 ancilla qubits for stabilizer measurement.",
+      "hardware": "Quantinuum H2 (trapped ions)",
+      "techniques": "QED with Iceberg code, ancilla-based stabilizer measurement",
+      "reference": "self2024"
     }
   ],
   "challenges": [

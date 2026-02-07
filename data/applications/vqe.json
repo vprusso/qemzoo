@@ -16,14 +16,24 @@
       "description": "Early demonstrations of VQE with error mitigation achieved chemical accuracy for small molecules using measurement error mitigation and symmetry verification.",
       "hardware": "IBM superconducting processors",
       "qubits": "2-6 qubits",
-      "techniques": "Measurement error mitigation, symmetry verification"
+      "techniques": "Measurement error mitigation, symmetry verification",
+      "reference": "kandala2019"
     },
     {
       "title": "BeH₂ with ZNE",
       "description": "Extended VQE to larger molecules using zero-noise extrapolation to correct gate errors, demonstrating the scalability of error-mitigated quantum chemistry.",
       "hardware": "IBM superconducting processors",
       "qubits": "6 qubits",
-      "techniques": "ZNE, measurement error mitigation"
+      "techniques": "ZNE, measurement error mitigation",
+      "reference": "kandala2019"
+    },
+    {
+      "title": "H₂ Ground State with Quantum Error Detection (2020)",
+      "description": "Demonstrated that encoding qubits in the [[4,2,2]] error-detecting code improves accuracy of chemical calculations on quantum computers. The QED approach achieved better results than unencoded circuits for estimating the hydrogen molecule ground state energy.",
+      "hardware": "IBM Tokyo",
+      "qubits": "4 + 2 ancilla",
+      "techniques": "QED with [[4,2,2]] code",
+      "reference": "urbanek2020"
     }
   ],
   "challenges": [

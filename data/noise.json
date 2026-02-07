@@ -117,6 +117,6 @@
     "effect_on_bloch_sphere": "Misidentification of final Bloch sphere location",
     "kraus_operators": "Readout confusion matrix: \\(A = \\begin{pmatrix} 1-p_0 & p_1 \\\\ p_0 & 1-p_1 \\end{pmatrix}\\)",
     "mitigated_by": ["measurement-error-mitigation", "trex", "robust-shadows"],
-    "references": ["bravyi2021", "vandenberg2022"]
+    "references": ["bravyi2021", "vandenberg2022trex"]
   }
 ]

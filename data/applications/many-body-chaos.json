@@ -24,7 +24,8 @@
       "hardware": "IBM ibm_strasbourg (91 qubits)",
       "qubits": "91 qubits",
       "gates": "4,095 two-qubit ECR gates",
-      "techniques": "TEM, Pauli twirling, TREX (twirled readout error extinction), sparse Pauli-Lindblad noise model"
+      "techniques": "TEM, Pauli twirling, TREX (twirled readout error extinction), sparse Pauli-Lindblad noise model",
+      "reference": "fischer2026"
     }
   ],
   "challenges": [
