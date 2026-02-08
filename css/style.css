@@ -264,6 +264,11 @@ h2.letter-heading {
   color: #7a2a6a;
 }
 
+.badge-learning {
+  background: #fff5e8;
+  color: #8a5a2a;
+}
+
 .badge-benchmarking {
   background: #e8f0f5;
   color: #2a5a7a;

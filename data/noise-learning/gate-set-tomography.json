@@ -1,0 +1,51 @@
+{
+  "description": [
+    "Gate Set Tomography (GST) is the most comprehensive method for characterizing quantum operations, providing complete process matrices for an entire gate set including state preparation and measurement. Unlike other characterization methods, GST is self-consistent: it doesn't assume perfect reference operations.",
+    "GST achieves this by running long sequences of gates and using maximum likelihood estimation to simultaneously fit all operations. The result is a complete description of how each gate, preparation, and measurement actually behaves, including coherent errors, stochastic errors, and SPAM.",
+    "While GST provides the gold standard for detailed noise characterization, its exponential scaling with qubit count limits practical application to 2-3 qubits. For larger systems, approximate methods like Sparse Pauli-Lindblad learning or Randomized Benchmarking are preferred."
+  ],
+  "how_it_works": [
+    "Choose a gate set to characterize (e.g., \\(\\{X_{\\pi/2}, Y_{\\pi/2}, \\text{idle}\\}\\) plus state prep and measurement).",
+    "Define 'fiducial' sequences: short gate sequences that prepare and measure in an informationally complete set of states.",
+    "Define 'germ' sequences: short gate sequences that amplify different types of errors when repeated.",
+    "Run circuits of the form: fiducial → germ^L → fiducial, for various germ powers L = 1, 2, 4, 8, ...",
+    "Collect outcome statistics for all circuit combinations.",
+    "Use maximum likelihood estimation to find the gate set (process matrices + SPAM) that best explains all data.",
+    "The result is a complete, self-consistent description of all operations."
+  ],
+  "key_equations": [
+    {
+      "label": "Gate set model (G_i = process matrices, ρ = preparation, E = measurement POVM)",
+      "latex": "\\text{Pr}(\\text{outcome}) = \\langle\\langle E | G_n G_{n-1} \\cdots G_1 | \\rho \\rangle\\rangle"
+    },
+    {
+      "label": "Maximum likelihood estimation objective",
+      "latex": "\\hat{G} = \\arg\\max_G \\prod_{\\text{circuits } c} \\prod_{\\text{outcomes } o} P_G(o|c)^{n_{c,o}}"
+    },
+    {
+      "label": "Number of experiments (L_max = max germ power, |F| = fiducials, |germs| = germ count)",
+      "latex": "N_{\\text{circuits}} = O(|F|^2 \\cdot |\\text{germs}| \\cdot \\log_2 L_{\\max})"
+    }
+  ],
+  "advantages": [
+    "Self-consistent: doesn't assume perfect reference operations",
+    "Complete characterization: provides full process matrices for all operations",
+    "Captures coherent errors, not just stochastic (unlike RB)",
+    "Provides detailed error generators for debugging and improvement",
+    "Gauge-invariant metrics for comparing implementations"
+  ],
+  "disadvantages": [
+    "Exponential scaling: practical only for 1-3 qubits",
+    "High experimental overhead: requires many distinct circuits",
+    "Computationally intensive: MLE fitting can be slow",
+    "Complex analysis pipeline with gauge freedom to resolve",
+    "Not suitable for runtime error mitigation at scale"
+  ],
+  "use_cases": [
+    "Detailed characterization of few-qubit gates for hardware development",
+    "Validating gate implementations in new quantum processors",
+    "Providing ground truth for testing approximate characterization methods",
+    "Enabling PEC on small systems with exact noise knowledge",
+    "Academic studies requiring complete error information"
+  ]
+}

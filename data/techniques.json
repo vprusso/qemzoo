@@ -154,8 +154,7 @@
       {"id": "zne", "reason": "both are foundational QEM techniques"},
       {"id": "measurement-error-mitigation", "reason": "PEC can be combined with REM for full-circuit mitigation"},
       {"id": "emre", "reason": "EMRE retains only the positive part of PEC's quasi-probability decomposition"},
-      {"id": "hemre", "reason": "HEMRE interpolates between PEC and EMRE"},
-      {"id": "sparse-pauli-lindblad", "reason": "SPL provides scalable noise learning that enables PEC on large processors"}
+      {"id": "hemre", "reason": "HEMRE interpolates between PEC and EMRE"}
     ]
   },
   {
@@ -343,8 +342,7 @@
     "related": [
       {"id": "zne", "reason": "PEA is a noise amplification method used within ZNE"},
       {"id": "pec", "reason": "PEA uses the same learned noise model as PEC but avoids exponential sampling overhead"},
-      {"id": "pauli-twirling", "reason": "PEA operates on twirled (Pauli) noise channels"},
-      {"id": "sparse-pauli-lindblad", "reason": "SPL provides the learned noise model that enables accurate PEA"}
+      {"id": "pauli-twirling", "reason": "PEA operates on twirled (Pauli) noise channels"}
     ]
   },
   {
@@ -730,26 +728,6 @@
       {"id": "pauli-twirling", "reason": "symmetric Clifford twirling is a structured extension of Pauli twirling"},
       {"id": "pseudo-twirling", "reason": "both extend twirling techniques beyond standard Pauli/Clifford gates"},
       {"id": "pec", "reason": "can be used as preprocessing to simplify noise for PEC"}
-    ]
-  },
-  {
-    "id": "sparse-pauli-lindblad",
-    "name": "Sparse Pauli-Lindblad Noise Learning",
-    "abbreviation": "SPL",
-    "aliases": ["Pauli-Lindblad noise model", "scalable noise learning", "sparse noise model"],
-    "category": "characterization",
-    "summary": "A scalable noise characterization protocol that learns a sparse Pauli-Lindblad noise model capturing correlated errors across large quantum circuits. The model represents noise as low-weight Pauli errors in a Lindblad master equation, enabling efficient learning and inversion for probabilistic error cancellation. This addresses a major challenge in PEC: finding a noise model that scales to many qubits, captures crosstalk, and can be efficiently manipulated. Demonstrated on IBM superconducting processors enabling PEC at scale.",
-    "properties": {
-      "Bias": "None if model accurately captures the noise",
-      "Sampling overhead": "Learning overhead amortized across many circuits; enables efficient PEC",
-      "Noise model required": "This IS the noise learning technique",
-      "Applicability": "Large-scale quantum processors; enables scalable PEC and PEA"
-    },
-    "references": ["vandenberg2022", "kim2023"],
-    "related": [
-      {"id": "pec", "reason": "SPL enables scalable PEC by providing an efficiently learnable and invertible noise model"},
-      {"id": "pea", "reason": "SPL provides the learned noise model used for accurate noise amplification in PEA"},
-      {"id": "tem", "reason": "both provide structured noise representations; TEM uses tensor networks, SPL uses sparse Lindblad"}
     ]
   }
 ]

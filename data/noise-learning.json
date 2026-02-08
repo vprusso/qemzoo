@@ -1,0 +1,54 @@
+[
+  {
+    "id": "sparse-pauli-lindblad",
+    "name": "Sparse Pauli-Lindblad Learning",
+    "aliases": ["Pauli-Lindblad noise model", "SPL"],
+    "summary": "Learns a sparse noise model by representing errors as low-weight Pauli operators in a Lindblad master equation. The sparsity assumption (weight \\(\\leq 2\\), geometrically local) reduces parameters from \\(O(4^{2n})\\) to \\(O(n \\cdot 4^w)\\), enabling scalable learning and inversion. Captures correlated noise including crosstalk. Used in the 127-qubit utility demonstration.",
+    "properties": {
+      "Scalability": "Demonstrated on 100+ qubits",
+      "Noise captured": "Local Pauli errors, nearest-neighbor correlations, crosstalk",
+      "Learning method": "Calibration circuits (randomized benchmarking style)",
+      "Enables": "Scalable PEC, accurate PEA noise amplification"
+    },
+    "references": ["vandenberg2022", "kim2023"]
+  },
+  {
+    "id": "cycle-benchmarking",
+    "name": "Cycle Benchmarking",
+    "aliases": ["CB", "per-cycle noise learning"],
+    "summary": "Efficiently characterizes noise on a per-cycle basis by running circuits with varying numbers of repeated gate cycles and fitting the decay of fidelity. Provides Pauli error rates for each cycle of gates without requiring full process tomography. Used by NOX and other learned-noise methods.",
+    "properties": {
+      "Scalability": "Polynomial in qubit count",
+      "Noise captured": "Per-cycle Pauli error rates",
+      "Learning method": "Decay fitting from repeated cycles",
+      "Enables": "NOX, learned noise amplification"
+    },
+    "references": ["ferracin2022"]
+  },
+  {
+    "id": "gate-set-tomography",
+    "name": "Gate Set Tomography",
+    "aliases": ["GST"],
+    "summary": "Self-consistent characterization of an entire gate set including state preparation, measurement, and gates. Provides complete process matrices for all operations but scales poorly with qubit count. The gold standard for detailed noise characterization on small systems.",
+    "properties": {
+      "Scalability": "Limited to ~2-3 qubits in practice",
+      "Noise captured": "Complete process matrices for all operations",
+      "Learning method": "Long sequence experiments with maximum likelihood estimation",
+      "Enables": "Detailed noise analysis, PEC on small systems"
+    },
+    "references": ["cai2023"]
+  },
+  {
+    "id": "randomized-benchmarking",
+    "name": "Randomized Benchmarking",
+    "aliases": ["RB", "Clifford RB"],
+    "summary": "Estimates average gate fidelity by running random sequences of Clifford gates followed by an inverting gate. The decay of success probability with sequence length gives the average error per Clifford. Efficient and robust to SPAM errors, but provides only aggregate fidelity, not detailed noise structure.",
+    "properties": {
+      "Scalability": "Scales to many qubits",
+      "Noise captured": "Average error rate per gate (not detailed structure)",
+      "Learning method": "Exponential decay fitting",
+      "Enables": "Fidelity benchmarking, rough noise estimates"
+    },
+    "references": ["cai2023"]
+  }
+]

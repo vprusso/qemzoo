@@ -1,0 +1,56 @@
+{
+  "description": [
+    "Randomized Benchmarking (RB) is the standard protocol for measuring average gate fidelity in quantum processors. By running random sequences of Clifford gates followed by an inverting gate, RB extracts the average error per gate while being robust to state preparation and measurement (SPAM) errors.",
+    "The key insight is that random Clifford sequences 'twirl' any noise into a depolarizing channel. The survival probability then decays exponentially with sequence length, and the decay rate directly gives the average error per Clifford. This makes RB fast, robust, and widely applicable.",
+    "While RB provides excellent aggregate fidelity estimates, it doesn't reveal detailed noise structure. For error mitigation, RB is often used as a first-pass characterization or to validate more detailed methods. It's also the basis for interleaved RB, which benchmarks specific gates."
+  ],
+  "how_it_works": [
+    "Choose a sequence length \\(m\\) (number of random Clifford gates).",
+    "Sample a random sequence of \\(m\\) Clifford gates \\(C_1, C_2, \\ldots, C_m\\).",
+    "Compute the inverting Clifford \\(C_{m+1} = (C_m \\cdots C_1)^{-1}\\) so the ideal circuit is the identity.",
+    "Run the circuit \\(C_{m+1} C_m \\cdots C_1\\) and measure in the computational basis.",
+    "Record the probability of returning to the initial state (survival probability).",
+    "Repeat for many random sequences at each length \\(m\\).",
+    "Fit the survival probability vs. length to \\(F(m) = Ap^m + B\\).",
+    "Extract the average error per Clifford: \\(r = (1-p)(1 - 1/d)\\) where \\(d = 2^n\\)."
+  ],
+  "key_equations": [
+    {
+      "label": "Survival probability decay (A, B = SPAM parameters, p = depolarizing parameter)",
+      "latex": "F(m) = A p^m + B"
+    },
+    {
+      "label": "Average error per Clifford (d = 2^n = Hilbert space dimension)",
+      "latex": "r = \\frac{(d-1)(1-p)}{d}"
+    },
+    {
+      "label": "Average gate fidelity",
+      "latex": "F_{\\text{avg}} = 1 - r = \\frac{1 + (d-1)p}{d}"
+    },
+    {
+      "label": "Interleaved RB: gate-specific error (p_ref = reference, p_int = interleaved)",
+      "latex": "r_{\\text{gate}} = \\frac{(d-1)(1 - p_{\\text{int}}/p_{\\text{ref}})}{d}"
+    }
+  ],
+  "advantages": [
+    "SPAM-robust: fitting the decay cancels preparation and measurement errors",
+    "Efficient: requires only polynomially many circuits",
+    "Gives physically meaningful average fidelity metric",
+    "Scalable to many qubits (with Clifford compilation)",
+    "Industry standard for benchmarking quantum processors"
+  ],
+  "disadvantages": [
+    "Provides only average fidelity, not detailed error structure",
+    "Cannot distinguish coherent from stochastic errors",
+    "Clifford compilation overhead for native non-Clifford gates",
+    "Doesn't capture context-dependent or time-correlated errors",
+    "Not directly usable for constructing error mitigation strategies"
+  ],
+  "use_cases": [
+    "Benchmarking overall processor quality",
+    "Tracking hardware performance over time",
+    "Validating gate calibrations",
+    "Comparing quantum processors or implementations",
+    "First-pass characterization before detailed analysis"
+  ]
+}

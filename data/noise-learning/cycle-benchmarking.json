@@ -1,0 +1,50 @@
+{
+  "description": [
+    "Cycle Benchmarking (CB) is an efficient noise characterization protocol that measures the average error rate of a complete layer (cycle) of gates. Unlike Randomized Benchmarking which characterizes individual gates, CB captures the combined effect of parallel gate execution, including crosstalk and other correlated errors.",
+    "The protocol works by running circuits with varying numbers of repeated gate cycles, measuring how the fidelity decays with circuit depth. This decay rate directly gives the Pauli error rate for each cycle, which can be used to inform error mitigation strategies.",
+    "CB is particularly useful for learned-noise methods like NOX, where understanding the per-cycle error structure enables more accurate noise modeling and amplification for zero-noise extrapolation."
+  ],
+  "how_it_works": [
+    "Define a 'cycle' as one layer of entangling gates (e.g., all CNOT gates that execute in parallel).",
+    "Prepare a random initial Pauli eigenstate (e.g., \\(|0\\rangle, |+\\rangle, |i\\rangle\\)).",
+    "Apply \\(d\\) repetitions of the cycle, interleaved with random Pauli gates to twirl the noise.",
+    "Measure in a random Pauli basis and compute the fidelity with the expected outcome.",
+    "Repeat for varying depths \\(d = 1, 2, 4, 8, ...\\)",
+    "Fit the fidelity decay \\(F(d) = A \\cdot p^d + B\\) where \\(p\\) is the depolarizing parameter.",
+    "Extract the error rate per cycle: \\(\\epsilon = (1-p)(1 - 1/2^n)\\)."
+  ],
+  "key_equations": [
+    {
+      "label": "Fidelity decay model (A, B = SPAM parameters, p = depolarizing parameter, d = depth)",
+      "latex": "F(d) = A \\cdot p^d + B"
+    },
+    {
+      "label": "Error rate per cycle (n = number of qubits in cycle)",
+      "latex": "\\epsilon_{\\text{cycle}} = (1 - p)\\left(1 - \\frac{1}{2^n}\\right)"
+    },
+    {
+      "label": "Process fidelity (average over randomized circuits)",
+      "latex": "F_{\\text{process}} = \\frac{1 + (2^n - 1)p}{2^n}"
+    }
+  ],
+  "advantages": [
+    "Captures realistic noise from parallel gate execution including crosstalk",
+    "SPAM-robust: fitting the decay cancels state preparation and measurement errors",
+    "Efficient: polynomial number of circuits in qubit count",
+    "Directly applicable to inform per-layer error models for QEM",
+    "Compatible with any native gate set"
+  ],
+  "disadvantages": [
+    "Provides only aggregate cycle fidelity, not individual gate errors",
+    "Assumes noise is well-described by a Pauli channel (after twirling)",
+    "May require many samples for accurate fitting on low-error systems",
+    "Twirling overhead adds to total circuit depth"
+  ],
+  "use_cases": [
+    "Characterizing noise for NOX and learned-noise ZNE methods",
+    "Benchmarking processor performance under realistic parallel execution",
+    "Validating error models for error mitigation",
+    "Detecting crosstalk between simultaneously executed gates",
+    "Monitoring hardware stability over time"
+  ]
+}

@@ -1,8 +1,9 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const cacheBust = `?v=${Date.now()}`;
-  const [noiseScaling, extrapolation, references] = await Promise.all([
+  const [noiseScaling, extrapolation, noiseLearning, references] = await Promise.all([
     fetch(`data/noise-scaling.json${cacheBust}`).then((r) => r.json()),
     fetch(`data/extrapolation.json${cacheBust}`).then((r) => r.json()),
+    fetch(`data/noise-learning.json${cacheBust}`).then((r) => r.json()),
     fetch(`data/references.json${cacheBust}`).then((r) => r.json()),
   ]);
 
@@ -10,6 +11,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const allTechniques = [
     ...noiseScaling.map((t) => ({ ...t, category: "scaling", type: "noise-scaling" })),
     ...extrapolation.map((t) => ({ ...t, category: "extrapolation", type: "extrapolation" })),
+    ...noiseLearning.map((t) => ({ ...t, category: "learning", type: "noise-learning" })),
   ];
 
   // Sort alphabetically by name
@@ -36,7 +38,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   let activeCategory = "all";
 
   // Show technique counts on filter buttons
-  const categoryCounts = { scaling: 0, extrapolation: 0 };
+  const categoryCounts = { scaling: 0, extrapolation: 0, learning: 0 };
   for (const t of allTechniques) {
     categoryCounts[t.category] = (categoryCounts[t.category] || 0) + 1;
   }
@@ -48,6 +50,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       btn.textContent = `Noise Scaling (${categoryCounts.scaling})`;
     } else if (cat === "extrapolation") {
       btn.textContent = `Extrapolation (${categoryCounts.extrapolation})`;
+    } else if (cat === "learning") {
+      btn.textContent = `Noise Learning (${categoryCounts.learning})`;
     }
   });
 
@@ -84,7 +88,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       card.dataset.letter = letter;
       card.id = t.id;
 
-      const categoryLabel = t.category === "scaling" ? "Noise Scaling" : "Extrapolation";
+      const categoryLabel = t.category === "scaling" ? "Noise Scaling" : t.category === "extrapolation" ? "Extrapolation" : "Noise Learning";
       const aliases =
         t.aliases && t.aliases.length
           ? `<div class="aka">Also known as: ${t.aliases.join(", ")}</div>`
