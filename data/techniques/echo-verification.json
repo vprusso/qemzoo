@@ -21,12 +21,6 @@
       "latex": "\\langle O \\rangle_{\\text{EV}} = \\frac{\\langle O \\rangle_{\\text{noisy}}}{p_{\\text{echo}}}"
     }
   ],
-  "bias_variance": {
-    "bias": 0.15,
-    "variance": 0.4,
-    "overhead": 0.5,
-    "notes": "Doubles circuit depth. Post-selection reduces effective sample size. Very effective against coherent errors which are fully detected by the echo."
-  },
   "advantages": [
     "Model-free: no noise characterization required",
     "Detects both coherent and incoherent errors",

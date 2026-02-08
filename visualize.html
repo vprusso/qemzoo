@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Visualize - The QEM Zoo</title>
-  <meta name="description" content="Interactive visualizations of quantum error mitigation techniques: bias-variance tradeoffs, composability matrix, and noise-technique applicability.">
-  <meta name="keywords" content="quantum error mitigation, visualization, bias variance tradeoff, composability, noise types, interactive charts">
+  <meta name="description" content="Interactive visualizations of quantum error mitigation techniques: composability matrix and noise-technique applicability.">
+  <meta name="keywords" content="quantum error mitigation, visualization, composability, noise types, interactive charts">
   <meta name="author" content="Vincent Russo">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="canonical" href="https://qemzoo.com/visualize.html">
   <!-- Open Graph -->
   <meta property="og:title" content="Visualize - The QEM Zoo">
-  <meta property="og:description" content="Interactive visualizations of quantum error mitigation techniques: bias-variance tradeoffs and composability.">
+  <meta property="og:description" content="Interactive visualizations of quantum error mitigation techniques: composability and noise applicability.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://qemzoo.com/visualize.html">
   <meta property="og:image" content="https://qemzoo.com/favicon.svg">
@@ -19,7 +19,7 @@
   <!-- Twitter -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Visualize - The QEM Zoo">
-  <meta name="twitter:description" content="Interactive visualizations of quantum error mitigation techniques: bias-variance tradeoffs and composability.">
+  <meta name="twitter:description" content="Interactive visualizations of quantum error mitigation techniques: composability and noise applicability.">
   <link rel="stylesheet" href="css/style.css">
   <script>
     window.MathJax = {
@@ -43,15 +43,6 @@
   <a href="applications.html">Applications</a>
   <a href="visualize.html" class="active">Visualize</a>
 </nav>
-
-<!-- Bias/Variance Trade-off -->
-<section class="tradeoff-section" id="tradeoff-section">
-  <h2>Bias–Variance Trade-offs</h2>
-  <p class="tradeoff-description">How QEM techniques trade off estimation bias against variance and sampling overhead. Circle size indicates relative overhead. Click a point to view the technique.</p>
-  <div id="tradeoff-chart" style="position:relative">
-    <div class="tooltip" id="tradeoff-tooltip" style="position:absolute;background:rgba(0,0,0,0.8);color:#fff;padding:0.4rem 0.7rem;border-radius:4px;font-size:0.8rem;pointer-events:none;font-family:system-ui,sans-serif;display:none;max-width:300px;z-index:10"></div>
-  </div>
-</section>
 
 <!-- Composability Matrix -->
 <section class="chart-section" id="composability-section">

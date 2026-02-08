@@ -13,7 +13,7 @@
   ],
   "key_equations": [
     {
-      "label": "Layout cost function (π = qubit mapping, ε = gate error rate, T₂ = dephasing coherence time, t_idle = qubit idle time)",
+      "label": "Layout cost function (\u03c0 = qubit mapping, \u03b5 = gate error rate, T\u2082 = dephasing coherence time, t_idle = qubit idle time)",
       "latex": "C(\\pi) = \\sum_{g \\in \\text{gates}} \\epsilon_{\\pi(g)} + \\sum_{q \\in \\text{qubits}} \\frac{t_{\\text{idle}}(q)}{T_2(q)}"
     },
     {
@@ -21,14 +21,8 @@
       "latex": "F_{\\text{NAC}} \\approx F_{\\text{naive}} + 0.4 (1 - F_{\\text{naive}})"
     }
   ],
-  "bias_variance": {
-    "bias": 0.3,
-    "variance": 0.05,
-    "overhead": 0.05,
-    "notes": "No sampling overhead — purely compile-time optimization. Does not eliminate noise, only reduces it by avoiding worst hardware resources. Effectiveness depends on noise non-uniformity."
-  },
   "advantages": [
-    "Zero runtime overhead — optimization happens at compile time",
+    "Zero runtime overhead \u2014 optimization happens at compile time",
     "Compatible with all other suppression and mitigation techniques",
     "Significant impact on current hardware with non-uniform noise",
     "Enabled by default in modern quantum SDKs (Qiskit, Cirq)",

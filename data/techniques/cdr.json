@@ -20,14 +20,8 @@
       "latex": "\\min_{a, b} \\sum_{i} \\left( a \\, \\langle O \\rangle_{\\text{noisy}}^{(i)} + b - \\langle O \\rangle_{\\text{ideal}}^{(i)} \\right)^2"
     }
   ],
-  "bias_variance": {
-    "bias": 0.4,
-    "variance": 0.35,
-    "overhead": 0.3,
-    "notes": "Bias depends on how well the near-Clifford training circuits approximate the noise profile of the target circuit. Variance is low at inference time since it's just a function evaluation."
-  },
   "advantages": [
-    "No explicit noise model needed — the noise effect is learned from data",
+    "No explicit noise model needed \u2014 the noise effect is learned from data",
     "Low overhead at inference time (single function evaluation)",
     "Training circuits are classically simulable (Clifford)",
     "Can be combined with ZNE (vnCDR) for improved accuracy"

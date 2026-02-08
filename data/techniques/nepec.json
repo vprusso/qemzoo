@@ -7,19 +7,19 @@
   "how_it_works": [
     "Identify the target gate or circuit to be corrected.",
     "If the quasi-probability decomposition exists at the native noise level, standard PEC can be applied.",
-    "If not, scale the noise to a higher level λ > 1 where decomposition becomes possible.",
+    "If not, scale the noise to a higher level \u03bb > 1 where decomposition becomes possible.",
     "Apply PEC at the scaled noise level to obtain a partially corrected expectation value.",
-    "Repeat at multiple noise levels λ₁, λ₂, λ₃, ...",
-    "Extrapolate the results to the zero-noise limit (λ → 0) using polynomial or exponential fitting.",
+    "Repeat at multiple noise levels \u03bb\u2081, \u03bb\u2082, \u03bb\u2083, ...",
+    "Extrapolate the results to the zero-noise limit (\u03bb \u2192 0) using polynomial or exponential fitting.",
     "For gate extrapolation: use noise scaling without explicit noise characterization, relying on extrapolation to remove residual bias."
   ],
   "key_equations": [
     {
-      "label": "Standard PEC decomposition (η_i = quasi-probability coefficients, O_i = noisy implementable operations)",
+      "label": "Standard PEC decomposition (\u03b7_i = quasi-probability coefficients, O_i = noisy implementable operations)",
       "latex": "\\mathcal{G}_{\\text{ideal}} = \\sum_i \\eta_i \\mathcal{O}_i"
     },
     {
-      "label": "Quasi-probability one-norm (γ = sampling overhead factor)",
+      "label": "Quasi-probability one-norm (\u03b3 = sampling overhead factor)",
       "latex": "\\gamma = \\sum_i |\\eta_i| \\geq 1"
     },
     {
@@ -31,17 +31,11 @@
       "latex": "\\langle O \\rangle_{\\text{ideal}} = \\lim_{\\lambda \\to 0} \\langle O \\rangle_{\\text{PEC}}(\\lambda)"
     }
   ],
-  "bias_variance": {
-    "bias": 0.1,
-    "variance": 0.75,
-    "overhead": 0.7,
-    "notes": "NEPEC reduces the sampling overhead of PEC by allowing operation at higher noise levels where the quasi-probability norm γ is smaller. The extrapolation step adds variance but enables operation without a complete noise model."
-  },
   "advantages": [
     "Enables PEC when standard decomposition is unavailable at native noise levels",
     "Gate extrapolation eliminates the need for explicit noise characterization",
     "Reduced sampling overhead compared to pure PEC in many scenarios",
-    "Flexibly interpolates between PEC (λ → 1) and ZNE (no quasi-probability correction)",
+    "Flexibly interpolates between PEC (\u03bb \u2192 1) and ZNE (no quasi-probability correction)",
     "Can estimate expectation values at 'virtual' noise levels below hardware noise"
   ],
   "disadvantages": [

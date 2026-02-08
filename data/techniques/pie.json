@@ -20,7 +20,7 @@
   ],
   "key_equations": [
     {
-      "label": "PIE extrapolation model (λ = noise amplification level, s = generalized robustness factor from GQPD)",
+      "label": "PIE extrapolation model (\u03bb = noise amplification level, s = generalized robustness factor from GQPD)",
       "latex": "f(\\lambda) = \\langle O \\rangle_{\\text{ideal}} \\cdot s^{-\\lambda}"
     },
     {
@@ -28,7 +28,7 @@
       "latex": "\\ln f(\\lambda) = \\ln \\langle O \\rangle_{\\text{ideal}} - \\lambda \\cdot \\ln s"
     },
     {
-      "label": "Max-relative entropy (U = ideal circuit, E = noise channel, E∘U = noisy circuit)",
+      "label": "Max-relative entropy (U = ideal circuit, E = noise channel, E\u2218U = noisy circuit)",
       "latex": "D_{\\max}(\\mathcal{U} \\| \\mathcal{E} \\circ \\mathcal{U}) = \\ln s"
     },
     {
@@ -36,14 +36,8 @@
       "latex": "\\langle O \\rangle_{\\text{ideal}} \\approx s^{2n+1} \\cdot \\langle O \\rangle_{\\text{err}}"
     }
   ],
-  "bias_variance": {
-    "bias": 0.2,
-    "variance": 0.3,
-    "overhead": 0.3,
-    "notes": "PIE achieves comparable or lower bias than exponential ZNE with substantially lower variance, at linear overhead (~4× base circuit execution). Bias comes from neglecting the correction term in the GQPD and converges to zero as noise decreases."
-  },
   "advantages": [
-    "Operationally meaningful parameters — every parameter has a physical interpretation (ideal value and max-relative entropy)",
+    "Operationally meaningful parameters \u2014 every parameter has a physical interpretation (ideal value and max-relative entropy)",
     "Numerically stable linear regression in log-space, more stable than nonlinear exponential fitting",
     "Significantly lower variance than exponential ZNE extrapolation",
     "Simultaneous hardware certification at no additional experimental cost",
@@ -61,7 +55,7 @@
   "use_cases": [
     "Shallow-to-moderate depth circuits on high-fidelity hardware",
     "Quantum simulation (validated on 84-qubit transverse-field Ising model)",
-    "Quantum chemistry (validated on H₂ at 4 qubits and LiH at 12 qubits)",
+    "Quantum chemistry (validated on H\u2082 at 4 qubits and LiH at 12 qubits)",
     "Hardware benchmarking and certification (simultaneous with mitigation)",
     "Replacing heuristic ZNE fitting models with a principled alternative"
   ]

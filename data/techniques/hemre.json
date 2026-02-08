@@ -14,11 +14,11 @@
   ],
   "key_equations": [
     {
-      "label": "HEMRE bias constraint (s_incl = product of EMRE robustness factors, ε = bias bound)",
+      "label": "HEMRE bias constraint (s_incl = product of EMRE robustness factors, \u03b5 = bias bound)",
       "latex": "s_{\\text{incl}} \\leq \\Delta_{\\text{fixed}} + 1 - \\epsilon"
     },
     {
-      "label": "HEMRE sample complexity (γ_incl = PEC one-norm for PEC-treated gates, c = target accuracy, s = total scaling, p_fail = failure probability)",
+      "label": "HEMRE sample complexity (\u03b3_incl = PEC one-norm for PEC-treated gates, c = target accuracy, s = total scaling, p_fail = failure probability)",
       "latex": "M_{\\text{HEMRE}} = \\frac{2\\, s_{\\text{incl}}^2 \\, \\gamma_{\\text{incl}}^2}{(cs)^2} \\ln\\!\\left(\\frac{2}{p_{\\text{fail}}}\\right)"
     },
     {
@@ -26,14 +26,8 @@
       "latex": "\\text{HEMRE}(\\Delta_{\\text{fixed}} = 0) = \\text{PEC}, \\quad \\text{HEMRE}(\\Delta_{\\text{fixed}} \\to \\infty) = \\text{EMRE}"
     }
   ],
-  "bias_variance": {
-    "bias": 0.35,
-    "variance": 0.5,
-    "overhead": 0.5,
-    "notes": "HEMRE provides a tunable tradeoff between bias and sampling overhead. Bias is bounded by the user-specified tolerance Δ_fixed. Variance and overhead are intermediate between PEC (high variance, exponential overhead) and EMRE (very low variance, constant overhead), depending on the gate partition."
-  },
   "advantages": [
-    "Tunable tradeoff between sampling overhead and bias — the practitioner controls the balance",
+    "Tunable tradeoff between sampling overhead and bias \u2014 the practitioner controls the balance",
     "Outperforms both pure EMRE and pure PEC in moderate-noise regimes",
     "Reduces sampling overhead compared to PEC while achieving lower bias than EMRE",
     "Algorithmic procedure for optimal gate partition (which gates to treat with EMRE vs. PEC)",
@@ -46,7 +40,7 @@
     "Optimal gate partitioning may require solving an optimization problem"
   ],
   "use_cases": [
-    "Moderate-noise regimes (0.1%–1% error rates) where neither pure EMRE nor pure PEC is optimal",
+    "Moderate-noise regimes (0.1%\u20131% error rates) where neither pure EMRE nor pure PEC is optimal",
     "Scenarios where some bias is acceptable but must be bounded",
     "Circuits with heterogeneous noise (some gates high-fidelity, some lower-fidelity)",
     "Production quantum computing workflows where the bias budget is known"

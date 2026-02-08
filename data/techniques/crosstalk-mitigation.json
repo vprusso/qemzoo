@@ -1,6 +1,6 @@
 {
   "description": [
-    "Crosstalk-Adaptive Scheduling (CAS) is a suppression technique that mitigates crosstalk errors — unwanted interactions between qubits when gates are executed in parallel — by intelligently scheduling gate operations to avoid simultaneous execution on high-crosstalk qubit pairs.",
+    "Crosstalk-Adaptive Scheduling (CAS) is a suppression technique that mitigates crosstalk errors \u2014 unwanted interactions between qubits when gates are executed in parallel \u2014 by intelligently scheduling gate operations to avoid simultaneous execution on high-crosstalk qubit pairs.",
     "The method has been demonstrated on 20-qubit IBM systems, achieving up to 5.6x error reduction compared to default scheduling. The approach first characterizes crosstalk via simultaneous randomized benchmarking, then formulates scheduling as a constrained optimization problem.",
     "The key trade-off is between serialization (which avoids crosstalk but extends circuit duration, increasing decoherence) and parallelism (which minimizes duration but exposes the circuit to crosstalk). The scheduler balances these competing effects."
   ],
@@ -21,14 +21,8 @@
       "latex": "\\min \\sum_t \\text{duration}(t) \\quad \\text{s.t.} \\quad \\forall (i,j) \\in \\text{xtalk}: \\neg(g_i \\| g_j)"
     }
   ],
-  "bias_variance": {
-    "bias": 0.25,
-    "variance": 0.05,
-    "overhead": 0.1,
-    "notes": "No sampling overhead. May increase circuit duration from serialization, but this is balanced against crosstalk reduction. Most effective on hardware with significant crosstalk."
-  },
   "advantages": [
-    "No sampling overhead — same number of shots",
+    "No sampling overhead \u2014 same number of shots",
     "Directly addresses a major hardware noise source",
     "Up to 5.6x error reduction demonstrated on real hardware",
     "Compatible with all downstream mitigation techniques",

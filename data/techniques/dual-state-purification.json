@@ -21,12 +21,6 @@
       "latex": "\\text{Error} \\sim O((\\lambda_2/\\lambda_1)^2) \\text{ where } \\lambda_1, \\lambda_2 \\text{ are dominant eigenvalues}"
     }
   ],
-  "bias_variance": {
-    "bias": 0.15,
-    "variance": 0.35,
-    "overhead": 0.4,
-    "notes": "Doubles circuit executions but requires no additional qubits. Error reduction improves for larger circuits. Variance from estimating the ratio of traces."
-  },
   "advantages": [
     "No qubit overhead (unlike virtual distillation which needs M copies)",
     "No ancilla qubits required",

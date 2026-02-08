@@ -21,12 +21,6 @@
       "latex": "\\langle O \\rangle_{\\text{mit}} = \\operatorname{tr}(O \\, \\mathcal{N}^{-1}(\\rho_{\\text{noisy}}))"
     }
   ],
-  "bias_variance": {
-    "bias": 0.05,
-    "variance": 0.7,
-    "overhead": 0.6,
-    "notes": "Unbiased if the MPO noise model is exact. Sampling overhead is optimal among linear mitigation methods. Overhead scales with MPO bond dimension."
-  },
   "advantages": [
     "Captures spatially and temporally correlated noise",
     "Provably optimal sampling overhead among linear mitigation methods",

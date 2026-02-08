@@ -52,9 +52,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       return;
     }
 
-    const [references, tradeoffs, detail] = await Promise.all([
+    const [references, detail] = await Promise.all([
       fetch(`data/references.json${cacheBust}`).then((r) => r.json()),
-      fetch(`data/tradeoffs.json${cacheBust}`).then((r) => r.json()),
       fetch(`data/techniques/${id}.json${cacheBust}`).then((r) => {
         if (!r.ok) throw new Error("Detail file not found");
         return r.json();
@@ -143,14 +142,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       .join("");
     html += `<section class="detail-section"><h3>Properties</h3><table class="properties-table">${propRows}</table></section>`;
 
-    // Bias/Variance mini chart.
-    html += `<section class="detail-section"><h3>Bias–Variance Trade-off</h3>`;
-    html += `<div class="tradeoff-mini" id="tradeoff-mini"></div>`;
-    if (detail.bias_variance && detail.bias_variance.notes) {
-      html += `<p class="tradeoff-notes">${detail.bias_variance.notes}</p>`;
-    }
-    html += `</section>`;
-
     // Advantages / Disadvantages.
     if ((detail.advantages && detail.advantages.length) || (detail.disadvantages && detail.disadvantages.length)) {
       html += `<section class="detail-section"><h3>Trade-offs</h3><div class="pros-cons">`;
@@ -208,9 +199,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     content.innerHTML = html;
 
-    // Render mini bias/variance chart.
-    renderMiniTradeoff(tradeoffs, techniques, id);
-
     // Typeset MathJax.
     if (window.MathJax && window.MathJax.typesetPromise) {
       window.MathJax.typesetPromise();
@@ -219,70 +207,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     content.innerHTML = `<p class="error-msg">Error loading technique: ${e.message}. Return to the <a href="index.html">catalog</a>.</p>`;
   }
 });
-
-function renderMiniTradeoff(tradeoffs, techniques, currentId) {
-  const container = document.getElementById("tradeoff-mini");
-  if (!container) return;
-
-  const width = 400;
-  const height = 300;
-  const margin = { top: 20, right: 20, bottom: 45, left: 55 };
-  const inner = { w: width - margin.left - margin.right, h: height - margin.top - margin.bottom };
-
-  const svg = d3.select(container)
-    .append("svg")
-    .attr("viewBox", [0, 0, width, height])
-    .attr("class", "tradeoff-svg");
-
-  const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
-
-  const x = d3.scaleLinear().domain([0, 1]).range([0, inner.w]);
-  const y = d3.scaleLinear().domain([0, 1]).range([inner.h, 0]);
-
-  // Axes.
-  g.append("g").attr("transform", `translate(0,${inner.h})`).call(d3.axisBottom(x).ticks(5))
-    .append("text").attr("x", inner.w / 2).attr("y", 35).attr("fill", "#333")
-    .attr("text-anchor", "middle").attr("font-size", "12px").text("Bias →");
-
-  g.append("g").call(d3.axisLeft(y).ticks(5))
-    .append("text").attr("x", -inner.h / 2).attr("y", -40).attr("fill", "#333")
-    .attr("text-anchor", "middle").attr("font-size", "12px")
-    .attr("transform", "rotate(-90)").text("Variance →");
-
-  // Ideal corner label.
-  g.append("text").attr("x", 2).attr("y", inner.h - 4).attr("fill", "#999")
-    .attr("font-size", "9px").text("ideal");
-
-  // Category colors.
-  const catColors = { mitigation: "#2c5f8a", suppression: "#6b4c8a" };
-
-  // Plot all points.
-  for (const t of tradeoffs) {
-    const tech = techniques.find((tc) => tc.id === t.id);
-    if (!tech) continue;
-    const isCurrent = t.id === currentId;
-    const color = isCurrent ? catColors[tech.category] : "#ccc";
-    const label = tech.abbreviation || tech.name;
-
-    g.append("circle")
-      .attr("cx", x(t.bias))
-      .attr("cy", y(t.variance))
-      .attr("r", isCurrent ? 8 : 5)
-      .attr("fill", color)
-      .attr("stroke", isCurrent ? "#333" : "none")
-      .attr("stroke-width", isCurrent ? 2 : 0)
-      .attr("opacity", isCurrent ? 1 : 0.4);
-
-    g.append("text")
-      .attr("x", x(t.bias))
-      .attr("y", y(t.variance) - (isCurrent ? 12 : 8))
-      .attr("text-anchor", "middle")
-      .attr("font-size", isCurrent ? "11px" : "9px")
-      .attr("font-weight", isCurrent ? "bold" : "normal")
-      .attr("fill", isCurrent ? "#222" : "#999")
-      .text(label);
-  }
-}
 
 // Render noise-scaling method detail page
 async function renderNoiseScalingDetail(id, content, breadcrumbName, breadcrumb, cacheBust) {

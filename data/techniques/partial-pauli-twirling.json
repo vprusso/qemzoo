@@ -13,29 +13,23 @@
   ],
   "key_equations": [
     {
-      "label": "Partial twirling optimization (P̃ = partial Pauli set, Ũ = noisy gate, E = target error space, U = ideal gate)",
+      "label": "Partial twirling optimization (P\u0303 = partial Pauli set, \u0168 = noisy gate, E = target error space, U = ideal gate)",
       "latex": "\\min_{\\tilde{P}} \\left\\| \\frac{1}{|\\tilde{P}|} \\sum_{P_i \\in \\tilde{P}} P_i^\\dagger \\tilde{U} P_i - \\mathcal{E} \\circ U \\right\\|"
     },
     {
-      "label": "Twirled channel (P = twirling set, Λ = noise channel)",
+      "label": "Twirled channel (P = twirling set, \u039b = noise channel)",
       "latex": "\\Lambda_{\\text{twirled}} = \\frac{1}{|P|} \\sum_{P_i \\in P} P_i^\\dagger \\Lambda P_i"
     },
     {
-      "label": "Logical infidelity comparison (ω = rotation angle): Partial twirling achieves similar fidelity to full twirling",
+      "label": "Logical infidelity comparison (\u03c9 = rotation angle): Partial twirling achieves similar fidelity to full twirling",
       "latex": "\\bar{r}_{\\text{partial}} = 1 - 4\\cos(\\omega/2)^6 \\sin(\\omega/2)^2 - \\frac{1}{288}\\csc(\\omega/2)^4 \\sin(\\omega)^6"
     }
   ],
-  "bias_variance": {
-    "bias": 0.45,
-    "variance": 0.1,
-    "overhead": 0.15,
-    "notes": "Slightly higher bias than full Pauli twirling due to incomplete noise diagonalization, but lower variance from reduced sampling requirements. Overhead is lower than full twirling due to smaller gate set."
-  },
   "advantages": [
     "Reduced sampling overhead compared to full Pauli twirling (fewer than \\(4^n\\) circuit variants needed)",
     "Can avoid error-prone gates (e.g., skip Y gates on hardware where they have higher error rates)",
     "Hardware-adaptable: customize the twirling set for specific quantum platforms and native gate sets",
-    "Synergistic with quantum error detection codes — aligns errors with detectable subspace",
+    "Synergistic with quantum error detection codes \u2014 aligns errors with detectable subspace",
     "Maintains fidelity improvement even without perfect Pauli channel conversion",
     "Reduces the chance that the twirling procedure itself introduces additional errors"
   ],

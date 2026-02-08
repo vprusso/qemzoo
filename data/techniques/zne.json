@@ -2,7 +2,7 @@
   "diagrams": [
     {
       "src": "images/techniques/zne-workflow.png",
-      "caption": "Zero-noise extrapolation: expectation values are measured at multiple noise levels (λ₁, λ₂, λ₃) and extrapolated back to the zero-noise limit E*."
+      "caption": "Zero-noise extrapolation: expectation values are measured at multiple noise levels (\u03bb\u2081, \u03bb\u2082, \u03bb\u2083) and extrapolated back to the zero-noise limit E*."
     }
   ],
   "description": [
@@ -30,14 +30,8 @@
       "latex": "\\text{Bias} = O(\\lambda^M) \\text{ for order-}M \\text{ Richardson extrapolation}"
     }
   ],
-  "bias_variance": {
-    "bias": 0.35,
-    "variance": 0.65,
-    "overhead": 0.5,
-    "notes": "Higher extrapolation order reduces bias but increases variance exponentially. Richardson extrapolation eliminates bias up to order M but amplifies statistical noise through large alternating-sign coefficients."
-  },
   "advantages": [
-    "No detailed noise model required — only the ability to scale noise controllably",
+    "No detailed noise model required \u2014 only the ability to scale noise controllably",
     "Simple to implement; compatible with any quantum hardware platform",
     "Can be combined with other techniques (e.g., Pauli twirling + ZNE)",
     "Demonstrated at scale on 127-qubit devices"

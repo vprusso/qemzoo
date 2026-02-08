@@ -13,20 +13,14 @@
   ],
   "key_equations": [
     {
-      "label": "Standard shadow channel (U = random unitary from ensemble, |b⟩ = measurement outcome in computational basis)",
+      "label": "Standard shadow channel (U = random unitary from ensemble, |b\u27e9 = measurement outcome in computational basis)",
       "latex": "\\mathcal{M}(\\rho) = \\mathbb{E}_{U}\\left[\\sum_{b} \\langle b|U\\rho U^\\dagger|b\\rangle \\, U^\\dagger |b\\rangle\\langle b| U\\right]"
     },
     {
-      "label": "Robust shadow estimator (M̃⁻¹ = calibrated inverse of noisy shadow channel)",
+      "label": "Robust shadow estimator (M\u0303\u207b\u00b9 = calibrated inverse of noisy shadow channel)",
       "latex": "\\hat{\\rho}_{\\text{robust}} = \\widetilde{\\mathcal{M}}^{-1}(U^\\dagger |b\\rangle\\langle b| U)"
     }
   ],
-  "bias_variance": {
-    "bias": 0.05,
-    "variance": 0.4,
-    "overhead": 0.35,
-    "notes": "Unbiased with proper calibration. Overhead from calibration is amortized over many observables. Sample complexity matches ideal shadows up to a noise-dependent factor."
-  },
   "advantages": [
     "Unbiased estimator with rigorous guarantees",
     "Sample-efficient for estimating many observables simultaneously",

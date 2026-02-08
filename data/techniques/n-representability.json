@@ -12,7 +12,7 @@
   ],
   "key_equations": [
     {
-      "label": "2-RDM energy (h = Hamiltonian coefficients, Γ = 2-body RDM, γ = 1-body RDM, a†/a = fermionic creation/annihilation operators)",
+      "label": "2-RDM energy (h = Hamiltonian coefficients, \u0393 = 2-body RDM, \u03b3 = 1-body RDM, a\u2020/a = fermionic creation/annihilation operators)",
       "latex": "E = \\sum_{pqrs} h_{pqrs} \\, \\Gamma_{pq,rs} + \\sum_{pq} h_{pq} \\, \\gamma_{p,q} + h_0"
     },
     {
@@ -24,22 +24,16 @@
       "latex": "\\min_{\\tilde{\\Gamma}} \\| \\tilde{\\Gamma} - \\Gamma_{\\text{noisy}} \\|_F^2 \\quad \\text{s.t. } \\tilde{\\Gamma} \\in \\mathcal{N}"
     }
   ],
-  "bias_variance": {
-    "bias": 0.25,
-    "variance": 0.1,
-    "overhead": 0.05,
-    "notes": "Purely classical post-processing, so no additional quantum overhead. Bias reduction depends on how tight the N-representability constraints are. Variance is essentially unchanged since no additional measurements are needed."
-  },
   "advantages": [
     "No additional quantum measurements or circuit modifications required",
-    "No noise model needed — uses fundamental physical constraints",
+    "No noise model needed \u2014 uses fundamental physical constraints",
     "Purely classical post-processing (SDP solvers are mature)",
     "Provably removes unphysical contributions from noisy RDMs"
   ],
   "disadvantages": [
     "Only applicable to fermionic / quantum chemistry problems with RDM structure",
     "SDP complexity grows with system size (though polynomial)",
-    "N-representability conditions are necessary but not sufficient — projection may over-constrain",
+    "N-representability conditions are necessary but not sufficient \u2014 projection may over-constrain",
     "Cannot correct errors that produce valid-looking RDMs"
   ],
   "use_cases": [

@@ -581,10 +581,10 @@
     ]
   },
   {
-    "id": "adaptive-kik",
-    "name": "Adaptive KIK",
+    "id": "kik",
+    "name": "K-Inverse-K (KIK)",
     "abbreviation": null,
-    "aliases": ["pulse-based inverse evolution", "layered KIK", "K-Inverse-K"],
+    "aliases": ["adaptive KIK", "pulse-based inverse evolution", "layered KIK"],
     "category": "mitigation",
     "summary": "Mitigates errors by combining noisy circuit outputs with outputs from pulse-based inverse evolutions, using adaptive coefficients tuned to the device noise level. Unlike gate-level folding (ZNE) or echo verification, KIK constructs the inverse at the pulse level by reversing pulse amplitudes and time ordering, enabling more accurate noise cancellation. The method adapts to moderate-to-strong noise regimes and integrates with randomized compiling to handle both coherent and incoherent noise.",
     "properties": {

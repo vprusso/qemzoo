@@ -21,12 +21,6 @@
       "latex": "\\langle O \\rangle_{\\text{mitigated}} = \\langle O \\rangle_0 + O(\\epsilon^2), \\quad \\text{where } \\epsilon \\text{ is the noise strength}"
     }
   ],
-  "bias_variance": {
-    "bias": 0.3,
-    "variance": 0.5,
-    "overhead": 0.4,
-    "notes": "First-order mitigation only — second-order noise terms remain. Noise-learning calibration adds overhead. Variance depends on extrapolation model and number of noise levels."
-  },
   "advantages": [
     "Handles non-local and gate-dependent noise that violates standard ZNE assumptions",
     "Uses efficient noise reconstruction rather than full process tomography",

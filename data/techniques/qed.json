@@ -1,6 +1,6 @@
 {
   "description": [
-    "Quantum Error Detection (QED) encodes logical qubits into a quantum error-detecting code and uses stabilizer measurements to flag when errors have occurred. Unlike full quantum error correction (QEC), QED does not attempt to identify and reverse errors — it simply discards flagged runs via post-selection, keeping only runs where no error was detected.",
+    "Quantum Error Detection (QED) encodes logical qubits into a quantum error-detecting code and uses stabilizer measurements to flag when errors have occurred. Unlike full quantum error correction (QEC), QED does not attempt to identify and reverse errors \u2014 it simply discards flagged runs via post-selection, keeping only runs where no error was detected.",
     "The simplest example is the \\([\\![ 4, 2, 2 ]\\!]\\) code, which encodes 2 logical qubits into 4 physical qubits and can detect any single-qubit error. More generally, any \\([\\![ n, k, d ]\\!]\\) stabilizer code with distance \\(d \\geq 2\\) can detect up to \\(d-1\\) errors.",
     "QED is particularly attractive for near-term devices because it requires fewer qubits and simpler circuits than full QEC, while still providing exponential suppression of detectable errors (at the cost of a reduced acceptance rate).",
     "QED has been demonstrated across multiple hardware platforms: superconducting qubits (Bell state preparation with the \\([\\![ 2, 0, 2 ]\\!]\\) code, the \\([\\![ 4, 2, 2 ]\\!]\\) code for chemistry and state preparation, and GHZ states on 120+ qubits), trapped-ion systems (Iceberg codes for quantum volume on Quantinuum H2, dissipative quantum dynamics), and silicon quantum computers (2026)."
@@ -26,15 +26,9 @@
       "latex": "p_{\\text{undetectable}} = O(p^d) \\text{ for a distance-}d\\text{ code}"
     }
   ],
-  "bias_variance": {
-    "bias": 0.1,
-    "variance": 0.35,
-    "overhead": 0.45,
-    "notes": "Undetectable errors contribute residual bias scaling as O(p^d). Variance increases due to post-selection reducing effective sample size. Overhead from encoding qubits and reduced acceptance rate."
-  },
   "advantages": [
     "Exponential suppression of detectable errors with code distance",
-    "No noise model required — code structure determines detection capability",
+    "No noise model required \u2014 code structure determines detection capability",
     "Simpler than full quantum error correction (fewer qubits, simpler syndrome extraction)",
     "Can be combined with other QEM techniques on the post-selected data"
   ],

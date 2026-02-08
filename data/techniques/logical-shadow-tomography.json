@@ -19,26 +19,20 @@
   ],
   "key_equations": [
     {
-      "label": "Logical shadow estimator (Π = codespace projector, ρ = physical density matrix, O_L = logical observable)",
+      "label": "Logical shadow estimator (\u03a0 = codespace projector, \u03c1 = physical density matrix, O_L = logical observable)",
       "latex": "\\langle O_L \\rangle_{\\text{mitigated}} = \\frac{\\text{Tr}(\\Pi \\rho \\Pi \\, O_L)}{\\text{Tr}(\\Pi \\rho \\Pi)}"
     },
     {
-      "label": "Sample complexity for k logical qubits (ε = precision, δ = failure probability)",
+      "label": "Sample complexity for k logical qubits (\u03b5 = precision, \u03b4 = failure probability)",
       "latex": "N = O\\left(\\frac{4^k}{\\epsilon^2} \\log(1/\\delta)\\right)"
     }
   ],
-  "bias_variance": {
-    "bias": 0.1,
-    "variance": 0.35,
-    "overhead": 0.3,
-    "notes": "Low bias when codespace projection effectively filters errors. Variance depends on acceptance probability of the codespace projection. Overhead is primarily from the encoding; measurement overhead scales with logical (not physical) qubit count."
-  },
   "advantages": [
     "Sample complexity scales with logical qubits \\(k\\), not physical qubits \\(n\\)",
     "No additional quantum copies or ancilla qubits required (unlike virtual distillation)",
     "Unifies subspace expansion and virtual distillation as special cases",
     "Compatible with any stabilizer code",
-    "Classical post-processing only — no mid-circuit measurements needed"
+    "Classical post-processing only \u2014 no mid-circuit measurements needed"
   ],
   "disadvantages": [
     "Requires encoding into a quantum error-detecting/correcting code",

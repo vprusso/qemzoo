@@ -7,12 +7,12 @@
   "how_it_works": [
     "For each two-qubit gate \\(G\\) in the circuit, randomly sample Pauli operators \\(P_L, P_R\\) from the twirling group such that \\(P_R \\, G \\, P_L = e^{i\\phi} G\\) (the phase \\(\\phi\\) is tracked classically).",
     "Replace each gate \\(G\\) with the sequence \\(P_R \\, G \\, P_L\\) and absorb the tracked phase into the final expectation value.",
-    "Repeat this randomization for many independent circuit instances (typically 10–100 twirled copies).",
+    "Repeat this randomization for many independent circuit instances (typically 10\u2013100 twirled copies).",
     "Average the results. The averaging symmetrizes the noise channel into a Pauli channel, eliminating off-diagonal (coherent) error components."
   ],
   "key_equations": [
     {
-      "label": "Twirling identity (G = twirling group, |G| = group size, E = noise channel, ρ = density matrix)",
+      "label": "Twirling identity (G = twirling group, |G| = group size, E = noise channel, \u03c1 = density matrix)",
       "latex": "\\mathcal{T}[\\mathcal{E}](\\rho) = \\frac{1}{|G|} \\sum_{P \\in G} P^\\dagger \\, \\mathcal{E}(P \\rho P^\\dagger) \\, P"
     },
     {
@@ -20,20 +20,14 @@
       "latex": "\\mathcal{T}[\\mathcal{E}](\\rho) = \\sum_{P \\in \\{I,X,Y,Z\\}^{\\otimes n}} p_P \\, P \\rho P, \\quad p_P \\geq 0, \\sum_P p_P = 1"
     }
   ],
-  "bias_variance": {
-    "bias": 0.5,
-    "variance": 0.05,
-    "overhead": 0.1,
-    "notes": "Pauli twirling does not reduce the total noise magnitude — it only reshapes the noise. The 'bias' is unchanged in terms of total error, but the noise becomes stochastic, which is easier to handle with ZNE/PEC. Low overhead from averaging over twirled instances."
-  },
   "advantages": [
     "Converts worst-case (coherent) errors into average-case (stochastic) errors",
     "Simplifies the noise model for downstream techniques like PEC",
-    "Minimal overhead — only requires additional Pauli gates and classical averaging",
+    "Minimal overhead \u2014 only requires additional Pauli gates and classical averaging",
     "Theoretically well-understood twirling framework"
   ],
   "disadvantages": [
-    "Does not reduce total noise on its own — only changes its structure",
+    "Does not reduce total noise on its own \u2014 only changes its structure",
     "Requires multiple circuit instances for averaging",
     "Twirling group depends on the gate set; not all gates have convenient twirling groups",
     "May mask useful coherent error information"

@@ -25,12 +25,6 @@
       "latex": "S_{ij} = \\langle \\psi_0 | O_i^\\dagger O_j | \\psi_0 \\rangle"
     }
   ],
-  "bias_variance": {
-    "bias": 0.3,
-    "variance": 0.4,
-    "overhead": 0.4,
-    "notes": "Bias depends on whether the expanded subspace contains the true ground state. Variance comes from the additional matrix element measurements. Overhead is moderate — measuring O(k^2) matrix elements for k expansion operators."
-  },
   "advantages": [
     "No noise model required",
     "Can correct for noise-induced leakage out of the target subspace",

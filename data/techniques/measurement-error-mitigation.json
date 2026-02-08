@@ -1,6 +1,6 @@
 {
   "description": [
-    "Readout Error Mitigation (REM) corrects for errors occurring during the final readout stage of a quantum computation. On current hardware, measurement errors (bit-flips during readout) are often among the largest error sources, with assignment error rates of 1–5%.",
+    "Readout Error Mitigation (REM) corrects for errors occurring during the final readout stage of a quantum computation. On current hardware, measurement errors (bit-flips during readout) are often among the largest error sources, with assignment error rates of 1\u20135%.",
     "The technique characterizes the measurement channel by preparing all \\(2^n\\) computational basis states and recording how often each is correctly assigned, forming a \\(2^n \\times 2^n\\) confusion (assignment) matrix \\(A\\). The corrected probability distribution is obtained by applying \\(A^{-1}\\) to the raw measurement results.",
     "For large qubit counts, the full confusion matrix is intractable (\\(2^n\\) calibration circuits). Practical implementations use tensor product approximations (assuming independent qubit readout errors) or correlated subsets, reducing calibration to \\(O(n)\\) circuits."
   ],
@@ -25,12 +25,6 @@
       "latex": "\\text{Var}[\\hat{O}_{\\text{corrected}}] \\leq \\|A^{-1}\\|^2 \\, \\text{Var}[\\hat{O}_{\\text{raw}}]"
     }
   ],
-  "bias_variance": {
-    "bias": 0.05,
-    "variance": 0.5,
-    "overhead": 0.5,
-    "notes": "Nearly unbiased if calibration is accurate and the measurement error model is correct. Variance is amplified by the condition number of the confusion matrix. Calibration overhead is O(2^n) for full matrix or O(n) for tensor product."
-  },
   "advantages": [
     "Addresses one of the largest error sources on current hardware",
     "Nearly unbiased when calibration is accurate",

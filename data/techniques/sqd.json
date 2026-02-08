@@ -30,16 +30,10 @@
       "latex": "|E_K - E_0| = O(e^{-K\\Delta t})"
     }
   ],
-  "bias_variance": {
-    "bias": 0.2,
-    "variance": 0.45,
-    "overhead": 0.35,
-    "notes": "Bias decreases exponentially with Krylov dimension. Variance from finite sampling of matrix elements. Overhead is moderate — requires multiple time evolution circuits but avoids deep phase estimation."
-  },
   "advantages": [
     "Polynomial convergence guarantees similar to phase estimation",
     "Avoids deep circuits required by quantum phase estimation",
-    "No noise model required — works with any hardware noise",
+    "No noise model required \u2014 works with any hardware noise",
     "Scalable to large systems demonstrated on IBM Heron processors",
     "SqDRIFT variant further reduces circuit depth via randomized compilation",
     "Naturally handles approximate initial states"

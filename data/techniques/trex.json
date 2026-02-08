@@ -21,16 +21,10 @@
       "latex": "\\langle P \\rangle_{\\text{corrected}} = \\frac{\\langle P \\rangle_{\\text{raw}}}{\\lambda_P}"
     }
   ],
-  "bias_variance": {
-    "bias": 0.05,
-    "variance": 0.3,
-    "overhead": 0.2,
-    "notes": "Nearly unbiased if calibration factor is accurate. Low overhead compared to full matrix inversion. Variance increases modestly with readout error rate."
-  },
   "advantages": [
     "Model-free: no need to characterize the full readout-error matrix",
     "Avoids exponential cost of \\(2^n \\times 2^n\\) matrix inversion",
-    "Simple to implement — only requires random X gates before measurement",
+    "Simple to implement \u2014 only requires random X gates before measurement",
     "Scales well to large qubit counts",
     "Composable with gate-noise mitigation techniques (ZNE, PEC, etc.)"
   ],

@@ -1,11 +1,11 @@
 {
   "description": [
     "Probabilistic Error Amplification (PEA) is a noise-amplification strategy designed for use within zero-noise extrapolation (ZNE). Unlike pulse stretching (which assumes noise scales linearly with gate duration) or unitary folding (which requires large stretch factors), PEA uses a learned noise model to inject precisely calibrated noise, enabling accurate and controlled amplification.",
-    "PEA was a critical component of the 127-qubit Ising model experiment, which provided evidence for the utility of quantum computing before fault tolerance. It relies on the sparse Pauli–Lindblad noise model for efficient noise characterization.",
+    "PEA was a critical component of the 127-qubit Ising model experiment, which provided evidence for the utility of quantum computing before fault tolerance. It relies on the sparse Pauli\u2013Lindblad noise model for efficient noise characterization.",
     "The method first learns the twirled noise channel for each layer of entangling gates via efficient tomographic protocols. It then amplifies noise by probabilistically inserting single-qubit Pauli errors proportional to the learned noise model, achieving precise noise scale factors without pulse-level calibration."
   ],
   "how_it_works": [
-    "Learn the noise model for each layer of entangling gates using a sparse Pauli–Lindblad model. This involves running calibration circuits and fitting noise rates.",
+    "Learn the noise model for each layer of entangling gates using a sparse Pauli\u2013Lindblad model. This involves running calibration circuits and fitting noise rates.",
     "For a desired noise amplification factor \\(c \\geq 1\\), compute the additional noise \\((c - 1) \\cdot \\mathcal{N}\\) to inject, where \\(\\mathcal{N}\\) is the learned noise channel.",
     "Implement the additional noise by probabilistically inserting single-qubit Pauli gates after each layer, with probabilities derived from the Lindblad rates.",
     "Execute the amplified circuits at several noise levels \\(c_1, c_2, \\ldots, c_M\\) and collect expectation values.",
@@ -17,16 +17,10 @@
       "latex": "\\mathcal{E}_{c} = \\mathcal{N}^{c} \\approx \\mathcal{N} \\cdot \\mathcal{N}_{\\text{extra}}^{(c-1)}"
     },
     {
-      "label": "Sparse Pauli–Lindblad model (λ_i = Lindblad error rates, P_i = Pauli operators, L = Lindbladian superoperator)",
+      "label": "Sparse Pauli\u2013Lindblad model (\u03bb_i = Lindblad error rates, P_i = Pauli operators, L = Lindbladian superoperator)",
       "latex": "\\mathcal{N}(\\rho) = e^{\\mathcal{L}} \\rho, \\quad \\mathcal{L}(\\rho) = \\sum_i \\lambda_i (P_i \\rho P_i - \\rho)"
     }
   ],
-  "bias_variance": {
-    "bias": 0.3,
-    "variance": 0.6,
-    "overhead": 0.45,
-    "notes": "Bias inherits from ZNE extrapolation model choice. Amplification itself is more accurate than folding or pulse stretching. Requires noise-learning overhead but avoids exponential sampling cost of PEC."
-  },
   "advantages": [
     "Accurate noise amplification using a learned noise model rather than heuristic methods",
     "Avoids pulse-level calibration required by pulse stretching",
@@ -35,7 +29,7 @@
     "Uses same noise model as PEC but without exponential sampling overhead"
   ],
   "disadvantages": [
-    "Requires upfront noise-learning step (sparse Pauli–Lindblad tomography)",
+    "Requires upfront noise-learning step (sparse Pauli\u2013Lindblad tomography)",
     "Accuracy depends on quality of the learned noise model",
     "Inherits ZNE extrapolation bias from model choice",
     "Noise model may drift between calibration and experiment"

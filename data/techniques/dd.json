@@ -12,7 +12,7 @@
   ],
   "key_equations": [
     {
-      "label": "Spin echo (H_env = environment Hamiltonian, τ = idle time, H₀ = system Hamiltonian)",
+      "label": "Spin echo (H_env = environment Hamiltonian, \u03c4 = idle time, H\u2080 = system Hamiltonian)",
       "latex": "U_{\\text{echo}} = X \\cdot e^{-iH_{\\text{env}}\\tau/2} \\cdot X \\cdot e^{-iH_{\\text{env}}\\tau/2} \\approx e^{-iH_0 \\tau}"
     },
     {
@@ -24,20 +24,14 @@
       "latex": "\\|U_{\\text{DD}} - U_{\\text{ideal}}\\| = O(\\tau^{n+1} \\|H_{\\text{env}}\\|^{n+1})"
     }
   ],
-  "bias_variance": {
-    "bias": 0.3,
-    "variance": 0.05,
-    "overhead": 0.05,
-    "notes": "DD does not increase measurement shots, so variance is unchanged. Residual bias comes from finite pulse width, higher-order terms, and pulse errors. Very low overhead since it only adds gates during idle times."
-  },
   "advantages": [
-    "No sampling overhead — same number of shots as the original circuit",
+    "No sampling overhead \u2014 same number of shots as the original circuit",
     "No noise model required (though knowledge of noise spectrum helps choose optimal sequence)",
     "Actively suppresses errors at the physical level before measurement",
     "Can be freely combined with any mitigation technique (e.g., DD + ZNE)"
   ],
   "disadvantages": [
-    "Only effective during idle periods — does not help with gate errors",
+    "Only effective during idle periods \u2014 does not help with gate errors",
     "Finite pulse width limits decoupling fidelity",
     "Adds gate overhead, which can introduce new errors on noisy hardware",
     "Effectiveness depends on noise spectrum matching the DD sequence bandwidth"

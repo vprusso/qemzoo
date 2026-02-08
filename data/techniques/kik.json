@@ -1,16 +1,16 @@
 {
   "diagrams": [
     {
-      "src": "images/techniques/adaptive-kik-pulse-inverse.png",
+      "src": "images/techniques/kik-pulse-inverse.png",
       "caption": "Pulse inverse construction: the original pulse schedule (left) is inverted by negating amplitudes and reversing time ordering to create the pulse inverse (right)."
     },
     {
-      "src": "images/techniques/adaptive-kik-workflow.png",
-      "caption": "Adaptive KIK workflow: the circuit K and its pulse-based inverse KIK are executed separately, then combined using adaptive coefficients α and β tuned to the device noise level."
+      "src": "images/techniques/kik-workflow.png",
+      "caption": "Adaptive KIK workflow: the circuit K and its pulse-based inverse KIK are executed separately, then combined using adaptive coefficients \u03b1 and \u03b2 tuned to the device noise level."
     }
   ],
   "description": [
-    "Adaptive KIK is a quantum error mitigation technique that uses pulse-based inverse evolutions to cancel noise effects. The name 'KIK' describes the circuit structure: K (original circuit) → Inverse → K, where the inverse is constructed at the pulse level rather than the gate level. Unlike gate-level approaches (such as unitary folding in ZNE), KIK constructs the inverse by reversing pulse amplitudes and time ordering.",
+    "Adaptive KIK is a quantum error mitigation technique that uses pulse-based inverse evolutions to cancel noise effects. The name 'KIK' describes the circuit structure: K (original circuit) \u2192 Inverse \u2192 K, where the inverse is constructed at the pulse level rather than the gate level. Unlike gate-level approaches (such as unitary folding in ZNE), KIK constructs the inverse by reversing pulse amplitudes and time ordering.",
     "The key innovation is the adaptive coefficient: rather than using fixed linear combinations, the method tunes its coefficients based on the noise level of the target device. This allows KIK to handle moderate-to-strong noise regimes where standard ZNE with circuit folding fails.",
     "When combined with randomized compiling, Adaptive KIK can handle both incoherent and coherent noise, including spatially correlated and time-dependent noise. The method requires no tomographic characterization or machine learning, and the number of quantum circuits needed is independent of system size, making it practically scalable."
   ],
@@ -24,7 +24,7 @@
   ],
   "key_equations": [
     {
-      "label": "KIK estimator (α, β = adaptive coefficients tuned to noise level)",
+      "label": "KIK estimator (\u03b1, \u03b2 = adaptive coefficients tuned to noise level)",
       "latex": "\\langle O \\rangle_{\\text{mitigated}} = \\alpha \\langle O \\rangle_K + \\beta \\langle O \\rangle_{KIK}"
     },
     {
@@ -36,12 +36,6 @@
       "latex": "\\langle O \\rangle_{\\text{mitigated}} = \\langle O \\rangle_{\\text{ideal}} + O(\\epsilon^2)"
     }
   ],
-  "bias_variance": {
-    "bias": 0.15,
-    "variance": 0.35,
-    "overhead": 0.3,
-    "notes": "Adaptive coefficients significantly reduce bias compared to fixed-coefficient methods. Variance is moderate due to combining multiple circuit executions. Overhead is low and independent of system size — only requires running K and KIK circuits."
-  },
   "advantages": [
     "Handles moderate-to-strong noise where standard ZNE folding fails",
     "No tomographic characterization or machine learning required",

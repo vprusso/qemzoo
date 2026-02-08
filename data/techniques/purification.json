@@ -24,14 +24,8 @@
       "latex": "\\operatorname{tr}[\\rho^M] = \\operatorname{tr}[S \\, \\rho^{\\otimes M}]"
     }
   ],
-  "bias_variance": {
-    "bias": 0.15,
-    "variance": 0.4,
-    "overhead": 0.5,
-    "notes": "Bias is suppressed exponentially in M (number of copies). Overhead comes from requiring M copies of the state and entangling measurements. Variance is moderate since the estimator involves a ratio."
-  },
   "advantages": [
-    "No noise model required — purely based on state properties",
+    "No noise model required \u2014 purely based on state properties",
     "Bias suppressed exponentially in number of copies \\(M\\)",
     "Applicable to any quantum computation, not circuit-specific",
     "Can use classical shadows instead of full entangling measurements"

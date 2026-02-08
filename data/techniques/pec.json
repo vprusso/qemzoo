@@ -13,26 +13,20 @@
   ],
   "key_equations": [
     {
-      "label": "Quasi-probability decomposition (G_i = ideal gate, η = quasi-probability coefficients, O = implementable operations)",
+      "label": "Quasi-probability decomposition (G_i = ideal gate, \u03b7 = quasi-probability coefficients, O = implementable operations)",
       "latex": "\\mathcal{G}_i = \\sum_{\\alpha} \\eta_{i,\\alpha} \\, \\mathcal{O}_{i,\\alpha}, \\quad \\eta_{i,\\alpha} \\in \\mathbb{R}"
     },
     {
-      "label": "One-norm (γ = total sampling overhead, C_i = per-gate one-norm, L = number of gates)",
+      "label": "One-norm (\u03b3 = total sampling overhead, C_i = per-gate one-norm, L = number of gates)",
       "latex": "\\gamma = \\prod_{i=1}^{L} C_i = \\prod_{i=1}^{L} \\sum_\\alpha |\\eta_{i,\\alpha}|"
     },
     {
-      "label": "Sampling overhead scaling (ε̄ = average error rate per gate)",
+      "label": "Sampling overhead scaling (\u03b5\u0304 = average error rate per gate)",
       "latex": "N_{\\text{samples}} \\propto \\gamma^2 = e^{2 \\sum_i \\ln C_i} \\approx e^{2 L \\bar{\\epsilon}}"
     }
   ],
-  "bias_variance": {
-    "bias": 0.05,
-    "variance": 0.9,
-    "overhead": 0.9,
-    "notes": "PEC is unbiased in the infinite-sample limit, but the sampling overhead grows as γ² where γ is the total one-norm of the quasi-probability decomposition. Since γ itself grows exponentially with circuit depth, this makes PEC impractical for deep circuits or high noise rates."
-  },
   "advantages": [
-    "Unbiased estimator — converges to the exact ideal value",
+    "Unbiased estimator \u2014 converges to the exact ideal value",
     "Theoretically well-understood with rigorous error bounds",
     "Works for any noise channel that can be characterized",
     "Can be combined with Pauli twirling to simplify the required noise model"
