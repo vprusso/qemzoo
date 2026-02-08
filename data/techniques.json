@@ -581,6 +581,27 @@
     ]
   },
   {
+    "id": "adaptive-kik",
+    "name": "Adaptive KIK",
+    "abbreviation": "KIK",
+    "aliases": ["pulse-based inverse evolution", "layered KIK"],
+    "category": "mitigation",
+    "summary": "Mitigates errors by combining noisy circuit outputs with outputs from pulse-based inverse evolutions, using adaptive coefficients tuned to the device noise level. Unlike gate-level folding (ZNE) or echo verification, KIK constructs the inverse at the pulse level by reversing pulse amplitudes and time ordering, enabling more accurate noise cancellation. The method adapts to moderate-to-strong noise regimes and integrates with randomized compiling to handle both coherent and incoherent noise.",
+    "properties": {
+      "Bias": "Low; first-order noise cancellation with adaptive coefficients",
+      "Sampling overhead": "Low; number of circuits is independent of system size",
+      "Noise model required": "None; no tomography or machine learning required",
+      "Applicability": "General-purpose; handles moderate-to-strong noise, time-dependent noise, and spatially correlated errors"
+    },
+    "references": ["botelho2023", "botelho2025"],
+    "related": [
+      {"id": "echo-verification", "reason": "both use forward and inverse circuits; KIK operates at pulse level with adaptive coefficients"},
+      {"id": "zne", "reason": "KIK outperforms circuit folding ZNE by using pulse-based inverses and adaptive coefficients"},
+      {"id": "pauli-twirling", "reason": "KIK integrates with randomized compiling to handle coherent noise"},
+      {"id": "dd", "reason": "both operate at the pulse level to suppress noise"}
+    ]
+  },
+  {
     "id": "pie",
     "name": "Physics-Inspired Extrapolation",
     "abbreviation": "PIE",

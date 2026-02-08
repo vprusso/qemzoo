@@ -1,0 +1,68 @@
+{
+  "diagrams": [
+    {
+      "src": "images/techniques/adaptive-kik-pulse-inverse.png",
+      "caption": "Pulse inverse construction: the original pulse schedule (left) is inverted by negating amplitudes and reversing time ordering to create the pulse inverse (right)."
+    },
+    {
+      "src": "images/techniques/adaptive-kik-workflow.png",
+      "caption": "Adaptive KIK workflow: the circuit K and its pulse-based inverse KIK are executed separately, then combined using adaptive coefficients α and β tuned to the device noise level."
+    }
+  ],
+  "description": [
+    "Adaptive KIK is a quantum error mitigation technique that uses pulse-based inverse evolutions to cancel noise effects. The name 'KIK' refers to the structure where a circuit K is combined with its inverse to extract error-mitigated expectation values. Unlike gate-level approaches (such as unitary folding in ZNE), KIK constructs the inverse at the pulse level by reversing pulse amplitudes and time ordering.",
+    "The key innovation is the adaptive coefficient: rather than using fixed linear combinations, the method tunes its coefficients based on the noise level of the target device. This allows KIK to handle moderate-to-strong noise regimes where standard ZNE with circuit folding fails.",
+    "When combined with randomized compiling, Adaptive KIK can handle both incoherent and coherent noise, including spatially correlated and time-dependent noise. The method requires no tomographic characterization or machine learning, and the number of quantum circuits needed is independent of system size, making it practically scalable."
+  ],
+  "how_it_works": [
+    "Apply randomized compiling to the target circuit to convert coherent errors into stochastic Pauli noise.",
+    "Construct the pulse-based inverse of the circuit: for each pulse in the original schedule, invert its amplitude and reverse the time ordering of all pulses.",
+    "Execute the original circuit K and collect measurement outcomes.",
+    "Execute the combined K-inverse-K (KIK) circuit and collect measurement outcomes.",
+    "Combine the results using adaptive coefficients \\(\\alpha\\) and \\(\\beta\\) that are tuned to the noise strength: \\(\\langle O \\rangle_{\\text{KIK}} = \\alpha \\langle O \\rangle_K + \\beta \\langle O \\rangle_{KIK}\\).",
+    "The adaptive coefficients are chosen to minimize the error based on the observed noise level, rather than being fixed a priori."
+  ],
+  "key_equations": [
+    {
+      "label": "KIK estimator (α, β = adaptive coefficients tuned to noise level)",
+      "latex": "\\langle O \\rangle_{\\text{mitigated}} = \\alpha \\langle O \\rangle_K + \\beta \\langle O \\rangle_{KIK}"
+    },
+    {
+      "label": "Pulse inverse construction (A(t) = original pulse amplitude, T = total pulse duration)",
+      "latex": "A_{\\text{inverse}}(t) = -A(T - t)"
+    },
+    {
+      "label": "First-order error cancellation",
+      "latex": "\\langle O \\rangle_{\\text{mitigated}} = \\langle O \\rangle_{\\text{ideal}} + O(\\epsilon^2)"
+    }
+  ],
+  "bias_variance": {
+    "bias": 0.15,
+    "variance": 0.35,
+    "overhead": 0.3,
+    "notes": "Adaptive coefficients significantly reduce bias compared to fixed-coefficient methods. Variance is moderate due to combining multiple circuit executions. Overhead is low and independent of system size — only requires running K and KIK circuits."
+  },
+  "advantages": [
+    "Handles moderate-to-strong noise where standard ZNE folding fails",
+    "No tomographic characterization or machine learning required",
+    "Number of circuits is independent of system size (scalable)",
+    "Pulse-level inversion is more accurate than gate-level folding",
+    "Adaptive coefficients automatically tune to device noise level",
+    "Can maintain performance over long experiments despite noise drift",
+    "Integrates seamlessly with randomized compiling for coherent error handling"
+  ],
+  "disadvantages": [
+    "Requires pulse-level access to the quantum hardware",
+    "Pulse inverse may not perfectly cancel non-Markovian noise",
+    "Performance depends on quality of the pulse inverse construction",
+    "First-order mitigation only; does not cancel second-order noise terms",
+    "May require device-specific calibration of adaptive coefficients"
+  ],
+  "use_cases": [
+    "Near-term quantum algorithms on superconducting processors with pulse-level access",
+    "Long-duration quantum experiments with time-dependent noise",
+    "Circuits with spatially correlated noise or crosstalk",
+    "Moderate-to-strong noise regimes where ZNE folding is insufficient",
+    "Dynamic circuits and quantum error correction experiments (Layered KIK variant)"
+  ]
+}

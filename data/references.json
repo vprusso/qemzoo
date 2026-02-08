@@ -655,5 +655,21 @@
     "year": 2025,
     "arxiv": "2508.02578",
     "doi": "10.48550/arXiv.2508.02578"
+  },
+  "botelho2023": {
+    "authors": "L. Botelho, A. Glos, A. Kundu, J. A. Miszczak, Ö. Salehi, Z. Zimborás",
+    "title": "Adaptive Quantum Error Mitigation Using Pulse-Based Inverse Evolutions",
+    "journal": "npj Quantum Information",
+    "year": 2023,
+    "arxiv": "2303.05001",
+    "doi": "10.1038/s41534-023-00785-7"
+  },
+  "botelho2025": {
+    "authors": "L. Botelho, A. Glos, A. Kundu, Ö. Salehi, Z. Zimborás",
+    "title": "Layered KIK Quantum Error Mitigation for Dynamic Circuits and Error Correction",
+    "journal": "arXiv preprint",
+    "year": 2025,
+    "arxiv": "2504.12457",
+    "doi": "10.48550/arXiv.2504.12457"
   }
 }
