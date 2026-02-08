@@ -1,0 +1,61 @@
+{
+  "diagrams": [
+    {
+      "src": "images/techniques/sparse-pauli-lindblad-workflow.png",
+      "caption": "Sparse Pauli-Lindblad noise learning: calibration circuits characterize the noise as low-weight Pauli errors, the sparse Lindblad model is fit, and the model enables scalable probabilistic error cancellation by efficient inversion."
+    }
+  ],
+  "description": [
+    "Sparse Pauli-Lindblad (SPL) noise learning is a scalable protocol for characterizing quantum noise that enables probabilistic error cancellation on large quantum processors. The key innovation is modeling noise as a Lindblad master equation with sparse, low-weight Pauli jump operators, capturing correlated errors (including crosstalk) while remaining efficiently learnable and invertible.",
+    "Traditional noise characterization methods like full process tomography scale exponentially with qubit count, making them impractical for modern processors. SPL overcomes this by assuming sparsity: noise is dominated by low-weight Pauli errors on neighboring qubits. This assumption holds well in practice for superconducting and trapped-ion systems.",
+    "Once learned, the SPL model can be efficiently inverted for probabilistic error cancellation, or used to inject calibrated noise for zero-noise extrapolation (as in PEA). This unified noise representation enabled the landmark 127-qubit utility demonstration, where accurate observable estimation was achieved despite running 60 layers of two-qubit gates."
+  ],
+  "how_it_works": [
+    "Run calibration circuits: typically randomized benchmarking-style circuits that probe the noise channel for each layer of entangling gates.",
+    "Fit a sparse Pauli-Lindblad model: express the noise channel as \\(\\mathcal{N}(\\rho) = e^{\\mathcal{L}}\\rho\\) where the Lindbladian \\(\\mathcal{L}\\) has sparse Pauli jump operators.",
+    "The sparsity assumption restricts to low-weight Pauli errors (typically weight 1-2) on geometrically local qubits, dramatically reducing the number of parameters.",
+    "Estimate the Lindblad rates \\(\\lambda_i\\) for each sparse Pauli error channel from the calibration data.",
+    "For PEC: invert the learned noise model to construct the quasi-probability decomposition of ideal gates.",
+    "For PEA/ZNE: use the learned model to inject additional noise proportionally, achieving accurate noise amplification."
+  ],
+  "key_equations": [
+    {
+      "label": "Sparse Pauli-Lindblad noise model (λ_i = error rates, P_i = low-weight Pauli operators)",
+      "latex": "\\mathcal{N}(\\rho) = e^{\\mathcal{L}}\\rho, \\quad \\mathcal{L}(\\rho) = \\sum_{i} \\lambda_i (P_i \\rho P_i - \\rho)"
+    },
+    {
+      "label": "Sparsity assumption (w = max Pauli weight, typically 1-2)",
+      "latex": "P_i \\in \\{I, X, Y, Z\\}^{\\otimes n}, \\quad \\text{weight}(P_i) \\leq w, \\quad P_i \\text{ geometrically local}"
+    },
+    {
+      "label": "Noise inversion for PEC",
+      "latex": "\\mathcal{G}_{\\text{ideal}} = \\mathcal{N}^{-1} \\circ \\mathcal{N} \\circ \\mathcal{G} = e^{-\\mathcal{L}} \\circ \\mathcal{N} \\circ \\mathcal{G}"
+    },
+    {
+      "label": "Number of parameters (n = qubits, w = max weight, locality = geometric neighbors)",
+      "latex": "\\text{Params} = O(n \\cdot 4^w) \\ll 4^{2n} \\text{ (full process tomography)}"
+    }
+  ],
+  "advantages": [
+    "Scales to large quantum processors (demonstrated on 127 qubits)",
+    "Captures correlated noise including crosstalk between neighboring qubits",
+    "Efficiently learnable: polynomial number of parameters in qubit count",
+    "Efficiently invertible: enables practical PEC at scale",
+    "Unified model for both PEC (inversion) and PEA/ZNE (noise amplification)",
+    "Validated extensively on IBM superconducting hardware"
+  ],
+  "disadvantages": [
+    "Sparsity assumption may not hold for all noise types (e.g., long-range correlations)",
+    "Calibration overhead: requires running characterization circuits",
+    "Model may drift between calibration and experiment execution",
+    "Learning high-weight correlations (weight > 2) increases cost significantly",
+    "Assumes Markovian noise (Lindblad form)"
+  ],
+  "use_cases": [
+    "Enabling PEC on large-scale quantum processors",
+    "Accurate noise amplification for ZNE via probabilistic error amplification (PEA)",
+    "Utility-scale quantum experiments (100+ qubits)",
+    "Characterizing crosstalk in multi-qubit systems",
+    "Any QEM workflow requiring scalable noise characterization"
+  ]
+}

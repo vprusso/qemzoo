@@ -1,0 +1,57 @@
+{
+  "diagrams": [
+    {
+      "src": "images/techniques/symmetric-clifford-twirling-workflow.png",
+      "caption": "Symmetric Clifford twirling: only Clifford operators that commute with the target operation's symmetry subgroup are used, preserving structure while scrambling noise to global white noise with exponential precision."
+    }
+  ],
+  "description": [
+    "Symmetric Clifford Twirling (SCT) is a refined twirling technique that uses only symmetric Clifford operators — those that commute with certain Pauli subgroups associated with the target operation. This structure-preserving approach scrambles noise to approximately global white noise with exponential precision while maintaining the operation's inherent symmetries.",
+    "The key insight is that full Clifford twirling, while powerful, can destroy useful structure in quantum circuits. By restricting to symmetric Cliffords, SCT achieves the noise-averaging benefits of twirling while preserving properties essential for error mitigation in structured circuits like those used in Hamiltonian simulation.",
+    "SCT is particularly relevant for the early fault-tolerant quantum computing (FTQC) regime, where non-Clifford operations must be executed without full error correction. In this regime, the cost of error mitigation scales with the 'non-Cliffordness' of the circuit, and SCT provides cost-optimal mitigation by exploiting symmetry structure."
+  ],
+  "how_it_works": [
+    "Identify the symmetry structure of the target operation, characterized by a Pauli subgroup \\(\\mathcal{P}\\) that commutes with the ideal operation.",
+    "Construct the set of symmetric Clifford operators: those Cliffords \\(C\\) satisfying \\([C, P] = 0\\) for all \\(P \\in \\mathcal{P}\\).",
+    "For each gate layer, randomly sample symmetric Clifford twirling pairs \\((C_L, C_R)\\) and apply them before and after the layer.",
+    "Execute the twirled circuit and collect measurement outcomes.",
+    "Average over many randomized instances. The noise is scrambled to global white noise (depolarizing) with exponentially small deviations.",
+    "Hardware-efficient variant: use only local symmetric Cliffords to reduce gate overhead while maintaining noise scrambling."
+  ],
+  "key_equations": [
+    {
+      "label": "Symmetric Clifford condition (C = Clifford, P = Pauli subgroup)",
+      "latex": "C \\in \\text{Cliff}_{\\text{sym}} \\iff [C, P] = 0 \\; \\forall P \\in \\mathcal{P}"
+    },
+    {
+      "label": "Noise scrambling to white noise (ε = exponentially small)",
+      "latex": "\\mathbb{E}_{C \\in \\text{Cliff}_{\\text{sym}}}[\\mathcal{E}(\\rho)] = (1-p)\\rho + p \\frac{I}{2^n} + O(e^{-n})"
+    },
+    {
+      "label": "Cost scaling in early FTQC (γ = non-Clifford overhead)",
+      "latex": "\\text{Sampling cost} \\propto \\gamma^2 \\text{ where } \\gamma \\text{ depends on non-Clifford content}"
+    }
+  ],
+  "advantages": [
+    "Preserves circuit symmetry structure while scrambling noise",
+    "Noise converted to global white noise with exponential precision",
+    "Cost-optimal error mitigation in early FTQC regime",
+    "Hardware-efficient variants use only local operations",
+    "Applicable to non-Clifford operations (unlike standard Pauli twirling)",
+    "Rigorous theoretical guarantees on noise conversion"
+  ],
+  "disadvantages": [
+    "More complex to implement than standard Pauli twirling",
+    "Requires identifying and exploiting symmetry structure",
+    "Benefits most pronounced for highly structured circuits",
+    "May not outperform simpler methods for generic unstructured circuits",
+    "Symmetry identification adds preprocessing overhead"
+  ],
+  "use_cases": [
+    "Early fault-tolerant quantum computing with limited error correction",
+    "Hamiltonian simulation circuits with inherent symmetry structure",
+    "Non-Clifford gate error mitigation (e.g., T gates, rotation gates)",
+    "Quantum chemistry where molecular symmetries are present",
+    "Any structured quantum circuit where preserving symmetry improves mitigation"
+  ]
+}

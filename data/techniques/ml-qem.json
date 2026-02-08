@@ -1,0 +1,56 @@
+{
+  "diagrams": [
+    {
+      "src": "images/techniques/ml-qem-workflow.png",
+      "caption": "ML-QEM workflow: training data is generated from near-Clifford circuits (classically simulable) or noise-scaled circuits, a machine learning model learns the noisy-to-ideal mapping, and the trained model corrects target circuit outputs at low cost."
+    }
+  ],
+  "description": [
+    "Machine Learning Quantum Error Mitigation (ML-QEM) applies classical machine learning to reduce the computational overhead of traditional error mitigation methods. Rather than relying on explicit noise models or expensive sampling procedures, ML-QEM trains models on data from calibration circuits to learn the relationship between noisy and ideal expectation values.",
+    "The key insight is that the mapping from noisy to ideal results often has learnable structure that machine learning models can exploit. Once trained, the model can correct noisy outputs with minimal additional quantum resources — often achieving 2× or greater reduction in runtime compared to methods like ZNE, without sacrificing accuracy.",
+    "Multiple model architectures have been benchmarked: linear regression provides a simple baseline, random forests consistently perform well across circuit types, multi-layer perceptrons capture nonlinear relationships, and graph neural networks can exploit circuit structure. The choice depends on the circuit class and noise characteristics."
+  ],
+  "how_it_works": [
+    "Generate training data from near-Clifford circuits (whose ideal outputs can be computed classically) or from circuits executed at multiple noise levels.",
+    "Extract features from each circuit: these may include circuit depth, gate counts, qubit connectivity, or learned embeddings from the circuit structure.",
+    "Train a machine learning model (random forest, neural network, etc.) to predict the ideal expectation value from the noisy measurement and circuit features.",
+    "For the target circuit, execute it on the noisy hardware, extract the same features, and apply the trained model to obtain the error-mitigated estimate.",
+    "The model generalizes from training circuits to unseen target circuits, with accuracy depending on how well the training distribution covers the target."
+  ],
+  "key_equations": [
+    {
+      "label": "ML-QEM prediction (f = learned model, x = circuit features, E_noisy = noisy expectation)",
+      "latex": "\\langle O \\rangle_{\\text{ML}} = f(x, \\langle O \\rangle_{\\text{noisy}})"
+    },
+    {
+      "label": "Training objective (D = training set of (circuit, ideal, noisy) tuples)",
+      "latex": "\\min_\\theta \\sum_{(x_i, E_i^{\\text{ideal}}, E_i^{\\text{noisy}}) \\in D} \\left( f_\\theta(x_i, E_i^{\\text{noisy}}) - E_i^{\\text{ideal}} \\right)^2"
+    },
+    {
+      "label": "Runtime reduction vs ZNE",
+      "latex": "\\text{Speedup} = \\frac{T_{\\text{ZNE}}}{T_{\\text{ML-QEM}}} \\geq 2\\times"
+    }
+  ],
+  "advantages": [
+    "Dramatically reduces runtime overhead (2× or more) compared to ZNE and PEC",
+    "No explicit noise model required — learned implicitly from data",
+    "Flexible: different ML models can be chosen based on circuit structure and noise characteristics",
+    "Demonstrated at scale on up to 100 qubits",
+    "Training cost is amortized across many target circuits",
+    "Random forests provide robust performance across diverse circuit classes"
+  ],
+  "disadvantages": [
+    "Requires upfront training data generation (near-Clifford circuits or noise-scaled circuits)",
+    "Generalization depends on training distribution matching target circuits",
+    "May struggle with extrapolation to circuit regimes not seen during training",
+    "Model selection and hyperparameter tuning add complexity",
+    "Less theoretical understanding compared to methods like PEC"
+  ],
+  "use_cases": [
+    "Production quantum computing workflows where runtime is critical",
+    "Large-scale experiments where ZNE's overhead becomes prohibitive",
+    "Settings with repeated execution of similar circuit families",
+    "Hybrid classical-quantum algorithms with many circuit evaluations",
+    "Scenarios where training data can be generated efficiently"
+  ]
+}

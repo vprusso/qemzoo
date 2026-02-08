@@ -1,0 +1,56 @@
+{
+  "diagrams": [
+    {
+      "src": "images/techniques/pseudo-twirling-workflow.png",
+      "caption": "Pseudo twirling for non-Clifford gates: approximate twirling operations convert coherent errors into quasi-stochastic noise while preserving the non-Clifford gate's action, enabling error mitigation where standard Pauli twirling fails."
+    }
+  ],
+  "description": [
+    "Pseudo Twirling extends the concept of Pauli twirling to non-Clifford gates, addressing a fundamental limitation of standard randomized compiling. While Pauli twirling effectively converts coherent errors to stochastic noise for Clifford gates (like CNOT), it cannot be directly applied to non-Clifford operations such as partial CPhase rotations or small-angle ZZ interactions.",
+    "The key insight is that even for non-Clifford gates, approximate twirling can substantially reduce coherent error accumulation. By applying carefully designed twirling operations that approximately commute with the target gate, pseudo twirling converts coherent errors (which accumulate constructively) into quasi-stochastic noise (which adds incoherently).",
+    "This technique is particularly important for native gate implementations on quantum hardware. Using native small-angle entangling gates directly (rather than decomposing into many Cliffords) can reduce circuit depth, but calibration imperfections and crosstalk create coherent errors that standard twirling cannot address. Pseudo twirling fills this gap."
+  ],
+  "how_it_works": [
+    "Identify non-Clifford gates in the circuit where standard Pauli twirling is inapplicable (e.g., partial CPhase, fractional ZZ rotations).",
+    "For each non-Clifford gate \\(G\\), construct a set of approximate twirling operations \\(\\{P_i, Q_i\\}\\) such that \\(Q_i G P_i \\approx G\\) up to a tracked phase or small correction.",
+    "Randomly sample twirling pairs and execute the circuit with gates replaced by \\(Q_i G P_i\\).",
+    "Average results over many randomized circuit instances. The coherent error components average out, leaving quasi-stochastic residual noise.",
+    "Optionally combine with Adaptive KIK: pseudo twirling addresses coherent errors while KIK handles the remaining incoherent noise."
+  ],
+  "key_equations": [
+    {
+      "label": "Standard twirling condition (exact, for Clifford gates)",
+      "latex": "P G P^\\dagger = e^{i\\phi} G \\quad \\text{for } P \\in \\text{Pauli group}"
+    },
+    {
+      "label": "Pseudo twirling condition (approximate, for non-Clifford gates)",
+      "latex": "Q G P \\approx G + O(\\epsilon) \\quad \\text{where } \\epsilon \\text{ is small}"
+    },
+    {
+      "label": "Coherent to stochastic conversion",
+      "latex": "\\mathbb{E}_{P,Q}[\\mathcal{E}_{\\text{coherent}}] \\approx \\mathcal{E}_{\\text{stochastic}}"
+    }
+  ],
+  "advantages": [
+    "Enables error mitigation for non-Clifford native gates where Pauli twirling fails",
+    "Allows use of shorter circuits via native gate implementations",
+    "Converts constructively accumulating coherent errors to incoherently adding stochastic noise",
+    "Compatible with other QEM techniques (can be combined with KIK, ZNE, etc.)",
+    "Experimentally validated on real quantum hardware",
+    "No noise model required"
+  ],
+  "disadvantages": [
+    "Twirling is approximate — small residual coherent errors may remain",
+    "Requires careful design of twirling operations for each non-Clifford gate type",
+    "Adds sampling overhead from averaging over randomized circuits",
+    "Limited theoretical guarantees compared to exact Pauli twirling on Cliffords",
+    "May not fully eliminate all coherent error contributions"
+  ],
+  "use_cases": [
+    "Native gate implementations using partial rotations (e.g., fractional CPhase)",
+    "Quantum hardware with significant crosstalk-induced coherent errors",
+    "Circuits where decomposing non-Cliffords into Cliffords would add prohibitive depth",
+    "Combined with KIK for comprehensive coherent + incoherent error mitigation",
+    "Any setting where standard Pauli twirling is insufficient"
+  ]
+}

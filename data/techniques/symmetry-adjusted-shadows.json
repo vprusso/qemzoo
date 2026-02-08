@@ -1,0 +1,56 @@
+{
+  "diagrams": [
+    {
+      "src": "images/techniques/symmetry-adjusted-shadows-workflow.png",
+      "caption": "Symmetry-adjusted classical shadows: the noisy quantum state ρ preserves symmetries S_λ, and the shadow inversion is adjusted using group-theoretic structure to produce error-mitigated estimates without calibration experiments."
+    }
+  ],
+  "description": [
+    "Symmetry-Adjusted Classical Shadows (SAS) is a quantum error mitigation technique that leverages the group-theoretic structure of symmetries to adjust classical shadow tomography. Unlike standard symmetry verification which discards measurement outcomes that violate symmetries, SAS uses symmetry information to modify the shadow inversion itself, correcting estimates without throwing away data.",
+    "The key insight is that randomized measurements in classical shadows scramble quantum information in a structured way. When the target state has known symmetries (e.g., particle number conservation, total magnetization), errors that corrupt these symmetries also corrupt other properties in a predictable, group-theoretic manner. SAS exploits this structure to construct error-mitigated estimators.",
+    "A major practical advantage is that SAS requires no calibration experiments — the symmetry information alone is sufficient to enable error mitigation. This contrasts with robust shadow estimation, which requires running calibration circuits with known input states. Furthermore, SAS accounts for errors throughout the full quantum circuit, not just measurement errors."
+  ],
+  "how_it_works": [
+    "Identify the symmetries \\(S_\\lambda\\) of the target quantum state \\(\\rho\\). Common examples include U(1) symmetry (particle number in fermions, total magnetization in spins).",
+    "Execute the quantum circuit and perform randomized measurements according to the classical shadows protocol (random Pauli or Clifford bases).",
+    "For each measurement outcome, compute the standard classical shadow snapshot.",
+    "Adjust the shadow inversion using the group-theoretic structure: instead of the standard inverse channel \\(\\mathcal{M}^{-1}\\), apply a symmetry-adjusted inverse that accounts for how errors transform under the symmetry group \\(G\\).",
+    "The adjustment leverages the decomposition of the Hilbert space into irreducible representations \\(V_\\lambda\\) of the symmetry group.",
+    "Estimate observables using the symmetry-adjusted shadows, which automatically mitigate errors that break the symmetry structure."
+  ],
+  "key_equations": [
+    {
+      "label": "Standard shadow channel (U = random unitary, |b⟩ = measurement outcome)",
+      "latex": "\\mathcal{M}(\\rho) = \\mathbb{E}_U \\sum_b \\langle b|U\\rho U^\\dagger|b\\rangle \\, U^\\dagger|b\\rangle\\langle b|U"
+    },
+    {
+      "label": "Symmetry-adjusted estimator (Π_λ = projector onto symmetry sector λ)",
+      "latex": "\\hat{O}_{\\text{SAS}} = \\sum_\\lambda \\text{tr}(\\Pi_\\lambda \\hat{\\rho}) \\cdot \\hat{O}_\\lambda"
+    },
+    {
+      "label": "Group-theoretic decomposition (V_λ = irreducible representation of symmetry group G)",
+      "latex": "\\mathcal{H} = \\bigoplus_\\lambda V_\\lambda, \\quad \\rho = \\bigoplus_\\lambda \\rho_\\lambda"
+    }
+  ],
+  "advantages": [
+    "No calibration experiments required — uses symmetry structure alone",
+    "Accounts for errors throughout the full circuit, not just measurement errors",
+    "Does not discard data like post-selection methods",
+    "Can be combined with other QEM techniques (ZNE, measurement error mitigation)",
+    "Rigorous sampling bounds under readout errors with minimal assumptions",
+    "Unifies fermionic (particle number) and spin (magnetization) systems via group theory"
+  ],
+  "disadvantages": [
+    "Requires knowledge of preserved symmetries in the target state",
+    "Effectiveness depends on how strongly the symmetry constrains the state",
+    "Limited to systems with discrete or continuous symmetries that can be characterized group-theoretically",
+    "May not fully mitigate errors that preserve the symmetry"
+  ],
+  "use_cases": [
+    "Fermionic systems with particle number conservation",
+    "Spin systems with total magnetization conservation",
+    "Quantum chemistry simulations with known symmetries",
+    "Condensed matter physics with translation or rotation symmetries",
+    "Any classical shadows application where symmetries are known"
+  ]
+}

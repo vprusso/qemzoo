@@ -671,5 +671,51 @@
     "year": 2025,
     "arxiv": "2504.12457",
     "doi": "10.48550/arXiv.2504.12457"
+  },
+  "zhao2024": {
+    "authors": "A. Zhao, A. Miyake",
+    "title": "Group-Theoretic Error Mitigation Enabled by Classical Shadows and Symmetries",
+    "journal": "npj Quantum Information",
+    "year": 2024,
+    "arxiv": "2310.03071",
+    "doi": "10.1038/s41534-024-00854-5"
+  },
+  "liao2024": {
+    "authors": "H. Liao, D. S. Wang, I. Sitdikov, C. Salcedo, A. Seif, Z. K. Minev",
+    "title": "Machine Learning for Practical Quantum Error Mitigation",
+    "journal": "Nature Machine Intelligence",
+    "year": 2024,
+    "arxiv": "2309.17368",
+    "doi": "10.1038/s42256-024-00927-2"
+  },
+  "santos2024": {
+    "authors": "J. P. Santos, B. Bar, R. Uzdin",
+    "title": "Pseudo Twirling Mitigation of Coherent Errors in non-Clifford Gates",
+    "journal": "npj Quantum Information",
+    "year": 2024,
+    "arxiv": "2401.09040",
+    "doi": "10.1038/s41534-024-00889-8"
+  },
+  "tsubouchi2025": {
+    "authors": "K. Tsubouchi, Y. Mitsuhashi, K. Sharma, N. Yoshioka",
+    "title": "Symmetric Clifford Twirling for Cost-Optimal Quantum Error Mitigation in Early FTQC Regime",
+    "journal": "npj Quantum Information",
+    "year": 2025,
+    "arxiv": "2405.07720",
+    "doi": "10.1038/s41534-025-01050-9"
+  },
+  "kim2023nem": {
+    "authors": "C. Kim, K. D. Park, J.-K. K. Rhee",
+    "title": "Quantum Error Mitigation with Artificial Neural Network",
+    "journal": "IEEE Access",
+    "year": 2020,
+    "doi": "10.1109/ACCESS.2020.3031607"
+  },
+  "czarnik2022nem": {
+    "authors": "P. Czarnik, M. McKerns, A. T. Sornborger, L. Cincio",
+    "title": "Neural Error Mitigation of Near-Term Quantum Simulations",
+    "journal": "arXiv preprint",
+    "year": 2022,
+    "arxiv": "2105.08086"
   }
 }

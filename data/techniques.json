@@ -14,7 +14,8 @@
     },
     "references": ["czarnik2021", "lowe2021", "strikis2021"],
     "related": [
-      {"id": "zne", "reason": "vnCDR combines CDR with variable noise scaling"}
+      {"id": "zne", "reason": "vnCDR combines CDR with variable noise scaling"},
+      {"id": "ml-qem", "reason": "ML-QEM generalizes CDR's linear regression to richer ML models"}
     ]
   },
   {
@@ -109,7 +110,9 @@
       {"id": "pec", "reason": "Pauli twirling simplifies noise for PEC"},
       {"id": "zne", "reason": "Pauli twirling simplifies noise for ZNE"},
       {"id": "dd", "reason": "both are suppression techniques applied at the gate level"},
-      {"id": "partial-pauli-twirling", "reason": "PPT uses a subset of Pauli gates optimized for error-detecting codes"}
+      {"id": "partial-pauli-twirling", "reason": "PPT uses a subset of Pauli gates optimized for error-detecting codes"},
+      {"id": "pseudo-twirling", "reason": "pseudo twirling extends Pauli twirling to non-Clifford gates"},
+      {"id": "symmetric-clifford-twirling", "reason": "SCT uses symmetric Cliffords for structure-preserving noise scrambling"}
     ]
   },
   {
@@ -151,7 +154,8 @@
       {"id": "zne", "reason": "both are foundational QEM techniques"},
       {"id": "measurement-error-mitigation", "reason": "PEC can be combined with REM for full-circuit mitigation"},
       {"id": "emre", "reason": "EMRE retains only the positive part of PEC's quasi-probability decomposition"},
-      {"id": "hemre", "reason": "HEMRE interpolates between PEC and EMRE"}
+      {"id": "hemre", "reason": "HEMRE interpolates between PEC and EMRE"},
+      {"id": "sparse-pauli-lindblad", "reason": "SPL provides scalable noise learning that enables PEC on large processors"}
     ]
   },
   {
@@ -172,7 +176,8 @@
       {"id": "subspace-expansion", "reason": "both use multiple quantum states to improve estimates"},
       {"id": "symmetry-verification", "reason": "purity is itself a constraint that can be verified"},
       {"id": "logical-shadow-tomography", "reason": "virtual distillation is a special case of the LST framework"},
-      {"id": "dual-state-purification", "reason": "DSP achieves similar purification without multi-copy overhead"}
+      {"id": "dual-state-purification", "reason": "DSP achieves similar purification without multi-copy overhead"},
+      {"id": "gse", "reason": "GSE generalizes virtual distillation and QSE into a unified framework"}
     ]
   },
   {
@@ -195,7 +200,8 @@
       {"id": "symmetry-verification", "reason": "subspace expansion can incorporate symmetry constraints"},
       {"id": "qed", "reason": "QSE can decode errors similarly to quantum error detection codes"},
       {"id": "logical-shadow-tomography", "reason": "QSE is a special case of the LST framework"},
-      {"id": "sqd", "reason": "SQD uses Krylov subspaces instead of excitation operators"}
+      {"id": "sqd", "reason": "SQD uses Krylov subspaces instead of excitation operators"},
+      {"id": "gse", "reason": "GSE generalizes QSE to handle stochastic, coherent, and algorithmic errors"}
     ]
   },
   {
@@ -235,7 +241,8 @@
     "related": [
       {"id": "n-representability", "reason": "both exploit physical constraints"},
       {"id": "subspace-expansion", "reason": "symmetry constraints can define subspaces"},
-      {"id": "measurement-error-mitigation", "reason": "both can detect measurement-stage errors"}
+      {"id": "measurement-error-mitigation", "reason": "both can detect measurement-stage errors"},
+      {"id": "symmetry-adjusted-shadows", "reason": "SAS uses symmetry to adjust shadow inversion rather than post-select"}
     ]
   },
   {
@@ -336,7 +343,8 @@
     "related": [
       {"id": "zne", "reason": "PEA is a noise amplification method used within ZNE"},
       {"id": "pec", "reason": "PEA uses the same learned noise model as PEC but avoids exponential sampling overhead"},
-      {"id": "pauli-twirling", "reason": "PEA operates on twirled (Pauli) noise channels"}
+      {"id": "pauli-twirling", "reason": "PEA operates on twirled (Pauli) noise channels"},
+      {"id": "sparse-pauli-lindblad", "reason": "SPL provides the learned noise model that enables accurate PEA"}
     ]
   },
   {
@@ -416,7 +424,28 @@
     "related": [
       {"id": "measurement-error-mitigation", "reason": "both calibrate the measurement channel; RSE generalizes to full shadow framework"},
       {"id": "trex", "reason": "both mitigate measurement-stage noise with calibration"},
-      {"id": "logical-shadow-tomography", "reason": "both use shadow tomography; LST adds codespace projection for error mitigation"}
+      {"id": "logical-shadow-tomography", "reason": "both use shadow tomography; LST adds codespace projection for error mitigation"},
+      {"id": "symmetry-adjusted-shadows", "reason": "both extend classical shadows; SAS uses symmetry structure instead of calibration"}
+    ]
+  },
+  {
+    "id": "symmetry-adjusted-shadows",
+    "name": "Symmetry-Adjusted Classical Shadows",
+    "abbreviation": "SAS",
+    "aliases": ["group-theoretic error mitigation", "symmetry-adjusted shadows"],
+    "category": "mitigation",
+    "summary": "Adjusts classical shadow tomography based on how device errors corrupt known symmetries of the quantum system. Unlike standard symmetry verification (which post-selects), this technique uses group-theoretic structure to modify the shadow inversion itself, correcting estimates without discarding data. No calibration experiments are needed — the symmetry information alone enables error mitigation across the full circuit, not just readout errors.",
+    "properties": {
+      "Bias": "Reduced; uses symmetry structure to correct estimates",
+      "Sampling overhead": "Low; no calibration experiments required",
+      "Noise model required": "None; only requires knowledge of preserved symmetries",
+      "Applicability": "Systems with known symmetries (U(1), particle number, magnetization); fermionic and spin systems"
+    },
+    "references": ["zhao2024"],
+    "related": [
+      {"id": "symmetry-verification", "reason": "both use symmetries; SV post-selects while SAS adjusts the shadow inversion"},
+      {"id": "robust-shadows", "reason": "both extend classical shadows for error mitigation; RSE uses calibration, SAS uses symmetry"},
+      {"id": "logical-shadow-tomography", "reason": "both use shadow tomography with additional structure for error mitigation"}
     ]
   },
   {
@@ -620,6 +649,107 @@
       {"id": "emre", "reason": "PIE's fitting function is derived from EMRE's generalized quasi-probability decomposition"},
       {"id": "hemre", "reason": "both build on the EMRE theoretical framework"},
       {"id": "lre", "reason": "both are extrapolation-based methods; PIE uses a single global physics-motivated model"}
+    ]
+  },
+  {
+    "id": "ml-qem",
+    "name": "Machine Learning QEM",
+    "abbreviation": "ML-QEM",
+    "aliases": ["neural error mitigation", "NEM", "learning-based QEM", "data-driven error mitigation"],
+    "category": "mitigation",
+    "summary": "Uses classical machine learning models — including linear regression, random forests, multi-layer perceptrons, and graph neural networks — to learn the mapping from noisy to ideal expectation values. Training data is generated from near-Clifford circuits (efficiently simulable) or circuits at multiple noise levels. ML-QEM dramatically reduces the runtime overhead of traditional QEM methods (2× or more reduction) without sacrificing accuracy, and has been demonstrated on quantum hardware with up to 100 qubits.",
+    "properties": {
+      "Bias": "Depends on model generalization; zero if training distribution matches target",
+      "Sampling overhead": "Low at inference; training requires running calibration circuits",
+      "Noise model required": "Implicitly learned from data; no explicit noise characterization needed",
+      "Applicability": "General-purpose; best when training circuits approximate target circuit structure"
+    },
+    "references": ["liao2024", "czarnik2022nem", "kim2023nem", "strikis2021"],
+    "related": [
+      {"id": "cdr", "reason": "CDR uses linear regression on near-Clifford training data; ML-QEM generalizes to richer models"},
+      {"id": "zne", "reason": "ML-QEM can replace ZNE's extrapolation with learned models, reducing overhead"},
+      {"id": "pec", "reason": "ML-QEM achieves similar accuracy to PEC with dramatically lower sampling cost"}
+    ]
+  },
+  {
+    "id": "gse",
+    "name": "Generalized Subspace Expansion",
+    "abbreviation": "GSE",
+    "aliases": ["generalized quantum subspace expansion", "power subspace method"],
+    "category": "mitigation",
+    "summary": "A unified error mitigation framework that handles stochastic, coherent, and algorithmic errors simultaneously by constructing an expanded subspace from powers of the noisy density matrix (\\(\\rho^m\\)) or error-boosted states. GSE generalizes both quantum subspace expansion and virtual distillation, inheriting advantages of both while overcoming their individual limitations. The method is noise-agnostic and can suppress errors by orders of magnitude without requiring knowledge of the noise model.",
+    "properties": {
+      "Bias": "Suppressed exponentially with subspace dimension",
+      "Sampling overhead": "Moderate; requires measuring matrix elements in expanded subspace",
+      "Noise model required": "None (noise-agnostic)",
+      "Applicability": "General-purpose; particularly effective for variational algorithms and Hamiltonian simulation"
+    },
+    "references": ["yoshioka2022"],
+    "related": [
+      {"id": "subspace-expansion", "reason": "QSE is a special case of GSE"},
+      {"id": "purification", "reason": "virtual distillation is a special case of GSE"},
+      {"id": "dual-state-purification", "reason": "Dual-GSE combines GSE with dual-state purification for resource efficiency"},
+      {"id": "logical-shadow-tomography", "reason": "both provide unified frameworks for multiple QEM techniques"}
+    ]
+  },
+  {
+    "id": "pseudo-twirling",
+    "name": "Pseudo Twirling",
+    "abbreviation": "PT",
+    "aliases": ["pseudo-Pauli twirling", "non-Clifford twirling"],
+    "category": "suppression",
+    "summary": "Extends Pauli twirling to mitigate coherent errors in non-Clifford gates, where standard twirling fails. For gates like partial CPhase rotations (small-angle ZZ interactions), pseudo twirling applies approximate twirling operations that convert coherent errors into quasi-stochastic noise while preserving the gate's action. Can be combined with Adaptive KIK to simultaneously address both coherent and incoherent errors. Experimentally validated on native gate implementations.",
+    "properties": {
+      "Bias": "Small residual from imperfect twirling of non-Clifford gates",
+      "Sampling overhead": "Similar to Pauli twirling; requires averaging over randomized circuits",
+      "Noise model required": "None",
+      "Applicability": "Non-Clifford gates (partial rotations, native entangling gates); addresses calibration imperfections and crosstalk"
+    },
+    "references": ["santos2024"],
+    "related": [
+      {"id": "pauli-twirling", "reason": "pseudo twirling extends Pauli twirling to non-Clifford gates"},
+      {"id": "kik", "reason": "can be combined with KIK to address both coherent and incoherent errors"},
+      {"id": "symmetric-clifford-twirling", "reason": "both extend standard twirling to broader gate classes"}
+    ]
+  },
+  {
+    "id": "symmetric-clifford-twirling",
+    "name": "Symmetric Clifford Twirling",
+    "abbreviation": "SCT",
+    "aliases": ["symmetric twirling", "structure-preserving twirling"],
+    "category": "suppression",
+    "summary": "Applies Clifford twirling using only symmetric Clifford operators that commute with certain Pauli subgroups, preserving the structure of the target operation while scrambling noise to approximately global white noise with exponential precision. Hardware-efficient variants use only local symmetric Cliffords to accelerate noise scrambling. Particularly effective in the early fault-tolerant regime where non-Clifford operations must be error-mitigated with minimal overhead.",
+    "properties": {
+      "Bias": "Exponentially small; noise approaches global white noise",
+      "Sampling overhead": "Reduced compared to full Clifford twirling; hardware-efficient variants minimize gate count",
+      "Noise model required": "None",
+      "Applicability": "Early FTQC regime; Hamiltonian simulation; circuits with non-Clifford operations"
+    },
+    "references": ["tsubouchi2025"],
+    "related": [
+      {"id": "pauli-twirling", "reason": "symmetric Clifford twirling is a structured extension of Pauli twirling"},
+      {"id": "pseudo-twirling", "reason": "both extend twirling techniques beyond standard Pauli/Clifford gates"},
+      {"id": "pec", "reason": "can be used as preprocessing to simplify noise for PEC"}
+    ]
+  },
+  {
+    "id": "sparse-pauli-lindblad",
+    "name": "Sparse Pauli-Lindblad Noise Learning",
+    "abbreviation": "SPL",
+    "aliases": ["Pauli-Lindblad noise model", "scalable noise learning", "sparse noise model"],
+    "category": "characterization",
+    "summary": "A scalable noise characterization protocol that learns a sparse Pauli-Lindblad noise model capturing correlated errors across large quantum circuits. The model represents noise as low-weight Pauli errors in a Lindblad master equation, enabling efficient learning and inversion for probabilistic error cancellation. This addresses a major challenge in PEC: finding a noise model that scales to many qubits, captures crosstalk, and can be efficiently manipulated. Demonstrated on IBM superconducting processors enabling PEC at scale.",
+    "properties": {
+      "Bias": "None if model accurately captures the noise",
+      "Sampling overhead": "Learning overhead amortized across many circuits; enables efficient PEC",
+      "Noise model required": "This IS the noise learning technique",
+      "Applicability": "Large-scale quantum processors; enables scalable PEC and PEA"
+    },
+    "references": ["vandenberg2022", "kim2023"],
+    "related": [
+      {"id": "pec", "reason": "SPL enables scalable PEC by providing an efficiently learnable and invertible noise model"},
+      {"id": "pea", "reason": "SPL provides the learned noise model used for accurate noise amplification in PEA"},
+      {"id": "tem", "reason": "both provide structured noise representations; TEM uses tensor networks, SPL uses sparse Lindblad"}
     ]
   }
 ]
