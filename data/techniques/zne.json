@@ -1,4 +1,10 @@
 {
+  "diagrams": [
+    {
+      "src": "images/techniques/zne-workflow.png",
+      "caption": "Zero-noise extrapolation: expectation values are measured at multiple noise levels (λ₁, λ₂, λ₃) and extrapolated back to the zero-noise limit E*."
+    }
+  ],
   "description": [
     "Zero-Noise Extrapolation (ZNE) is one of the most widely used quantum error mitigation techniques. The core idea is deceptively simple: if we can controllably increase the noise in a quantum circuit, we can measure expectation values at several noise levels and then extrapolate back to the zero-noise limit.",
     "The technique was independently proposed in 2017 and has since become a workhorse of near-term quantum computing, featuring prominently in utility-scale 127-qubit experiments.",

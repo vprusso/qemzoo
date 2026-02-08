@@ -7,6 +7,14 @@
     "arxiv": "2005.10921",
     "doi": "10.1109/QCE49297.2020.00045"
   },
+  "majumdar2023": {
+    "authors": "R. Majumdar, P. Rivero, F. Metz, A. Hasan, D. S. Wang",
+    "title": "Best Practices for Quantum Error Mitigation with Digital Zero-Noise Extrapolation",
+    "journal": "IEEE International Conference on Quantum Computing and Engineering (QCE)",
+    "year": 2023,
+    "arxiv": "2307.05203",
+    "doi": "10.1109/QCE57702.2023.00102"
+  },
   "he2020": {
     "authors": "A. He, B. Nachman, W. A. de Jong, C. W. Bauer",
     "title": "Zero-Noise Extrapolation for Quantum-Gate Error Mitigation with Identity Insertions",

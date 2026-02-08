@@ -167,11 +167,12 @@
       "Noise model required": "None (model-free)",
       "Hardware requirements": "\\(M\\) copies of the state; entangling measurements across copies or classical shadows"
     },
-    "references": ["huggins2021", "koczor2021"],
+    "references": ["huggins2021", "koczor2021", "cai2023"],
     "related": [
       {"id": "subspace-expansion", "reason": "both use multiple quantum states to improve estimates"},
       {"id": "symmetry-verification", "reason": "purity is itself a constraint that can be verified"},
-      {"id": "logical-shadow-tomography", "reason": "virtual distillation is a special case of the LST framework"}
+      {"id": "logical-shadow-tomography", "reason": "virtual distillation is a special case of the LST framework"},
+      {"id": "dual-state-purification", "reason": "DSP achieves similar purification without multi-copy overhead"}
     ]
   },
   {
@@ -250,7 +251,7 @@
       "Noise model required": "Minimal; only requires ability to scale noise controllably",
       "Scalability": "Demonstrated on up to 127 qubits; widely used in practice"
     },
-    "references": ["temme2017", "li2017", "endo2018", "kim2023"],
+    "references": ["temme2017", "li2017", "endo2018", "kim2023", "majumdar2023"],
     "related": [
       {"id": "lre", "reason": "LRE is a multivariate generalization of ZNE"},
       {"id": "pec", "reason": "both are foundational QEM techniques"},
