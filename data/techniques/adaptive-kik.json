@@ -10,7 +10,7 @@
     }
   ],
   "description": [
-    "Adaptive KIK is a quantum error mitigation technique that uses pulse-based inverse evolutions to cancel noise effects. The name 'KIK' refers to the structure where a circuit K is combined with its inverse to extract error-mitigated expectation values. Unlike gate-level approaches (such as unitary folding in ZNE), KIK constructs the inverse at the pulse level by reversing pulse amplitudes and time ordering.",
+    "Adaptive KIK is a quantum error mitigation technique that uses pulse-based inverse evolutions to cancel noise effects. The name 'KIK' describes the circuit structure: K (original circuit) → Inverse → K, where the inverse is constructed at the pulse level rather than the gate level. Unlike gate-level approaches (such as unitary folding in ZNE), KIK constructs the inverse by reversing pulse amplitudes and time ordering.",
     "The key innovation is the adaptive coefficient: rather than using fixed linear combinations, the method tunes its coefficients based on the noise level of the target device. This allows KIK to handle moderate-to-strong noise regimes where standard ZNE with circuit folding fails.",
     "When combined with randomized compiling, Adaptive KIK can handle both incoherent and coherent noise, including spatially correlated and time-dependent noise. The method requires no tomographic characterization or machine learning, and the number of quantum circuits needed is independent of system size, making it practically scalable."
   ],
