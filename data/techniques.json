@@ -193,7 +193,28 @@
       {"id": "purification", "reason": "both use multiple quantum states to improve estimates"},
       {"id": "symmetry-verification", "reason": "subspace expansion can incorporate symmetry constraints"},
       {"id": "qed", "reason": "QSE can decode errors similarly to quantum error detection codes"},
-      {"id": "logical-shadow-tomography", "reason": "QSE is a special case of the LST framework"}
+      {"id": "logical-shadow-tomography", "reason": "QSE is a special case of the LST framework"},
+      {"id": "sqd", "reason": "SQD uses Krylov subspaces instead of excitation operators"}
+    ]
+  },
+  {
+    "id": "sqd",
+    "name": "Sample-Based Quantum Diagonalization",
+    "abbreviation": "SQD",
+    "aliases": ["sample-based Krylov diagonalization", "SKQD", "SqDRIFT"],
+    "category": "mitigation",
+    "summary": "Constructs a Krylov subspace by applying powers of the Hamiltonian (via time evolution) to a reference state, then uses measurement samples to build matrix representations for classical diagonalization. Unlike phase estimation, SQD avoids deep circuits by shifting computational burden to classical post-processing. The method achieves polynomial convergence guarantees while remaining practical for near-term quantum hardware.",
+    "properties": {
+      "Bias": "Controlled; converges to ground state with increasing Krylov dimension",
+      "Sampling overhead": "Moderate; requires samples from multiple Krylov states",
+      "Noise model required": "None",
+      "Applicability": "Ground state estimation for many-body systems; quantum chemistry"
+    },
+    "references": ["yu2025", "piccinelli2025"],
+    "related": [
+      {"id": "subspace-expansion", "reason": "both construct subspaces for classical diagonalization; SQD uses Krylov states"},
+      {"id": "zne", "reason": "SqDRIFT variant uses randomized compilation similar to noise tailoring"},
+      {"id": "pauli-twirling", "reason": "SqDRIFT uses randomized Hamiltonian compilation"}
     ]
   },
   {

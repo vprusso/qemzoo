@@ -1,0 +1,61 @@
+{
+  "description": [
+    "Sample-based Quantum Diagonalization (SQD) is a hybrid quantum-classical algorithm that combines quantum Krylov subspace construction with classical diagonalization. The method generates a set of Krylov states by applying powers of the Hamiltonian (implemented via time evolution) to a reference state, then uses measurement samples to construct matrix representations.",
+    "Unlike quantum phase estimation, which requires deep circuits with many controlled operations, SQD keeps circuit depths manageable by using real-time evolution and shifting the diagonalization to classical post-processing. This makes the approach practical for near-term quantum hardware while maintaining provable convergence guarantees.",
+    "The SqDRIFT variant combines SQD with randomized Hamiltonian compilation (qDRIFT), reducing circuit depth further while preserving convergence properties. This enables quantum chemistry calculations on current hardware at system sizes beyond exact classical diagonalization."
+  ],
+  "how_it_works": [
+    "Prepare a reference state \\(|\\psi_0\\rangle\\) on the quantum device (e.g., Hartree-Fock state for chemistry).",
+    "Generate Krylov states \\(|\\psi_k\\rangle = e^{-iHt_k}|\\psi_0\\rangle\\) by applying time evolution for different times \\(t_k\\).",
+    "Measure samples from each Krylov state in the computational basis.",
+    "Use the samples to construct the projected Hamiltonian matrix \\(\\tilde{H}_{ij} = \\langle\\psi_i|H|\\psi_j\\rangle\\) and overlap matrix \\(S_{ij} = \\langle\\psi_i|\\psi_j\\rangle\\).",
+    "Solve the generalized eigenvalue problem \\(\\tilde{H}\\vec{c} = E\\,S\\vec{c}\\) classically to obtain the ground state energy.",
+    "For SqDRIFT: use randomized product formulas (qDRIFT) to implement time evolution with reduced circuit depth."
+  ],
+  "key_equations": [
+    {
+      "label": "Krylov state generation (H = Hamiltonian, t_k = evolution time)",
+      "latex": "|\\psi_k\\rangle = e^{-iHt_k}|\\psi_0\\rangle"
+    },
+    {
+      "label": "Generalized eigenvalue problem",
+      "latex": "\\sum_j \\tilde{H}_{ij} c_j = E \\sum_j S_{ij} c_j"
+    },
+    {
+      "label": "Sample-based matrix element estimation",
+      "latex": "\\tilde{H}_{ij} = \\sum_{\\sigma} p_{\\sigma}^{(i)} \\langle\\sigma|H|\\psi_j\\rangle / \\langle\\sigma|\\psi_j\\rangle"
+    },
+    {
+      "label": "Convergence guarantee (K = Krylov dimension, Delta = spectral gap)",
+      "latex": "|E_K - E_0| = O(e^{-K\\Delta t})"
+    }
+  ],
+  "bias_variance": {
+    "bias": 0.2,
+    "variance": 0.45,
+    "overhead": 0.35,
+    "notes": "Bias decreases exponentially with Krylov dimension. Variance from finite sampling of matrix elements. Overhead is moderate — requires multiple time evolution circuits but avoids deep phase estimation."
+  },
+  "advantages": [
+    "Polynomial convergence guarantees similar to phase estimation",
+    "Avoids deep circuits required by quantum phase estimation",
+    "No noise model required — works with any hardware noise",
+    "Scalable to large systems demonstrated on IBM Heron processors",
+    "SqDRIFT variant further reduces circuit depth via randomized compilation",
+    "Naturally handles approximate initial states"
+  ],
+  "disadvantages": [
+    "Requires time evolution circuits which may still be deep for complex Hamiltonians",
+    "Sample complexity grows with system size and desired accuracy",
+    "Matrix element estimation can be noisy for highly entangled states",
+    "Classical diagonalization limited by Krylov subspace size",
+    "Currently demonstrated primarily for chemistry and impurity models"
+  ],
+  "use_cases": [
+    "Ground state energy estimation for molecular systems",
+    "Strongly correlated electron problems (impurity models)",
+    "Quantum chemistry beyond classical exact diagonalization limits",
+    "Near-term quantum advantage demonstrations",
+    "Systems where phase estimation circuits are too deep"
+  ]
+}

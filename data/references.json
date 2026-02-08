@@ -631,5 +631,21 @@
     "year": 2026,
     "arxiv": "2411.00765",
     "doi": "10.1038/s41567-025-03144-9"
+  },
+  "yu2025": {
+    "authors": "J. Yu, J. Robledo Moreno, J. T. Iosue, L. Bertels, D. Claudino, B. Fuller, P. Groszkowski, T. S. Humble, P. Jurcevic, W. Kirby, T. A. Maier, M. Motta, B. Pokharel, A. Seif, A. Shehata, K. J. Sung, M. C. Tran, V. Tripathi, A. Mezzacapo, K. Sharma",
+    "title": "Quantum-Centric Algorithm for Sample-Based Krylov Diagonalization",
+    "journal": "arXiv preprint",
+    "year": 2025,
+    "arxiv": "2501.09702",
+    "doi": "10.48550/arXiv.2501.09702"
+  },
+  "piccinelli2025": {
+    "authors": "S. Piccinelli, A. Baiardi, S. Barison, M. Rossmannek, A. Carrera Vazquez, F. Tacchino, S. Mensa, E. Altamura, A. Alavi, M. Motta, J. Robledo-Moreno, W. Kirby, K. Sharma, A. Mezzacapo, I. Tavernelli",
+    "title": "Quantum Chemistry with Provable Convergence via Randomized Sample-Based Krylov Quantum Diagonalization",
+    "journal": "arXiv preprint",
+    "year": 2025,
+    "arxiv": "2508.02578",
+    "doi": "10.48550/arXiv.2508.02578"
   }
 }
