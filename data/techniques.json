@@ -370,7 +370,7 @@
     "id": "echo-verification",
     "name": "Echo Verification",
     "abbreviation": "EV",
-    "aliases": ["computational echo", "mirror verification"],
+    "aliases": ["computational echo", "mirror verification", "self-mitigation"],
     "category": "mitigation",
     "summary": "Detects errors by running the target circuit forward and then its inverse (the 'echo'), so that the ideal output should return to the initial state. Deviations from the initial state signal that errors occurred. An ancilla qubit can be used to condition on successful verification, or ancilla-free variants measure the overlap directly. Echo verification effectively performs a purity-based check that amplifies the signal from the dominant eigenvector of the noisy density matrix.",
     "properties": {
@@ -379,7 +379,7 @@
       "Noise model required": "None (model-free)",
       "Applicability": "General-purpose; especially effective for coherent errors and short-to-moderate depth circuits"
     },
-    "references": ["cai2021ev"],
+    "references": ["cai2021ev", "rahman2022"],
     "related": [
       {"id": "purification", "reason": "both exploit purity to suppress noise; EV uses time-reversal instead of copies"},
       {"id": "symmetry-verification", "reason": "both use post-selection to discard erroneous runs"},
@@ -693,7 +693,6 @@
   {
     "id": "pseudo-twirling",
     "name": "Pseudo Twirling",
-    "abbreviation": "PT",
     "aliases": ["pseudo-Pauli twirling", "non-Clifford twirling"],
     "category": "suppression",
     "summary": "Extends Pauli twirling to mitigate coherent errors in non-Clifford gates, where standard twirling fails. For gates like partial CPhase rotations (small-angle ZZ interactions), pseudo twirling applies approximate twirling operations that convert coherent errors into quasi-stochastic noise while preserving the gate's action. Can be combined with Adaptive KIK to simultaneously address both coherent and incoherent errors. Experimentally validated on native gate implementations.",

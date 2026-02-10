@@ -286,6 +286,14 @@
     "arxiv": "2107.07279",
     "doi": "10.48550/arXiv.2107.07279"
   },
+  "rahman2022": {
+    "authors": "S. A. Rahman, R. Lewis, E. Mendicelli, S. Powell",
+    "title": "Self-Mitigating Trotter Circuits for SU(2) Lattice Gauge Theory",
+    "journal": "Physical Review D",
+    "year": 2022,
+    "arxiv": "2205.09247",
+    "doi": "10.1103/PhysRevD.106.074502"
+  },
   "guo2022": {
     "authors": "Y. Guo, S. Yang",
     "title": "Quantum Error Mitigation via Matrix Product Operators",

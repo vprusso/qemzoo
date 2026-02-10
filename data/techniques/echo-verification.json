@@ -38,6 +38,7 @@
     "Quantum simulation (Ising model dynamics, quantum field theory)",
     "Combined EV+CDR for enhanced mitigation on superconducting hardware",
     "Circuits where coherent errors dominate",
-    "Settings where the inverse circuit is efficiently computable"
+    "Settings where the inverse circuit is efficiently computable",
+    "Self-mitigating Trotter circuits for lattice gauge theory simulations"
   ]
 }
