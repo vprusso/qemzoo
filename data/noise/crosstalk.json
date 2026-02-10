@@ -4,6 +4,12 @@
     "In superconducting qubits, always-on ZZ coupling is a dominant form of crosstalk: even when no gate is applied, neighboring qubits accumulate a conditional phase. In trapped ions, crosstalk arises from imperfect addressing of individual ions.",
     "Crosstalk errors are typically coherent and correlated across qubits, making them difficult to model and mitigate with techniques designed for independent, stochastic errors."
   ],
+  "diagrams": [
+    {
+      "src": "assets/noise/crosstalk-diagram.png",
+      "caption": "Crosstalk between qubits: unwanted ZZ coupling causes operations on one qubit (e.g., Q₀) to affect neighboring qubits (Q₁, Q₂) through always-on interactions."
+    }
+  ],
   "quantum_channel": {
     "kraus_form": "U_{\\text{crosstalk}} = \\exp(-i \\zeta t \\, Z_i \\otimes Z_j) \\quad \\text{for ZZ coupling}",
     "effect": "States with different parity acquire a relative phase: |01⟩ and |10⟩ accumulate phase 2ζt relative to |00⟩ and |11⟩"

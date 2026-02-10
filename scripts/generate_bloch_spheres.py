@@ -23,7 +23,7 @@ OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 # Noise channel definitions
 NOISE_TYPES = {
     "depolarizing": {
-        "name": "Depolarizing Noise",
+        "name": "Depolarizing",
         "description": "Uniform contraction toward origin",
         "effect": "shrink_uniform",
         "params": [0.0, 0.3, 0.6, 0.9]  # noise strengths
@@ -52,11 +52,23 @@ NOISE_TYPES = {
         "effect": "shrink_xy",
         "params": [0.0, 0.3, 0.6, 0.9]
     },
+    "bit-phase-flip": {
+        "name": "Bit-Phase Flip",
+        "description": "Contraction toward y-axis",
+        "effect": "shrink_xz",
+        "params": [0.0, 0.3, 0.6, 0.9]
+    },
     "coherent-errors": {
         "name": "Coherent Errors",
         "description": "Rotation to wrong location",
         "effect": "rotate",
         "params": [0.0, 0.15, 0.3, 0.5]  # rotation angles (in units of pi)
+    },
+    "decoherence": {
+        "name": "Decoherence",
+        "description": "Combined T1+T2 decay toward equilibrium",
+        "effect": "decoherence",
+        "params": [0.0, 0.3, 0.6, 0.9]
     }
 }
 
@@ -104,6 +116,12 @@ def apply_noise(points, noise_type, param):
         scale = 1 - 2 * param
         return x, scale * y, scale * z
 
+    elif noise_type == "shrink_xz":
+        # Bit-phase flip: E(rho) = (1-p)rho + p Y rho Y
+        # r_y preserved; r_x,r_z contract by (1-2p)
+        scale = 1 - 2 * param
+        return scale * x, y, scale * z
+
     elif noise_type == "amplitude_damp":
         # Amplitude damping: shrink and drift toward |0⟩
         gamma = param
@@ -125,6 +143,19 @@ def apply_noise(points, noise_type, param):
         new_x = ct * x + st * cx
         new_y = ct * y + st * cy + (1 - ct) * s2 * dot
         new_z = ct * z + st * cz + (1 - ct) * s2 * dot
+        return new_x, new_y, new_z
+
+    elif noise_type == "decoherence":
+        # Combined T1 (amplitude damping) + T2 (dephasing)
+        # T1: shrink and drift toward |0⟩ (north pole)
+        # T2: shrink x,y components (assume T2 ~ T1 for visualization)
+        gamma = param
+        # T1 effect
+        new_z = (1 - gamma) * z + gamma  # drift toward +1
+        # T2 effect (shrink x,y more aggressively, T2 < 2*T1)
+        t2_scale = np.sqrt(1 - gamma) * (1 - 0.5 * gamma)  # extra T2* contribution
+        new_x = t2_scale * x
+        new_y = t2_scale * y
         return new_x, new_y, new_z
 
     return x, y, z
@@ -233,8 +264,8 @@ def generate_summary_visualization():
     fig.suptitle("Noise Effects on the Bloch Sphere", fontsize=16, y=0.98)
 
     noise_list = list(NOISE_TYPES.items())
-    n_rows = 2
-    n_cols = 3
+    n_cols = 4
+    n_rows = (len(noise_list) + n_cols - 1) // n_cols  # ceiling division
 
     for idx, (noise_id, noise_info) in enumerate(noise_list):
         ax = fig.add_subplot(n_rows, n_cols, idx + 1, projection='3d')

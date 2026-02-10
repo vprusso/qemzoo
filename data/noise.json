@@ -1,7 +1,7 @@
 [
   {
     "id": "depolarizing",
-    "name": "Depolarizing Noise",
+    "name": "Depolarizing",
     "aliases": ["depolarizing channel", "white noise"],
     "category": "incoherent",
     "summary": "Symmetric noise that randomly applies Pauli X, Y, or Z errors with equal probability. The qubit state decays toward the maximally mixed state \\(I/2\\), losing both phase and amplitude information. Often used as a worst-case noise model.",
@@ -36,6 +36,18 @@
     "references": ["cai2023"]
   },
   {
+    "id": "decoherence",
+    "name": "Decoherence",
+    "aliases": ["quantum decoherence", "T1/T2 decay", "environmental decoherence"],
+    "category": "incoherent",
+    "summary": "The general loss of quantum coherence due to interaction with the environment, encompassing both energy relaxation (\\(T_1\\)) and phase randomization (\\(T_2\\)). The fundamental relationship \\(1/T_2 = 1/(2T_1) + 1/T_2^*\\) connects these processes, where \\(T_2^*\\) is pure dephasing.",
+    "physical_origin": "Unavoidable coupling between qubit and environment; thermal fluctuations; electromagnetic noise; material defects",
+    "effect_on_bloch_sphere": "Combined contraction toward z-axis (T2) and drift toward |0⟩ (T1); state evolves toward thermal equilibrium",
+    "kraus_operators": "Composite of amplitude damping and dephasing channels (see individual entries)",
+    "mitigated_by": ["dd", "zne", "pec", "echo-verification"],
+    "references": ["cai2023"]
+  },
+  {
     "id": "bit-flip",
     "name": "Bit Flip",
     "aliases": ["X error", "bit flip channel"],
@@ -57,6 +69,18 @@
     "effect_on_bloch_sphere": "Contraction toward the z-axis",
     "kraus_operators": "\\(K_0 = \\sqrt{1-p}\\,I, \\quad K_1 = \\sqrt{p}\\,Z\\)",
     "mitigated_by": ["dd", "pauli-twirling", "pec"],
+    "references": ["cai2023"]
+  },
+  {
+    "id": "bit-phase-flip",
+    "name": "Bit-Phase Flip",
+    "aliases": ["Y error", "bit-phase flip channel"],
+    "category": "incoherent",
+    "summary": "Random application of the Pauli Y operator, which combines a bit flip and a phase flip: \\(Y = iXZ\\). Flips both the computational basis and introduces a phase, mapping \\(|0\\rangle \\to i|1\\rangle\\) and \\(|1\\rangle \\to -i|0\\rangle\\).",
+    "physical_origin": "Combined bit and phase errors; certain types of crosstalk; composite noise processes",
+    "effect_on_bloch_sphere": "Contraction toward the y-axis",
+    "kraus_operators": "\\(K_0 = \\sqrt{1-p}\\,I, \\quad K_1 = \\sqrt{p}\\,Y\\)",
+    "mitigated_by": ["pec", "pauli-twirling", "symmetry-verification"],
     "references": ["cai2023"]
   },
   {

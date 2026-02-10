@@ -1,8 +1,14 @@
 {
   "description": [
-    "Leakage errors occur when a qubit transitions from the computational subspace (|0\u27e9, |1\u27e9) to higher energy levels (|2\u27e9, |3\u27e9, ...) of the physical system. Unlike erasure, leakage is typically not heralded \u2014 the qubit remains in the system but occupies a state outside the intended two-level subspace, and subsequent gates may behave unpredictably.",
-    "Leakage is particularly problematic in superconducting transmon qubits, where the weak anharmonicity (~200\u2013300 MHz) means that drive pulses intended for the 0\u21921 transition can excite the 1\u21922 transition. Multi-qubit gates (e.g., cross-resonance, iSWAP) are especially susceptible to leakage because they involve strong driving fields.",
-    "Once a qubit has leaked, it can propagate errors to neighboring qubits through entangling gates, causing correlated failures that are difficult to diagnose. Leakage reduction units (LRUs) \u2014 reset operations that return leaked qubits to the computational subspace \u2014 are a common hardware-level mitigation."
+    "Leakage errors occur when a qubit transitions from the computational subspace (|0⟩, |1⟩) to higher energy levels (|2⟩, |3⟩, ...) of the physical system. Unlike erasure, leakage is typically not heralded — the qubit remains in the system but occupies a state outside the intended two-level subspace, and subsequent gates may behave unpredictably.",
+    "Leakage is particularly problematic in superconducting transmon qubits, where the weak anharmonicity (~200–300 MHz) means that drive pulses intended for the 0→1 transition can excite the 1→2 transition. Multi-qubit gates (e.g., cross-resonance, iSWAP) are especially susceptible to leakage because they involve strong driving fields.",
+    "Once a qubit has leaked, it can propagate errors to neighboring qubits through entangling gates, causing correlated failures that are difficult to diagnose. Leakage reduction units (LRUs) — reset operations that return leaked qubits to the computational subspace — are a common hardware-level mitigation."
+  ],
+  "diagrams": [
+    {
+      "src": "assets/noise/leakage-diagram.png",
+      "caption": "Energy level structure showing leakage: the computational subspace uses the |0⟩↔|1⟩ transition (ω₀₁), but anharmonicity (ω₁₂ ≠ ω₀₁) allows unwanted excitation to higher levels |2⟩, |3⟩, etc."
+    }
   ],
   "quantum_channel": {
     "kraus_form": "\\mathcal{E}(\\rho) = \\sum_k K_k \\rho K_k^\\dagger \\quad \\text{where } K_k \\text{ act on extended Hilbert space } \\{|0\\rangle, |1\\rangle, |2\\rangle, \\ldots\\}",
@@ -11,12 +17,12 @@
   "properties": {
     "Type": "Non-Pauli, non-unitary (leaves computational subspace)",
     "Parameters": "Leakage rate per gate; depends on anharmonicity and drive parameters",
-    "Heralded": "No \u2014 leakage is generally not directly detectable without additional measurement",
+    "Heralded": "No — leakage is generally not directly detectable without additional measurement",
     "Propagation": "Leaked qubits can spread errors through subsequent entangling gates"
   },
   "physical_examples": [
-    "Transmon qubits excited to the |2\u27e9 state by off-resonant driving",
-    "Cross-resonance gates inducing 1\u21922 transitions in spectator qubits",
+    "Transmon qubits excited to the |2⟩ state by off-resonant driving",
+    "Cross-resonance gates inducing 1→2 transitions in spectator qubits",
     "Parametric gates in tunable couplers causing multi-level transitions",
     "Raman transitions in trapped ions populating unintended atomic levels"
   ],

@@ -1,0 +1,32 @@
+{
+  "description": [
+    "The bit-phase flip channel randomly applies the Pauli Y operator with probability p. Since Y = iXZ, this error combines a bit flip (X) with a phase flip (Z), making it the third and final single-qubit Pauli error alongside X and Z.",
+    "Under a Y error, the state |0⟩ maps to i|1⟩ and |1⟩ maps to -i|0⟩. The global phases (i and -i) are unobservable, but relative phases between superposition components are affected. On the Bloch sphere, Y errors cause contraction toward the y-axis.",
+    "Together with bit flip (X) and phase flip (Z), the bit-phase flip (Y) completes the set of Pauli errors. The depolarizing channel applies all three with equal probability, while asymmetric Pauli channels can have different rates for X, Y, and Z errors."
+  ],
+  "quantum_channel": {
+    "kraus_form": "\\mathcal{E}(\\rho) = (1-p)\\rho + p\\,Y\\rho Y",
+    "kraus_operators": "K_0 = \\sqrt{1-p}\\,I, \\quad K_1 = \\sqrt{p}\\,Y",
+    "pauli_form": "Y = iXZ = \\begin{pmatrix} 0 & -i \\\\ i & 0 \\end{pmatrix}"
+  },
+  "properties": {
+    "Type": "Pauli (incoherent after twirling)",
+    "Parameters": "p = probability of Y error per gate/time step",
+    "Effect on |0⟩": "|0⟩ → i|1⟩ with probability p",
+    "Effect on |1⟩": "|1⟩ → -i|0⟩ with probability p",
+    "Effect on |+⟩": "|+⟩ → i|-⟩ with probability p",
+    "Effect on |i⟩": "|i⟩ → |i⟩ (eigenstate of Y)"
+  },
+  "physical_examples": [
+    "Combined bit and phase errors from complex noise processes",
+    "Certain crosstalk mechanisms that induce both X and Z rotations",
+    "Off-axis rotations that project onto the Y Pauli component",
+    "Component of depolarizing noise (alongside X and Z errors)"
+  ],
+  "qem_considerations": [
+    "Y errors are detected by stabilizer codes that measure both X-type and Z-type syndromes",
+    "Pauli twirling converts arbitrary noise into a probabilistic mixture of I, X, Y, Z errors",
+    "PEC can correct Y errors given knowledge of the Y error rate",
+    "Symmetry verification may detect Y errors if they violate conserved quantities"
+  ]
+}

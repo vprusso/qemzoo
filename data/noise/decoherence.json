@@ -1,0 +1,33 @@
+{
+  "description": [
+    "Decoherence is the umbrella term for the loss of quantum coherence due to interaction with the environment. It encompasses two fundamental processes: energy relaxation (T1, amplitude damping) and phase randomization (T2, dephasing). Together, these processes cause quantum states to evolve toward classical mixtures.",
+    "The relationship between these timescales is given by 1/T2 = 1/(2T1) + 1/T2*, where T2* represents pure dephasing (phase loss without energy exchange). This means T2 ≤ 2T1 always holds — you cannot maintain phase coherence longer than twice the energy relaxation time.",
+    "In the Bloch sphere picture, decoherence causes states to spiral inward toward the thermal equilibrium point. T1 processes pull states toward |0⟩ (north pole at zero temperature), while T2 processes shrink the equatorial components. The combined effect is decay toward a point on the z-axis determined by the thermal population."
+  ],
+  "quantum_channel": {
+    "kraus_form": "\\mathcal{E}_{\\text{dec}} = \\mathcal{E}_{T_2} \\circ \\mathcal{E}_{T_1}",
+    "t1_channel": "\\mathcal{E}_{T_1}(\\rho) = K_0 \\rho K_0^\\dagger + K_1 \\rho K_1^\\dagger \\quad \\text{(amplitude damping)}",
+    "t2_channel": "\\mathcal{E}_{T_2}(\\rho) = (1-p)\\rho + p Z\\rho Z \\quad \\text{(dephasing)}",
+    "time_evolution": "\\rho(t) = \\begin{pmatrix} 1 - (1-\\rho_{00})e^{-t/T_1} & \\rho_{01}e^{-t/T_2} \\\\ \\rho_{10}e^{-t/T_2} & (1-\\rho_{00})e^{-t/T_1} \\end{pmatrix}"
+  },
+  "properties": {
+    "Type": "Composite incoherent noise (T1 + T2)",
+    "Parameters": "T1 = energy relaxation time, T2 = total dephasing time, T2* = pure dephasing time",
+    "Fundamental relation": "1/T2 = 1/(2T1) + 1/T2*, implying T2 ≤ 2T1",
+    "Thermal equilibrium": "At T=0, decays to |0⟩; at finite T, decays to thermal mixture",
+    "Timescales": "Typical values: T1 ~ 100μs, T2 ~ 50-150μs for superconducting qubits"
+  },
+  "physical_examples": [
+    "Superconducting qubits: T1 from dielectric loss, T2 from flux noise and charge noise",
+    "Trapped ions: T1 from spontaneous emission (very long), T2 from magnetic field fluctuations",
+    "Spin qubits: T1 from spin-lattice relaxation, T2 from nuclear spin bath",
+    "NV centers: T1 from phonon interactions, T2 from 13C nuclear spins"
+  ],
+  "qem_considerations": [
+    "Dynamical decoupling primarily targets T2 (dephasing) and is less effective for T1",
+    "Echo sequences can extend effective T2 toward the 2T1 limit by refocusing pure dephasing",
+    "ZNE and PEC can mitigate both T1 and T2 effects given sufficient noise characterization",
+    "Short circuits (depth << T1, T2) minimize decoherence exposure",
+    "Error mitigation overhead must be weighed against decoherence during extended execution"
+  ]
+}
