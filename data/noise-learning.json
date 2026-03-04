@@ -10,7 +10,7 @@
       "Learning method": "Calibration circuits (randomized benchmarking style)",
       "Enables": "Scalable PEC, accurate PEA noise amplification"
     },
-    "references": ["vandenberg2022", "kim2023"]
+    "references": ["vandenberg2023", "kim2023"]
   },
   {
     "id": "cycle-benchmarking",

@@ -20,10 +20,10 @@
       "reference": "kim2023"
     },
     {
-      "title": "Quantum Field Theory Simulation",
-      "description": "Applied NOX (noiseless output extrapolation) to simulate quantum field theory dynamics, demonstrating error mitigation for physics applications.",
+      "title": "Depolarizing Noise Mitigation for Quantum Simulation",
+      "description": "Applied noise-estimation circuits to mitigate depolarizing noise in quantum simulations, demonstrating improved accuracy for physics calculations on NISQ hardware.",
       "hardware": "IBM superconducting processors",
-      "techniques": "NOX, randomized compiling",
+      "techniques": "Noise-estimation circuits, operator decoherence renormalization",
       "reference": "urbanek2021"
     }
   ],

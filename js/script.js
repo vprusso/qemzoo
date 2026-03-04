@@ -58,8 +58,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       techniqueCountEl ? fetch(`data/extrapolation.json${cacheBust}`).then(r => r.json()).then(d => d.length).catch(() => 0) : 0,
       noiseCountEl ? fetch(`data/noise.json${cacheBust}`).then(r => r.json()).then(d => d.length).catch(() => 0) : 0,
       applicationCountEl ? fetch(`data/applications.json${cacheBust}`).then(r => r.json()).then(d => d.length).catch(() => 0) : 0,
+      techniqueCountEl ? fetch(`data/noise-learning.json${cacheBust}`).then(r => r.json()).then(d => d.length).catch(() => 0) : 0,
     ]);
-    if (techniqueCountEl) techniqueCountEl.textContent = counts[0] + counts[1];
+    if (techniqueCountEl) techniqueCountEl.textContent = counts[0] + counts[1] + counts[4];
     if (noiseCountEl) noiseCountEl.textContent = counts[2];
     if (applicationCountEl) applicationCountEl.textContent = counts[3];
   }

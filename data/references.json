@@ -162,17 +162,9 @@
     "authors": "W. J. Huggins, J. R. McClean, N. C. Rubin, Z. Jiang, N. Wiebe, K. B. Whaley, R. Babbush",
     "title": "Efficient and Noise Resilient Measurements for Quantum Chemistry on Near-Term Quantum Computers",
     "journal": "npj Quantum Information",
-    "year": 2021,
+    "year": 2019,
     "arxiv": "1907.13117",
     "doi": "10.1038/s41534-020-00341-7"
-  },
-  "vandenberg2022": {
-    "authors": "E. van den Berg, Z. K. Minev, A. Kandala, K. Temme",
-    "title": "Probabilistic Error Cancellation with Sparse Pauli-Lindblad Models on Noisy Quantum Processors",
-    "journal": "Nature Physics",
-    "year": 2022,
-    "arxiv": "2201.09866",
-    "doi": "10.1038/s41567-023-02042-2"
   },
   "viola1999": {
     "authors": "L. Viola, E. Knill, S. Lloyd",
@@ -712,7 +704,7 @@
     "arxiv": "2405.07720",
     "doi": "10.1038/s41534-025-01050-9"
   },
-  "kim2023nem": {
+  "kim2020nem": {
     "authors": "C. Kim, K. D. Park, J.-K. K. Rhee",
     "title": "Quantum Error Mitigation with Artificial Neural Network",
     "journal": "IEEE Access",

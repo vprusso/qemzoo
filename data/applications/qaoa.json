@@ -20,8 +20,8 @@
       "reference": "harrigan2021"
     },
     {
-      "title": "Portfolio Optimization",
-      "description": "Applied error-mitigated QAOA to financial portfolio optimization problems, demonstrating practical applicability of quantum optimization.",
+      "title": "Scaling QAOA on Superconducting Hardware",
+      "description": "Studied the scaling of QAOA for combinatorial optimization (MaxCut) on superconducting qubit hardware, analyzing performance with error mitigation techniques across increasing problem sizes.",
       "hardware": "IBM Quantum",
       "techniques": "ZNE, measurement error mitigation",
       "reference": "weidenfeller2022"

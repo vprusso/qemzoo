@@ -96,7 +96,7 @@
     "id": "pauli-twirling",
     "name": "Pauli Twirling",
     "abbreviation": "PT",
-    "aliases": ["randomized compiling", "Pauli-frame randomization"],
+    "aliases": ["Pauli-frame randomization"],
     "category": "suppression",
     "summary": "Converts coherent (systematic) gate errors into stochastic Pauli noise by randomly conjugating each gate with Pauli operators drawn from the Pauli group, choosing pairs that preserve the gate's action up to a tracked phase. Over many randomized circuit instances, off-diagonal terms in the error channel average out, leaving a Pauli channel. This tailored noise is easier to analyze and mitigate with downstream techniques such as PEC or ZNE.",
     "properties": {
@@ -139,7 +139,7 @@
     "id": "pec",
     "name": "Probabilistic Error Cancellation",
     "abbreviation": "PEC",
-    "aliases": ["quasi-probability decomposition", "probabilistic error correction"],
+    "aliases": ["quasi-probability decomposition"],
     "category": "mitigation",
     "summary": "Decomposes each ideal (noiseless) gate operation into a linear combination of noisy implementable operations with real (possibly negative) quasi-probability coefficients. By randomly sampling from this decomposition and weighting results by the sign of the coefficient, the noise-free expectation value is recovered exactly in the limit of infinite samples.",
     "properties": {
@@ -148,7 +148,7 @@
       "Noise model required": "Full characterization of local gate noise (e.g., via gate set tomography)",
       "Scalability": "Overhead grows exponentially with circuit depth and noise rate"
     },
-    "references": ["temme2017", "endo2018", "vandenberg2022", "piveteau2022"],
+    "references": ["temme2017", "endo2018", "vandenberg2023", "piveteau2022"],
     "related": [
       {"id": "pauli-twirling", "reason": "Pauli twirling simplifies noise model for PEC"},
       {"id": "zne", "reason": "both are foundational QEM techniques"},
@@ -248,7 +248,7 @@
     "id": "zne",
     "name": "Zero-Noise Extrapolation",
     "abbreviation": "ZNE",
-    "aliases": ["Richardson extrapolation", "noise scaling and extrapolation"],
+    "aliases": ["noise scaling and extrapolation"],
     "category": "mitigation",
     "summary": "Intentionally increases the noise level of a quantum circuit (e.g., by stretching pulses, inserting identity-gate pairs, or rescaling error rates) to collect expectation values at multiple noise levels. These data points are then extrapolated to the hypothetical zero-noise limit using polynomial, exponential, or other fitting models.",
     "properties": {
@@ -268,9 +268,9 @@
   },
   {
     "id": "accreditation",
-    "name": "Trap-Based Verification",
-    "abbreviation": "TBV",
-    "aliases": ["output accreditation", "accreditation protocols"],
+    "name": "Accreditation",
+    "abbreviation": null,
+    "aliases": ["output accreditation", "accreditation protocols", "trap-based verification"],
     "category": "mitigation",
     "summary": "Certifies the output of a noisy quantum computation by interleaving 'trap' circuits — circuits whose ideal output is efficiently computable — alongside the target circuit. If the trap outputs pass verification, the target output is accredited with a certified error bound. The protocol provides a confidence interval on the distance between the noisy and ideal output distributions without requiring a noise model.",
     "properties": {
@@ -662,7 +662,7 @@
       "Noise model required": "Implicitly learned from data; no explicit noise characterization needed",
       "Applicability": "General-purpose; best when training circuits approximate target circuit structure"
     },
-    "references": ["liao2024", "czarnik2022nem", "kim2023nem", "strikis2021"],
+    "references": ["liao2024", "czarnik2022nem", "kim2020nem", "strikis2021"],
     "related": [
       {"id": "cdr", "reason": "CDR uses linear regression on near-Clifford training data; ML-QEM generalizes to richer models"},
       {"id": "zne", "reason": "ML-QEM can replace ZNE's extrapolation with learned models, reducing overhead"},
