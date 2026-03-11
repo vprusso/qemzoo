@@ -176,7 +176,8 @@
       {"id": "symmetry-verification", "reason": "purity is itself a constraint that can be verified"},
       {"id": "logical-shadow-tomography", "reason": "virtual distillation is a special case of the LST framework"},
       {"id": "dual-state-purification", "reason": "DSP achieves similar purification without multi-copy overhead"},
-      {"id": "gse", "reason": "GSE generalizes virtual distillation and QSE into a unified framework"}
+      {"id": "gse", "reason": "GSE generalizes virtual distillation and QSE into a unified framework"},
+      {"id": "fcqem", "reason": "FCQEM approximates first-order VD using only classical post-processing of probabilities"}
     ]
   },
   {
@@ -727,6 +728,26 @@
       {"id": "pauli-twirling", "reason": "symmetric Clifford twirling is a structured extension of Pauli twirling"},
       {"id": "pseudo-twirling", "reason": "both extend twirling techniques beyond standard Pauli/Clifford gates"},
       {"id": "pec", "reason": "can be used as preprocessing to simplify noise for PEC"}
+    ]
+  },
+  {
+    "id": "fcqem",
+    "name": "Fictitious Copy Quantum Error Mitigation",
+    "abbreviation": "FCQEM",
+    "aliases": ["fictitious copy method"],
+    "category": "mitigation",
+    "summary": "A purely classical post-processing technique that mitigates noise by squaring and renormalizing measured probability distributions, effectively approximating a first-order truncation of Virtual Distillation without any additional quantum resources. FCQEM sharpens peaked distributions to suppress noise-induced amplitudes, recovering exact eigenvalues for eigenstates of the measured operator. Particularly effective for diagonally dominant Hamiltonians and compatible with Quantum Computed Moments (QCM) for enhanced ground state energy estimation.",
+    "properties": {
+      "Bias": "State-dependent truncation error; zero for eigenstates of the observable",
+      "Sampling overhead": "None beyond standard circuit execution; purely classical post-processing",
+      "Noise model required": "None (model-free)",
+      "Applicability": "Eigenvalue problems with sharply peaked distributions; diagonally dominant Hamiltonians (e.g., FCI, Ising models)"
+    },
+    "references": ["karim2026"],
+    "related": [
+      {"id": "purification", "reason": "FCQEM is a first-order truncation of Virtual Distillation, avoiding the need for multiple copies"},
+      {"id": "dual-state-purification", "reason": "both achieve purification-like effects with reduced quantum overhead"},
+      {"id": "gse", "reason": "GSE generalizes VD and QSE; FCQEM approximates the VD component classically"}
     ]
   }
 ]

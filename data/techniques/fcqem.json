@@ -1,0 +1,55 @@
+{
+  "diagrams": [
+    {
+      "src": "images/techniques/fcqem-workflow.png",
+      "caption": "Flowchart outlining the FCQEM technique (a), along with circuit-level descriptions (b-d). An n-qubit state is prepared and measured in Pauli basis (b). Panel (c) shows FCQEM as equivalent to a truncated Virtual Distillation approach, but requiring no quantum overhead. Panel (d) shows FCQEM recovers the trial state from the noisy distribution via classical post-processing. From Karim, Vallury & Usman (2026)."
+    }
+  ],
+  "description": [
+    "Fictitious Copy Quantum Error Mitigation (FCQEM) is a purely classical post-processing technique that mitigates noise in expectation values by exploiting powers of measured probability distributions. It is formally equivalent to a first-order truncation of Virtual Distillation (VD), but avoids the need for additional quantum resources such as duplicate state copies, entangling circuits, or ancilla qubits.",
+    "The key idea stems from the observation that VD admits a series expansion that can be truncated to first order and then approximated entirely classically. Where VD measures on powers of the density matrix \\(\\rho^M\\), FCQEM instead takes powers of the sampled probability distribution, squaring the probabilities and renormalizing. This sharpens peaked distributions and suppresses small noise-induced amplitudes.",
+    "FCQEM performs optimally for sharply peaked distributions and has no effect on uniform distributions. This makes it particularly effective for eigenvalue problems involving diagonally dominant Hamiltonians (e.g., Full Configuration Interaction and Ising models) when decomposed into Pauli strings that include the computational basis."
+  ],
+  "how_it_works": [
+    "Decompose the target Hamiltonian \\(H = \\sum_i w_i P_i\\) into a weighted sum of Pauli strings.",
+    "Run the quantum circuit to prepare the noisy trial state \\(\\rho\\) and measure in the Pauli basis for each string, obtaining probability distributions \\(\\{p_{ij}\\}\\) where \\(i\\) indexes the Pauli string and \\(j\\) indexes the measurement outcome.",
+    "Square the probabilities for each measurement outcome and normalize: compute \\(p_{Z,i}^2 / \\sum_j p_{Z,j}^2\\) for each outcome \\(i\\).",
+    "Compute the error-mitigated expectation value using: \\(\\operatorname{tr}(M\\rho) \\approx \\frac{\\sum_i w_i \\sum_j \\lambda_{ij} p_{ij}^2}{\\sum_j \\lambda_{Z_j} p_{Z_j}}\\), where \\(\\lambda_{ij}\\) are the eigenvalues of the measurement operators."
+  ],
+  "key_equations": [
+    {
+      "label": "Core FCQEM estimator (Eq. 21)",
+      "latex": "\\operatorname{tr}(M\\rho) \\approx \\frac{\\sum_i w_i \\sum_j \\lambda_{ij} \\, p_{ij}^2}{\\sum_j \\lambda_{Z_j} \\, p_{Z_j}}"
+    },
+    {
+      "label": "Virtual Distillation first-order truncation",
+      "latex": "\\frac{\\operatorname{tr}(M S \\rho \\otimes \\rho)}{\\operatorname{tr}(S \\rho \\otimes \\rho)} \\approx \\frac{\\operatorname{tr}(M D \\rho \\otimes \\rho)}{\\operatorname{tr}(D \\rho \\otimes \\rho)}"
+    },
+    {
+      "label": "Fictitious copy expectation (squared probabilities)",
+      "latex": "\\operatorname{tr}(M_2 D \\rho^{\\otimes 2}) = \\sum_i \\lambda_i p_i^2"
+    }
+  ],
+  "advantages": [
+    "No additional quantum resources required — purely classical post-processing",
+    "Can be applied retroactively to existing measurement data",
+    "Negligible computational overhead; only requires squaring and renormalizing probabilities",
+    "Compatible with other QEM techniques (demonstrated with Quantum Computed Moments)",
+    "Scalable — demonstrated effective up to 1024 qubits in simulation",
+    "Exact for eigenstates: recovers the correct eigenvalue even if the exact eigenstate is not prepared"
+  ],
+  "disadvantages": [
+    "First-order truncation of VD: less powerful than full Virtual Distillation",
+    "Performance depends on the sharpness of the probability distribution; no effect on uniform distributions",
+    "Best suited for diagonally dominant Hamiltonians measured in a compatible basis",
+    "Truncation error is state-dependent: for some trial states FCQEM can perform worse than VD",
+    "Breaks down when noise makes the distribution nearly uniform (shot-noise limit)"
+  ],
+  "use_cases": [
+    "Ground state energy estimation for molecular Hamiltonians (e.g., HeH+, H2O)",
+    "Transverse-field Ising model simulations",
+    "As a low-cost preprocessing step before Quantum Computed Moments (QCM)",
+    "Any eigenvalue problem with sharply peaked distributions in the measurement basis",
+    "Retroactive error mitigation on already-collected quantum data"
+  ]
+}

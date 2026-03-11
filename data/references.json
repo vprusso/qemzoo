@@ -717,5 +717,12 @@
     "journal": "arXiv preprint",
     "year": 2022,
     "arxiv": "2105.08086"
+  },
+  "karim2026": {
+    "authors": "A. Karim, H. J. Vallury, M. Usman",
+    "title": "Fictitious Copy Quantum Error Mitigation",
+    "journal": "arXiv preprint",
+    "year": 2026,
+    "arxiv": "2603.09302"
   }
 }
