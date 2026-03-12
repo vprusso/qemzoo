@@ -258,7 +258,7 @@
       "Noise model required": "Minimal; only requires ability to scale noise controllably",
       "Scalability": "Demonstrated on up to 127 qubits; widely used in practice"
     },
-    "references": ["temme2017", "li2017", "endo2018", "kim2023", "majumdar2023"],
+    "references": ["temme2017", "li2017", "endo2018", "kim2023", "majumdar2023", "harris2026"],
     "related": [
       {"id": "lre", "reason": "LRE is a multivariate generalization of ZNE"},
       {"id": "pec", "reason": "both are foundational QEM techniques"},

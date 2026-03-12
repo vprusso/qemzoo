@@ -718,6 +718,13 @@
     "year": 2022,
     "arxiv": "2105.08086"
   },
+  "harris2026": {
+    "authors": "J. Harris, K. Lively, P. K. Schuhmacher",
+    "title": "Reducing Quantum Error Mitigation Bias Using Verifiable Benchmark Circuits",
+    "journal": "arXiv preprint",
+    "year": 2026,
+    "arxiv": "2603.10224"
+  },
   "karim2026": {
     "authors": "A. Karim, H. J. Vallury, M. Usman",
     "title": "Fictitious Copy Quantum Error Mitigation",
