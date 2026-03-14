@@ -37,7 +37,7 @@
     "Demonstrated at scale on 127-qubit devices"
   ],
   "disadvantages": [
-    "Bias from mismatch between assumed extrapolation model and true noise dependence (benchmarked-noise ZNE mitigates this by calibrating against verifiable benchmark circuits with known outcomes)",
+    "Bias from mismatch between assumed extrapolation model and true noise dependence",
     "Variance grows exponentially with extrapolation order (Richardson coefficients alternate in sign)",
     "Noise amplification methods (e.g., folding) may introduce different noise than simply scaling the base noise",
     "Does not help if noise dependence is non-smooth or non-monotonic"

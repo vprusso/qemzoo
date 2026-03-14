@@ -1,0 +1,46 @@
+{
+  "description": [
+    "Benchmarked-Noise Zero-Noise Extrapolation (bnZNE) improves upon standard ZNE by replacing the conventional noise-level quantification (e.g., number of gate foldings) with an empirically calibrated noise metric derived from verifiable benchmark circuits. The benchmark circuits mirror the application circuit's native-gate structure and thus its noise profile, but have classically verifiable outputs.",
+    "The core idea is that standard ZNE's extrapolation is biased because the noise-scaled data points do not perfectly correspond to the assumed noise levels. bnZNE addresses this by running benchmark circuits at each ZNE noise level, measuring the actual error rate \\(\\varepsilon(r)\\) via the benchmark outcomes, and extrapolating the application circuit's expectation values against these empirically determined error rates rather than nominal folding factors.",
+    "The paper also introduces a general bias-mitigation framework applicable to any biased QEM method: by dividing the QEM-corrected expectation value of the application circuit by that of its benchmark circuit (whose ideal value is known), the leading-order bias cancels. This bias-mitigated approach can be combined with bnZNE for further improvement."
+  ],
+  "how_it_works": [
+    "Given an application circuit \\(\\mathcal{A}\\) and a Pauli observable \\(O\\), construct a corresponding benchmark circuit \\(\\mathcal{B}(\\mathcal{A})\\) that mirrors the gate structure of \\(\\mathcal{A}\\) but has a classically computable expectation value \\(\\langle O \\rangle^{\\text{exact}}_{\\mathcal{B}} = 1\\).",
+    "Run both \\(\\mathcal{A}\\) and \\(\\mathcal{B}\\) at each ZNE noise level \\(r \\in R\\) (e.g., \\(R = \\{1, 3, 5\\}\\) for digital folding).",
+    "For \\(\\mathcal{A}\\), collect the noise-scaled expectation values \\(\\langle O(r) \\rangle_{\\mathcal{A}}\\). For \\(\\mathcal{B}\\), compute the empirical error rate \\(\\varepsilon(r) = \\prod_{q \\in Q} (1 - p(b_q; q, r))\\) from the benchmark measurement outcomes.",
+    "Extrapolate the data points \\(\\{(\\varepsilon(r), \\langle O(r) \\rangle_{\\mathcal{A}})\\}\\) to \\(\\varepsilon = 0\\) to obtain the mitigated expectation value."
+  ],
+  "key_equations": [
+    {
+      "label": "Bias-mitigated estimator",
+      "latex": "\\langle O \\rangle^{\\text{b-mit}}_{\\mathcal{A}} = \\frac{\\langle O \\rangle^{\\text{QEM}}_{\\mathcal{A}}}{\\langle O \\rangle^{\\text{QEM}}_{\\mathcal{B}}}"
+    },
+    {
+      "label": "Fidelity bias relationship",
+      "latex": "\\langle O \\rangle^{\\text{b-mit}}_{\\mathcal{A}} = \\langle O \\rangle^{\\text{exact}}_{\\mathcal{A}} \\left(1 + (b_{\\mathcal{A}} - b_{\\mathcal{B}}) + O(p^{2m})\\right)"
+    },
+    {
+      "label": "Benchmark error rate",
+      "latex": "\\varepsilon(r) \\equiv \\prod_{q \\in Q} (1 - p(b_q; q, r))"
+    }
+  ],
+  "advantages": [
+    "Reduces both bias and variance compared to standard ZNE",
+    "Uses empirically measured error rates rather than nominal noise-scaling factors, producing more accurate extrapolation data points",
+    "Bias-mitigation framework is general-purpose and applicable to any biased QEM method, not just ZNE",
+    "Hardware-tailored benchmark circuits (e.g., for IBM Heron r2) can be constructed with zero gate overhead",
+    "Up to 15% fidelity improvement over standard ZNE demonstrated on 100-qubit utility-scale experiments"
+  ],
+  "disadvantages": [
+    "Requires approximately twice as many circuit runs (application + benchmark at each noise level)",
+    "Hardware-agnostic benchmark circuits introduce a small overhead of additional single-qubit gates",
+    "Benchmark circuits do not capture crosstalk errors (they avoid entanglement by construction)",
+    "Assumes that gate errors are weakly angle-dependent so that benchmark and application circuits experience similar noise"
+  ],
+  "use_cases": [
+    "Utility-scale Hamiltonian simulation (kicked Ising, Heisenberg models) on superconducting hardware",
+    "Improving single-site and multi-qubit correlation measurements",
+    "Extracting exponential decay rates of two-qubit correlations along qubit chains",
+    "General bias reduction for any biased QEM protocol via the bias-mitigation framework"
+  ]
+}

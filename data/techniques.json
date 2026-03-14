@@ -265,7 +265,29 @@
       {"id": "pauli-twirling", "reason": "Pauli twirling simplifies noise for ZNE"},
       {"id": "cdr", "reason": "vnCDR combines CDR with noise scaling from ZNE"},
       {"id": "pie", "reason": "PIE replaces ZNE's heuristic fitting models with a physics-motivated function"},
-      {"id": "ide", "reason": "IDE adapts ZNE to the QEC setting by extrapolating over code distance instead of noise level"}
+      {"id": "ide", "reason": "IDE adapts ZNE to the QEC setting by extrapolating over code distance instead of noise level"},
+      {"id": "bnzne", "reason": "bnZNE replaces nominal noise-scaling factors with empirically calibrated error rates from benchmark circuits"}
+    ]
+  },
+  {
+    "id": "bnzne",
+    "name": "Benchmarked-Noise Zero-Noise Extrapolation",
+    "abbreviation": "bnZNE",
+    "aliases": ["benchmarked-noise ZNE", "benchmark-calibrated ZNE"],
+    "category": "mitigation",
+    "summary": "Improves zero-noise extrapolation by replacing nominal noise-scaling factors with empirically measured error rates derived from verifiable benchmark circuits. The benchmark circuits mirror the application circuit's native-gate structure but have classically computable outputs, enabling accurate quantification of the actual noise at each ZNE level. Also introduces a general bias-mitigation framework where dividing the QEM estimate by the benchmark's QEM estimate cancels leading-order bias. Demonstrated up to 15% fidelity improvement over standard ZNE on 100-qubit experiments on IBM superconducting hardware.",
+    "properties": {
+      "Bias": "Reduced compared to standard ZNE; leading-order bias cancels via benchmark calibration",
+      "Sampling overhead": "Approximately 2x standard ZNE (application + benchmark circuits at each noise level)",
+      "Noise model required": "None; benchmark circuits empirically characterize the noise",
+      "Applicability": "Any biased QEM method (general bias-mitigation framework); demonstrated at utility scale (100 qubits, up to 2000 entangling gates)"
+    },
+    "references": ["harris2026"],
+    "related": [
+      {"id": "zne", "reason": "bnZNE improves ZNE's extrapolation by using benchmark-calibrated noise levels"},
+      {"id": "cdr", "reason": "both use classically verifiable circuits to calibrate error mitigation"},
+      {"id": "odr", "reason": "both use calibration circuits with known outputs to estimate noise effects"},
+      {"id": "accreditation", "reason": "both use verifiable circuits to assess or improve QEM output quality"}
     ]
   },
   {
