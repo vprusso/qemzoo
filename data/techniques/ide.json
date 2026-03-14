@@ -1,0 +1,51 @@
+{
+  "description": [
+    "Infinite Distance Extrapolation (IDE) adapts zero-noise extrapolation to the quantum error correction setting by using code distance as the extrapolation parameter instead of artificially amplified noise. The key insight is that reducing the physical noise level is analogous to increasing the code distance, since both decrease the logical error rate. Extrapolating to infinite distance is therefore analogous to extrapolating to zero noise.",
+    "Unlike standard ZNE, where artificially increasing noise degrades signal quality and makes each additional data point less reliable, IDE benefits from the fact that each increase in code distance yields a better signal-to-noise ratio. The dependence of expectation values on code distance is also well-characterized analytically (via the threshold theorem), making the extrapolation ansatz more principled than heuristic fitting models.",
+    "IDE is particularly relevant to the early fault-tolerant (EFT) era, where devices have enough qubits for small error-correcting codes but not enough for full fault tolerance. The method can be parallelized on hardware by running surface code patches of different distances simultaneously on the same device."
+  ],
+  "how_it_works": [
+    "Choose a sequence of code distances \\(\\{d_1, d_2, \\ldots, d_k\\}\\) for a quantum error-correcting code (e.g., the rotated surface code).",
+    "For each distance \\(d_i\\), execute the fault-tolerant computation (including \\(3d\\) rounds of stabilizer measurements) and estimate the logical expectation value \\(E_{d_i}\\).",
+    "Fit the data \\(\\{(d_i, E_{d_i})\\}\\) to an ansatz motivated by the analytical form of the logical error rate. The primary ansatz is \\(y(d) = A + B e^{-Cd}\\), where \\(A\\) is the noiseless expectation value and \\(B e^{-Cd}\\) captures the exponentially decaying error contribution.",
+    "Extrapolate to \\(d \\to \\infty\\) to obtain the mitigated expectation value \\(E^* = A\\)."
+  ],
+  "key_equations": [
+    {
+      "label": "Logical error rate scaling",
+      "latex": "P_L \\sim p^{d_e}, \\quad d_e = (d+1)/2"
+    },
+    {
+      "label": "IDE ansatz (single exponential)",
+      "latex": "y(d) = A + B e^{-Cd}"
+    },
+    {
+      "label": "IDE ansatz (double exponential, per-basis)",
+      "latex": "y(d) = A + B_{X/Z} e^{-C_{X/Z} d} + B_Y e^{-C_Y d}"
+    },
+    {
+      "label": "Richardson extrapolation adapted to distance",
+      "latex": "E_{\\text{Rich}}(0) = c_0 = \\sum_{k=1}^{m} y_k \\prod_{i \\neq k} \\frac{d_k}{d_k - d_i}"
+    }
+  ],
+  "advantages": [
+    "Each additional data point (higher distance) has better signal-to-noise ratio, unlike standard ZNE where noise amplification degrades quality",
+    "Analytically motivated ansatz from the threshold theorem, rather than heuristic fitting models",
+    "Can be parallelized by running multiple code distances on the same device simultaneously",
+    "Works for non-stabilizer input states (e.g., magic \\(|T\\rangle\\) states) via stabilizer decomposition or logical process tomography",
+    "No noise model required beyond the QEC decoder"
+  ],
+  "disadvantages": [
+    "Requires enough physical qubits to implement multiple code distances",
+    "Only applicable in the early fault-tolerant regime (requires QEC infrastructure)",
+    "Variance increases with extrapolation order, as with standard ZNE",
+    "Odd and even distances may need to be extrapolated separately due to differing finite-size effects",
+    "Performance depends on the physical error rate being below the code threshold"
+  ],
+  "use_cases": [
+    "Early fault-tolerant quantum computing where full fault tolerance is not yet achievable",
+    "Improving logical expectation values from surface code computations",
+    "Bridging the gap between QEM and QEC in the transition from NISQ to fault-tolerant devices",
+    "Estimating expectation values of non-stabilizer states in encoded computations"
+  ]
+}

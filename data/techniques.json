@@ -264,7 +264,8 @@
       {"id": "pec", "reason": "both are foundational QEM techniques"},
       {"id": "pauli-twirling", "reason": "Pauli twirling simplifies noise for ZNE"},
       {"id": "cdr", "reason": "vnCDR combines CDR with noise scaling from ZNE"},
-      {"id": "pie", "reason": "PIE replaces ZNE's heuristic fitting models with a physics-motivated function"}
+      {"id": "pie", "reason": "PIE replaces ZNE's heuristic fitting models with a physics-motivated function"},
+      {"id": "ide", "reason": "IDE adapts ZNE to the QEC setting by extrapolating over code distance instead of noise level"}
     ]
   },
   {
@@ -305,7 +306,7 @@
       {"id": "accreditation", "reason": "both use post-selection to improve output quality"},
       {"id": "partial-pauli-twirling", "reason": "PPT aligns errors with QED's detectable error space for synergistic mitigation"},
       {"id": "subspace-expansion", "reason": "QSE can function as a quantum error decoder"},
-      {"id": "zne", "reason": "infinite distance extrapolation (IDE) uses code distance as ZNE's noise parameter, extrapolating to infinite distance"}
+      {"id": "ide", "reason": "IDE uses error-correcting code distance as an extrapolation parameter within the QEM framework"}
     ]
   },
   {
@@ -749,6 +750,26 @@
       {"id": "purification", "reason": "FCQEM is a first-order truncation of Virtual Distillation, avoiding the need for multiple copies"},
       {"id": "dual-state-purification", "reason": "both achieve purification-like effects with reduced quantum overhead"},
       {"id": "gse", "reason": "GSE generalizes VD and QSE; FCQEM approximates the VD component classically"}
+    ]
+  },
+  {
+    "id": "ide",
+    "name": "Infinite Distance Extrapolation",
+    "abbreviation": "IDE",
+    "aliases": ["distance extrapolation", "code distance extrapolation"],
+    "category": "mitigation",
+    "summary": "Adapts zero-noise extrapolation to the quantum error correction setting by using code distance as the extrapolation parameter. Since increasing code distance decreases the logical error rate analogously to decreasing physical noise, expectation values measured at several code distances can be extrapolated to the infinite-distance limit. The ansatz \\(y(d) = A + B e^{-Cd}\\) is motivated by the analytical scaling of logical error rates from the threshold theorem, providing a more principled extrapolation than heuristic ZNE fitting models. Evaluated on the rotated surface code under circuit-level noise.",
+    "properties": {
+      "Bias": "Reduced compared to fixed-distance QEC; depends on ansatz quality and number of distances used",
+      "Sampling overhead": "Requires running the computation at multiple code distances; parallelizable on a single device",
+      "Noise model required": "None beyond a QEC decoder; ansatz is analytically motivated",
+      "Applicability": "Early fault-tolerant regime; requires physical error rate below the code threshold"
+    },
+    "references": ["umbrarescu2026"],
+    "related": [
+      {"id": "zne", "reason": "IDE applies ZNE's extrapolation framework with code distance replacing the noise parameter"},
+      {"id": "lre", "reason": "both generalize ZNE by changing the extrapolation parameter space"},
+      {"id": "qed", "reason": "IDE uses quantum error-detecting/correcting codes as a subroutine within the QEM framework"}
     ]
   }
 ]
