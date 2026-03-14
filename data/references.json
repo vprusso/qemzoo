@@ -718,6 +718,13 @@
     "year": 2022,
     "arxiv": "2105.08086"
   },
+  "umbrarescu2026": {
+    "authors": "G. Umbrarescu, O. Higgott, D. E. Browne",
+    "title": "Infinite Distance Extrapolation: How error mitigation can enhance quantum error correction",
+    "journal": "arXiv preprint",
+    "year": 2026,
+    "arxiv": "2603.11285"
+  },
   "harris2026": {
     "authors": "J. Harris, K. Lively, P. K. Schuhmacher",
     "title": "Reducing Quantum Error Mitigation Bias Using Verifiable Benchmark Circuits",

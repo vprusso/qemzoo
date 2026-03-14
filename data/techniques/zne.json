@@ -46,6 +46,7 @@
     "Variational algorithms (VQE, QAOA) on near-term processors",
     "Utility-scale quantum experiments (e.g., 127-qubit Ising model)",
     "Benchmarking quantum advantage claims",
-    "Composition with dynamical decoupling or Pauli twirling as a preprocessing step"
+    "Composition with dynamical decoupling or Pauli twirling as a preprocessing step",
+    "Early fault-tolerant regime: infinite distance extrapolation (IDE) adapts ZNE to QEC by using code distance as the noise parameter, extrapolating to infinite distance rather than zero noise"
   ]
 }

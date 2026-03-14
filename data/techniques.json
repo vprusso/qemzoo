@@ -258,7 +258,7 @@
       "Noise model required": "Minimal; only requires ability to scale noise controllably",
       "Scalability": "Demonstrated on up to 127 qubits; widely used in practice"
     },
-    "references": ["temme2017", "li2017", "endo2018", "kim2023", "majumdar2023", "harris2026"],
+    "references": ["temme2017", "li2017", "endo2018", "kim2023", "majumdar2023", "harris2026", "umbrarescu2026"],
     "related": [
       {"id": "lre", "reason": "LRE is a multivariate generalization of ZNE"},
       {"id": "pec", "reason": "both are foundational QEM techniques"},
@@ -304,7 +304,8 @@
       {"id": "symmetry-verification", "reason": "SV is a special case using symmetry as the detecting code"},
       {"id": "accreditation", "reason": "both use post-selection to improve output quality"},
       {"id": "partial-pauli-twirling", "reason": "PPT aligns errors with QED's detectable error space for synergistic mitigation"},
-      {"id": "subspace-expansion", "reason": "QSE can function as a quantum error decoder"}
+      {"id": "subspace-expansion", "reason": "QSE can function as a quantum error decoder"},
+      {"id": "zne", "reason": "infinite distance extrapolation (IDE) uses code distance as ZNE's noise parameter, extrapolating to infinite distance"}
     ]
   },
   {
