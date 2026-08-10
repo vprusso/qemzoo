@@ -31,14 +31,6 @@
     "arxiv": "1805.04492",
     "doi": "10.1038/s41586-019-1040-7"
   },
-  "dumitrescu2018": {
-    "authors": "E. F. Dumitrescu, A. J. McCaskey, G. Hagen, G. R. Jansen, T. D. Morris, T. Papenbrock, R. C. Pooser, D. J. Dean, P. Lougovski",
-    "title": "Cloud Quantum Computing of an Atomic Nucleus",
-    "journal": "Physical Review Letters",
-    "year": 2018,
-    "arxiv": "1801.03897",
-    "doi": "10.1103/PhysRevLett.120.210501"
-  },
   "mori2025": {
     "authors": "Y. Mori, H. Hakoshima, K. Sudo, T. Mori, K. Mitarai, K. Fujii",
     "title": "Quantum Circuit Unoptimization",
@@ -422,30 +414,6 @@
     "arxiv": "1712.09271",
     "doi": "10.1103/PhysRevX.8.031027"
   },
-  "preskill2018": {
-    "authors": "J. Preskill",
-    "title": "Quantum Computing in the NISQ Era and Beyond",
-    "journal": "Quantum",
-    "year": 2018,
-    "arxiv": "1801.00862",
-    "doi": "10.22331/q-2018-08-06-79"
-  },
-  "takagi2022": {
-    "authors": "R. Takagi, S. Endo, S. Minagawa, M. Gu",
-    "title": "Fundamental Limits of Quantum Error Mitigation",
-    "journal": "npj Quantum Information",
-    "year": 2022,
-    "arxiv": "2109.04457",
-    "doi": "10.1038/s41534-022-00618-z"
-  },
-  "quek2024": {
-    "authors": "Y. Quek, D. S. Franca, S. Khatri, J. J. Meyer, J. Eisert",
-    "title": "Exponentially Tighter Bounds on Limitations of Quantum Error Mitigation",
-    "journal": "Nature Physics",
-    "year": 2024,
-    "arxiv": "2210.11505",
-    "doi": "10.1038/s41567-024-02536-7"
-  },
   "cai2021symmetry": {
     "authors": "Z. Cai",
     "title": "Quantum Error Mitigation Using Symmetry Expansion",
@@ -469,22 +437,6 @@
     "year": 2021,
     "arxiv": "2108.12518",
     "doi": "10.1103/PRXQuantum.2.040326"
-  },
-  "kim2023scalable": {
-    "authors": "Y. Kim, C. J. Wood, T. J. Yoder, S. T. Merkel, J. M. Gambetta, K. Temme, A. Kandala",
-    "title": "Scalable Error Mitigation for Noisy Quantum Circuits Produces Competitive Expectation Values",
-    "journal": "Nature Physics",
-    "year": 2023,
-    "arxiv": "2108.09197",
-    "doi": "10.1038/s41567-022-01914-3"
-  },
-  "larose2022mitiq": {
-    "authors": "R. LaRose, A. Mari, S. Kaiser, P. J. Karalekas, A. A. Alves, P. Czarnik, M. El Mandouh, M. H. Gordon, Y. Hindy, A. Robertson, P. Thakre, M. Wahl, D. Samuel, R. Mistri, M. Tremblay, N. Gardner, N. T. Stemen, N. Shammah, W. J. Zeng",
-    "title": "Mitiq: A Software Package for Error Mitigation on Noisy Quantum Computers",
-    "journal": "Quantum",
-    "year": 2022,
-    "arxiv": "2009.04417",
-    "doi": "10.22331/q-2022-08-11-774"
   },
   "yoshioka2022": {
     "authors": "N. Yoshioka, H. Hakoshima, Y. Matsuzaki, Y. Tokunaga, Y. Suzuki, S. Endo",
@@ -575,38 +527,6 @@
     "year": 2022,
     "arxiv": "2203.07263",
     "doi": "10.48550/arXiv.2203.07263"
-  },
-  "suzuki2022": {
-    "authors": "Y. Suzuki, S. Endo, K. Fujii, Y. Tokunaga",
-    "title": "Quantum Error Mitigation as a Universal Error Reduction Technique: Applications from the NISQ to the Fault-Tolerant Quantum Computing Eras",
-    "journal": "PRX Quantum",
-    "year": 2022,
-    "arxiv": "2010.03887",
-    "doi": "10.1103/PRXQuantum.3.010345"
-  },
-  "bultrini2023": {
-    "authors": "D. Bultrini, M. H. Gordon, P. Czarnik, A. Arrasmith, M. Cerezo, P. J. Coles, L. Cincio",
-    "title": "Unifying and Benchmarking State-of-the-Art Quantum Error Mitigation Techniques",
-    "journal": "Quantum",
-    "year": 2023,
-    "arxiv": "2107.13470",
-    "doi": "10.22331/q-2023-06-06-1034"
-  },
-  "lostaglio2021": {
-    "authors": "M. Lostaglio, A. Ciani",
-    "title": "Error Mitigation and Quantum-Assisted Simulation in the Error Corrected Regime",
-    "journal": "Physical Review Letters",
-    "year": 2021,
-    "arxiv": "2103.07526",
-    "doi": "10.1103/PhysRevLett.127.200506"
-  },
-  "piveteau2021gates": {
-    "authors": "C. Piveteau, D. Sutter, S. Bravyi, J. M. Gambetta, K. Temme",
-    "title": "Error Mitigation for Universal Gates on Encoded Qubits",
-    "journal": "Physical Review Letters",
-    "year": 2021,
-    "arxiv": "2103.04915",
-    "doi": "10.1103/PhysRevLett.127.200505"
   },
   "saxena2024": {
     "authors": "G. Saxena, T. H. Kyaw",
@@ -703,14 +623,6 @@
     "year": 2021,
     "arxiv": "2010.02538",
     "doi": "10.1103/PRXQuantum.2.020317"
-  },
-  "kandala2017": {
-    "authors": "A. Kandala, A. Mezzacapo, K. Temme, M. Takita, M. Brink, J. M. Chow, J. M. Gambetta",
-    "title": "Hardware-Efficient Variational Quantum Eigensolver for Small Molecules and Quantum Magnets",
-    "journal": "Nature",
-    "year": 2017,
-    "arxiv": "1704.05018",
-    "doi": "10.1038/nature23879"
   },
   "uzdin2026vns": {
     "authors": "R. Uzdin",
