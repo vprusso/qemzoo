@@ -578,6 +578,29 @@ async function renderExtrapolationDetail(id, content, breadcrumbName, breadcrumb
       html += `</section>`;
     }
 
+    // Diagrams.
+    if (detail.diagrams && detail.diagrams.length) {
+      const citationMap = {};
+      (method.references || []).forEach((key, idx) => {
+        citationMap[key] = idx + 1;
+      });
+      html += `<section class="detail-section"><h3>Diagram</h3>`;
+      html += `<div class="circuit-diagrams">`;
+      for (const diag of detail.diagrams) {
+        html += `<figure class="circuit-figure">`;
+        html += `<img src="${diag.src}" alt="${diag.caption || method.name + ' diagram'}" class="circuit-diagram">`;
+        if (diag.caption) {
+          let captionText = diag.caption;
+          if (diag.reference && citationMap[diag.reference]) {
+            captionText += ` <a href="#references">[${citationMap[diag.reference]}]</a>`;
+          }
+          html += `<figcaption>${captionText}</figcaption>`;
+        }
+        html += `</figure>`;
+      }
+      html += `</div></section>`;
+    }
+
     // How it works.
     if (detail.how_it_works && detail.how_it_works.length) {
       html += `<section class="detail-section"><h3>How It Works</h3><ol class="steps-list">`;

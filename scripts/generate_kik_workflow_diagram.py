@@ -44,7 +44,7 @@ arrow(6.7, 1.8, 6.7, 1.2)
 
 # Row 4
 box(3.2, 0.0, 7.0, 1.2,
-    '$\\langle A \\rangle^{(M)} = \\sum_{m=0}^{M} a_m^{(M)} \\, \\langle A \\rangle_m \;\\approx\; \\langle A \\rangle_{\\mathrm{ideal}}$',
+    '$\\langle A \\rangle^{(M)} = \\sum_{m=0}^{M} a_m^{(M)} \\, \\langle A \\rangle_m \\approx \\langle A \\rangle_{\\mathrm{ideal}}$',
     '#2c3e50', fs=13)
 
 plt.tight_layout()

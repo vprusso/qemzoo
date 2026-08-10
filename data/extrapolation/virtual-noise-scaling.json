@@ -1,4 +1,10 @@
 {
+  "diagrams": [
+    {
+      "src": "images/extrapolation/virtual-noise-scaling-plateau.png",
+      "caption": "Left: the mitigation function G(m, s) maps noise eigenvalues back to 1 across a plateau that straddles s = 1, so the physical interval [s_min, 1] sits on its rising edge while the rescaled interval [g s_min, g] sits inside it (the interval drawn is the optimum for m = 15). Right: the resulting worst-case infidelity at each mitigation order for s_min = 0.4. Both panels are computed from the closed form of G given below."
+    }
+  ],
   "description": [
     "Virtual Noise Scaling (VNS) changes how the outcomes of noise-amplified circuits are combined, rather than how the noise is amplified. Mitigation schemes based on agnostic noise amplification (KIK and its layered variant, folding-based ZNE, probabilistic error amplification) execute a family of circuits with amplification factors 1, 3, 5, ... and take a linear combination of the measured expectation values. The coefficients follow from a Taylor expansion of the noise inverse around the zero-noise point \\(s = 1\\).",
     "The observation behind VNS is that \\(s = 1\\) is a poor expansion point. The eigenvalues of the noise operator lie in \\((0, 1]\\), so the expansion is centered at the edge of the distribution rather than inside it. The mitigation function that maps noise eigenvalues back to 1 has a plateau whose width grows with the mitigation order, and that plateau extends past \\(s = 1\\). Rescaling the noise operator by a constant \\(g\\), which amounts to \\(K \\to gK\\) and \\(K_I \\to gK_I\\) in the mitigation coefficients, slides the eigenvalue distribution into the middle of the plateau.",
