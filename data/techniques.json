@@ -128,7 +128,7 @@
       "Noise model required": "None; optimization uses target error space from QED code",
       "Applicability": "Hybrid QED + error mitigation pipelines; hardware with biased gate errors"
     },
-    "references": ["majumdar2025"],
+    "references": ["zhong2025"],
     "related": [
       {"id": "pauli-twirling", "reason": "PPT is a resource-efficient variant of full Pauli twirling"},
       {"id": "qed", "reason": "PPT is designed to synergize with quantum error detection codes"},
@@ -645,7 +645,7 @@
       "Noise model required": "None; no tomography or machine learning required",
       "Applicability": "General-purpose; handles moderate-to-strong noise, time-dependent noise, and spatially correlated errors"
     },
-    "references": ["botelho2023", "botelho2025"],
+    "references": ["henao2023", "bar2026"],
     "related": [
       {"id": "echo-verification", "reason": "both use forward and inverse circuits; KIK operates at pulse level with adaptive coefficients"},
       {"id": "zne", "reason": "KIK outperforms circuit folding ZNE by using pulse-based inverses and adaptive coefficients"},
@@ -687,7 +687,7 @@
       "Noise model required": "Implicitly learned from data; no explicit noise characterization needed",
       "Applicability": "General-purpose; best when training circuits approximate target circuit structure"
     },
-    "references": ["liao2024", "czarnik2022nem", "kim2020nem", "strikis2021"],
+    "references": ["liao2024", "bennewitz2022nem", "kim2020nem", "strikis2021"],
     "related": [
       {"id": "cdr", "reason": "CDR uses linear regression on near-Clifford training data; ML-QEM generalizes to richer models"},
       {"id": "zne", "reason": "ML-QEM can replace ZNE's extrapolation with learned models, reducing overhead"},
