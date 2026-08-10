@@ -89,9 +89,9 @@ ax.text(4, 3.5, 'vs', fontsize=12, ha='center', va='center', color='#7f8c8d', fo
 ax.plot([5.5, 6.5], [3.5, 2.7], 'k--', alpha=0.3, lw=1.5)
 
 plt.tight_layout()
-plt.savefig('/Users/vincent.russo/Projects/research/qemzoo/images/techniques/symmetry-adjusted-shadows-workflow.png',
+plt.savefig('images/techniques/symmetry-adjusted-shadows-workflow.png',
             dpi=150, bbox_inches='tight', facecolor='white')
-plt.savefig('/Users/vincent.russo/Projects/research/qemzoo/images/techniques/symmetry-adjusted-shadows-workflow.svg',
+plt.savefig('images/techniques/symmetry-adjusted-shadows-workflow.svg',
             bbox_inches='tight', facecolor='white')
 
 print("Symmetry-adjusted shadows workflow diagram saved!")

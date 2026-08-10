@@ -72,8 +72,8 @@ ax.legend(loc='upper right', fontsize=11, framealpha=0.9)
 ax.set_title('Zero-Noise Extrapolation', fontsize=16, fontweight='bold', pad=15)
 
 plt.tight_layout()
-plt.savefig('/Users/vincent.russo/Projects/research/qemzoo/images/techniques/zne-workflow.png',
+plt.savefig('images/techniques/zne-workflow.png',
             dpi=150, bbox_inches='tight', facecolor='white')
-plt.savefig('/Users/vincent.russo/Projects/research/qemzoo/images/techniques/zne-workflow.svg',
+plt.savefig('images/techniques/zne-workflow.svg',
             bbox_inches='tight', facecolor='white')
 print("ZNE workflow diagram saved!")

@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-08-10T09:12:22.650294</dc:date>
+    <dc:date>2026-08-10T16:04:03.014946</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -40,7 +40,7 @@ Q 66.730909 62.737024 66.730909 72.693214
 L 66.730909 117.496071 
 Q 66.730909 127.452262 80.738182 127.452262 
 z
-" clip-path="url(#p00a77e260c)" style="fill: #3498db; stroke: #000000; stroke-width: 2; stroke-linejoin: miter"/>
+" clip-path="url(#p065c047eb9)" style="fill: #3498db; stroke: #000000; stroke-width: 2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_3">
     <path d="M 367.887273 127.452262 
@@ -53,7 +53,7 @@ Q 353.88 62.737024 353.88 72.693214
 L 353.88 117.496071 
 Q 353.88 127.452262 367.887273 127.452262 
 z
-" clip-path="url(#p00a77e260c)" style="fill: #e74c3c; stroke: #000000; stroke-width: 2; stroke-linejoin: miter"/>
+" clip-path="url(#p065c047eb9)" style="fill: #e74c3c; stroke: #000000; stroke-width: 2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_4">
     <path d="M 185.792727 271.817024 
@@ -66,7 +66,7 @@ Q 171.785455 207.101786 171.785455 217.057976
 L 171.785455 261.860833 
 Q 171.785455 271.817024 185.792727 271.817024 
 z
-" clip-path="url(#p00a77e260c)" style="fill: #27ae60; stroke: #000000; stroke-width: 2; stroke-linejoin: miter"/>
+" clip-path="url(#p065c047eb9)" style="fill: #27ae60; stroke: #000000; stroke-width: 2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_5">
     <path d="M 45.72 366.400833 
@@ -79,7 +79,7 @@ Q 31.712727 301.685595 31.712727 311.641786
 L 31.712727 356.444643 
 Q 31.712727 366.400833 45.72 366.400833 
 z
-" clip-path="url(#p00a77e260c)" style="fill: #f39c12; stroke: #000000; stroke-width: 2; stroke-linejoin: miter"/>
+" clip-path="url(#p065c047eb9)" style="fill: #f39c12; stroke: #000000; stroke-width: 2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_6">
     <path d="M 297.850909 366.400833 
@@ -92,7 +92,7 @@ Q 283.843636 301.685595 283.843636 311.641786
 L 283.843636 356.444643 
 Q 283.843636 366.400833 297.850909 366.400833 
 z
-" clip-path="url(#p00a77e260c)" style="fill: #9b59b6; stroke: #000000; stroke-width: 2; stroke-linejoin: miter"/>
+" clip-path="url(#p065c047eb9)" style="fill: #9b59b6; stroke: #000000; stroke-width: 2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_7">
     <path d="M 241.821818 456.006548 
@@ -105,7 +105,7 @@ Q 227.814545 391.29131 227.814545 401.2475
 L 227.814545 446.050357 
 Q 227.814545 456.006548 241.821818 456.006548 
 z
-" clip-path="url(#p00a77e260c)" style="fill: #2c3e50; stroke: #000000; stroke-width: 2; stroke-linejoin: miter"/>
+" clip-path="url(#p065c047eb9)" style="fill: #2c3e50; stroke: #000000; stroke-width: 2; stroke-linejoin: miter"/>
    </g>
    <g id="text_1">
     <!-- Circuit K -->
@@ -1744,8 +1744,8 @@ L 474.443636 385.54748
 " style="fill: none; stroke: #000000; stroke-width: 2; stroke-linecap: round"/>
    </g>
    <g id="text_7">
-    <!-- $\langle A \rangle^{(M)} = \sum_{m=0}^{M} a_m^{(M)} \, \langle A \rangle_m \;\approx\; \langle A \rangle_{\mathrm{ideal}}$ -->
-    <g style="fill: #ffffff" transform="translate(378.813636 428.393929) scale(0.13 -0.13)">
+    <!-- $\langle A \rangle^{(M)} = \sum_{m=0}^{M} a_m^{(M)} \, \langle A \rangle_m \approx \langle A \rangle_{\mathrm{ideal}}$ -->
+    <g style="fill: #ffffff" transform="translate(382.388636 428.393929) scale(0.13 -0.13)">
      <defs>
       <path id="DejaVuSansDisplay-10" d="M 244 6509 
 L 5803 6509 
@@ -1929,15 +1929,15 @@ z
      <use xlink:href="#DejaVuSans-Oblique-24" transform="translate(825.475416 0.5125)"/>
      <use xlink:href="#DejaVuSans-1048" transform="translate(893.883619 0.5125)"/>
      <use xlink:href="#DejaVuSans-Oblique-50" transform="translate(933.854322 -14.487451) scale(0.7)"/>
-     <use xlink:href="#DejaVuSans-cd2" transform="translate(1051.318731 0.5125)"/>
-     <use xlink:href="#DejaVuSans-1047" transform="translate(1181.649351 0.5125)"/>
-     <use xlink:href="#DejaVuSans-Oblique-24" transform="translate(1220.663023 0.5125)"/>
-     <use xlink:href="#DejaVuSans-1048" transform="translate(1289.071226 0.5125)"/>
-     <use xlink:href="#DejaVuSans-4c" transform="translate(1329.04193 -14.487451) scale(0.7)"/>
-     <use xlink:href="#DejaVuSans-47" transform="translate(1348.490172 -14.487451) scale(0.7)"/>
-     <use xlink:href="#DejaVuSans-48" transform="translate(1392.923765 -14.487451) scale(0.7)"/>
-     <use xlink:href="#DejaVuSans-44" transform="translate(1435.990172 -14.487451) scale(0.7)"/>
-     <use xlink:href="#DejaVuSans-4f" transform="translate(1478.88568 -14.487451) scale(0.7)"/>
+     <use xlink:href="#DejaVuSans-cd2" transform="translate(1024.259596 0.5125)"/>
+     <use xlink:href="#DejaVuSans-1047" transform="translate(1127.53108 0.5125)"/>
+     <use xlink:href="#DejaVuSans-Oblique-24" transform="translate(1166.544752 0.5125)"/>
+     <use xlink:href="#DejaVuSans-1048" transform="translate(1234.952955 0.5125)"/>
+     <use xlink:href="#DejaVuSans-4c" transform="translate(1274.923658 -14.487451) scale(0.7)"/>
+     <use xlink:href="#DejaVuSans-47" transform="translate(1294.3719 -14.487451) scale(0.7)"/>
+     <use xlink:href="#DejaVuSans-48" transform="translate(1338.805494 -14.487451) scale(0.7)"/>
+     <use xlink:href="#DejaVuSans-44" transform="translate(1381.8719 -14.487451) scale(0.7)"/>
+     <use xlink:href="#DejaVuSans-4f" transform="translate(1424.767408 -14.487451) scale(0.7)"/>
     </g>
    </g>
    <g id="text_8">
@@ -2081,7 +2081,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="p00a77e260c">
+  <clipPath id="p065c047eb9">
    <rect x="7.2" y="35.3575" width="770.4" height="418.16"/>
   </clipPath>
  </defs>
