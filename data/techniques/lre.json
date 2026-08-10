@@ -8,7 +8,7 @@
   "description": [
     "Layerwise Richardson Extrapolation (LRE) generalizes zero-noise extrapolation by treating each layer of a quantum circuit as having an independent noise parameter. Instead of scaling all noise uniformly, LRE scales noise at each layer independently and performs a multivariate extrapolation to the zero-noise limit.",
     "This approach is motivated by the observation that different layers may experience different effective noise rates, and a global noise model can be too coarse. By extrapolating in the full \\(d\\)-dimensional noise space (where \\(d\\) is the circuit depth), LRE achieves lower bias than global ZNE at the same extrapolation order.",
-    "The number of distinct circuit evaluations needed scales as \\(\\binom{d + k - 1}{k}\\) for a circuit of depth \\(d\\) and extrapolation order \\(k\\), which is polynomial in \\(d\\) for fixed \\(k\\)."
+    "The number of distinct circuit evaluations needed equals the number of monomials of degree at most \\(k\\) in \\(d\\) variables, \\(\\binom{d + k}{k}\\), which is polynomial in \\(d\\) for fixed \\(k\\). For \\(k = 1\\) this gives \\(d + 1\\) circuits and for \\(k = 2\\) it gives \\((d+1)(d+2)/2\\)."
   ],
   "how_it_works": [
     "Decompose the target circuit into \\(d\\) layers, each with its own noise rate \\(\\lambda_j\\).",
@@ -23,7 +23,7 @@
     },
     {
       "label": "Number of circuit evaluations",
-      "latex": "N_{\\text{circuits}} = \\binom{d + k - 1}{k}"
+      "latex": "N_{\\text{circuits}} = \\binom{d + k}{k}"
     },
     {
       "label": "Bias scaling",

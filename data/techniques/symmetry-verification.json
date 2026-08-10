@@ -20,8 +20,8 @@
       "latex": "p_{\\text{pass}} = \\operatorname{tr}[\\Pi_S \\rho]"
     },
     {
-      "label": "Effective noise reduction",
-      "latex": "\\epsilon_{\\text{eff}} \\leq \\epsilon \\cdot \\frac{d_{\\text{sym}}}{d_{\\text{total}}}"
+      "label": "Sampling cost of post-selection (N = shots taken, N_eff = shots surviving)",
+      "latex": "N_{\\text{eff}} = p_{\\text{pass}} N, \\quad \\text{Var}[\\langle O \\rangle_{\\text{SV}}] \\propto \\frac{1}{p_{\\text{pass}} N}"
     }
   ],
   "advantages": [

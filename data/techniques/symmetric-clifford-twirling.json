@@ -6,7 +6,7 @@
     }
   ],
   "description": [
-    "Symmetric Clifford Twirling (SCT) is a refined twirling technique that uses only symmetric Clifford operators — those that commute with certain Pauli subgroups associated with the target operation. This structure-preserving approach scrambles noise to approximately global white noise with exponential precision while maintaining the operation's inherent symmetries.",
+    "Symmetric Clifford Twirling (SCT) is a refined twirling technique that uses only symmetric Clifford operators, those that commute with certain Pauli subgroups associated with the target operation. The conversion of each Pauli noise term under this twirl is characterized exactly, and certain Pauli noise is scrambled to within an exponentially small distance of global white noise while the operation's symmetries are preserved.",
     "The key insight is that full Clifford twirling, while powerful, can destroy useful structure in quantum circuits. By restricting to symmetric Cliffords, SCT achieves the noise-averaging benefits of twirling while preserving properties essential for error mitigation in structured circuits like those used in Hamiltonian simulation.",
     "SCT is particularly relevant for the early fault-tolerant quantum computing (FTQC) regime, where non-Clifford operations must be executed without full error correction. In this regime, the cost of error mitigation scales with the 'non-Cliffordness' of the circuit, and SCT provides cost-optimal mitigation by exploiting symmetry structure."
   ],
@@ -34,7 +34,7 @@
   ],
   "advantages": [
     "Preserves circuit symmetry structure while scrambling noise",
-    "Noise converted to global white noise with exponential precision",
+    "Certain Pauli noise converted to within an exponentially small distance of global white noise",
     "Cost-optimal error mitigation in early FTQC regime",
     "Hardware-efficient variants use only local operations",
     "Applicable to non-Clifford operations (unlike standard Pauli twirling)",

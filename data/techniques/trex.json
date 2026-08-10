@@ -14,7 +14,7 @@
   "key_equations": [
     {
       "label": "Twirled readout channel",
-      "latex": "\\widetilde{\\mathcal{M}}(\\rho) = \\sum_P \\lambda_P \\, \\operatorname{tr}(P \\rho) \\, P"
+      "latex": "\\widetilde{\\mathcal{M}}(\\rho) = \\frac{1}{2^n} \\sum_P \\lambda_P \\, \\operatorname{tr}(P \\rho) \\, P"
     },
     {
       "label": "Corrected expectation value",

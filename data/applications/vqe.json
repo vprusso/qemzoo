@@ -12,20 +12,20 @@
   ],
   "demonstrations": [
     {
-      "title": "H₂ and LiH on Superconducting Hardware",
-      "description": "Early demonstrations of VQE with error mitigation achieved chemical accuracy for small molecules using measurement error mitigation and symmetry verification.",
+      "title": "H₂ and LiH with Zero-Noise Extrapolation (2019)",
+      "description": "Applied Richardson extrapolation over pulse-stretched circuits to a hardware-efficient VQE, recovering energies close to the exact curve across a range of interatomic distances where the unmitigated results were visibly off.",
       "hardware": "IBM superconducting processors",
-      "qubits": "2-6 qubits",
-      "techniques": "Measurement error mitigation, symmetry verification",
+      "qubits": "2 qubits (H₂), 4 qubits (LiH)",
+      "techniques": "ZNE via Richardson extrapolation with pulse stretching",
       "reference": "kandala2019"
     },
     {
-      "title": "BeH₂ with ZNE",
-      "description": "Extended VQE to larger molecules using zero-noise extrapolation to correct gate errors, demonstrating the scalability of error-mitigated quantum chemistry.",
-      "hardware": "IBM superconducting processors",
-      "qubits": "6 qubits",
-      "techniques": "ZNE, measurement error mitigation",
-      "reference": "kandala2019"
+      "title": "Symmetry-Verified H₂ (2019)",
+      "description": "Used parity symmetry of the two-qubit H₂ Hamiltonian to post-select measurement outcomes, removing the bias that noise introduces into the variational energy.",
+      "hardware": "Superconducting transmon processor",
+      "qubits": "2 qubits",
+      "techniques": "Symmetry verification, post-selection",
+      "reference": "sagastizabal2019"
     },
     {
       "title": "H₂ Ground State with Quantum Error Detection (2020)",
