@@ -51,7 +51,8 @@
     },
     "references": ["russo2024"],
     "related": [
-      {"id": "zne", "reason": "LRE is a multivariate generalization of ZNE"}
+      {"id": "zne", "reason": "LRE is a multivariate generalization of ZNE"},
+      {"id": "kik", "reason": "Layered KIK also amplifies noise layer by layer, but builds each layer's amplification from a pulse inverse rather than from folding"}
     ]
   },
   {
@@ -650,7 +651,8 @@
       {"id": "echo-verification", "reason": "both use forward and inverse circuits; KIK operates at pulse level with adaptive coefficients"},
       {"id": "zne", "reason": "KIK outperforms circuit folding ZNE by using pulse-based inverses and adaptive coefficients"},
       {"id": "pauli-twirling", "reason": "KIK integrates with randomized compiling to handle coherent noise"},
-      {"id": "dd", "reason": "both operate at the pulse level to suppress noise"}
+      {"id": "dd", "reason": "both operate at the pulse level to suppress noise"},
+      {"id": "lre", "reason": "both amplify noise layer by layer; they differ in how the per-layer amplification is built and in the treatment of high-order Magnus terms"}
     ]
   },
   {

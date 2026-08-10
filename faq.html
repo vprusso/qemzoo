@@ -109,6 +109,7 @@
   <a href="techniques.html">Techniques</a>
   <a href="noise.html">Noise</a>
   <a href="applications.html">Applications</a>
+  <a href="https://github.com/vprusso/qemzoo" class="nav-external" target="_blank" rel="noopener">GitHub</a>
 </nav>
 
 <main class="faq-container">
@@ -232,14 +233,42 @@
     </div>
   </section>
 
-  <section class="faq-section">
+  <section class="faq-section" id="contributing">
     <h2>Contributing & Contact</h2>
+
+    <div class="faq-item">
+      <h3>Can I edit the zoo myself?</h3>
+      <p>
+        Yes. The site is open source at
+        <a href="https://github.com/vprusso/qemzoo">github.com/vprusso/qemzoo</a>,
+        and pull requests are welcome. Every page is rendered from the JSON files
+        under <code>data/</code>, so an edit is a JSON edit: no build step, no
+        HTML to touch.
+      </p>
+      <p>
+        Each detail page ends with a link to the two files it is rendered from,
+        the catalog file for its section and its own entry file. Following that
+        link opens GitHub's editor, and GitHub will fork the repository and open
+        a pull request for you if you do not have write access. Fixing a wrong
+        author list or a garbled equation takes about a minute that way.
+      </p>
+      <p>
+        To add a new entry, add its references to
+        <code>data/references.json</code>, add a catalog entry to the list file
+        for its section (<code>data/techniques.json</code>,
+        <code>data/noise.json</code>, and so on), and add a detail file of the
+        same name in the matching directory. The
+        <a href="https://github.com/vprusso/qemzoo#contributing">README</a>
+        describes the layout.
+      </p>
+    </div>
 
     <div class="faq-item">
       <h3>I found an error or have a suggestion. How do I report it?</h3>
       <p>
-        I welcome corrections, suggestions, and contributions! If you've found an error,
-        have a technique to add, or want to suggest improvements, please reach out:
+        A pull request is the fastest route, but email works too. If you have
+        found an error, have a technique to add, or want to suggest improvements,
+        reach out:
       </p>
       <p class="contact-email">
         <a href="mailto:vincentrusso1&#64;gmail&#46;com" id="contact-link">Click to reveal email</a>
@@ -264,11 +293,12 @@
     </div>
 
     <div class="faq-item">
-      <h3>Can I contribute a new technique or application?</h3>
+      <h3>What makes a good contribution?</h3>
       <p>
-        Yes! If you know of a QEM/QES technique that isn't covered, or if you have detailed
-        information to add to an existing entry, please reach out. Contributions with references
-        to peer-reviewed papers are especially appreciated.
+        Entries backed by peer-reviewed papers or arXiv preprints, where every
+        claim on the page traces to the cited work and the numbers (qubit counts,
+        overheads, thresholds) match what that work reports. Corrections to
+        existing entries are as welcome as new entries.
       </p>
     </div>
   </section>
@@ -280,7 +310,7 @@
       The QEM Zoo is maintained by <a href="https://vprusso.github.io/">Vincent Russo</a> as a community resource,
       and I take full responsibility for any errors or inaccuracies on this site.
       If you spot something wrong — a misattributed result, a mangled equation, a missing technique —
-      please don't just post-select it away. Reach out using the contact information above so it can be corrected.
+      please don't just post-select it away. Open a pull request or reach out using the contact information above so it can be corrected.
     </p>
     <p>
       The information provided here is for educational and research purposes. When using any technique in practice,
@@ -291,7 +321,7 @@
 </main>
 
 <footer>
-  <p class="attribution">Created and maintained by <a href="https://vprusso.github.io/">Vincent Russo</a></p>
+  <p class="attribution">Created and maintained by <a href="https://vprusso.github.io/">Vincent Russo</a> | <a href="https://github.com/vprusso/qemzoo">Source on GitHub</a></p>
 </footer>
 
 </body>
