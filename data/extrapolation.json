@@ -2,7 +2,10 @@
   {
     "id": "linear-extrapolation",
     "name": "Linear Extrapolation",
-    "aliases": ["first-order extrapolation", "linear fit"],
+    "aliases": [
+      "first-order extrapolation",
+      "linear fit"
+    ],
     "summary": "Fits a linear function \\(f(\\lambda) = a + b\\lambda\\) to expectation values measured at multiple noise levels and extrapolates to \\(\\lambda = 0\\). The simplest extrapolation method, requiring only two noise levels. Works well when the noise dependence is approximately linear, but introduces systematic bias for nonlinear noise scaling.",
     "properties": {
       "Data points required": "Minimum 2",
@@ -10,12 +13,19 @@
       "Bias": "\\(O(\\lambda^2)\\) for nonlinear noise dependence",
       "Variance": "Low (fewest parameters to fit)"
     },
-    "references": ["temme2017", "li2017"]
+    "references": [
+      "temme2017",
+      "li2017"
+    ]
   },
   {
     "id": "polynomial-extrapolation",
     "name": "Polynomial Extrapolation",
-    "aliases": ["polynomial fit", "quadratic extrapolation", "higher-order polynomial"],
+    "aliases": [
+      "polynomial fit",
+      "quadratic extrapolation",
+      "higher-order polynomial"
+    ],
     "summary": "Fits a polynomial \\(f(\\lambda) = a_0 + a_1\\lambda + a_2\\lambda^2 + \\cdots + a_n\\lambda^n\\) to measured data and extrapolates to \\(\\lambda = 0\\). Higher-order polynomials can capture nonlinear noise dependence but require more data points and may suffer from overfitting or numerical instability.",
     "properties": {
       "Data points required": "n+1 for degree-n polynomial",
@@ -23,12 +33,17 @@
       "Bias": "\\(O(\\lambda^{n+1})\\) for degree-n polynomial",
       "Variance": "Increases with polynomial degree"
     },
-    "references": ["temme2017", "giurgica2020"]
+    "references": [
+      "temme2017",
+      "giurgica2020"
+    ]
   },
   {
     "id": "richardson-extrapolation",
     "name": "Richardson Extrapolation",
-    "aliases": ["Richardson's deferred approach to the limit"],
+    "aliases": [
+      "Richardson's deferred approach to the limit"
+    ],
     "summary": "A systematic method for improving accuracy by combining estimates at different noise levels with carefully chosen weights. For scale factors \\(\\lambda_1, \\lambda_2, \\ldots, \\lambda_n\\), the Richardson estimator cancels leading-order error terms. Equivalent to polynomial extrapolation but with a specific choice of scale factors that simplifies the analysis.",
     "properties": {
       "Data points required": "n for order-n Richardson",
@@ -36,12 +51,18 @@
       "Bias": "\\(O(\\lambda^n)\\) for order-n Richardson",
       "Optimal scale factors": "Often \\(\\lambda_i = 2^{i-1}\\) or similar geometric sequence"
     },
-    "references": ["temme2017", "russo2024"]
+    "references": [
+      "temme2017",
+      "russo2024"
+    ]
   },
   {
     "id": "exponential-extrapolation",
     "name": "Exponential Extrapolation",
-    "aliases": ["exponential fit", "exponential decay model"],
+    "aliases": [
+      "exponential fit",
+      "exponential decay model"
+    ],
     "summary": "Fits an exponential function \\(f(\\lambda) = a \\cdot e^{-b\\lambda} + c\\) or \\(f(\\lambda) = a \\cdot e^{b\\lambda}\\) to the data. Motivated by the physical intuition that expectation values often decay exponentially with circuit depth/noise. Can provide better extrapolation than polynomials when the true decay is exponential.",
     "properties": {
       "Data points required": "Minimum 3 (for 3 parameters)",
@@ -49,12 +70,18 @@
       "Bias": "Depends on how well exponential model matches true behavior",
       "Stability": "Generally more stable than high-order polynomials"
     },
-    "references": ["giurgica2020", "cai2023"]
+    "references": [
+      "giurgica2020",
+      "cai2023"
+    ]
   },
   {
     "id": "poly-exponential",
     "name": "Poly-Exponential Extrapolation",
-    "aliases": ["polyexp", "polynomial-exponential"],
+    "aliases": [
+      "polyexp",
+      "polynomial-exponential"
+    ],
     "summary": "Combines polynomial and exponential models: \\(f(\\lambda) = (a_0 + a_1\\lambda + \\cdots) \\cdot e^{-b\\lambda}\\). Captures both the polynomial correction terms and the overall exponential decay. Often provides better fits than pure polynomial or pure exponential models.",
     "properties": {
       "Data points required": "Depends on polynomial order + exponential parameters",
@@ -62,12 +89,17 @@
       "Bias": "Can be lower than pure polynomial or exponential",
       "Complexity": "More parameters to fit; risk of overfitting"
     },
-    "references": ["giurgica2020"]
+    "references": [
+      "giurgica2020"
+    ]
   },
   {
     "id": "adaptive-extrapolation",
     "name": "Adaptive Extrapolation",
-    "aliases": ["model selection", "cross-validated extrapolation"],
+    "aliases": [
+      "model selection",
+      "cross-validated extrapolation"
+    ],
     "summary": "Automatically selects the best extrapolation model (linear, polynomial, exponential, etc.) based on the data using cross-validation or information criteria (AIC, BIC). Reduces bias from choosing an inappropriate model while controlling for overfitting.",
     "properties": {
       "Data points required": "Enough for cross-validation (typically ≥5)",
@@ -75,6 +107,27 @@
       "Bias": "Adapts to data; generally lower than fixed model",
       "Complexity": "Higher computational cost; automated model selection"
     },
-    "references": ["giurgica2020", "cai2023"]
+    "references": [
+      "giurgica2020",
+      "cai2023"
+    ]
+  },
+  {
+    "id": "virtual-noise-scaling",
+    "name": "Virtual Noise Scaling",
+    "aliases": [
+      "VNS",
+      "shifted Taylor mitigation"
+    ],
+    "summary": "Replaces the Richardson coefficients applied to noise-amplified expectation values with coefficients from a Taylor expansion recentered on the noise spectrum. Standard mitigation expands around the zero-noise point \\(s = 1\\), which sits at the edge of the noise eigenvalue distribution rather than inside it. Rescaling the noise operator by a constant \\(g\\) shifts the eigenvalues onto the plateau of the mitigation function, where they are mapped to 1 most accurately, cutting the runtime overhead needed to reach a given mitigated infidelity. The rescaling is post-processing: no extra circuits are run.",
+    "properties": {
+      "Data points required": "Same as the underlying amplification scheme; order \\(m\\) uses \\(m+1\\) amplified circuits",
+      "Assumptions": "Agnostic noise amplification with constant-step amplification factors (KIK, folding ZNE, PEA)",
+      "Bias": "Set by the mitigation order; the recentering lowers the worst-case infidelity at fixed order",
+      "Overhead": "Orders of magnitude below Richardson post-processing in the strong-noise regime"
+    },
+    "references": [
+      "uzdin2026vns"
+    ]
   }
 ]

@@ -1,0 +1,44 @@
+{
+  "description": [
+    "Virtual Noise Scaling (VNS) changes how the outcomes of noise-amplified circuits are combined, rather than how the noise is amplified. Mitigation schemes based on agnostic noise amplification (KIK and its layered variant, folding-based ZNE, probabilistic error amplification) execute a family of circuits with amplification factors 1, 3, 5, ... and take a linear combination of the measured expectation values. The coefficients follow from a Taylor expansion of the noise inverse around the zero-noise point \\(s = 1\\).",
+    "The observation behind VNS is that \\(s = 1\\) is a poor expansion point. The eigenvalues of the noise operator lie in \\((0, 1]\\), so the expansion is centered at the edge of the distribution rather than inside it. The mitigation function that maps noise eigenvalues back to 1 has a plateau whose width grows with the mitigation order, and that plateau extends past \\(s = 1\\). Rescaling the noise operator by a constant \\(g\\), which amounts to \\(K \\to gK\\) and \\(K_I \\to gK_I\\) in the mitigation coefficients, slides the eigenvalue distribution into the middle of the plateau.",
+    "The gain is in sampling cost, not bias: a given mitigated infidelity is reached at a lower mitigation order, and therefore at far lower runtime overhead. Because the rescaling happens in post-processing, it can be applied to data that has already been collected; the scaling factor \\(g\\) is itself read off from the measured noise-amplified expectation values.",
+    "VNS composes with layered mitigation, where the circuit is sliced into layers that are amplified and mitigated separately. Layering is not always worth it, and the crossover is circuit-independent: it depends only on the smallest eigenvalue \\(s_{\\min}\\) of the noise operator and on the number of layers. Two layers beat one below \\(s_{\\min} \\simeq 0.65\\) (that is, for stronger noise), with a further two-to-three-layer crossover near \\(s_{\\min} \\simeq 0.5\\). Above the threshold the extra layers cost more than they save."
+  ],
+  "how_it_works": [
+    "Execute the noise-amplified circuits of the underlying agnostic amplification scheme, for example \\(K(K_I K)^k\\) for \\(k = 0, 1, \\ldots, m\\).",
+    "Estimate the scaling factor \\(g\\) from the measured amplified expectation values, choosing it so the noise eigenvalue interval \\([g s_{\\min}, g]\\) sits on the plateau of the mitigation function.",
+    "Recompute the linear-combination coefficients \\(a_k(g)\\) from the Taylor expansion recentered by \\(g\\), instead of the Richardson coefficients.",
+    "Combine the measured expectation values with the new coefficients to obtain the mitigated estimate.",
+    "Decide whether to mitigate in layers by comparing \\(s_{\\min}\\) against the layer-count threshold: below roughly 0.65, split into two layers and apply VNS to each."
+  ],
+  "key_equations": [
+    {
+      "label": "Mitigated evolution operator after rescaling (a_k(g) = recentered coefficients, K_I = inverse evolution)",
+      "latex": "\\mathcal{K}^{(m)}_{\\text{mit}}(g) = \\sum_{k=0}^{m} a_k(g) \\, K (K_I K)^k \\approx U"
+    },
+    {
+      "label": "Rescaled noise spectrum (s_min = smallest eigenvalue of the noise operator)",
+      "latex": "\\text{spec}(gN) \\subseteq [g s_{\\min}, g]"
+    },
+    {
+      "label": "Layer-count threshold for two-layer mitigation",
+      "latex": "s_{\\min} \\lesssim 0.65 \\implies \\text{two layers cost less than one}"
+    }
+  ],
+  "advantages": [
+    "Pure post-processing: no new circuits, no noise characterization, and applicable to already-collected data",
+    "Reduces runtime overhead by orders of magnitude in the strong-noise regime; combined with two-layer mitigation, from \\(3.6 \\times 10^8\\) to \\(3.8 \\times 10^4\\) at a mitigated infidelity of 0.024 in the reported analysis",
+    "Keeps the drift resilience of agnostic noise amplification, since no noise model is learned",
+    "Applies to any constant-step amplification factors, so it covers KIK, folding ZNE and probabilistic error amplification alike",
+    "Gives a circuit-independent rule for when layered mitigation pays off",
+    "Compatible with dynamic circuits, error detection and error correction, and with mid-circuit measurement and preparation error mitigation"
+  ],
+  "disadvantages": [
+    "Applies only to agnostic noise amplification schemes; it does not help probabilistic error cancellation",
+    "The scaling factor must be estimated, and a poor estimate moves the eigenvalues off the plateau",
+    "The layer-count threshold is derived from an upper bound on the two-layer infidelity, so the actual crossover can differ for a specific circuit",
+    "Layering below the threshold increases rather than decreases the sampling overhead",
+    "Sampling overhead still grows with circuit volume; the reduction is a large constant factor, not a change in scaling"
+  ]
+}

@@ -14,20 +14,43 @@ This starts a local server at [http://localhost:8000](http://localhost:8000) and
 
 ### Pages
 
-- **Catalog** (`index.html`) — searchable, filterable listing of all techniques with LaTeX-rendered math
-- **Graph View** (`graph.html`) — interactive force-directed graph showing technique relationships
+- **Protocols** (`index.html`) — the main catalog of QEM and QES methods
+- **Techniques** (`techniques.html`) — supporting methods: noise scaling, extrapolation and post-processing, noise learning
+- **Noise** (`noise.html`) — noise channels and the techniques that address them
+- **Applications** (`applications.html`) — VQE, QAOA, Hamiltonian simulation, and other use cases
+- **Detail pages** (`technique.html?id=...`, `application.html?id=...`) — rendered from the JSON data files, with LaTeX typeset by MathJax
 
-## Adding a technique
+## Contributing
 
-1. Add the BibTeX entry to `references.bib`
-2. Add the corresponding entry to `data/references.json`
-3. Add the technique to `data/techniques.json` (including `related` edges for the graph view)
+Corrections and new entries are welcome, either as a pull request or by email
+(see the [FAQ](https://qemzoo.com/faq.html)). Everything on the site is
+rendered from the JSON files under `data/`, so an edit is a JSON edit; no build
+step is involved.
+
+To add a protocol:
+
+1. Add its references to `data/references.json`, keyed by first author and year
+2. Add a catalog entry to `data/techniques.json`: `id`, `name`, `category`
+   (`mitigation` or `suppression`), `summary`, `properties`, `references`, and
+   `related` edges to other entries
+3. Add `data/techniques/<id>.json` with the long-form content: `description`,
+   `how_it_works`, `key_equations`, `advantages`, `disadvantages`, `use_cases`,
+   and any `diagrams`
+
+The other catalogs follow the same two-file pattern: a list file
+(`data/noise.json`, `data/applications.json`, `data/extrapolation.json`,
+`data/noise-scaling.json`, `data/noise-learning.json`) and a per-entry detail
+file in the matching directory.
+
+Claims on a page should be traceable to a cited paper, and numbers (qubit
+counts, overheads, thresholds) should match what that paper reports.
 
 ## Structure
 
-- `data/techniques.json` — all technique entries as structured data
-- `data/references.json` — reference metadata (mirrors `references.bib`)
-- `references.bib` — BibTeX source of truth for citations
-- `index.html` / `style.css` / `script.js` — catalog frontend
-- `graph.html` / `graph.js` — graph view (D3.js)
+- `data/techniques.json` and `data/techniques/` — protocol catalog and per-protocol detail
+- `data/noise.json`, `data/applications.json`, `data/extrapolation.json`, `data/noise-scaling.json`, `data/noise-learning.json` — the other catalogs, each with a matching detail directory
+- `data/references.json` — reference metadata used to render every citation
+- `references.bib` — partial BibTeX export; `data/references.json` is the source of truth
+- `*.html`, `css/`, `js/` — static frontend, one script per page type
+- `images/`, `scripts/` — figures and the scripts that generate them
 - `main.py` — local static file server
