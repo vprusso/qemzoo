@@ -90,6 +90,25 @@ nav.site-nav a.active {
   border-color: var(--accent);
 }
 
+nav.site-nav a.nav-external {
+  color: #666;
+  border-style: dashed;
+}
+
+nav.site-nav a.nav-external::after {
+  content: " \2197";
+  font-size: 0.85em;
+}
+
+/* Per-entry edit prompt on detail pages */
+.edit-entry {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.85rem;
+  color: #777;
+}
+
 /* Filters */
 .filters {
   display: flex;

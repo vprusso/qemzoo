@@ -1,3 +1,16 @@
+// Links to the data files an entry is rendered from, so a reader who spots an
+// error can propose the fix directly. GitHub's web editor forks the repo and
+// opens a pull request for anyone without write access.
+const REPO_EDIT_BASE = "https://github.com/vprusso/qemzoo/edit/master";
+
+function editEntryHtml(catalogFile, detailFile) {
+  const catalog = `<a href="${REPO_EDIT_BASE}/${catalogFile}">${catalogFile}</a>`;
+  const detail = detailFile
+    ? ` or <a href="${REPO_EDIT_BASE}/${detailFile}">${detailFile}</a>`
+    : "";
+  return `<p class="edit-entry">Spotted an error? This entry is rendered from ${catalog}${detail}. Edit it on GitHub to open a pull request, or <a href="faq.html#contributing">send a correction</a>.</p>`;
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
   const params = new URLSearchParams(window.location.search);
   const id = params.get("id");
@@ -164,6 +177,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
       html += `</ol></section>`;
     }
+
+    html += editEntryHtml("data/applications.json", `data/applications/${id}.json`);
 
     content.innerHTML = html;
 
