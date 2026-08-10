@@ -23,7 +23,7 @@
       "Learning method": "Decay fitting from repeated cycles",
       "Enables": "NOX, learned noise amplification"
     },
-    "references": ["ferracin2022"]
+    "references": ["erhard2019", "ferracin2022"]
   },
   {
     "id": "gate-set-tomography",
@@ -36,7 +36,7 @@
       "Learning method": "Long sequence experiments with maximum likelihood estimation",
       "Enables": "Detailed noise analysis, PEC on small systems"
     },
-    "references": ["cai2023"]
+    "references": ["nielsen2021gst"]
   },
   {
     "id": "randomized-benchmarking",
@@ -49,6 +49,6 @@
       "Learning method": "Exponential decay fitting",
       "Enables": "Fidelity benchmarking, rough noise estimates"
     },
-    "references": ["cai2023"]
+    "references": ["magesan2011"]
   }
 ]

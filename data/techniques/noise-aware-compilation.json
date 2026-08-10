@@ -1,7 +1,7 @@
 {
   "description": [
     "Noise-Aware Compilation (NAC) suppresses errors at the compilation stage by incorporating up-to-date hardware calibration data into circuit optimization decisions. This includes qubit mapping (selecting low-error subgraphs), SWAP routing (choosing high-fidelity paths), and gate scheduling (timing operations to minimize decoherence and crosstalk).",
-    "Unlike mitigation techniques that correct errors after execution, NAC proactively avoids errors by steering the compiled circuit away from noisy hardware resources. Modern implementations in Qiskit (enabled by default since v0.21) recover on average nearly 40% of missing fidelity compared to noise-unaware compilation.",
+    "Unlike mitigation techniques that correct errors after execution, NAC proactively avoids errors by steering the compiled circuit away from noisy hardware resources. Current transpilers do this by default: Qiskit scores candidate layouts using the reported gate error rates of the target backend and prefers the lowest-error embedding it finds.",
     "NAC is a broad category encompassing qubit layout optimization, noise-adaptive routing, and calibration-aware transpilation. It is most impactful on hardware with non-uniform error rates, which is typical of current superconducting and trapped-ion processors."
   ],
   "how_it_works": [
@@ -17,8 +17,8 @@
       "latex": "C(\\pi) = \\sum_{g \\in \\text{gates}} \\epsilon_{\\pi(g)} + \\sum_{q \\in \\text{qubits}} \\frac{t_{\\text{idle}}(q)}{T_2(q)}"
     },
     {
-      "label": "Fidelity improvement",
-      "latex": "F_{\\text{NAC}} \\approx F_{\\text{naive}} + 0.4 (1 - F_{\\text{naive}})"
+      "label": "Expected circuit success probability for a layout (\u03b5_g = error rate of gate g under the mapping)",
+      "latex": "P_{\\text{success}}(\\pi) = \\prod_{g \\in \\text{gates}} \\left(1 - \\epsilon_{\\pi(g)}\\right)"
     }
   ],
   "advantages": [

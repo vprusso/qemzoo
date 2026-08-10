@@ -13,12 +13,12 @@
   ],
   "key_equations": [
     {
-      "label": "Accreditation bound (\u03b4 = failure probability)",
-      "latex": "\\Pr\\bigl[\\|p_{\\text{noisy}} - p_{\\text{ideal}}\\|_{\\text{TV}} > \\epsilon\\bigr] \\leq \\delta"
+      "label": "Confidence in the bound (d = protocol runs)",
+      "latex": "1 - 2 e^{-2 d \\theta^2}"
     },
     {
-      "label": "Trap pass rate threshold",
-      "latex": "\\text{Accept if } \\frac{\\text{\\# traps passed}}{\\text{\\# traps total}} \\geq 1 - \\frac{\\epsilon}{N_{\\text{trap}}}"
+      "label": "Accreditation bound (N_acc = accepted runs out of d, v = number of traps per run, theta = tunable confidence parameter)",
+      "latex": "\\frac{1}{2} \\sum_s |p_{\\text{ideal}}(s) - p_{\\text{noisy}}(s)| \\leq \\frac{\\epsilon}{N_{\\text{acc}}/d - \\theta}, \\quad \\epsilon \\propto 1/v"
     }
   ],
   "advantages": [

@@ -1,7 +1,7 @@
 {
   "description": [
     "Pauli Twirling (PT), also known as randomized compiling, converts coherent (systematic) gate errors into stochastic Pauli noise. Coherent errors are particularly problematic because they can accumulate constructively, leading to worst-case error scaling. Stochastic Pauli errors, by contrast, add incoherently and are easier to analyze and mitigate.",
-    "The technique works by conjugating each gate with random Pauli operators drawn from the gate's stabilizer group. Because the Pauli operators commute with the ideal gate (up to a phase that is tracked classically), the ideal computation is unchanged, but the effective noise channel is symmetrized (twirled) into a Pauli channel.",
+    "The technique works by sandwiching each gate between random Pauli operators. For an ideal gate \\(G\\), a Pauli \\(P_L\\) is drawn uniformly at random and the partner \\(P_R = G P_L G^\\dagger\\) is computed classically, so that \\(P_R G P_L = G\\) up to a phase and the ideal computation is unchanged. For Clifford \\(G\\) the partner is again a Pauli, so the twirl costs nothing beyond single-qubit gates. Averaging over the random choices symmetrizes the noise channel into a Pauli channel.",
     "Pauli twirling is most commonly used as a preprocessing step before applying ZNE or PEC, where the simplified Pauli noise structure makes the downstream mitigation more effective."
   ],
   "how_it_works": [

@@ -23,8 +23,8 @@
       "latex": "\\langle O_L \\rangle_{\\text{mitigated}} = \\frac{\\text{Tr}(\\Pi \\rho \\Pi \\, O_L)}{\\text{Tr}(\\Pi \\rho \\Pi)}"
     },
     {
-      "label": "Sample complexity for k logical qubits (\u03b5 = precision, \u03b4 = failure probability)",
-      "latex": "N = O\\left(\\frac{4^k}{\\epsilon^2} \\log(1/\\delta)\\right)"
+      "label": "Sample complexity for k logical qubits (M = number of observables estimated, \u03b5 = precision)",
+      "latex": "N = O\\!\\left(\\frac{4^k \\log M}{\\epsilon^2}\\right)"
     }
   ],
   "advantages": [

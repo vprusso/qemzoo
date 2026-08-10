@@ -21,7 +21,7 @@
       "latex": "\\Lambda_{\\text{twirled}} = \\frac{1}{|P|} \\sum_{P_i \\in P} P_i^\\dagger \\Lambda P_i"
     },
     {
-      "label": "Logical infidelity comparison (\u03c9 = rotation angle): Partial twirling achieves similar fidelity to full twirling",
+      "label": "Logical infidelity of the [[4,2,2]] code under a coherent over-rotation of angle \u03c9, with partial twirling over {I, X, Z}. Full twirling gives the same first two terms without the third",
       "latex": "\\bar{r}_{\\text{partial}} = 1 - 4\\cos(\\omega/2)^6 \\sin(\\omega/2)^2 - \\frac{1}{288}\\csc(\\omega/2)^4 \\sin(\\omega)^6"
     }
   ],

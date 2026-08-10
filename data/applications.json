@@ -8,7 +8,7 @@
     "key_results": [
       "First demonstration of increased effective QV over manufacturer benchmarks using ZNE",
       "Achieved on multiple IBM Quantum superconducting processors",
-      "Moderate additional sampling overhead from running circuits at multiple noise levels"
+      "Achieved with the same total shot budget, split across the noise levels"
     ],
     "references": ["pelofske2023", "larose2022qv", "self2024"]
   },
@@ -19,11 +19,11 @@
     "summary": "VQE is a hybrid quantum-classical algorithm for finding ground state energies of molecular Hamiltonians. Error mitigation is critical for achieving chemical accuracy on NISQ devices. Techniques like symmetry verification, ZNE, and N-representability constraints help correct noisy energy estimates.",
     "qem_techniques": ["zne", "symmetry-verification", "n-representability", "measurement-error-mitigation", "cdr"],
     "key_results": [
-      "Chemical accuracy achieved for small molecules (H₂, LiH, BeH₂) on NISQ hardware",
+      "Chemical accuracy achieved for small molecules (H₂, LiH) on NISQ hardware",
       "Symmetry verification exploits particle number and spin conservation",
       "CDR leverages near-Clifford training circuits for regression-based correction"
     ],
-    "references": ["kandala2019", "mcardle2019", "czarnik2021", "urbanek2020"]
+    "references": ["kandala2019", "sagastizabal2019", "mcardle2019", "czarnik2021", "urbanek2020"]
   },
   {
     "id": "qaoa",
@@ -58,11 +58,11 @@
     "summary": "Quantum machine learning algorithms, including variational classifiers and quantum kernel methods, are sensitive to noise that can destroy the quantum advantage. Error mitigation helps preserve the expressibility of parameterized quantum circuits and the quality of learned models.",
     "qem_techniques": ["zne", "measurement-error-mitigation", "cdr", "dd"],
     "key_results": [
-      "Error-mitigated variational classifiers achieve higher test accuracy",
-      "ZNE improves fidelity of quantum kernel matrices",
-      "Measurement error mitigation critical for classification tasks with many output classes"
+      "Noise-induced barren plateaus flatten the cost landscape exponentially in circuit depth, so mitigating noise is a prerequisite for trainability rather than a refinement",
+      "ZNE and CDR correct the systematic bias in the expectation values used for both training and inference",
+      "Measurement error mitigation matters most where readout dominates, as in classification with many output classes"
     ],
-    "references": ["sagastizabal2019", "wang2021qml"]
+    "references": ["wang2021qml", "cai2023"]
   },
   {
     "id": "utility-scale",

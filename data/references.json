@@ -672,6 +672,46 @@
     "arxiv": "2504.12457",
     "doi": "10.1038/s41534-026-01207-0"
   },
+  "erhard2019": {
+    "authors": "A. Erhard, J. J. Wallman, L. Postler, M. Meth, R. Stricker, E. A. Martinez, P. Schindler, T. Monz, J. Emerson, R. Blatt",
+    "title": "Characterizing Large-Scale Quantum Computers via Cycle Benchmarking",
+    "journal": "Nature Communications",
+    "year": 2019,
+    "arxiv": "1902.08543",
+    "doi": "10.1038/s41467-019-13068-7"
+  },
+  "magesan2011": {
+    "authors": "E. Magesan, J. M. Gambetta, J. Emerson",
+    "title": "Scalable and Robust Randomized Benchmarking of Quantum Processes",
+    "journal": "Physical Review Letters",
+    "year": 2011,
+    "arxiv": "1009.3639",
+    "doi": "10.1103/PhysRevLett.106.180504"
+  },
+  "nielsen2021gst": {
+    "authors": "E. Nielsen, J. K. Gamble, K. Rudinger, T. Scholten, K. Young, R. Blume-Kohout",
+    "title": "Gate Set Tomography",
+    "journal": "Quantum",
+    "year": 2021,
+    "arxiv": "2009.07301",
+    "doi": "10.22331/q-2021-10-05-557"
+  },
+  "obrien2021": {
+    "authors": "T. E. O'Brien, S. Polla, N. C. Rubin, W. J. Huggins, S. McArdle, S. Boixo, J. R. McClean, R. Babbush",
+    "title": "Error Mitigation via Verified Phase Estimation",
+    "journal": "PRX Quantum",
+    "year": 2021,
+    "arxiv": "2010.02538",
+    "doi": "10.1103/PRXQuantum.2.020317"
+  },
+  "kandala2017": {
+    "authors": "A. Kandala, A. Mezzacapo, K. Temme, M. Takita, M. Brink, J. M. Chow, J. M. Gambetta",
+    "title": "Hardware-Efficient Variational Quantum Eigensolver for Small Molecules and Quantum Magnets",
+    "journal": "Nature",
+    "year": 2017,
+    "arxiv": "1704.05018",
+    "doi": "10.1038/nature23879"
+  },
   "zhao2024": {
     "authors": "A. Zhao, A. Miyake",
     "title": "Group-Theoretic Error Mitigation Enabled by Classical Shadows and Symmetries",

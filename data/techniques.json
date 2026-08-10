@@ -45,7 +45,7 @@
     "summary": "Generalizes zero-noise extrapolation by scaling noise independently at each layer of a quantum circuit rather than uniformly across the entire circuit. This multivariate approach constructs a higher-dimensional extrapolation in the space of per-layer noise rates, enabling more accurate extrapolation to the zero-noise limit. The number of circuit variations scales polynomially with circuit depth \\(d\\) for a fixed extrapolation order.",
     "properties": {
       "Bias": "Reduced compared to global ZNE at the same extrapolation order",
-      "Sampling overhead": "\\(\\binom{d + k - 1}{k}\\) circuit variations for depth \\(d\\) and order \\(k\\); exponential in order",
+      "Sampling overhead": "\\(\\binom{d + k}{k}\\) circuit variations for \\(d\\) layers and extrapolation order \\(k\\); polynomial in \\(d\\), exponential in \\(k\\)",
       "Noise model required": "Minimal; requires ability to scale noise at each layer independently",
       "Applicability": "Layered circuits (e.g., variational ansatze, Trotterized evolution)"
     },
@@ -63,7 +63,7 @@
     "summary": "Corrects for errors occurring during the final measurement (readout) stage of a quantum computation. The key idea is to characterize the measurement channel by preparing known computational basis states and recording the assignment probabilities, forming a confusion matrix \\(A\\). The inverse \\(A^{-1}\\) is then applied to raw measurement results to recover corrected expectation values.",
     "properties": {
       "Bias": "Zero (in principle) if the assignment matrix is exact",
-      "Sampling overhead": "Grows exponentially with measurement fault rate",
+      "Sampling overhead": "Variance inflated by \\(\\|A^{-1}\\|^2\\), which grows exponentially in the number of qubits times the readout error rate",
       "Noise model required": "Measurement-only; characterized via \\(2^n\\) calibration circuits (or fewer with tensor product approximation)",
       "Scalability": "Full matrix inversion is \\(O(2^n)\\); tensor product or correlated subsets used in practice"
     },
@@ -210,9 +210,9 @@
     "abbreviation": "SQD",
     "aliases": ["sample-based Krylov diagonalization", "SKQD", "SqDRIFT"],
     "category": "mitigation",
-    "summary": "Constructs a Krylov subspace by applying powers of the Hamiltonian (via time evolution) to a reference state, then uses measurement samples to build matrix representations for classical diagonalization. Unlike phase estimation, SQD avoids deep circuits by shifting computational burden to classical post-processing. The method achieves polynomial convergence guarantees while remaining practical for near-term quantum hardware.",
+    "summary": "Samples computational-basis configurations from states prepared on hardware and diagonalizes the Hamiltonian classically in the subspace those configurations span. In the Krylov variant (SKQD) the sampled states come from real-time evolution of a reference state, which keeps circuits far shallower than phase estimation. Noise enters only through which configurations are sampled, and is handled by self-consistent configuration recovery that repairs samples violating known symmetries such as particle number; convergence is provable in polynomial time when the ground state is sparse in the measurement basis.",
     "properties": {
-      "Bias": "Controlled; converges to ground state with increasing Krylov dimension",
+      "Bias": "Variational; the subspace energy upper-bounds the true ground-state energy and converges as the sampled subspace grows",
       "Sampling overhead": "Moderate; requires samples from multiple Krylov states",
       "Noise model required": "None",
       "Applicability": "Ground state estimation for many-body systems; quantum chemistry"
@@ -376,12 +376,12 @@
     "abbreviation": "NOX",
     "aliases": ["noise-learned output extrapolation"],
     "category": "mitigation",
-    "summary": "Combines efficient noise reconstruction (e.g., cycle benchmarking) with noise amplification and extrapolation to the zero-noise limit. Unlike standard ZNE, which uses heuristic noise-scaling methods, NOX learns a detailed noise model per cycle of gates and uses it to perform accurate, targeted noise amplification. This allows it to handle non-local and gate-dependent noise processes that violate the assumptions of simpler extrapolation methods. The protocol was validated on superconducting processors and has been applied to quantum field theory simulations.",
+    "summary": "Combines efficient noise reconstruction (e.g., cycle benchmarking) with noise amplification and extrapolation to the zero-noise limit. Unlike standard ZNE, which uses heuristic noise-scaling methods, NOX learns a detailed noise model per cycle of gates and uses it to perform accurate, targeted noise amplification. This allows it to handle non-local and gate-dependent noise processes that violate the assumptions of simpler extrapolation methods. The protocol was validated on a four-qubit superconducting processor on W-state preparation, quantum phase estimation, and pseudo-random circuits.",
     "properties": {
       "Bias": "First-order mitigation; does not cancel second-order noise terms",
       "Sampling overhead": "Moderate; noise-learning calibration plus multiple noise-scaled circuit executions",
       "Noise model required": "Learned via efficient noise reconstruction (cycle benchmarking); handles non-local and gate-dependent noise",
-      "Applicability": "General-purpose; demonstrated on superconducting processors for circuits with up to ~37 hard cycles"
+      "Applicability": "General-purpose; demonstrated on superconducting hardware for circuits with up to 11 noisy cycles"
     },
     "references": ["ferracin2022"],
     "related": [
@@ -404,7 +404,7 @@
       "Noise model required": "None (model-free)",
       "Applicability": "General-purpose; especially effective for coherent errors and short-to-moderate depth circuits"
     },
-    "references": ["cai2021ev", "rahman2022"],
+    "references": ["obrien2021", "cai2021ev", "rahman2022"],
     "related": [
       {"id": "purification", "reason": "both exploit purity to suppress noise; EV uses time-reversal instead of copies"},
       {"id": "symmetry-verification", "reason": "both use post-selection to discard erroneous runs"},
@@ -417,10 +417,10 @@
     "abbreviation": "TEM",
     "aliases": ["MPO error mitigation", "matrix product operator mitigation"],
     "category": "mitigation",
-    "summary": "Represents the noise channel as a matrix product operator (MPO) and applies its inverse to noisy measurement outcomes to recover mitigated expectation values. The tensor network structure captures spatially and temporally correlated noise with polynomial complexity, avoiding the exponential overhead of full process tomography. The MPO inverse is computed variationally or analytically, and the method scales to large circuits while maintaining provably optimal sampling overhead.",
+    "summary": "Represents the noise channel as a matrix product operator (MPO) and applies its inverse to noisy measurement outcomes to recover mitigated expectation values. The tensor network structure captures spatially and temporally correlated noise with polynomial complexity, avoiding the exponential overhead of full process tomography. The MPO inverse is computed variationally or analytically, and the measurement overhead is quadratically smaller than that of PEC, which lets TEM reach roughly twice the circuit depth under comparable sparse Pauli-Lindblad noise.",
     "properties": {
       "Bias": "Zero (in principle) if noise model is exact",
-      "Sampling overhead": "Optimal among linear mitigation methods; polynomial in bond dimension",
+      "Sampling overhead": "Quadratically smaller than PEC; polynomial in bond dimension",
       "Noise model required": "Learned MPO representation of the noise channel",
       "Applicability": "General-purpose; particularly effective for circuits with spatially correlated noise"
     },
@@ -576,7 +576,7 @@
     "abbreviation": "NAC",
     "aliases": ["noise-aware routing", "hardware-aware transpilation", "calibration-aware compilation"],
     "category": "suppression",
-    "summary": "Suppresses errors at the compilation stage by using up-to-date hardware calibration data (gate error rates, coherence times, crosstalk maps) to make routing, qubit mapping, and gate scheduling decisions. This includes selecting low-error qubit subgraphs, routing SWAP operations through high-fidelity paths, and timing gate execution to avoid decoherence and crosstalk. Modern implementations recover up to 40% of missing fidelity compared to noise-unaware compilation.",
+    "summary": "Suppresses errors at the compilation stage by using up-to-date hardware calibration data (gate error rates, coherence times, crosstalk maps) to make routing, qubit mapping, and gate scheduling decisions. This includes selecting low-error qubit subgraphs, routing SWAP operations through high-fidelity paths, and timing gate execution to avoid decoherence and crosstalk. Current transpilers score candidate qubit layouts using reported gate error rates and coherence times by default.",
     "properties": {
       "Bias": "Reduced by avoiding high-error hardware resources",
       "Sampling overhead": "None; purely a compilation-stage optimization",
@@ -638,9 +638,9 @@
     "abbreviation": null,
     "aliases": ["adaptive KIK", "pulse-based inverse evolution", "layered KIK"],
     "category": "mitigation",
-    "summary": "Mitigates errors by combining noisy circuit outputs with outputs from pulse-based inverse evolutions, using adaptive coefficients tuned to the device noise level. Unlike gate-level folding (ZNE) or echo verification, KIK constructs the inverse at the pulse level by reversing pulse amplitudes and time ordering, enabling more accurate noise cancellation. The method adapts to moderate-to-strong noise regimes and integrates with randomized compiling to handle both coherent and incoherent noise.",
+    "summary": "Reconstructs and divides out the noise channel using pulse-based inverse evolutions rather than extrapolating it away. Writing K for the noisy circuit and K_I for a noisy inverse evolution generated by reversing and negating the drive, the ideal evolution satisfies \\(U \\approx K(K_I K)^{-1/2}\\) to first order in the Magnus expansion. The inverse square root is expanded polynomially, so the circuits \\(K(K_I K)^m\\) are executed and combined with coefficients fixed analytically by a single measured noise-strength parameter. The method handles moderate-to-strong, time-dependent and spatially correlated noise, and integrates with randomized compiling to cover coherent errors.",
     "properties": {
-      "Bias": "Low; first-order noise cancellation with adaptive coefficients",
+      "Bias": "Suppressed exponentially in the expansion order below a noise threshold; residual bias from truncating the Magnus expansion at first order",
       "Sampling overhead": "Low; number of circuits is independent of system size",
       "Noise model required": "None; no tomography or machine learning required",
       "Applicability": "General-purpose; handles moderate-to-strong noise, time-dependent noise, and spatially correlated errors"
