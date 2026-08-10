@@ -193,9 +193,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   // Typeset MathJax after all content is rendered
-  if (window.MathJax && window.MathJax.typesetPromise) {
-    window.MathJax.typesetPromise();
-  }
+  typesetMath();
 
   // Scroll to hash target after dynamic content is rendered
   if (window.location.hash) {

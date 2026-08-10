@@ -183,9 +183,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     content.innerHTML = html;
 
     // Typeset MathJax
-    if (window.MathJax && window.MathJax.typesetPromise) {
-      window.MathJax.typesetPromise();
-    }
+    typesetMath();
   } catch (e) {
     content.innerHTML = `<p class="error-msg">Error loading application: ${e.message}. Return to the <a href="applications.html">applications</a> page.</p>`;
   }

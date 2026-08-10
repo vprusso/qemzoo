@@ -221,9 +221,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     content.innerHTML = html;
 
     // Typeset MathJax.
-    if (window.MathJax && window.MathJax.typesetPromise) {
-      window.MathJax.typesetPromise();
-    }
+    typesetMath();
   } catch (e) {
     content.innerHTML = `<p class="error-msg">Error loading technique: ${e.message}. Return to the <a href="index.html">catalog</a>.</p>`;
   }
@@ -361,9 +359,7 @@ async function renderNoiseScalingDetail(id, content, breadcrumbName, breadcrumb,
     content.innerHTML = html;
 
     // Typeset MathJax.
-    if (window.MathJax && window.MathJax.typesetPromise) {
-      window.MathJax.typesetPromise();
-    }
+    typesetMath();
   } catch (e) {
     content.innerHTML = `<p class="error-msg">Error loading technique: ${e.message}. Return to the <a href="techniques.html">techniques</a> page.</p>`;
   }
@@ -522,9 +518,7 @@ async function renderNoiseDetail(id, content, breadcrumbName, breadcrumb, cacheB
     content.innerHTML = html;
 
     // Typeset MathJax.
-    if (window.MathJax && window.MathJax.typesetPromise) {
-      window.MathJax.typesetPromise();
-    }
+    typesetMath();
   } catch (e) {
     content.innerHTML = `<p class="error-msg">Error loading noise type: ${e.message}. Return to the <a href="noise.html">noise</a> page.</p>`;
   }
@@ -649,9 +643,7 @@ async function renderExtrapolationDetail(id, content, breadcrumbName, breadcrumb
     content.innerHTML = html;
 
     // Typeset MathJax.
-    if (window.MathJax && window.MathJax.typesetPromise) {
-      window.MathJax.typesetPromise();
-    }
+    typesetMath();
   } catch (e) {
     content.innerHTML = `<p class="error-msg">Error loading extrapolation method: ${e.message}. Return to the <a href="techniques.html">techniques</a> page.</p>`;
   }
@@ -798,9 +790,7 @@ async function renderNoiseLearningDetail(id, content, breadcrumbName, breadcrumb
     content.innerHTML = html;
 
     // Typeset MathJax.
-    if (window.MathJax && window.MathJax.typesetPromise) {
-      window.MathJax.typesetPromise();
-    }
+    typesetMath();
   } catch (e) {
     content.innerHTML = `<p class="error-msg">Error loading noise learning method: ${e.message}. Return to the <a href="techniques.html">techniques</a> page.</p>`;
   }
