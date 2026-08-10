@@ -740,7 +740,7 @@
     "abbreviation": "SCT",
     "aliases": ["symmetric twirling", "structure-preserving twirling"],
     "category": "suppression",
-    "summary": "Applies Clifford twirling using only symmetric Clifford operators that commute with certain Pauli subgroups, preserving the structure of the target operation while scrambling noise to approximately global white noise with exponential precision. Hardware-efficient variants use only local symmetric Cliffords to accelerate noise scrambling. Particularly effective in the early fault-tolerant regime where non-Clifford operations must be error-mitigated with minimal overhead.",
+    "summary": "Applies Clifford twirling using only symmetric Clifford operators that commute with certain Pauli subgroups, preserving the structure of the target operation. The conversion of each Pauli noise term under the twirl is characterized exactly, and certain Pauli noise is scrambled to within an exponentially small distance of global white noise. Hardware-efficient variants use only local symmetric Cliffords to accelerate noise scrambling. Particularly effective in the early fault-tolerant regime where non-Clifford operations must be error-mitigated with minimal overhead.",
     "properties": {
       "Bias": "Exponentially small; noise approaches global white noise",
       "Sampling overhead": "Reduced compared to full Clifford twirling; hardware-efficient variants minimize gate count",
